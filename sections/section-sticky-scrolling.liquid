@@ -1,0 +1,370 @@
+{{ 'wyms-sticky-scrolling.css' | asset_url | stylesheet_tag }}
+
+<sticky-scrolling>
+  <section
+    class="sticky-scroll"
+    id="StickyScroll-{{ section.id }}"
+  >
+
+    {%- if section.settings.bg_image != blank -%}
+      <div class="sticky-scroll__bg-full-screen">
+        <img
+          src="{{ section.settings.bg_image | image_url: width: 3000 }}"
+          alt="{{ section.settings.bg_image.alt | escape }}"
+          class="sticky-scroll__bg-image"
+          loading="lazy"
+          width="{{ section.settings.bg_image.width }}"
+          height="{{ section.settings.bg_image.height }}"
+        >
+      </div>
+    {%- endif -%}
+
+    <div class="page-width">
+      <div
+        class="sticky-scroll__track"
+        style="--total-blocks: {{ section.blocks.size }};"
+      >
+
+        <div class="sticky-scroll__sticky-window hide-mobile">
+          <div class="sticky-scroll__flex-layout">
+
+            <div class="sticky-scroll__side-col"></div>
+
+            <div class="sticky-scroll__center-col">
+              <div class="sticky-scroll__image-container">
+                {%- for block in section.blocks -%}
+                  <div
+                    class="sticky-scroll__img-obj {% if forloop.first %}is-active{% endif %}"
+                    data-media-index="{{ forloop.index0 }}"
+                  >
+                    {%- if block.settings.image != blank -%}
+                      {{
+                        block.settings.image
+                        | image_url: width: 1000
+                        | image_tag: loading: 'lazy'
+                      }}
+                    {%- endif -%}
+
+                    {%- if block.settings.icon_image != blank -%}
+                      <div
+                        class="sticky-scroll__icon-badge"
+                        style="
+                          --icon-top:    {{ block.settings.icon_top    | default: 'auto' }}{% unless block.settings.icon_top    == blank %}px{% endunless %};
+                          --icon-right:  {{ block.settings.icon_right  | default: 'auto' }}{% unless block.settings.icon_right  == blank %}px{% endunless %};
+                          --icon-bottom: {{ block.settings.icon_bottom | default: 'auto' }}{% unless block.settings.icon_bottom == blank %}px{% endunless %};
+                          --icon-left:   {{ block.settings.icon_left   | default: 'auto' }}{% unless block.settings.icon_left   == blank %}px{% endunless %};
+                          --icon-width:  {{ block.settings.icon_width  | default: 100 }}px;
+                          --icon-rotate: {{ block.settings.icon_rotate | default: 13 }}deg;
+                        "
+                      >
+                        {{
+                          block.settings.icon_image
+                          | image_url: width: 300
+                          | image_tag: loading: 'lazy', class: 'sticky-scroll__icon-img'
+                        }}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+
+            <div class="sticky-scroll__side-col"></div>
+
+          </div>
+        </div>
+
+        <div class="sticky-scroll__scroll-layer">
+          {%- for block in section.blocks -%}
+            {%- assign parity = forloop.index | modulo: 2 -%}
+
+        
+            {%- if block.settings.mobile_image != blank -%}
+              {%- assign mobile_image_src = block.settings.mobile_image -%}
+            {%- else -%}
+              {%- assign mobile_image_src = block.settings.image -%}
+            {%- endif -%}
+
+            <div
+              class="sticky-scroll__row"
+              data-index="{{ forloop.index0 }}"
+            >
+              <div class="sticky-scroll__flex-layout">
+
+                <div class="sticky-scroll__side-col is-left-col">
+                  {%- if parity != 0 -%}
+                    <div class="sticky-scroll__content-card-wrap">
+
+                      {%- if block.settings.bg_icon != blank -%}
+                        <div class="sticky-scroll__card-bg-icon">
+                          {{
+                            block.settings.bg_icon
+                            | image_url: width: 800
+                            | image_tag: loading: 'lazy', class: 'sticky-scroll__card-bg-img'
+                          }}
+                        </div>
+                      {%- endif -%}
+
+                      <div class="sticky-scroll__content-card">
+                        <span class="ssc-label">
+                          {{ block.settings.label }}
+                        </span>
+                        <h3 class="ssc-heading">
+                          {{ block.settings.heading }}
+                        </h3>
+                        <p class="ssc-body">
+                          {{ block.settings.text }}
+                        </p>
+                        {%- if block.settings.button_label != blank -%}
+                          <div class="ssc-btn-wrap">
+                            <a
+                              href="{{ block.settings.button_link }}"
+                              class="ssc-btn"
+                            >
+                              {{ block.settings.button_label }}
+                            </a>
+                          </div>
+                        {%- endif -%}
+                      </div>
+
+                    </div>
+                  {%- endif -%}
+                </div>
+
+                <div class="sticky-scroll__center-col hide-mobile"></div>
+
+                <div class="sticky-scroll__mobile-media hide-desktop">
+                  {%- if mobile_image_src != blank -%}
+                    <div class="sticky-scroll__mobile-img-wrap">
+                      {{
+                        mobile_image_src
+                        | image_url: width: 800
+                        | image_tag: loading: 'lazy'
+                      }}
+
+                      {%- if block.settings.icon_image != blank -%}
+                        <div
+                          class="sticky-scroll__icon-badge sticky-scroll__icon-badge--mobile"
+                          style="
+                            --icon-top:    {{ block.settings.mob_icon_top    | default: 'auto' }}{% unless block.settings.mob_icon_top    == blank %}px{% endunless %};
+                            --icon-right:  {{ block.settings.mob_icon_right  | default: 'auto' }}{% unless block.settings.mob_icon_right  == blank %}px{% endunless %};
+                            --icon-bottom: {{ block.settings.mob_icon_bottom | default: 'auto' }}{% unless block.settings.mob_icon_bottom == blank %}px{% endunless %};
+                            --icon-left:   {{ block.settings.mob_icon_left   | default: 'auto' }}{% unless block.settings.mob_icon_left   == blank %}px{% endunless %};
+                            --icon-width:  {{ block.settings.mob_icon_width  | default: 70 }}px;
+                            --icon-rotate: {{ block.settings.mob_icon_rotate | default: 13 }}deg;
+                          "
+                        >
+                          {{
+                            block.settings.icon_image
+                            | image_url: width: 200
+                            | image_tag: loading: 'lazy', class: 'sticky-scroll__icon-img'
+                          }}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+
+                <div class="sticky-scroll__side-col is-right-col">
+                  {%- if parity == 0 -%}
+                    <div class="sticky-scroll__content-card-wrap">
+
+                      {%- if block.settings.bg_icon != blank -%}
+                        <div class="sticky-scroll__card-bg-icon">
+                          {{
+                            block.settings.bg_icon
+                            | image_url: width: 800
+                            | image_tag: loading: 'lazy', class: 'sticky-scroll__card-bg-img'
+                          }}
+                        </div>
+                      {%- endif -%}
+
+                      <div class="sticky-scroll__content-card">
+                        <span class="ssc-label">
+                          {{ block.settings.label }}
+                        </span>
+                        <h3 class="ssc-heading">
+                          {{ block.settings.heading }}
+                        </h3>
+                        <p class="ssc-body">
+                          {{ block.settings.text }}
+                        </p>
+                        {%- if block.settings.button_label != blank -%}
+                          <div class="ssc-btn-wrap">
+                            <a
+                              href="{{ block.settings.button_link }}"
+                              class="ssc-btn"
+                            >
+                              {{ block.settings.button_label }}
+                            </a>
+                          </div>
+                        {%- endif -%}
+                      </div>
+
+                    </div>
+                  {%- endif -%}
+                </div>
+
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+      </div>
+    </div>
+  </section>
+</sticky-scrolling>
+
+<script src="{{ 'wyms-sticky-scrolling.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+    {
+      "name": "Sticky Scroll Full Bleed",
+      "max_blocks": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "bg_image",
+          "label": "Background Image (Full Width)"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "item",
+          "name": "Content Block",
+          "settings": [
+            {
+              "type": "header",
+              "content": "Text Content"
+            },
+            {
+              "type": "text",
+              "id": "label",
+              "label": "Label (Small heading)"
+            },
+            {
+              "type": "text",
+              "id": "heading",
+              "label": "Heading (Bold)"
+            },
+            {
+              "type": "textarea",
+              "id": "text",
+              "label": "Body (Description)"
+            },
+            {
+              "type": "text",
+              "id": "button_label",
+              "label": "Button Label"
+            },
+            {
+              "type": "url",
+              "id": "button_link",
+              "label": "Button Link"
+            },
+            {
+              "type": "header",
+              "content": "Images"
+            },
+            {
+              "type": "image_picker",
+              "id": "image",
+              "label": "Main Image (Desktop)"
+            },
+            {
+              "type": "image_picker",
+              "id": "mobile_image",
+              "label": "Mobile Image (Fallback to Desktop if empty)"
+            },
+            {
+              "type": "image_picker",
+              "id": "bg_icon",
+              "label": "Background Blob (Behind Text)"
+            },
+            {
+              "type": "header",
+              "content": "Floating Icon — Desktop"
+            },
+            {
+              "type": "image_picker",
+              "id": "icon_image",
+              "label": "Icon Image"
+            },
+            {
+              "type": "number",
+              "id": "icon_top",
+              "label": "Top (px)"
+            },
+            {
+              "type": "number",
+              "id": "icon_right",
+              "label": "Right (px)"
+            },
+            {
+              "type": "number",
+              "id": "icon_bottom",
+              "label": "Bottom (px)"
+            },
+            {
+              "type": "number",
+              "id": "icon_left",
+              "label": "Left (px)"
+            },
+            {
+              "type": "number",
+              "id": "icon_width",
+              "label": "Width (px)",
+              "default": 100
+            },
+            {
+              "type": "number",
+              "id": "icon_rotate",
+              "label": "Rotation (deg)",
+              "default": 13
+            },
+            {
+              "type": "header",
+              "content": "Floating Icon — Mobile"
+            },
+            {
+              "type": "number",
+              "id": "mob_icon_top",
+              "label": "Top (px)"
+            },
+            {
+              "type": "number",
+              "id": "mob_icon_right",
+              "label": "Right (px)"
+            },
+            {
+              "type": "number",
+              "id": "mob_icon_bottom",
+              "label": "Bottom (px)"
+            },
+            {
+              "type": "number",
+              "id": "mob_icon_left",
+              "label": "Left (px)"
+            },
+            {
+              "type": "number",
+              "id": "mob_icon_width",
+              "label": "Width (px)",
+              "default": 70
+            },
+            {
+              "type": "number",
+              "id": "mob_icon_rotate",
+              "label": "Rotation (deg)",
+              "default": 13
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Sticky Scroll Full Bleed"
+        }
+      ]
+    }
+    {% endschema %}

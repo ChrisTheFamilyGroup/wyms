@@ -1,0 +1,233 @@
+{{ 'wyms-mosaic-content.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-mosaic-content.js' | asset_url }}" defer="defer"></script>
+
+<wyms-mosaic-content class="wyms-mosaic section-{{ section.id }}">
+  <div class="page-width wyms-mosaic__container">
+    
+    {% for block in section.blocks %}
+      {%- liquid
+        assign flex_direction_desktop = 'row'
+        if block.settings.text_position == 'right'
+          assign flex_direction_desktop = 'row-reverse'
+        endif
+      -%}
+
+      <div class="wyms-mosaic__row" style="--desktop-flex-dir: {{ flex_direction_desktop }};" {{ block.shopify_attributes }}>
+        
+        {% comment %} === TEXT CONTAINER === {% endcomment %}
+        <div class="wyms-mosaic__text-col">
+          
+          {%- if block.type == 'row_type_a' -%}
+            <div class="wyms-mosaic__text-inner wyms-mosaic__text-inner--type-a">
+              <div class="wyms-mosaic__top-text">
+                {% if block.settings.title != blank %}
+                  <h2 class="wyms-mosaic__title">{{ block.settings.title }}</h2>
+                {% endif %}
+                {% if block.settings.description != blank %}
+                  <div class="wyms-mosaic__desc rte">{{ block.settings.description }}</div>
+                {% endif %}
+              </div>
+              <div class="wyms-mosaic__bottom-text">
+                {% if block.settings.bottom_text != blank %}
+                  <div class="wyms-mosaic__slogan rte">{{ block.settings.bottom_text }}</div>
+                {% endif %}
+                {% if block.settings.icon != blank %}
+                  {{ block.settings.icon | image_url: width: 300 | image_tag: class: 'wyms-mosaic__icon', loading: 'lazy' }}
+                {% endif %}
+              </div>
+            </div>
+            
+          {%- elsif block.type == 'row_type_b' -%}
+            <div class="wyms-mosaic__text-inner wyms-mosaic__text-inner--type-b">
+              <div class="wyms-mosaic__text-stack">
+                {% if block.settings.description != blank %}
+                  <div class="wyms-mosaic__desc-b rte">{{ block.settings.description }}</div>
+                {% endif %}
+                {% if block.settings.slogan != blank %}
+                  <div class="wyms-mosaic__slogan-b rte">{{ block.settings.slogan }}</div>
+                {% endif %}
+              </div>
+              {% if block.settings.button_label != blank %}
+                <div class="wyms-mosaic__btn-wrapper">
+                  <a href="{{ block.settings.button_link | default: '#' }}" class="wyms-mosaic__btn">
+                    {{ block.settings.button_label }}
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          {%- endif -%}
+          
+        </div>
+
+        {% comment %} === IMAGES / CAROUSEL CONTAINER === {% endcomment %}
+        <div class="wyms-mosaic__media-col">
+          <div class="wyms-mosaic__carousel">
+            
+            {%- if block.settings.image_1 != blank -%}
+              <div class="wyms-mosaic__media-item" style="background-color: {{ block.settings.bg_color_1 }};">
+                {{ block.settings.image_1 | image_url: width: 800 | image_tag: class: 'wyms-mosaic__image', loading: 'lazy', widths: '400, 600, 800' }}
+              </div>
+            {%- endif -%}
+            
+            {%- if block.settings.image_2 != blank -%}
+              <div class="wyms-mosaic__media-item" style="background-color: {{ block.settings.bg_color_2 }};">
+                {{ block.settings.image_2 | image_url: width: 800 | image_tag: class: 'wyms-mosaic__image', loading: 'lazy', widths: '400, 600, 800' }}
+              </div>
+            {%- endif -%}
+
+          </div>
+        </div>
+
+      </div>
+    {% endfor %}
+
+  </div>
+</wyms-mosaic-content>
+
+{% schema %}
+{
+  "name": "WYMS Mosaic Content",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "row_type_a",
+      "name": "Row A (Title + Icon)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "text_position",
+          "label": "Text Position (Desktop)",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Hey wir sind Wyms"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Mit der weiterführenden Schule verändert sich mehr...</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "bottom_text",
+          "label": "Bottom Slogan",
+          "default": "<p>Grow up.<br>Carry on.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon (SVG/PNG)"
+        },
+        {
+          "type": "header",
+          "content": "Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "color",
+          "id": "bg_color_1",
+          "label": "Background Color 1",
+          "default": "#6865EA"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "color",
+          "id": "bg_color_2",
+          "label": "Background Color 2",
+          "default": "#D9D9D9"
+        }
+      ]
+    },
+    {
+      "type": "row_type_b",
+      "name": "Row B (Text + Button)",
+      "settings": [
+        {
+          "type": "select",
+          "id": "text_position",
+          "label": "Text Position (Desktop)",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Unsere Produkte sind dafür gemacht...</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "slogan",
+          "label": "Highlight Slogan",
+          "default": "<p>Du entscheidest, was zu dir passt. Wir sorgen dafür, dass es funktioniert.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Mehr erfahren"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "header",
+          "content": "Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "color",
+          "id": "bg_color_1",
+          "label": "Background Color 1",
+          "default": "#D9D9D9"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "color",
+          "id": "bg_color_2",
+          "label": "Background Color 2",
+          "default": "#D9D9D9"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Mosaic Content",
+      "blocks": [
+        { "type": "row_type_a" },
+        { "type": "row_type_b" }
+      ]
+    }
+  ]
+}
+{% endschema %}

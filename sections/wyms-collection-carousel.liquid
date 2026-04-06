@@ -1,0 +1,104 @@
+{{ 'wyms-collection-carousel.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-collection-carousel.js' | asset_url }}" defer="defer"></script>
+
+
+
+<collection-carousel class="collection-carousel-section" id="CollectionCarousel-{{ section.id }}">
+  
+  {%- if section.settings.spot_image != blank -%}
+    <div class="carousel-spot-wrapper">
+      <img src="{{ section.settings.spot_image | image_url: width: 1400 }}" 
+           alt="" loading="lazy" class="carousel-spot-img"
+           width="{{ section.settings.spot_image.width }}" height="{{ section.settings.spot_image.height }}">
+    </div>
+  {%- endif -%}
+
+  <div class="carousel-container">
+    <div class="carousel-header-wrapper page-width">
+      <h2 class="carousel-main-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="collection-carousel-wrapper">
+      <div class="collection-track" id="Track-{{ section.id }}">
+        {%- for block in section.blocks -%}
+          {%- assign collection = block.settings.collection -%}
+          <div class="collection-card-item" {{ block.shopify_attributes }}>
+            <a href="{{ collection.url | default: '#' }}" class="collection-card-link">
+              {%- if block.settings.image != blank or collection.featured_image != blank -%}
+                {%- assign card_image = block.settings.image | default: collection.featured_image -%}
+                {{ card_image | image_url: width: 800 | image_tag: 
+                  class: 'collection-card-img', 
+                  loading: 'lazy',
+                  width: card_image.width,
+                  height: card_image.height
+                }}
+              {%- endif -%}
+              
+              <div class="collection-card-overlay">
+                <h3 class="collection-card-title">{{ block.settings.title | default: collection.title }}</h3>
+              </div>
+            </a>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="carousel-pagination-container page-width">
+      {% render 'wyms-pagination-dots', dot_count: 5, class: 'collection-carousel-dots' %}
+    </div>
+  </div>
+</collection-carousel>
+
+{% schema %}
+{
+  "name": "Collection Carousel",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Beliebte Kategorien"
+    },
+    {
+      "type": "image_picker",
+      "id": "spot_image",
+      "label": "Spot Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Image (Optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom Title (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Carousel",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}

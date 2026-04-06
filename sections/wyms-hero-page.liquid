@@ -1,0 +1,109 @@
+{{ 'wyms-hero-page.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .hero-{{ section.id }} .hero-inner {
+    background-color: {{ section.settings.bg_color }};
+    border-radius: {{ section.settings.border_radius }}px;
+  }
+{%- endstyle -%}
+
+<section class="hero-section hero-{{ section.id }}">
+  <div class="hero-inner">
+    <div class="page-width hero-content-wrapper">
+      
+      <div class="hero-text-column">
+        <div class="hero-text-content">
+          {%- if section.settings.title != blank -%}
+            <h1 class="hero-title">{{ section.settings.title }}</h1>
+          {%- endif -%}
+          
+          {%- if section.settings.subtitle != blank -%}
+            <p class="hero-subtitle">{{ section.settings.subtitle }}</p>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link }}" class="hero-button">
+            {{ section.settings.button_label }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div class="hero-image-column">
+        <div class="hero-image-container">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 1200 | image_tag: 
+              loading: 'lazy',
+              class: 'hero-main-image',
+              widths: '375, 550, 750, 1100, 1500'
+            }}
+          {%- else -%}
+            {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WYMS Hero Page",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Bereit für den nächsten Schritt"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Wyms - gemacht für wachsende Körper, neue Freiheit und viele Jahre Alltag."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Finde deinen Wyms"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#64033C"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Border Radius",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Hero Page"
+    }
+  ]
+}
+{% endschema %}

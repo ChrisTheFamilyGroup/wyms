@@ -1,0 +1,157 @@
+{{ 'wyms-carousel-of-featured-products.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-carousel-of-featured-products.js' | asset_url }}" defer="defer"></script>
+
+<featured-products class="wyms-carousel-section" id="carousel-{{ section.id }}">
+  
+  <!-- Header -->
+  <div class="carousel-header page-width">
+    <h2 class="carousel-title">{{ section.settings.title }}</h2>
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link }}" class="carousel-header-btn btn-desktop">
+        {{ section.settings.button_label }}
+      </a>
+    {%- endif -%}
+  </div>
+
+  <div class="carousel-main-content">
+    
+    <!-- Carousel Track -->
+    <div class="carousel-main-wrapper">
+      <div class="carousel-track-container" id="Track-{{ section.id }}">
+        {%- assign collection = collections[section.settings.collection] -%}
+        {%- for product in collection.products limit: section.settings.products_to_show -%}
+          <div class="product-card-wrapper">
+            <div class="product-card">
+              <a href="{{ product.url }}" class="product-card-link-wrapper">
+                
+                <!-- Image Box -->
+                <div class="product-image-outer">
+                  
+                  {%- if product.metafields.custom.spot_background -%}
+                    {%- assign spot_img = product.metafields.custom.spot_background.value -%}
+                    <img src="{{ spot_img | image_url: width: 800 }}" 
+                         class="spot-bg" 
+                         alt="" 
+                         loading="lazy"
+                         width="{{ spot_img.width }}"
+                         height="{{ spot_img.height }}">
+                  {%- endif -%}
+
+                  {{ product.featured_image | image_url: width: 800 | image_tag: 
+                    class: 'main-product-img', 
+                    loading: 'lazy', 
+                    alt: product.title,
+                    width: product.featured_image.width,
+                    height: product.featured_image.height
+                  }}
+
+                  {%- if product.metafields.custom.top_left_icon -%}
+                    {%- assign meta_icon = product.metafields.custom.top_left_icon.value -%}
+                    <div class="meta-icon-top-left">
+                      <img src="{{ meta_icon | image_url: width: 150 }}" 
+                           alt="" 
+                           loading="lazy"
+                           width="{{ meta_icon.width }}"
+                           height="{{ meta_icon.height }}">
+                    </div>
+                  {%- endif -%}
+
+                  <div class="wishlist-heart-btn">
+                    {% render 'icon-heart' %}
+                  </div>
+                </div>
+
+                <!-- Info -->
+                <div class="product-info">
+                  <div class="product-details-top">
+                    <div class="name-subtitle-group">
+                      <h3 class="product-title">{{ product.title }}</h3>
+                      <span class="product-subtitle">{{ section.settings.default_subtext }}</span>
+                    </div>
+                    <div class="product-price-wrapper">
+                      <span class="product-price">{{ product.price | money_without_trailing_zeros }}</span>
+                    </div>
+                  </div>
+                </div>
+
+              </a>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="carousel-controls page-width">
+      <div class="pagination-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <div class="arrow-buttons">
+        <button class="arrow-btn prev" aria-label="Previous">{% render 'icon-left-arrow' %}</button>
+        <button class="arrow-btn next" aria-label="Next">{% render 'icon-right-arrow' %}</button>
+      </div>
+    </div>
+
+    <!-- Mobile Button -->
+    {%- if section.settings.button_label != blank -%}
+      <div class="page-width btn-mobile-wrapper">
+        <a href="{{ section.settings.button_link }}" class="carousel-header-btn btn-mobile">
+          {{ section.settings.button_label }}
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</featured-products>
+
+{% schema %}
+{
+  "name": "Products Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Unsere Highlights"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "label": "Products to show",
+      "default": 8
+    },
+    {
+      "type": "text",
+      "id": "default_subtext",
+      "label": "Product Subtitle",
+      "default": "Model Name"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Finde deinen Wyms"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products Carousel"
+    }
+  ]
+}
+{% endschema %}

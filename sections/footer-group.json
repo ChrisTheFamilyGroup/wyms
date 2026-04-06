@@ -1,0 +1,103 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "wyms_footer_JE6BFJ": {
+      "type": "wyms-footer",
+      "blocks": {
+        "payment_icon_kJ8atc": {
+          "type": "payment_icon",
+          "settings": {
+            "image": "shopify://shop_images/Payment_method_MC.svg"
+          }
+        },
+        "payment_icon_NtXxfA": {
+          "type": "payment_icon",
+          "settings": {
+            "image": "shopify://shop_images/Payment_method_visa.svg"
+          }
+        },
+        "payment_icon_6cHEnA": {
+          "type": "payment_icon",
+          "settings": {
+            "image": "shopify://shop_images/Payment_method_PP.svg"
+          }
+        },
+        "payment_icon_eXTqeV": {
+          "type": "payment_icon",
+          "settings": {
+            "image": "shopify://shop_images/Payment_method_AP.svg"
+          }
+        },
+        "payment_icon_VQaqjW": {
+          "type": "payment_icon",
+          "settings": {
+            "image": "shopify://shop_images/Payment_method_GP.svg"
+          }
+        },
+        "social_icon_d6wGyk": {
+          "type": "social_icon",
+          "settings": {
+            "icon": "shopify://shop_images/Istagram.svg",
+            "link": "#"
+          }
+        },
+        "social_icon_H7G7wB": {
+          "type": "social_icon",
+          "settings": {
+            "icon": "shopify://shop_images/YouTube.svg",
+            "link": "#"
+          }
+        },
+        "social_icon_dBnqwf": {
+          "type": "social_icon",
+          "settings": {
+            "icon": "shopify://shop_images/TikTok.svg",
+            "link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "payment_icon_kJ8atc",
+        "payment_icon_NtXxfA",
+        "payment_icon_6cHEnA",
+        "payment_icon_eXTqeV",
+        "payment_icon_VQaqjW",
+        "social_icon_d6wGyk",
+        "social_icon_H7G7wB",
+        "social_icon_dBnqwf"
+      ],
+      "name": "WYMS Footer",
+      "settings": {
+        "nl_title": "Join our newsletter to stay up to date",
+        "nl_placeholder": "Enter your email",
+        "nl_subtext": "By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.",
+        "blob_left": "shopify://shop_images/form_left.svg",
+        "blob_right": "shopify://shop_images/form_right.svg",
+        "blob_mobile": "shopify://shop_images/form_left.svg",
+        "logo": "shopify://shop_images/logo_8d75a02e-cd7a-4f4e-8d7e-8886810344ff.svg",
+        "menu_1": "einkaufen",
+        "menu_2": "ber-wyms",
+        "menu_3": "erfahren",
+        "payment_title": "Payment methods",
+        "brands_title": "Unsere Marken",
+        "brands_logo": "shopify://shop_images/Vector_79ba1ac8-48db-4751-9274-31aa688a44c8.svg",
+        "brands_url": "#",
+        "copyright_text": "Wyms. Alle Rechte vorbehalten.",
+        "bottom_menu": "bottom-links"
+      }
+    }
+  },
+  "order": [
+    "wyms_footer_JE6BFJ"
+  ]
+}

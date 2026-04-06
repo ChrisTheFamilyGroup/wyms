@@ -1,0 +1,30 @@
+<div class="wyms-pagination-pill {{ class }}">
+  {%- for i in (1..dot_count) -%}
+    <span class="pagination-dot{% if for_each.first %} active{% endif %}" data-index="{{ forloop.index0 }}"></span>
+  {%- endfor -%}
+</div>
+
+<style>
+  .wyms-pagination-pill {
+    display: flex;
+    width: 320px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.80);
+    backdrop-filter: blur(4px);
+    margin: 0 auto;
+  }
+  .pagination-dot {
+    height: 6px;
+    flex: 1 0 0;
+    border-radius: 9999px;
+    background: var(--bg-secondary, #D9D9D9);
+    transition: background 0.3s ease;
+  }
+  .pagination-dot.active {
+    background: var(--fg-primary, #242352);
+  }
+</style>

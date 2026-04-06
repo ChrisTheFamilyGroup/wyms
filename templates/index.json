@@ -1,0 +1,293 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "wyms_hero_page_wWdrWP": {
+      "type": "wyms-hero-page",
+      "name": "WYMS Hero Page",
+      "settings": {
+        "image": "shopify://shop_images/Vector.png",
+        "title": "Bereit für den nächsten Schritt",
+        "subtitle": "Wyms - gemacht für wachsende Körper, neue Freiheit und viele Jahre Alltag.",
+        "button_label": "Finde deinen Wyms",
+        "button_link": "",
+        "bg_color": "#64033C",
+        "border_radius": 16
+      }
+    },
+    "wyms_carousel_of_featured_products_bLwHJJ": {
+      "type": "wyms-carousel-of-featured-products",
+      "name": "Featured Products Carousel",
+      "settings": {
+        "title": "Unsere Highlights",
+        "collection": "featured-products-carousel",
+        "products_to_show": 8,
+        "default_subtext": "Model Name",
+        "button_label": "Finde deinen Wyms",
+        "button_link": ""
+      }
+    },
+    "wyms_benefits_grid_98cYK7": {
+      "type": "wyms-benefits-grid",
+      "blocks": {
+        "benefit_U46Ahi": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/Expandable.svg",
+            "text": "Mitwachsend",
+            "text_color": "#191839"
+          }
+        },
+        "benefit_9hRjUx": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/long-lasting.svg",
+            "text": "Langlebig",
+            "text_color": "#64033c"
+          }
+        },
+        "benefit_HBXXdT": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/innovative.svg",
+            "text": "Innovativ",
+            "text_color": "#00380b"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_U46Ahi",
+        "benefit_9hRjUx",
+        "benefit_HBXXdT"
+      ],
+      "name": "WYMS Benefits Grid",
+      "settings": {
+        "heading": "Für Kinder, die ihren eigenen Weg gehen",
+        "spot_image": "shopify://shop_images/Vector.svg",
+        "inner_bg_color": "#F0F0FD",
+        "inner_border_radius": 16
+      }
+    },
+    "wyms_collection_carousel_VJwB7p": {
+      "type": "wyms-collection-carousel",
+      "blocks": {
+        "collection_BMrNQT": {
+          "type": "collection",
+          "settings": {
+            "collection": "schulrucksacke",
+            "title": ""
+          }
+        },
+        "collection_cTz98a": {
+          "type": "collection",
+          "settings": {
+            "collection": "mappchen",
+            "title": ""
+          }
+        },
+        "collection_QfiEdy": {
+          "type": "collection",
+          "settings": {
+            "collection": "trinkflaschen",
+            "title": ""
+          }
+        },
+        "collection_MfrtGi": {
+          "type": "collection",
+          "settings": {
+            "collection": "brotdosen",
+            "title": ""
+          }
+        },
+        "collection_URmiLE": {
+          "type": "collection",
+          "settings": {
+            "collection": "sporttaschen",
+            "title": ""
+          }
+        },
+        "collection_T6TzUH": {
+          "type": "collection",
+          "settings": {
+            "collection": "schulrucksacke",
+            "title": ""
+          }
+        },
+        "collection_gCeJeN": {
+          "type": "collection",
+          "settings": {
+            "collection": "mappchen",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_BMrNQT",
+        "collection_cTz98a",
+        "collection_QfiEdy",
+        "collection_MfrtGi",
+        "collection_URmiLE",
+        "collection_T6TzUH",
+        "collection_gCeJeN"
+      ],
+      "name": "Collection Carousel",
+      "settings": {
+        "title": "Beliebte Kategorien",
+        "spot_image": "shopify://shop_images/Vector_7fc32504-66a3-4c82-9dcd-3ef4e27bdeb4.svg"
+      }
+    },
+    "section_sticky_scrolling_G6dDKQ": {
+      "type": "section-sticky-scrolling",
+      "blocks": {
+        "item_8tYidC": {
+          "type": "item",
+          "settings": {
+            "label": "Ergonomisch",
+            "heading": "Trägt sich richtig gut. Auch nach langen Tagen",
+            "text": "Ergonomisch entwickelt für wachsende Körper und viel Bewegung im Schulalltag.",
+            "button_label": "Mehr erfahren",
+            "button_link": "#",
+            "image": "shopify://shop_images/Placeholder_Image1.png",
+            "mobile_image": "shopify://shop_images/Placeholder_Image1_mobile.png",
+            "bg_icon": "shopify://shop_images/Vector_56e37cd4-8990-4726-b233-08d83b08ad5e.svg",
+            "icon_image": "shopify://shop_images/sticker1.svg",
+            "icon_top": 5,
+            "icon_right": -50,
+            "icon_width": 100,
+            "icon_rotate": 0,
+            "mob_icon_top": -40,
+            "mob_icon_right": -30,
+            "mob_icon_width": 100,
+            "mob_icon_rotate": 0
+          }
+        },
+        "item_egGcUW": {
+          "type": "item",
+          "settings": {
+            "label": "Haltbarkeit",
+            "heading": "Hält mehr als ein Schuljahr",
+            "text": "Robuste Materialien und saubere Verarbeitung – gemacht für mehrere Jahre Nutzung.",
+            "button_label": "Mehr erfahren",
+            "button_link": "#",
+            "image": "shopify://shop_images/Placeholder_Image2.png",
+            "bg_icon": "shopify://shop_images/Vector2.svg",
+            "icon_image": "shopify://shop_images/sticker2.svg",
+            "icon_top": 36,
+            "icon_left": -70,
+            "icon_width": 127,
+            "icon_rotate": 0,
+            "mob_icon_top": -45,
+            "mob_icon_left": -35,
+            "mob_icon_width": 127,
+            "mob_icon_rotate": 0
+          }
+        },
+        "item_PKQqqx": {
+          "type": "item",
+          "settings": {
+            "label": "Funktionalität",
+            "heading": "Alles hat seinen Platz",
+            "text": "Durchdachte Fächer für Bücher, Laptop, Sport und Kleinkram.",
+            "button_label": "Mehr erfahren",
+            "button_link": "#",
+            "image": "shopify://shop_images/Placeholder_Image3.png",
+            "mobile_image": "shopify://shop_images/Placeholder_Image3_mobile.png",
+            "bg_icon": "shopify://shop_images/Vector3.svg",
+            "icon_image": "shopify://shop_images/sticker3.svg",
+            "icon_right": -170,
+            "icon_bottom": 75,
+            "icon_width": 192,
+            "icon_rotate": 0,
+            "mob_icon_right": -5,
+            "mob_icon_bottom": -50,
+            "mob_icon_width": 132,
+            "mob_icon_rotate": 0
+          }
+        },
+        "item_Rh8zVX": {
+          "type": "item",
+          "settings": {
+            "label": "Design",
+            "heading": "Sieht nicht nach „Kinderrucksack“ aus",
+            "text": "Durchdachte Fächer für Bücher, Laptop, Sport und Kleinkram.",
+            "button_label": "Mehr erfahren",
+            "button_link": "#",
+            "image": "shopify://shop_images/Placeholder_Image4.png",
+            "bg_icon": "shopify://shop_images/Vector4.svg",
+            "icon_image": "shopify://shop_images/sticker4.svg",
+            "icon_top": 75,
+            "icon_left": -135,
+            "icon_width": 153,
+            "icon_rotate": 0,
+            "mob_icon_top": 65,
+            "mob_icon_left": -60,
+            "mob_icon_width": 153,
+            "mob_icon_rotate": 0
+          }
+        }
+      },
+      "block_order": [
+        "item_8tYidC",
+        "item_egGcUW",
+        "item_PKQqqx",
+        "item_Rh8zVX"
+      ],
+      "name": "Sticky Scroll Full Bleed",
+      "settings": {}
+    },
+    "wyms_mosaic_content_CzmKYi": {
+      "type": "wyms-mosaic-content",
+      "blocks": {
+        "row_type_a_8Xe7A6": {
+          "type": "row_type_a",
+          "settings": {
+            "text_position": "left",
+            "title": "Hey wir sind Wyms",
+            "description": "<p>Mit der weiterführenden Schule verändert sich mehr, als man am Anfang denkt. Die Tage werden länger, du  bist mehr unterwegs und du übernimmst mehr Verantwortung für deinen Alltag.</p><p><br/>Genau dafür gibt es WYMS. Wir machen Schulranzen und Zubehör für euch - wenn Schule nicht mehr nur Schule ist, sondern Teil eines viel größeren Alltags. </p>",
+            "bottom_text": "<p>Grow up.<br/>Carry on.</p>",
+            "icon": "shopify://shop_images/logo_21460039-47fc-46bd-be2a-0bd0f9e53f63.svg",
+            "image_1": "shopify://shop_images/mosaic_card_1.png",
+            "bg_color_1": "#6865EA",
+            "image_2": "shopify://shop_images/mosaic_card_2.png",
+            "bg_color_2": "#D9D9D9"
+          }
+        },
+        "row_type_b_6FF3zK": {
+          "type": "row_type_b",
+          "settings": {
+            "text_position": "right",
+            "description": "<p>Unsere Produkte sind dafür gemacht, benutzt zu werden, mitzuhalten und dich durch deine Schuljahre zu begleiten – egal, wie dein Tag aussieht.</p>",
+            "slogan": "<p>Du entscheidest, was zu dir passt. Wir sorgen dafür, dass es funktioniert.</p>",
+            "button_label": "Mehr erfahren",
+            "button_link": "#",
+            "image_1": "shopify://shop_images/mosaic_card_3.png",
+            "bg_color_1": "#D9D9D9",
+            "image_2": "shopify://shop_images/mosaic_card_4.png",
+            "bg_color_2": "#D9D9D9"
+          }
+        }
+      },
+      "block_order": [
+        "row_type_a_8Xe7A6",
+        "row_type_b_6FF3zK"
+      ],
+      "name": "WYMS Mosaic Content",
+      "settings": {}
+    }
+  },
+  "order": [
+    "wyms_hero_page_wWdrWP",
+    "wyms_carousel_of_featured_products_bLwHJJ",
+    "wyms_benefits_grid_98cYK7",
+    "wyms_collection_carousel_VJwB7p",
+    "section_sticky_scrolling_G6dDKQ",
+    "wyms_mosaic_content_CzmKYi"
+  ]
+}

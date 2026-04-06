@@ -1,0 +1,129 @@
+{{ 'wyms-benefits-grid.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .benefits-{{ section.id }} .benefits-inner-container {
+    background-color: {{ section.settings.inner_bg_color }};
+    border-radius: {{ section.settings.inner_border_radius }}px;
+  }
+{%- endstyle -%}
+
+<section class="benefits-section benefits-{{ section.id }}">
+  <div class="benefits-outer-container page-width">
+    <div class="benefits-inner-container">
+      
+      {%- if section.settings.spot_image != blank -%}
+        <div class="benefits-spot-wrapper">
+          <img src="{{ section.settings.spot_image | image_url: width: 1400 }}" 
+               alt="" 
+               loading="lazy" 
+               width="{{ section.settings.spot_image.width }}" 
+               height="{{ section.settings.spot_image.height }}"
+               class="benefits-spot-img">
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <div class="benefits-header">
+          <h2 class="benefits-main-title">{{ section.settings.heading }}</h2>
+        </div>
+      {%- endif -%}
+
+      <div class="benefits-grid {% if section.blocks.size > 3 %}benefits-grid--scrollable{% endif %}">
+        {%- for block in section.blocks -%}
+          <div class="benefits-item" {{ block.shopify_attributes }}>
+            <div class="benefits-item-icon">
+              {%- if block.settings.icon != blank -%}
+                <img src="{{ block.settings.icon | image_url: width: 128 }}" 
+                     alt="{{ block.settings.text | escape }}" 
+                     loading="lazy"
+                     width="64"
+                     height="64">
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            
+            <h3 class="benefits-item-text" style="color: {{ block.settings.text_color }};">
+              {{ block.settings.text }}
+            </h3>
+          </div>
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WYMS Benefits Grid",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Für Kinder, die ihren eigenen Weg gehen"
+    },
+    {
+      "type": "image_picker",
+      "id": "spot_image",
+      "label": "Spot Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "inner_bg_color",
+      "label": "Inner Background Color",
+      "default": "#F0F0FD"
+    },
+    {
+      "type": "range",
+      "id": "inner_border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Inner Border Radius",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Benefit Title"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#191839"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Benefits Grid",
+      "blocks": [
+        { "type": "benefit" },
+        { "type": "benefit" },
+        { "type": "benefit" }
+      ]
+    }
+  ]
+}
+{% endschema %}
