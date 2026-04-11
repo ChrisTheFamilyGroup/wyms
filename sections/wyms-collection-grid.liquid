@@ -1,0 +1,137 @@
+{{ 'wyms-collection-grid.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-collection-grid.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign grid_collection = collections[section.settings.collection]
+  if grid_collection == blank
+    assign grid_collection = collection
+  endif
+-%}
+
+<section class="wyms-collection-grid" data-section-id="{{ section.id }}">
+  <div class="wyms-collection-grid__inner">
+
+    <div class="wyms-collection-header">
+      <div class="wyms-collection-header__inner">
+        <div class="wyms-collection-header__meta">
+          <h2 class="wyms-collection-header__title">
+            {{- section.settings.title_override | default: grid_collection.title -}}
+          </h2>
+          <p class="wyms-collection-header__count">
+            {{- grid_collection.products_count -}}
+            {{- section.settings.count_label | prepend: ' ' -}}
+          </p>
+        </div>
+        <div class="wyms-collection-header__filters">
+          {%- comment -%} Filters come later {%- endcomment -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="wyms-collection-grid__rows">
+      {%- paginate grid_collection.products by section.settings.products_per_page -%}
+
+        {%- assign col_index = 0 -%}
+        {%- assign row_products = '' -%}
+
+        {%- for product in grid_collection.products -%}
+          {%- assign insert = product.metafields.custom.collection_card_insert.value -%}
+
+          {%- if insert -%}
+
+            {%- if col_index > 0 -%}
+              <div class="wyms-collection-grid__row wyms-collection-grid__row--default">
+                {{ row_products }}
+              </div>
+              {%- assign row_products = '' -%}
+              {%- assign col_index = 0 -%}
+            {%- endif -%}
+
+            {%- assign card_type     = insert.card_type -%}
+            {%- assign card_position = insert.card_position | default: 'right' -%}
+            <div class="wyms-collection-grid__row wyms-collection-grid__row--feature wyms-collection-grid__row--{{ card_position }}">
+              {%- if card_position == 'right' -%}
+                {%- render 'wyms-product-card', product: product -%}
+                {%- render 'wyms-card-insert', insert: insert, card_type: card_type -%}
+              {%- else -%}
+                {%- render 'wyms-card-insert', insert: insert, card_type: card_type -%}
+                {%- render 'wyms-product-card', product: product -%}
+              {%- endif -%}
+            </div>
+
+          {%- else -%}
+
+            {%- capture row_products -%}
+              {{ row_products }}
+              {%- render 'wyms-product-card', product: product -%}
+            {%- endcapture -%}
+            {%- assign col_index = col_index | plus: 1 -%}
+
+            {%- if col_index == 3 -%}
+              <div class="wyms-collection-grid__row wyms-collection-grid__row--default">
+                {{ row_products }}
+              </div>
+              {%- assign row_products = '' -%}
+              {%- assign col_index = 0 -%}
+            {%- endif -%}
+
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if col_index > 0 -%}
+          <div class="wyms-collection-grid__row wyms-collection-grid__row--default">
+            {{ row_products }}
+          </div>
+        {%- endif -%}
+
+        {%- if paginate.pages > 1 -%}
+          <div class="wyms-collection-grid__pagination">
+            {{ paginate | default_pagination }}
+          </div>
+        {%- endif -%}
+
+      {%- endpaginate -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WYMS Collection Grid",
+  "tag": "section",
+  "class": "section-wyms-collection-grid",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "title_override",
+      "label": "Section title (leave empty to use collection name)"
+    },
+    {
+      "type": "text",
+      "id": "count_label",
+      "label": "Word after product count",
+      "default": "Artikel"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 6,
+      "max": 24,
+      "step": 3,
+      "label": "Products per page",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Collection Grid"
+    }
+  ]
+}
+{% endschema %}

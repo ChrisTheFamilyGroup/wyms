@@ -1,0 +1,98 @@
+{{ 'wyms-product-set.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-product-set.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+
+  assign title = variant.metafields.custom.set_title | default: product.metafields.custom.set_title
+  assign description = variant.metafields.custom.set_description | default: product.metafields.custom.set_description
+  assign accordion_list = variant.metafields.custom.set_accordion_list.value | default: product.metafields.custom.set_accordion_list.value
+
+  assign set_image = variant.metafields.custom.set_image.value 
+  if set_image == blank
+    assign set_image = product.metafields.custom.set_image.value
+  endif
+-%}
+
+<wyms-product-set class="wyms-set-section" data-section-id="{{ section.id }}">
+  <div class="wyms-set__wrapper page-width">
+    
+    <div class="wyms-set__content-container js-set-dynamic-content">
+      
+      <div class="wyms-set__header">
+        {% if title != blank %}
+          <h2 class="wyms-set__title">{{ title }}</h2>
+        {% endif %}
+        {% if description != blank %}
+          <p class="wyms-set__description">{{ description | newline_to_br }}</p>
+        {% endif %}
+      </div>
+
+      <div class="wyms-set__main-grid">
+        <div class="wyms-set__grid-inner">
+          
+          <div class="wyms-set__image-container">
+            {% if set_image != blank %}
+              {{ set_image | image_url: width: 1500 | image_tag: class: 'wyms-set__img', loading: 'lazy' }}
+            {% else %}
+              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg wyms-set__img' }}
+            {% endif %}
+          </div>
+
+          <div class="wyms-set__faq-container">
+            {% for item in accordion_list %}
+              <div class="wyms-set__item js-set-item">
+                <button type="button" class="wyms-set__trigger js-set-trigger" aria-expanded="false">
+                  
+                  <div class="wyms-set__left-block">
+                    <div class="wyms-set__number-wrapper">
+                      {% if item.shape_icon != blank %}
+                        {{ item.shape_icon | image_url: width: 60 | image_tag: class: 'wyms-set__number-shape', loading: 'lazy' }}
+                      {% endif %}
+                      <span class="wyms-set__number-text">{{ item.number }}</span>
+                    </div>
+                    
+                    <div class="wyms-set__text-content">
+                      <span class="wyms-set__question">{{ item.question }}</span>
+                      
+                      {% comment %} Smooth Accordion Wrapper {% endcomment %}
+                      <div class="wyms-set__answer-wrapper">
+                        <div class="wyms-set__answer-inner">
+                          <div class="rte">
+                            {{ item.answer | metafield_tag }}
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="wyms-set__icon">
+                    <svg class="icon-plus" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="icon-minus" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+
+                </button>
+              </div>
+            {% endfor %}
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+</wyms-product-set>
+
+{% schema %}
+{
+  "name": "WYMS Product Set",
+  "settings": [],
+  "presets": [{ "name": "WYMS Product Set Showcase" }]
+}
+{% endschema %}

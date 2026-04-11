@@ -1,0 +1,323 @@
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-main-product.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign selected_variant = product.selected_or_first_available_variant
+  assign current_product_bg = product.metafields.custom.product_background | default: '#F5F5F5'
+  assign usp_list = product.metafields.custom.usp_content.value
+  assign siblings_collection = section.settings.collection_select
+  assign variant_label = section.settings.variant_label | default: 'Color'
+
+  assign text_atc = section.settings.atc_text | default: 'Add to cart'
+  assign text_sold_out = 'products.product.sold_out' | t | default: 'Sold Out'
+-%}
+
+<section class="section-product-main js-product-section"
+         data-section="{{ section.id }}"
+         style="--bg-product-custom: {{ current_product_bg }};">
+
+  <div class="page-width">
+    <div class="product-main-inner">
+
+      <div class="product-left-column">
+        <div class="product-left-inner">
+
+          <div class="media-gallery-block">
+
+          {%- if product.metafields.custom.badge_icon != blank -%}
+              <div class="product-badge-static">
+                {{ product.metafields.custom.badge_icon | image_url: width: 80 | image_tag: width: 40, height: 40, alt: '' }}
+              </div>
+            {%- endif -%}
+
+            <div class="media-gallery-container">
+
+              <button class="nav-arrow prev js-prev" aria-label="Previous image">
+                {% render 'icon-left-sharp-arrow' %}
+              </button>
+
+              <div class="media-track js-media-track">
+                {%- for media in product.media -%}
+                  <div class="media-item js-media-item" data-media-id="{{ media.id }}">
+                    <div class="media-image-wrapper" style="background-color: {{ current_product_bg }};">
+                      {{ media | image_url: width: 1000 | image_tag: class: 'product-img', loading: 'lazy', alt: product.title }}
+
+                      {%- if usp_list != blank -%}
+                        {%- for usp_item in usp_list -%}
+                          {%- liquid
+                            assign has_match = false
+                            for pool_image in usp_item.image_pool.value
+                              if pool_image.preview_image.src == media.preview_image.src
+                                assign has_match = true
+                                break
+                              endif
+                            endfor
+                          -%}
+                          {%- if has_match -%}
+                            {%- liquid
+                              assign u_title = usp_item.title.value | default: usp_item.title
+                              assign u_description = usp_item.description | metafield_tag
+                              assign u_icon = usp_item.icon | image_url: width: 100
+                            -%}
+                            <button class="usp-trigger js-usp-trigger"
+                                    data-usp-title="{{ u_title | escape }}"
+                                    data-usp-description="{{ u_description | escape }}"
+                                    data-usp-icon="{{ u_icon }}"
+                                    data-usp-image="{{ media | image_url: width: 800 }}"
+                                    aria-label="{{ u_title | escape }}">
+                              {%- if usp_item.icon != blank -%}
+                                <img src="{{ u_icon }}" class="usp-trigger__icon" alt="" width="32" height="32">
+                              {%- endif -%}
+                              <span class="usp-trigger__text">{{ u_title }}</span>
+                              <span class="usp-trigger__plus">{% render 'icon-plus' %}</span>
+                            </button>
+                            {%- break -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </div>
+
+              
+              <button class="nav-arrow next js-next" aria-label="Next image">
+                {% render 'icon-right-sharp-arrow' %}
+              </button>
+            </div>
+
+            
+            {% render 'product-pagination', media: product.media %}
+
+          </div>
+          
+          {%- if product.metafields.custom.product_highlights != blank -%}
+            <div class="product-highlights-row">
+              {%- for highlight in product.metafields.custom.product_highlights.value -%}
+                <div class="highlight-item">
+                  {%- if highlight.icon != blank -%}
+                    <img src="{{ highlight.icon | image_url: width: 56 }}" alt="" width="28" height="28" loading="lazy">
+                  {%- endif -%}
+                  <span class="highlight-item__text">{{ highlight.text }}</span>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+        </div>
+      </div>
+      
+      <div class="product-right-column js-dynamic-content">
+
+        <div class="product-info-top">
+
+          <div class="info-header-block">
+            <div class="title-wishlist-row">
+              <div class="title-subtitle-wrap">
+                <div class="title-heart-row">
+                  <h1 class="product-title">{{ product.title }}</h1>
+                  <button class="wishlist-btn" aria-label="Add to wishlist">
+                    {% render 'icon-heart' %}
+                  </button>
+                </div>
+                <p class="product-category-label">
+                  {%- if siblings_collection != blank -%}
+                    {{ siblings_collection.title }}
+                  {%- else -%}
+                    {{ product.type }}
+                  {%- endif -%}
+                </p>
+              </div>
+            </div>
+
+            <div class="reviews-placeholder" style="display: none;"></div>
+          </div>
+
+          <div class="product-description-rte">
+            {{ product.description }}
+          </div>
+
+          {%- if product.metafields.custom.product_highlights != blank -%}
+            <div class="product-highlights-mobile mobile-only">
+              {%- for highlight in product.metafields.custom.product_highlights.value -%}
+                <div class="highlight-item">
+                  {%- if highlight.icon != blank -%}
+                    <img src="{{ highlight.icon | image_url: width: 56 }}" alt="" width="28" height="28" loading="lazy">
+                  {%- endif -%}
+                  <span class="highlight-item__text">{{ highlight.text }}</span>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+        </div>
+        
+        {%- if siblings_collection != blank -%}
+          <div class="variant-selector-block">
+            <div class="variant-selector-header">
+              <span class="variant-label">{{ variant_label }}:</span>
+              <span class="variant-value">{{ product.title }}</span>
+            </div>
+            <div class="swatch-list">
+              {%- for sibling in siblings_collection.products -%}
+                {%- liquid
+                  assign sibling_bg = sibling.metafields.custom.product_background | default: '#F5F5F5'
+                -%}
+                <a href="{{ sibling.url }}"
+                   class="swatch-item {% if sibling.handle == product.handle %}is-active{% endif %}"
+                   style="background-color: {{ sibling_bg }};"
+                   aria-label="{{ sibling.title }}">
+                  <div class="swatch-image-wrap">
+                    {%- if sibling.featured_media != blank -%}
+                      {{ sibling.featured_media | image_url: width: 112, height: 128, crop: 'center' | image_tag: alt: sibling.title, loading: 'lazy' }}
+                    {%- endif -%}
+                  </div>
+                </a>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="purchase-block">
+          <div class="price-main js-price-display">{{ selected_variant.price | money }}</div>
+
+          {%- form 'product', product, id: 'product-form-main', class: 'js-product-form' -%}
+            <input type="hidden" name="id" value="{{ selected_variant.id }}">
+
+            <button type="submit" name="add"
+                    class="atc-button js-atc-button"
+                    data-inventory="{{ selected_variant.inventory_quantity }}"
+                    data-policy="{{ selected_variant.inventory_policy }}"
+                    data-management="{{ selected_variant.inventory_management }}"
+                    {% unless selected_variant.available %}disabled{% endunless %}>
+              <span class="atc-button__text">
+                {%- if selected_variant.available -%}
+                  {{ text_atc }}
+                {%- else -%}
+                  {{ text_sold_out }}
+                {%- endif -%}
+              </span>
+            </button>
+
+            <div class="js-atc-errors atc-errors" style="display:none;"></div>
+          {%- endform -%}
+        </div>
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="selling-points-list">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'selling_point' -%}
+                <div class="selling-point" {{ block.shopify_attributes }}>
+                  {%- if block.settings.icon != blank -%}
+                    <span class="selling-point__icon">
+                      {{ block.settings.icon | image_url: width: 56 | image_tag: width: 28, height: 28, alt: '' }}
+                    </span>
+                  {%- endif -%}
+                  <span class="selling-point__text">{{ block.settings.text }}</span>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sticky-atc js-sticky-atc" aria-hidden="true">
+    <div class="sticky-atc__inner">
+      <div class="sticky-atc__card">
+        <div class="sticky-atc__info">
+          <div class="sticky-atc__image" style="background-color: {{ current_product_bg }};">
+            {{ selected_variant.featured_media | default: product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: product.title }}
+          </div>
+          <div class="sticky-atc__text">
+            <span class="sticky-atc__title">{{ product.title }}</span>
+            <span class="sticky-atc__price js-sticky-price">{{ selected_variant.price | money }}</span>
+          </div>
+        </div>
+        <div class="sticky-atc__action">
+          <button type="button" class="atc-button sticky-atc__button js-sticky-submit"
+                  {% unless selected_variant.available %}disabled{% endunless %}>
+            <span class="atc-button__text">
+              {%- if selected_variant.available -%}{{ text_atc }}{%- else -%}{{ text_sold_out }}{%- endif -%}
+            </span>
+          </button>
+          <div class="js-sticky-atc-errors atc-errors" style="display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="usp-drawer-overlay js-usp-overlay" aria-hidden="true"></div>
+
+  <div class="usp-drawer js-usp-drawer" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="usp-drawer__inner">
+      <div class="usp-drawer__header">
+        <div class="usp-drawer__header-content">
+          <img src="" alt="" class="js-usp-icon usp-drawer__icon" width="32" height="32" style="display:none;">
+          <div class="usp-drawer__header-text">
+            <h2 class="usp-drawer__title js-usp-title"></h2>
+            <button class="usp-drawer__close js-usp-close" aria-label="Close">
+              {% render 'icon-close' %}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="usp-drawer__body">
+        <div class="usp-drawer__description js-usp-desc"></div>
+        <div class="usp-drawer__image-wrap js-usp-image"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection_select",
+      "label": "Siblings Collection"
+    },
+    {
+      "type": "text",
+      "id": "variant_label",
+      "label": "Variant Label",
+      "default": "Color"
+    },
+    {
+      "type": "text",
+      "id": "atc_text",
+      "label": "Add to Cart Button Text",
+      "default": "Add to cart"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "selling_point",
+      "name": "Selling Point",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Product"
+    }
+  ]
+}
+{% endschema %}

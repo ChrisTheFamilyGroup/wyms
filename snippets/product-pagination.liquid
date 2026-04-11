@@ -1,0 +1,18 @@
+{%- comment -%}
+  Snippet: product-pagination.liquid
+  Usage: {% render 'product-pagination', media: product.media %}
+  Renders pagination dots for the product media gallery.
+  On desktop (>=990px): last dot is hidden (two items shown at once).
+  On mobile (<990px): all dots are shown (one item per view).
+{%- endcomment -%}
+
+<div class="media-pagination js-pagination" role="tablist" aria-label="Gallery navigation">
+  {%- for item in media -%}
+    <button class="pagination-dot js-pagination-dot {% if forloop.first %}is-active{% endif %} {% if forloop.last %}pagination-dot--last{% endif %}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            aria-label="Image {{ forloop.index }}"
+            data-index="{{ forloop.index0 }}">
+    </button>
+  {%- endfor -%}
+</div>

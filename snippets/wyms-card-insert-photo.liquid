@@ -1,0 +1,22 @@
+{%- liquid
+  assign bg_image      = insert.card_background_image.value
+  assign product_image = insert.card_product_image.value
+-%}
+
+<div class="card-insert card-insert--photo"
+     {%- if bg_image -%}
+       style="background-image: url('{{ bg_image | image_url: width: 900 }}')"
+     {%- endif -%}>
+  {%- if product_image -%}
+    <img class="card-insert__img"
+         src="{{ product_image | image_url: width: 600 }}"
+         srcset="{{ product_image | image_url: width: 400 }} 400w,
+                 {{ product_image | image_url: width: 600 }} 600w,
+                 {{ product_image | image_url: width: 900 }} 900w"
+         sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 66vw"
+         width=""
+         height=""
+         alt="{{ product_image.alt | escape }}"
+         loading="lazy">
+  {%- endif -%}
+</div>

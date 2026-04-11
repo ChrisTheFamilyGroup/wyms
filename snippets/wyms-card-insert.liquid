@@ -1,0 +1,90 @@
+{%- liquid
+  assign bg_color       = insert.card_background
+  assign product_image  = insert.card_product_image.value
+  assign mobile_image   = insert.card_product_image_mobile.value
+  assign spot_bg        = insert.card_spot_background.value
+  assign title          = insert.promo_title
+  assign description    = insert.promo_description
+  assign btn_label      = insert.promo_button_label | default: 'Get set'
+  assign btn_url        = insert.promo_button_url
+-%}
+
+{%- if card_type == 'promo' -%}
+
+  <div class="wyms-card-insert wyms-card-insert--promo"
+       style="background-color: {{ bg_color | default: '#00380B' }};">
+
+    <div class="wyms-card-insert__content">
+      <div class="wyms-card-insert__text-group">
+        {%- if title != blank -%}
+          <h3 class="wyms-card-insert__title">{{ title }}</h3>
+        {%- endif -%}
+        {%- if description != blank -%}
+          <p class="wyms-card-insert__desc">{{ description }}</p>
+        {%- endif -%}
+      </div>
+      {%- if btn_label != blank -%}
+        <div class="wyms-card-insert__btn-wrap">
+          <a href="{{ btn_url | default: '#' }}" class="wyms-card-insert__btn">
+            {{ btn_label }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if product_image != blank -%}
+      <div class="wyms-card-insert__media">
+        {%- if spot_bg != blank -%}
+          <div class="wyms-card-insert__spot-wrap">
+            <img
+              class="wyms-card-insert__spot"
+              src="{{ spot_bg | image_url: width: 526 }}"
+              alt=""
+              width=""
+              height=""
+              aria-hidden="true"
+              loading="lazy">
+          </div>
+        {%- endif -%}
+        <img
+          class="wyms-card-insert__product-img"
+          src="{{ product_image | image_url: width: 574 }}"
+          srcset="{{ product_image | image_url: width: 400 }} 400w,
+                  {{ product_image | image_url: width: 574 }} 574w"
+          sizes="(max-width: 767px) 100vw, 40vw"
+          width=""
+              height=""
+          alt="{{ product_image.alt | escape }}"
+          loading="lazy">
+      </div>
+    {%- endif -%}
+
+  </div>
+
+{%- else -%}
+
+  {%- comment -%} Photo card with mobile image support {%- endcomment -%}
+  <div class="wyms-card-insert wyms-card-insert--photo"
+       style="background-color: {{ bg_color | default: '#FBFBFB' }};">
+    {%- if product_image != blank -%}
+      <picture>
+        {%- if mobile_image != blank -%}
+          <source
+            media="(max-width: 767px)"
+            srcset="{{ mobile_image | image_url: width: 800 }}">
+        {%- endif -%}
+        <img
+          class="wyms-card-insert__img"
+          src="{{ product_image | image_url: width: 900 }}"
+          srcset="{{ product_image | image_url: width: 600 }} 600w,
+                  {{ product_image | image_url: width: 900 }} 900w"
+          sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 66vw"
+          width=""
+              height=""
+          alt="{{ product_image.alt | escape }}"
+          loading="lazy">
+      </picture>
+    {%- endif -%}
+  </div>
+
+{%- endif -%}

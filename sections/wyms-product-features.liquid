@@ -1,0 +1,47 @@
+{{ 'wyms-product-features.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-product-features.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign manual_entry = section.settings.features_metaobject
+  
+  assign features_list = product.selected_or_first_available_variant.metafields.custom.product_features.value
+  if features_list == blank
+    assign features_list = product.metafields.custom.product_features.value
+  endif
+-%}
+
+<div class="wyms-features-section">
+  <div class="wyms-features__global-wrapper">
+    
+    {%- if manual_entry != blank -%}
+      {%- render 'wyms-feature-snippet', section_data: manual_entry -%}
+    {%- elsif features_list != blank -%}
+      {%- for section_entry in features_list -%}
+        {%- render 'wyms-feature-snippet', section_data: section_entry -%}
+      {%- endfor -%}
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "WYMS Product Features",
+  "tag": "section",
+  "class": "section-wyms-features",
+  "settings": [
+    {
+      "type": "metaobject",
+      "id": "features_metaobject",
+      "label": "Select Feature Section Entry",
+      "metaobject_type": "feature_section",
+      "info": "Overrides product metafields if selected."
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Product Features"
+    }
+  ]
+}
+{% endschema %}

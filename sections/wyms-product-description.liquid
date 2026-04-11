@@ -1,0 +1,184 @@
+{{ 'wyms-product-description.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-product-description.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign heading    = product.metafields.custom.description_heading
+  assign subtext    = product.metafields.custom.description_subtext
+  assign faq_list   = product.metafields.custom.faq_list.value
+  assign info_cards = product.metafields.custom.info_cards.value
+
+  assign faq_bg_val    = section.settings.faq_bg_custom    | default: section.settings.faq_bg    | default: '#FBFBFB'
+  assign faq_q_val     = section.settings.faq_q_color_custom | default: section.settings.faq_q_color | default: '#191839'
+  assign faq_a_val     = section.settings.faq_a_color_custom | default: section.settings.faq_a_color | default: '#414651'
+-%}
+
+<wyms-product-desc
+  id="description"
+  class="wyms-desc-outer"
+>
+  <div class="wyms-desc-section"
+    style="
+      background-color: {{ section.settings.section_bg | default: '#6865EA' }};
+      --wyms-title-color:   {{ section.settings.title_color   | default: '#191839' }};
+      --wyms-subtext-color: {{ section.settings.subtext_color | default: '#414651' }};
+      --wyms-faq-q-color:   {{ faq_q_val }};
+      --wyms-faq-a-color:   {{ faq_a_val }};
+      --wyms-faq-bg:        {{ faq_bg_val }};
+    "
+  >
+    <div class="wyms-desc-inner">
+      <div class="wyms-desc-grid">
+
+        {%- comment -%} LEFT COLUMN — Text & Accordion {%- endcomment -%}
+        <div class="wyms-desc-left">
+
+          <div class="wyms-desc-text-header">
+            {%- if heading != blank -%}
+              <h2 class="wyms-desc-title">{{ heading }}</h2>
+            {%- endif -%}
+            {%- if subtext != blank -%}
+              <div class="wyms-desc-subtext">{{ subtext | newline_to_br }}</div>
+            {%- endif -%}
+          </div>
+
+          {%- if faq_list != blank -%}
+            <div class="wyms-desc-faq-container">
+              {%- for faq in faq_list -%}
+                {%- liquid
+                  assign q = faq.question | default: faq.question.value
+                  assign a = faq.answer   | metafield_tag
+                -%}
+                <div class="wyms-faq-item js-faq-item">
+                  <button type="button" class="wyms-faq-trigger js-faq-trigger" aria-expanded="false">
+
+                    <div class="wyms-faq-content">
+                      <span class="wyms-faq-question">{{ q }}</span>
+
+                      <div class="wyms-faq-answer-wrapper">
+                        <div class="wyms-faq-answer-inner">
+                          <div class="wyms-faq-answer-text rte">{{ a }}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="wyms-faq-icon">
+                      <svg class="icon-plus" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <svg class="icon-minus" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+
+                  </button>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+        </div>
+
+        {%- comment -%} RIGHT COLUMN — Info Cards {%- endcomment -%}
+        <div class="wyms-desc-right">
+          {%- if info_cards != blank -%}
+            {%- for card in info_cards -%}
+              {%- liquid
+                assign card_bg    = card.background_color | default: '#FBFBFB'
+                assign card_color = card.text_color       | default: '#191839'
+                assign card_text  = card.text             | default: card.text.value
+              -%}
+              <div class="wyms-info-card" style="background-color: {{ card_bg }};">
+                {%- if card.icon != blank -%}
+                  <div class="wyms-card-icon">
+                    {{ card.icon | image_url: width: 160 | image_tag: loading: 'lazy', width: 80, height: 80 }}
+                  </div>
+                {%- endif -%}
+                <p class="wyms-card-text" style="color: {{ card_color }};">{{ card_text }}</p>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</wyms-product-desc>
+
+{% schema %}
+{
+  "name": "WYMS Product Desc & FAQ",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#191839"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Description text color",
+      "default": "#414651"
+    },
+    {
+      "type": "header",
+      "content": "Accordion (FAQ)"
+    },
+    {
+      "type": "color",
+      "id": "faq_bg",
+      "label": "FAQ item background (solid color)",
+      "default": "#FBFBFB"
+    },
+    {
+      "type": "text",
+      "id": "faq_bg_custom",
+      "label": "FAQ item background (overrides above, supports rgba)",
+      "placeholder": "e.g. rgba(255, 255, 255, 0.20)"
+    },
+    {
+      "type": "color",
+      "id": "faq_q_color",
+      "label": "Question text color",
+      "default": "#191839"
+    },
+    {
+      "type": "text",
+      "id": "faq_q_color_custom",
+      "label": "Question color override (supports rgba)",
+      "placeholder": "e.g. rgba(255, 255, 255, 0.90)"
+    },
+    {
+      "type": "color",
+      "id": "faq_a_color",
+      "label": "Answer text color",
+      "default": "#414651"
+    },
+    {
+      "type": "text",
+      "id": "faq_a_color_custom",
+      "label": "Answer color override (supports rgba)",
+      "placeholder": "e.g. rgba(255, 255, 255, 0.70)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Product Desc & FAQ"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,91 @@
+{%- liquid
+  assign top_icon   = product.metafields.custom.top_left_icon.value
+  assign spot_bg    = product.metafields.custom.spot_background.value
+  assign model_name = product.metafields.custom.model_name.value
+  assign price      = product.price | money
+  assign compare    = product.compare_at_price
+-%}
+
+<article class="wyms-product-card" data-product-id="{{ product.id }}">
+  <a href="{{ product.url }}" class="wyms-product-card__link" aria-label="{{ product.title | escape }}">
+
+    <div class="wyms-product-card__image-wrap">
+
+      {%- if top_icon -%}
+        <div class="wyms-product-card__top-left-icon">
+          <img
+            src="{{ top_icon | image_url: width: 76 }}"
+            alt=""
+            width="76"
+            height="40"
+            loading="lazy">
+        </div>
+      {%- endif -%}
+
+      <button
+        class="wyms-product-card__wishlist"
+        aria-label="Add to wishlist"
+        type="button"
+        data-product-id="{{ product.id }}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 21C12 21 3 15.5 3 9C3 6.23858 5.23858 4 8 4C9.5 4 10.8 4.7 12 6C13.2 4.7 14.5 4 16 4C18.7614 4 21 6.23858 21 9C21 15.5 12 21 12 21Z"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="wyms-product-card__spot-wrap">
+        {%- if spot_bg -%}
+          <img
+            class="wyms-product-card__spot"
+            src="{{ spot_bg | image_url: width: 424 }}"
+            width=""
+            height=""
+            alt=""
+            aria-hidden="true"
+            loading="lazy">
+        {%- endif -%}
+
+        {%- if product.featured_image -%}
+          <img
+            class="wyms-product-card__img"
+            src="{{ product.featured_image | image_url: width: 424 }}"
+            srcset="
+              {{ product.featured_image | image_url: width: 320 }} 320w,
+              {{ product.featured_image | image_url: width: 424 }} 424w,
+              {{ product.featured_image | image_url: width: 600 }} 600w"
+            sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+            alt="{{ product.featured_image.alt | escape }}"
+            width="{{ product.featured_image.width }}"
+            height="{{ product.featured_image.height }}"
+            loading="lazy">
+        {%- endif -%}
+      </div>
+
+    </div>
+
+    <div class="wyms-product-card__info">
+      <div class="wyms-product-card__info-inner">
+        <div class="wyms-product-card__text-price">
+
+          <div class="wyms-product-card__text">
+            <span class="wyms-product-card__title">{{ product.title }}</span>
+            {%- if model_name -%}
+              <span class="wyms-product-card__model">{{ model_name }}</span>
+            {%- endif -%}
+          </div>
+
+          <div class="wyms-product-card__price-wrap">
+            {%- if compare and compare > product.price -%}
+              <s class="wyms-product-card__price wyms-product-card__price--compare">
+                {{ compare | money }}
+              </s>
+            {%- endif -%}
+            <span class="wyms-product-card__price">{{ price }}</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </a>
+</article>

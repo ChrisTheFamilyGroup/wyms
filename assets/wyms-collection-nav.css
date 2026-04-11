@@ -1,0 +1,203 @@
+.collection-nav {
+    display: block;
+    width: 100%;
+    background: var(--Colors-Background-bg-primary, #FFF);
+  }
+  
+  .collection-nav__outer {
+    display: flex;
+    padding: var(--spacing-xl, 16px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    max-width: var(--width-4xl, 1440px);
+    margin: 0 auto;
+  }
+  
+  .collection-nav__inner {
+    display: flex;
+    height: 420px;
+    padding: var(--spacing-10xl, 128px) 64px 0 64px;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: var(--radius-radius-2-xl-16, 16px);
+    background: var(--Colors-Blue-blue, #6865EA);
+    position: relative;
+    overflow: hidden; 
+    box-sizing: border-box;
+  }
+  
+    .collection-nav__blob {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .collection-nav__blob img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  .collection-nav__blob--left {
+    left: 0;
+  }
+  
+  .collection-nav__blob--right {
+    right: 0;
+  }
+  
+  
+  .collection-nav__content {
+    display: flex;
+    width: 100%;
+    max-width: 768px;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-9xl, 96px);
+    position: relative;
+    z-index: 2; 
+  }
+  
+  .collection-nav__text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xl, 16px);
+    align-self: stretch;
+  }
+  
+  .collection-nav__title {
+    margin: 0;
+    color: var(--Colors-Text-text-primary_on-brand, #FFF);
+    text-align: center;
+    font-family: var(--Font-family-font-family-display, "Clash Grotesk");
+    font-size: var(--Font-size-display-xl, 60px);
+    font-weight: 600;
+    line-height: var(--Line-height-display-xl, 72px);
+    letter-spacing: -1.2px;
+  }
+  
+  .collection-nav__desc {
+    margin: 0;
+    color: var(--Colors-Text-text-primary_on-brand, #FFF);
+    text-align: center;
+    font-family: var(--Font-family-font-family-body, Inter);
+    font-size: var(--Font-size-text-xl, 20px);
+    font-weight: 400;
+    line-height: var(--Line-height-text-xl, 30px);
+  }
+  
+  .collection-nav__buttons-wrapper {
+    width: 100%;
+  }
+  
+  .collection-nav__buttons {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--spacing-xl, 16px);
+    flex-wrap: wrap; 
+  }
+  
+  .collection-nav__btn {
+    display: flex;
+    padding: 10px 14px;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xs, 4px);
+    border-radius: var(--radius-full, 9999px);
+    background: var(--Component-colors-Alpha-alpha-black-20, rgba(25, 24, 57, 0.20));
+    text-decoration: none;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+  }
+  
+  .collection-nav__btn:hover,
+  .collection-nav__btn.is-active {
+    background: var(--Colors-Foreground-fg-primary, #242352);
+  }
+  
+  .collection-nav__btn-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+  
+  .collection-nav__btn-text {
+    color: var(--Colors-Text-text-primary_on-brand, #FFF);
+    font-family: var(--Font-family-font-family-body, Inter);
+    font-size: var(--Font-size-text-sm, 14px);
+    font-weight: 600;
+    line-height: var(--Line-height-text-sm, 20px);
+    white-space: nowrap; 
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .collection-nav__outer {
+      padding: var(--spacing-md, 8px);
+      gap: 24px;
+    }
+  
+    .collection-nav__inner {
+      height: auto;
+      padding: var(--spacing-9xl, 96px) var(--spacing-2xl, 20px) var(--spacing-2xl, 20px) var(--spacing-2xl, 20px);
+      gap: 8px;
+    }
+  
+    .collection-nav__content {
+      gap: var(--spacing-7xl, 64px);
+    }
+  
+    .collection-nav__text-block {
+      gap: var(--spacing-md, 8px);
+    }
+  
+    .collection-nav__title {
+      font-size: var(--Font-size-display-lg, 48px);
+      line-height: var(--Line-height-display-lg, 60px);
+      letter-spacing: -0.96px;
+    }
+  
+    .collection-nav__buttons-wrapper {
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+  
+    .collection-nav__buttons {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-left: 20px;
+      padding-right: 20px;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 20px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    .collection-nav__buttons::-webkit-scrollbar {
+      display: none;
+    }
+  
+    .collection-nav__buttons.is-dragging {
+      scroll-snap-type: none;
+      cursor: grabbing;
+    }
+  
+    .collection-nav__btn {
+      scroll-snap-align: start;
+      flex-shrink: 0; 
+    }
+    
+    .collection-nav__buttons.is-dragging .collection-nav__btn {
+      pointer-events: none;
+    }
+  }

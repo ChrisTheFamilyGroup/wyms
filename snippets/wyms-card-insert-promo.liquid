@@ -1,0 +1,55 @@
+{%- liquid
+  assign bg_image      = insert.card_background_image.value
+  assign product_image = insert.card_product_image.value
+  assign spot_bg       = insert.card_spot_background.value
+  assign title         = insert.promo_title
+  assign description   = insert.promo_description
+  assign btn_label     = insert.promo_button_label | default: 'Get set'
+  assign btn_url       = insert.promo_button_url
+-%}
+
+<div class="card-insert card-insert--promo"
+     style="{% if bg_image %}background-image: url('{{ bg_image | image_url: width: 900 }}');{% else %}background: var(--Colors-Background-bg-dark-green, #00380B);{% endif %}">
+
+  <div class="card-insert__content">
+    <div class="card-insert__text-group">
+      {%- if title -%}
+        <h3 class="card-insert__title">{{ title }}</h3>
+      {%- endif -%}
+      {%- if description -%}
+        <p class="card-insert__desc">{{ description }}</p>
+      {%- endif -%}
+    </div>
+    {%- if btn_url -%}
+      <div class="card-insert__btn-wrap">
+        <a href="{{ btn_url }}" class="card-insert__btn">{{ btn_label }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if product_image -%}
+    <div class="card-insert__media">
+      {%- if spot_bg -%}
+        <div class="card-insert__spot-wrap">
+          <img class="card-insert__spot"
+               src="{{ spot_bg | image_url: width: 526 }}"
+               width=""
+               height=""
+               alt=""
+               aria-hidden="true"
+               loading="lazy">
+        </div>
+      {%- endif -%}
+      <img class="card-insert__product-img"
+           src="{{ product_image | image_url: width: 574 }}"
+           srcset="{{ product_image | image_url: width: 400 }} 400w,
+                   {{ product_image | image_url: width: 574 }} 574w"
+           sizes="(max-width: 767px) 100vw, 40vw"
+           width=""
+           height=""
+           alt="{{ product_image.alt | escape }}"
+           loading="lazy">
+    </div>
+  {%- endif -%}
+
+</div>

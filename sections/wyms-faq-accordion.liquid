@@ -1,0 +1,161 @@
+{{ 'wyms-faq-accordion.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-faq-accordion.js' | asset_url }}" defer="defer"></script>
+
+<wyms-faq-accordion class="faq-section page-width section-{{ section.id }}">
+  
+
+
+  <div class="faq-top-box">
+
+    {%- if section.settings.blob_image != blank -%}
+        <div class="faq-section__blob-container">
+          {{ section.settings.blob_image | image_url: width: 600 | image_tag: class: 'faq-section__blob', loading: 'lazy' }}
+        </div>
+      {%- endif -%}
+    
+    {%- if section.settings.faq_title != blank -%}
+      <div class="faq-top-box__header">
+        <h2 class="faq-top-box__title">{{ section.settings.faq_title }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="faq-accordion-list">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq_item' -%}
+          <div class="faq-item" {{ block.shopify_attributes }}>
+            <button class="faq-item__trigger" aria-expanded="false">
+              <span class="faq-item__question">{{ block.settings.question }}</span>
+              <span class="faq-item__icon">
+                <svg class="icon-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 5V19M5 12H19" stroke="#191839" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg class="icon-minus" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H19" stroke="#191839" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-item__content-wrapper">
+              <div class="faq-item__content rte">
+                {{ block.settings.answer }}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+
+  <div class="faq-bottom-box">
+    
+    <div class="faq-bottom-box__text-group">
+      <div class="faq-bottom-box__text-inner">
+        {%- if section.settings.bottom_title != blank -%}
+          <h3 class="faq-bottom-box__title">{{ section.settings.bottom_title }}</h3>
+        {%- endif -%}
+        {%- if section.settings.bottom_desc != blank -%}
+          <p class="faq-bottom-box__desc">{{ section.settings.bottom_desc }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="faq-bottom-box__buttons">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'button' -%}
+          <a href="{{ block.settings.link | default: '#' }}" 
+             class="faq-btn {% if block.settings.is_active %}faq-btn--active{% else %}faq-btn--inactive{% endif %}"
+             {{ block.shopify_attributes }}>
+            {{ block.settings.label }}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+
+</wyms-faq-accordion>
+
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "settings": [
+    { "type": "header", 
+      "content": "Middle Background Blob" 
+    },
+    { "type": "image_picker", 
+      "id": "blob_image", 
+      "label": "Background Blob Image" 
+    },
+    { "type": "header", 
+      "content": "Top Section (FAQ)" 
+    },
+    { "type": "text", 
+      "id": "faq_title", 
+      "label": "FAQ Title", 
+      "default": "Häufige Fragen" 
+    },
+    { "type": "header", 
+      "content": "Bottom Section (CTA)" 
+    },
+    { "type": "text", 
+      "id": "bottom_title", 
+      "label": "Bottom Title", 
+      "default": "Noch Fragen?" 
+    },
+    { "type": "textarea", 
+      "id": "bottom_desc", 
+      "label": "Bottom Description", 
+      "default": "Wir helfen dir gerne weiter." 
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        { "type": "text", 
+          "id": "question", 
+          "label": "Question", 
+          "default": "Wie reinige ich den Rucksack?" 
+        },
+        { "type": "richtext", 
+          "id": "answer", 
+          "label": "Answer", 
+          "default": "<p>Du kannst ihn einfach mit einem feuchten Tuch abwischen.</p>" 
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        { "type": "text", 
+          "id": "label", 
+          "label": "Button Label", 
+          "default": "Zum Kontaktformular" 
+        },
+        { "type": "url", 
+          "id": "link", 
+          "label": "Button Link" 
+        },
+        { "type": "checkbox", 
+          "id": "is_active", 
+          "label": "Set as Active (Dark Blue)", 
+          "default": true 
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Accordion",
+      "blocks": [
+        { "type": "faq_item" },
+        { "type": "faq_item" },
+        { "type": "button", "settings": { "is_active": true } },
+        { "type": "button", "settings": { "is_active": false } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,135 @@
+{{ 'section-wyms-cart-drawer.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="wyms-cart-drawer"
+  id="CartDrawer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="{{ section.settings.cart_title }}"
+>
+  <div class="cart-drawer-container">
+
+    <div class="cart-drawer-header">
+      <div class="cart-header-inner">
+        <h2 class="cart-title">{{ section.settings.cart_title }}</h2>
+        <button type="button" class="cart-close-btn js-cart-close" aria-label="{{ 'accessibility.close' | t }}">
+          {% render 'icon-close' %}
+        </button>
+      </div>
+    </div>
+
+    <cart-drawer-items id="CartDrawer-CartItems">
+      <div class="cart-drawer-main-and-footer">
+        <div class="cart-drawer-items-container js-cart-items">
+          {% if cart.item_count > 0 %}
+            {% for item in cart.items %}
+              <div
+                class="cart-item"
+                id="CartDrawer-Item-{{ item.index | plus: 1 }}"
+                data-key="{{ item.key }}"
+              >
+                <div class="cart-item-image-wrapper" style="background-color: {{ item.product.metafields.custom.cart_background | default: '#F7F7F7' }};">
+                  <img src="{{ item.image | image_url: width: 228 }}" alt="{{ item.product.title }}" width="auto" height="auto" loading="lazy">
+                </div>
+
+                <div class="cart-item-info">
+                  <div class="cart-item-details">
+                    <h3 class="item-name">{{ item.product.title }}</h3>
+                    <p class="item-price">{{ item.final_line_price | money }}</p>
+                    {%- unless item.product.has_only_default_variant -%}
+                      <p class="item-variant">{{ item.variant.title }}</p>
+                    {%- endunless -%}
+                  </div>
+
+                  <div class="cart-item-controls">
+                    {% render 'loading-spinner' %}
+                    <quantity-input class="quantity-selector">
+                      <button type="button" class="qty-btn quantity__button" name="minus" aria-label="{{ 'products.product.quantity.decrease' | t | escape }}">
+                        {% render 'icon-minus' %}
+                      </button>
+                      <input
+                        class="qty-display quantity__input"
+                        type="number"
+                        name="updates[]"
+                        value="{{ item.quantity }}"
+                        min="0"
+                        step="1"
+                        data-index="{{ item.index | plus: 1 }}"
+                        data-quantity-variant-id="{{ item.variant.id }}"
+                        id="Drawer-quantity-{{ item.index | plus: 1 }}"
+                        aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                      >
+                      <button type="button" class="qty-btn quantity__button" name="plus" aria-label="{{ 'products.product.quantity.increase' | t | escape }}">
+                        {% render 'icon-plus' %}
+                      </button>
+                    </quantity-input>
+
+                    <cart-remove-button data-index="{{ item.index | plus: 1 }}">
+                      <button type="button" class="item-remove-btn" aria-label="{{ 'sections.cart.remove_title' | t: title: item.product.title | escape }}">
+                        {% render 'icon-trash' %}
+                      </button>
+                    </cart-remove-button>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="cart-empty-state">
+              <div class="cart-empty-icon">
+                {% if section.settings.empty_cart_icon != blank %}
+                  {{ section.settings.empty_cart_icon | image_url: width: 144 | image_tag }}
+                {% else %}
+                  {% render 'icon-cart-empty' %}
+                {% endif %}
+              </div>
+              <p class="cart-empty-text">{{ section.settings.empty_cart_text }}</p>
+            </div>
+          {% endif %}
+        </div>
+
+        {% if cart.item_count > 0 %}
+          <div class="cart-drawer-footer">
+            <div class="footer-divider"></div>
+
+            <div class="cart-total-row">
+              <span class="total-label">{{ section.settings.total_label | default: 'Total' }}</span>
+              <span class="total-amount">{{ cart.total_price | money }}</span>
+            </div>
+
+            <p class="cart-tax-note">{{ section.settings.tax_note | default: 'Taxes and shipping calculated at checkout' }}</p>
+
+            <form action="{{ routes.cart_url }}" method="post" id="cart-drawer-form">
+              <button type="submit" name="checkout" class="btn-checkout">
+                {{ section.settings.checkout_label | default: 'Checkout' }}
+              </button>
+            </form>
+          </div>
+        {% endif %}
+      </div>
+
+      <p id="CartDrawer-LiveRegionText" class="visually-hidden" role="status"></p>
+      <p id="CartDrawer-LineItemStatus" class="visually-hidden" aria-hidden="true" role="status">
+        {{ 'accessibility.loading' | t }}
+      </p>
+      <div id="CartDrawer-CartErrors" role="alert"></div>
+    </cart-drawer-items>
+
+  </div>
+</div>
+
+<script src="{{ 'section-wyms-cart-drawer.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "WYMS Cart Drawer",
+  "settings": [
+    { "type": "text", "id": "cart_title", "label": "Cart Title", "default": "Cart" },
+    { "type": "image_picker", "id": "empty_cart_icon", "label": "Empty Cart Icon" },
+    { "type": "textarea", "id": "empty_cart_text", "label": "Empty Cart Text", "default": "Your cart is currently empty." },
+    { "type": "text", "id": "total_label", "label": "Total Label", "default": "Total" },
+    { "type": "text", "id": "checkout_label", "label": "Checkout Label", "default": "Checkout" },
+    { "type": "textarea", "id": "tax_note", "label": "Tax Note", "default": "Taxes and shipping calculated at checkout" }
+  ],
+  "presets": [{ "name": "WYMS Cart Drawer" }]
+}
+{% endschema %}
