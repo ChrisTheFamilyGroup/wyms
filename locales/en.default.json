@@ -11,6 +11,7 @@
   "accessibility": {
     "account": "Account",
     "cart": "Cart",
+    "close": "Close",
     "cart_count": "Total items in cart",
     "close_dialog": "Close dialog",
     "country_region": "Country/Region",

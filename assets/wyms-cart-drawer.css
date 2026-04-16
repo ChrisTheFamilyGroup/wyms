@@ -17,12 +17,17 @@
     visibility: visible;
   }
   
-  body.mobile-menu-open .shopify-section-group-header-group {
-    z-index: 10000 !important;
+  body.mobile-menu-open #shopify-section-header,
+  body.mobile-menu-open .shopify-section-group-header-group,
+  body.mobile-menu-open wyms-header {
+    position: relative !important;
+    z-index: 99999 !important;
   }
   
-  body.mobile-menu-open .header-outer-container {
-    z-index: 10000 !important;
+  /* Гарантовано витягуємо вікно самого мобільного меню на самий перед */
+  body.mobile-menu-open #MobileNav {
+    position: fixed !important;
+    z-index: 99999 !important;
   }
   
   body.cart-drawer-open,
@@ -94,6 +99,12 @@
     align-items: flex-start;
     gap: var(--spacing-xl);
     flex: 1 0 0;
+    color: var(--Colors-Text-text-primary, #191839);
+    font-family: var(--Font-family-font-family-display, "Clash Grotesk");
+    font-size: var(--Font-size-display-xs, 24px);
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--Line-height-display-xs, 32px); 
   }
   
   .cart-title {
@@ -182,12 +193,13 @@
   }
   
   .item-name, .item-price {
-    color: var(--color-text-primary);
-    font-family: var(--font-family-body);
-    font-size: var(--fs-text-lg);
+    color: var(--Colors-Text-text-primary, #191839);
+    font-family: var(--Font-family-font-family-body, Inter);
+    font-size: var(--Font-size-text-md, 16px);
+    font-style: normal;
     font-weight: 600;
-    line-height: var(--lh-text-lg);
-    margin: 0;
+    line-height: var(--Line-height-text-md, 24px);
+    margin: 4px 0;
   }
   
   .item-variant {
@@ -208,8 +220,8 @@
   
   .quantity-selector {
     display: flex;
-    align-items: flex-start;
-    border-radius: var(--radius-lg);
+    align-items: center;
+    border-radius: 10px;
     border: 1px solid var(--color-bg-secondary);
   }
   
@@ -289,11 +301,12 @@
   }
   
   .total-label, .total-amount {
-    color: var(--color-text-primary);
-    font-family: var(--font-family-body);
-    font-size: var(--fs-text-xl);
+    color: var(--Colors-Text-text-primary, #191839);
+    font-family: var(--Font-family-font-family-body, Inter);
+    font-size: var(--Font-size-text-xl, 20px);
+    font-style: normal;
     font-weight: 600;
-    line-height: var(--lh-text-xl);
+    line-height: var(--Line-height-text-xl, 30px);
   }
   .total-label { flex: 1 0 0; }
   .total-amount { text-align: right; }
@@ -367,7 +380,7 @@
   
     .cart-drawer-container {
       background: #FFFFFF;
-      border-radius: var(--radius-4xl);
+      border-radius: 12px;
       overflow: hidden;
       padding: var(--spacing-md) var(--spacing-xl);
       gap: var(--spacing-6xl);
@@ -407,5 +420,12 @@
       background: transparent;
       cursor: pointer;
     }
+  }
+
+  .quantity__button:disabled,
+  .quantity__button[disabled] {
+    opacity: 0.3 !important;
+    pointer-events: none !important;
+    cursor: not-allowed !important;
   }
   

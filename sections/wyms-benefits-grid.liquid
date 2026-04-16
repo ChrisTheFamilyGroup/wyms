@@ -34,7 +34,7 @@
             <div class="benefits-item-icon">
               {%- if block.settings.icon != blank -%}
                 <img src="{{ block.settings.icon | image_url: width: 128 }}" 
-                     alt="{{ block.settings.text | escape }}" 
+                     alt="{{ block.settings.heading | escape }}" 
                      loading="lazy"
                      width="64"
                      height="64">
@@ -43,9 +43,20 @@
               {%- endif -%}
             </div>
             
-            <h3 class="benefits-item-text" style="color: {{ block.settings.text_color }};">
-              {{ block.settings.text }}
-            </h3>
+            <div class="benefits-item-content">
+              <h3 class="benefits-item-text" style="color: {{ block.settings.text_color }};">
+                {{ block.settings.heading }}
+              </h3>
+              
+              {%- if block.settings.description != blank -%}
+                <div class="benefits-item-desc-wrapper">
+                  <div class="benefits-item-desc">
+                    {{ block.settings.description }}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+            
           </div>
         {%- endfor -%}
       </div>
@@ -102,15 +113,21 @@
         },
         {
           "type": "textarea",
-          "id": "text",
-          "label": "Text",
+          "id": "heading",
+          "label": "Heading",
           "default": "Benefit Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "This is a short description that appears on hover."
         },
         {
           "type": "color",
           "id": "text_color",
-          "label": "Text Color",
-          "default": "#191839"
+          "label": "Heading Color",
+          "default": "#64033C"
         }
       ]
     }

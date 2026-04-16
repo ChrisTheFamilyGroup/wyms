@@ -1,0 +1,70 @@
+{{ 'wyms-product-nav.css' | asset_url | stylesheet_tag }}
+
+<wyms-product-nav>
+  <div class="product-nav-sticky-wrapper js-product-nav-sticky" id="ProductNav">
+    <div class="product-nav-container">
+      <nav class="product-nav-buttons-list">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.link_id != blank -%}
+            {%- assign target_id = block.settings.link_id | remove: '#' -%}
+
+            <a href="#{{ target_id }}"
+               class="product-nav-btn js-product-nav-link"
+               data-target-id="{{ target_id }}"
+               {{ block.shopify_attributes }}>
+
+              <div class="product-nav-btn__icons">
+                {%- if block.settings.icon_normal != blank -%}
+                  <img src="{{ block.settings.icon_normal | image_url: width: 40 }}"
+                       class="icon-normal" alt="" width="20" height="20" loading="lazy">
+                {%- endif -%}
+                {%- if block.settings.icon_hover != blank -%}
+                  <img src="{{ block.settings.icon_hover | image_url: width: 40 }}"
+                       class="icon-hover" alt="" width="20" height="20" loading="lazy">
+                {%- endif -%}
+              </div>
+              <span class="product-nav-btn__text">{{ block.settings.title }}</span>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </nav>
+    </div>
+  </div>
+</wyms-product-nav>
+
+<script src="{{ 'wyms-product-nav.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "WYMS Product Nav",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Navigation Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Link Text",
+          "default": "Section"
+        },
+        {
+          "type": "text",
+          "id": "link_id",
+          "label": "Section ID",
+          "info": "Must match the metaobject handle of the target section (e.g. ergonomics, features)",
+          "default": "set"
+        },
+        { "type": "image_picker", "id": "icon_normal", "label": "Icon (Normal)" },
+        { "type": "image_picker", "id": "icon_hover", "label": "Icon (Hover)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Product Nav"
+    }
+  ]
+}
+{% endschema %}

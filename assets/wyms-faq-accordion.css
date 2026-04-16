@@ -1,7 +1,7 @@
 .faq-section {
     display: flex;
     width: 100%;
-    max-width: var(--width-4xl, 1440px);
+    max-width: 100%;
     margin: 0 auto;
     padding: var(--spacing-xl, 16px) var(--spacing-xl, 16px) var(--spacing-9xl, 96px) var(--spacing-xl, 16px);
     flex-direction: column;
@@ -14,9 +14,10 @@
   
   
   .faq-section__blob-container {
+    max-width: 1440px;
     position: absolute;
     bottom: 0;     
-    left: 0;       
+    /* left: 0;        */
     width: 100%;  
     display: flex;
     justify-content: center;

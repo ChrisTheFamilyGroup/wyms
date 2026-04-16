@@ -1,4 +1,4 @@
-{{ 'section-wyms-cart-drawer.css' | asset_url | stylesheet_tag }}
+{{ 'wyms-cart-drawer.css' | asset_url | stylesheet_tag }}
 
 <div
   class="wyms-cart-drawer"
@@ -6,13 +6,14 @@
   role="dialog"
   aria-modal="true"
   aria-label="{{ section.settings.cart_title }}"
+  aria-hidden="true"
 >
   <div class="cart-drawer-container">
 
     <div class="cart-drawer-header">
       <div class="cart-header-inner">
         <h2 class="cart-title">{{ section.settings.cart_title }}</h2>
-        <button type="button" class="cart-close-btn js-cart-close" aria-label="{{ 'accessibility.close' | t }}">
+        <button type="button" class="cart-close-btn js-cart-close" aria-label="{{ 'accessibility.close' | t | default: 'Close' }}">
           {% render 'icon-close' %}
         </button>
       </div>
@@ -44,9 +45,10 @@
                   <div class="cart-item-controls">
                     {% render 'loading-spinner' %}
                     <quantity-input class="quantity-selector">
-                      <button type="button" class="qty-btn quantity__button" name="minus" aria-label="{{ 'products.product.quantity.decrease' | t | escape }}">
+                      <button type="button" class="qty-btn quantity__button" name="minus" aria-label="Decrease">
                         {% render 'icon-minus' %}
                       </button>
+                      
                       <input
                         class="qty-display quantity__input"
                         type="number"
@@ -56,16 +58,29 @@
                         step="1"
                         data-index="{{ item.index | plus: 1 }}"
                         data-quantity-variant-id="{{ item.variant.id }}"
+                        data-inventory-qty="{{ item.variant.inventory_quantity }}"
+                        data-inventory-management="{{ item.variant.inventory_management }}"
+                        data-inventory-policy="{{ item.variant.inventory_policy }}"
                         id="Drawer-quantity-{{ item.index | plus: 1 }}"
-                        aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                        aria-label="Quantity for {{ item.product.title | escape }}"
                       >
-                      <button type="button" class="qty-btn quantity__button" name="plus" aria-label="{{ 'products.product.quantity.increase' | t | escape }}">
+                      
+                      {%- liquid
+                        assign disable_plus = false
+                        if item.variant.inventory_management == 'shopify' and item.variant.inventory_policy == 'deny'
+                          if item.quantity >= item.variant.inventory_quantity
+                            assign disable_plus = true
+                          endif
+                        endif
+                      -%}
+                      
+                      <button type="button" class="qty-btn quantity__button" name="plus" aria-label="Increase" {% if disable_plus %}disabled{% endif %}>
                         {% render 'icon-plus' %}
                       </button>
                     </quantity-input>
 
                     <cart-remove-button data-index="{{ item.index | plus: 1 }}">
-                      <button type="button" class="item-remove-btn" aria-label="{{ 'sections.cart.remove_title' | t: title: item.product.title | escape }}">
+                      <button type="button" class="item-remove-btn" aria-label="Remove {{ item.product.title | escape }}">
                         {% render 'icon-trash' %}
                       </button>
                     </cart-remove-button>
@@ -107,17 +122,13 @@
         {% endif %}
       </div>
 
-      <p id="CartDrawer-LiveRegionText" class="visually-hidden" role="status"></p>
-      <p id="CartDrawer-LineItemStatus" class="visually-hidden" aria-hidden="true" role="status">
-        {{ 'accessibility.loading' | t }}
-      </p>
-      <div id="CartDrawer-CartErrors" role="alert"></div>
+      {% comment %} <div id="CartDrawer-CartErrors" role="alert" style="color: red; text-align: center; margin-top: 10px;"></div> {% endcomment %}
     </cart-drawer-items>
 
   </div>
 </div>
 
-<script src="{{ 'section-wyms-cart-drawer.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'wyms-cart-drawer.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {

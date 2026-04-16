@@ -136,6 +136,11 @@
     object-fit: contain;
     z-index: 2;
     padding: 10%;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+  }
+
+  .product-card-wrapper:hover .main-product-img {
+    transform: scale(1.1);
   }
   
   .product-info {
@@ -232,6 +237,34 @@
     border-radius: 9999px;
     background: var(--bg-secondary);
     transition: background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dot.is-looping {
+    background: var(--bg-secondary); /* Сірий фон */
+    transition: none; /* Вимикаємо стандартну затримку, щоб рух був прив'язаний до пальця/мишки */
+  }
+  
+  /* Створюємо два чорні індикатори (один виїжджає, інший заїжджає) */
+  .dot.is-looping::before,
+  .dot.is-looping::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: var(--fg-primary);
+    will-change: transform;
+  }
+  
+  /* Поточний індикатор: виїжджає вправо (на 150% ширини) */
+  .dot.is-looping::before {
+    transform: translateX(calc(var(--loop-progress, 0) * (-150%)));
+  }
+  
+  /* Наступний індикатор: заїжджає зліва */
+  .dot.is-looping::after {
+    transform: translateX(calc((var(--loop-progress, 0) - 1) * (-150%)));
   }
   
   .dot.active { background: var(--fg-primary); }
@@ -289,6 +322,15 @@
         justify-content: space-between; 
         width: 100%;
       }
+
+      .product-details-top {
+        flex-direction: column;
+      }
+
+      .product-info {
+        padding: 0 var(--spacing-lg, 12px);
+      }
+
   }
 
 

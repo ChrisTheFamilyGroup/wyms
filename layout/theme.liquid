@@ -132,6 +132,12 @@
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
-    {% section 'section-wyms-cart-drawer' %}
+    {% section 'wyms-cart-drawer' %}
+
+    {%- comment -%}
+      Global overlay MUST be a direct child of <body>.
+      Do not move this into a section/snippet; fixed positioning breaks inside stacking contexts.
+    {%- endcomment -%}
+    <div id="WymsOverlay" class="wyms-overlay" aria-hidden="true"></div>
   </body>
 </html>

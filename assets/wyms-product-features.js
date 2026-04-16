@@ -78,10 +78,12 @@ class WymsFeaturesCarousel extends HTMLElement {
 
     const trackRect   = this.list.getBoundingClientRect();
     const paddingTop  = parseInt(getComputedStyle(this.list).paddingTop) || 32;
-    const mediaHeight = 320; 
+    
+    const firstMedia = this.querySelector('.wyms-feature-card__media');
+    const mediaHeight = firstMedia ? firstMedia.offsetHeight : 320; 
 
     const mediaCenterY = trackRect.top + paddingTop + mediaHeight / 2;
-    const topPx = mediaCenterY - 20;
+    const topPx = mediaCenterY - 20; 
 
     if (this.arrowLeft)  this.arrowLeft.style.top  = topPx + 'px';
     if (this.arrowRight) this.arrowRight.style.top = topPx + 'px';

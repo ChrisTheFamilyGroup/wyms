@@ -18,7 +18,7 @@
         "subtitle": "Wyms - gemacht für wachsende Körper, neue Freiheit und viele Jahre Alltag.",
         "button_label": "Finde deinen Wyms",
         "button_link": "",
-        "bg_color": "#64033C",
+        "bg_color": "#64033c",
         "border_radius": 16
       }
     },
@@ -41,7 +41,8 @@
           "type": "benefit",
           "settings": {
             "icon": "shopify://shop_images/Expandable.svg",
-            "text": "Mitwachsend",
+            "heading": "Benefit Title",
+            "description": "Ergonomisch entwickelt für wachsende Körper und viel Bewegung im Schulalltag.",
             "text_color": "#191839"
           }
         },
@@ -49,7 +50,8 @@
           "type": "benefit",
           "settings": {
             "icon": "shopify://shop_images/long-lasting.svg",
-            "text": "Langlebig",
+            "heading": "Benefit Title",
+            "description": "Ergonomisch entwickelt für wachsende Körper und viel Bewegung im Schulalltag.",
             "text_color": "#64033c"
           }
         },
@@ -57,7 +59,8 @@
           "type": "benefit",
           "settings": {
             "icon": "shopify://shop_images/innovative.svg",
-            "text": "Innovativ",
+            "heading": "Benefit Title",
+            "description": "Ergonomisch entwickelt für wachsende Körper und viel Bewegung im Schulalltag.",
             "text_color": "#00380b"
           }
         }
@@ -71,7 +74,7 @@
       "settings": {
         "heading": "Für Kinder, die ihren eigenen Weg gehen",
         "spot_image": "shopify://shop_images/Vector.svg",
-        "inner_bg_color": "#F0F0FD",
+        "inner_bg_color": "#f0f0fd",
         "inner_border_radius": 16
       }
     },
@@ -254,9 +257,9 @@
             "bottom_text": "<p>Grow up.<br/>Carry on.</p>",
             "icon": "shopify://shop_images/logo_21460039-47fc-46bd-be2a-0bd0f9e53f63.svg",
             "image_1": "shopify://shop_images/mosaic_card_1.png",
-            "bg_color_1": "#6865EA",
+            "bg_color_1": "#6865ea",
             "image_2": "shopify://shop_images/mosaic_card_2.png",
-            "bg_color_2": "#D9D9D9"
+            "bg_color_2": "#d9d9d9"
           }
         },
         "row_type_b_6FF3zK": {
@@ -268,9 +271,9 @@
             "button_label": "Mehr erfahren",
             "button_link": "#",
             "image_1": "shopify://shop_images/mosaic_card_3.png",
-            "bg_color_1": "#D9D9D9",
+            "bg_color_1": "#d9d9d9",
             "image_2": "shopify://shop_images/mosaic_card_4.png",
-            "bg_color_2": "#D9D9D9"
+            "bg_color_2": "#d9d9d9"
           }
         }
       },

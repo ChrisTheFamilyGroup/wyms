@@ -123,7 +123,7 @@
   color: var(--wyms-faq-q-color, #191839);
   font-family: var(--font-family-body, Inter), sans-serif;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 30px;
 }
 
@@ -195,8 +195,8 @@
 }
 
 .wyms-card-icon {
-  width: 80px;
-  height: 80px;
+  width: 48px;
+  height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -211,10 +211,11 @@
 
 .wyms-card-text {
   text-align: center;
-  font-family: var(--font-family-body, Inter), sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 30px;
+  font-family: var(--Font-family-font-family-display, "Clash Grotesk");
+  font-size: var(--Font-size-display-xs, 24px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: var(--Line-height-display-xs, 32px); 
   margin: 0;
   
 }
@@ -225,10 +226,6 @@
     align-items: stretch;
     gap: var(--spacing-5xl, 40px);
   }
-
-  /* .wyms-info-card {
-    align-items: center;
-  } */
 
 
   .wyms-desc-left {

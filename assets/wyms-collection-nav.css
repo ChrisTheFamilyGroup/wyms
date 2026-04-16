@@ -138,6 +138,12 @@
     white-space: nowrap; 
   }
   
+  @media screen and (min-width: 1440px) {
+    .collection-nav__outer {
+      max-width: none;
+      margin: 0 auto;
+    }
+  }
   
   @media screen and (max-width: 768px) {
     .collection-nav__outer {

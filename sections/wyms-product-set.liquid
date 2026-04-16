@@ -14,7 +14,7 @@
   endif
 -%}
 
-<wyms-product-set class="wyms-set-section" data-section-id="{{ section.id }}">
+<wyms-product-set id="{{ section.settings.section_id }}" class="wyms-set-section" data-section-id="{{ section.id }}">
   <div class="wyms-set__wrapper page-width">
     
     <div class="wyms-set__content-container js-set-dynamic-content">
@@ -92,7 +92,13 @@
 {% schema %}
 {
   "name": "WYMS Product Set",
-  "settings": [],
+  "settings": [
+    { "type": "text", 
+      "id": "section_id", 
+      "label": "Section ID", 
+      "default": "set" 
+    }
+  ],
   "presets": [{ "name": "WYMS Product Set Showcase" }]
 }
 {% endschema %}

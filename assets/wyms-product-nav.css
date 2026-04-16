@@ -1,0 +1,138 @@
+#shopify-section-wyms-product-nav,
+[id*="shopify-section-sections--"] {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  display: block !important;
+}
+
+.product-nav-sticky-wrapper {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 90;
+  display: flex;
+  padding: 105px var(--spacing-4xl, 32px) var(--spacing-xl, 16px) var(--spacing-4xl, 32px);
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #EFEBE6;
+  background: #FFF;
+  box-sizing: border-box;
+}
+
+.product-nav-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.product-nav-buttons-list {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.product-nav-btn {
+  display: flex;
+  padding: 10px 14px;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xs, 4px);
+  border-radius: var(--radius-full, 9999px);
+  background: var(--Component-colors-Alpha-alpha-black-10, rgba(25, 24, 57, 0.10));
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.product-nav-btn__icons {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.product-nav-btn__icons img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.icon-hover {
+  opacity: 0;
+}
+
+.product-nav-btn__text {
+  color: #191839;
+  font-family: var(--font-family-body, Inter, sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.product-nav-btn:hover {
+  background: #242352;
+}
+.product-nav-btn:hover .product-nav-btn__text {
+  color: #FFFFFF;
+}
+.product-nav-btn:hover .icon-normal {
+  opacity: 0;
+}
+.product-nav-btn:hover .icon-hover {
+  opacity: 1;
+}
+
+.product-nav-btn.is-active {
+  background: rgba(25, 24, 57, 0.10);
+}
+.product-nav-btn.is-active .product-nav-btn__text {
+  color: #191839;
+}
+.product-nav-btn.is-active .icon-normal {
+  opacity: 1;
+}
+.product-nav-btn.is-active .icon-hover {
+  opacity: 0;
+}
+
+.product-nav-btn.is-active:hover {
+  background: #242352;
+}
+.product-nav-btn.is-active:hover .product-nav-btn__text {
+  color: #FFFFFF;
+}
+.product-nav-btn.is-active:hover .icon-normal {
+  opacity: 0;
+}
+.product-nav-btn.is-active:hover .icon-hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .product-nav-sticky-wrapper {
+    padding: 105px 16px 16px 16px;
+    align-items: flex-start;
+  }
+
+  .product-nav-container {
+    overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .product-nav-container::-webkit-scrollbar {
+    display: none;
+  }
+}

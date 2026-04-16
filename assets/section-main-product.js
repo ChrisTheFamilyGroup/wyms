@@ -184,13 +184,20 @@ class MainProduct {
         }
   
         // Open cart drawer (theme-agnostic: try common patterns)
-        if (typeof window.flyggeCart?.refreshAndOpen === 'function') {
-          await window.flyggeCart.refreshAndOpen();
+        if (window.wymsCart && typeof window.wymsCart.refreshAndOpen === 'function') {
+          // Оновлюємо іконку кошика в хедері
+          const newCartRes = await fetch(`${window.Shopify?.routes?.root || '/'}cart.js`);
+          const newCart = await newCartRes.json();
+          window.wymsCart.updateCartCount(newCart.item_count);
+          
+          // Оновлюємо вміст і відкриваємо
+          await window.wymsCart.refreshAndOpen();
         } else {
           document.dispatchEvent(new CustomEvent('cart:open'));
           document.dispatchEvent(new CustomEvent('cart:refresh'));
         }
-      } catch {
+      } catch (err) {
+        console.error(err);
         this.showError('Something went wrong. Please try again.');
       } finally {
         setLoading(false);

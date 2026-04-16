@@ -139,6 +139,14 @@
           {%- endif -%}
         {%- endfor -%}
       </div>
+       <div class="mobile-menu-footer-actions">
+        <a href="{{ routes.search_url }}" class="mobile-footer-icon-wrapper" aria-label="Search">
+          {% render 'icon-search' %}
+        </a>
+        <a href="{{ routes.account_url }}" class="mobile-footer-icon-wrapper" aria-label="Account">
+          {% render 'icon-account' %}
+        </a>
+      </div>
     </div>
   </div>
 </wyms-header>
