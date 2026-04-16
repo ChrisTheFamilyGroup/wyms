@@ -12,6 +12,7 @@
   assign faq_a_val     = section.settings.faq_a_color_custom | default: section.settings.faq_a_color | default: '#414651'
 -%}
 
+{% if description_subtext != blank %}
 <wyms-product-desc
   id="description"
   class="wyms-desc-outer"
@@ -103,6 +104,8 @@
     </div>
   </div>
 </wyms-product-desc>
+
+{% endif %}
 
 {% schema %}
 {
