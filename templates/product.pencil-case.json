@@ -303,72 +303,55 @@
       ],
       "name": "WYMS Main Product",
       "settings": {
-        "collection_select": "schulrucksacke",
+        "collection_select": "mappchen",
         "variant_label": "Color",
         "atc_text": "In den Warenkorb"
       }
     },
-    "wyms_product_nav_MzYYdW": {
+    "wyms_product_nav_gzKXVc": {
       "type": "wyms-product-nav",
       "blocks": {
-        "nav_link_UnxVNJ": {
+        "nav_link_KjM6YW": {
           "type": "nav_link",
           "settings": {
-            "title": "Set",
-            "link_id": "set",
+            "title": "Funktionalität",
+            "link_id": "funktionalitat-1",
             "icon_normal": "shopify://shop_images/star-01.svg",
             "icon_hover": "shopify://shop_images/star-01_0e90dcc2-0f74-4223-ac32-8a63520f301e.svg"
           }
         },
-        "nav_link_w9yHxc": {
-          "type": "nav_link",
-          "settings": {
-            "title": "Funktionalität",
-            "link_id": "funktionalitat",
-            "icon_normal": "shopify://shop_images/placeholder.svg",
-            "icon_hover": "shopify://shop_images/placeholder_1623ed4d-7227-48c8-ba39-84d3f255d9cc.svg"
-          }
-        },
-        "nav_link_zfDFia": {
+        "nav_link_Q8XHPW": {
           "type": "nav_link",
           "settings": {
             "title": "Beschreibung",
             "link_id": "description",
-            "icon_normal": "shopify://shop_images/triangle.svg",
-            "icon_hover": "shopify://shop_images/triangle_a9675dfb-49d8-4190-80af-e0da2539c928.svg"
+            "icon_normal": "shopify://shop_images/placeholder.svg",
+            "icon_hover": "shopify://shop_images/placeholder_1623ed4d-7227-48c8-ba39-84d3f255d9cc.svg"
           }
         },
-        "nav_link_9VNxBT": {
+        "nav_link_JViQhw": {
           "type": "nav_link",
           "settings": {
-            "title": "Ergonomie",
-            "link_id": "ergonomie",
-            "icon_normal": "shopify://shop_images/heart.svg",
-            "icon_hover": "shopify://shop_images/heart_1569dca2-3e22-423d-abeb-32ed3edf97c5.svg"
+            "title": "Unsere Highlights",
+            "link_id": "carousel-template--28650630578503__wyms_carousel_of_featured_products_TzUjjY",
+            "icon_normal": "shopify://shop_images/triangle.svg",
+            "icon_hover": "shopify://shop_images/triangle_a9675dfb-49d8-4190-80af-e0da2539c928.svg"
           }
         }
       },
       "block_order": [
-        "nav_link_UnxVNJ",
-        "nav_link_w9yHxc",
-        "nav_link_zfDFia",
-        "nav_link_9VNxBT"
+        "nav_link_KjM6YW",
+        "nav_link_Q8XHPW",
+        "nav_link_JViQhw"
       ],
       "name": "WYMS Product Nav",
       "settings": {}
-    },
-    "wyms_product_set_DWeTpm": {
-      "type": "wyms-product-set",
-      "name": "WYMS Product Set Showcase",
-      "settings": {
-        "section_id": "set"
-      }
     },
     "wyms_product_features_TYKThx": {
       "type": "wyms-product-features",
       "name": "WYMS Product Features",
       "settings": {
-        "features_metaobject": "funktionalitat"
+        "features_metaobject": "funktionalitat-1"
       }
     },
     "wyms_product_description_rBfP4f": {
@@ -386,21 +369,25 @@
         "faq_a_color_custom": ""
       }
     },
-    "wyms_product_features_DKm8Wq": {
-      "type": "wyms-product-features",
-      "name": "WYMS Product Features",
+    "wyms_carousel_of_featured_products_TzUjjY": {
+      "type": "wyms-carousel-of-featured-products",
+      "name": "Featured Products Carousel",
       "settings": {
-        "features_metaobject": "ergonomie"
+        "title": "Unsere Highlights",
+        "collection": "schulrucksacke",
+        "products_to_show": 8,
+        "default_subtext": "Model Name",
+        "button_label": "Finde deinen Wyms",
+        "button_link": ""
       }
     }
   },
   "order": [
     "main",
     "section_main_product_crTBLe",
-    "wyms_product_nav_MzYYdW",
-    "wyms_product_set_DWeTpm",
+    "wyms_product_nav_gzKXVc",
     "wyms_product_features_TYKThx",
     "wyms_product_description_rBfP4f",
-    "wyms_product_features_DKm8Wq"
+    "wyms_carousel_of_featured_products_TzUjjY"
   ]
 }
