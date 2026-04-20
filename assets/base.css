@@ -5109,3 +5109,6 @@ product-recommendations:has([data-has-recommendations='false']) {
   }
 }
 
+.shopify-policy__container {
+  padding-top: 100px !important; 
+}

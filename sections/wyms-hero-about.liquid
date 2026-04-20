@@ -1,0 +1,205 @@
+{{ 'wyms-hero-about.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign has_content = false
+  if section.settings.heading != blank or section.settings.desktop_image != blank
+    assign has_content = true
+  endif
+-%}
+
+{%- if has_content or request.design_mode -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} {
+      --icon-width-desktop: {{ section.settings.icon_width_desktop }}px;
+      --icon-top-desktop: {{ section.settings.icon_top_desktop }}%;
+      --icon-left-desktop: {{ section.settings.icon_left_desktop }}%;
+      
+      --icon-top-wide: {{ section.settings.icon_top_wide }}%;
+      --icon-left-wide: {{ section.settings.icon_left_wide }}%;
+      
+      --icon-width-mobile: {{ section.settings.icon_width_mobile }}px;
+      --icon-top-mobile: {{ section.settings.icon_top_mobile }}%;
+      --icon-left-mobile: {{ section.settings.icon_left_mobile }}%;
+      
+      --bg-color: {{ section.settings.bg_color }};
+    }
+  {%- endstyle -%}
+
+  <section class="hero-split-section">
+    {%- if has_content == false and request.design_mode -%}
+      <div style="padding: 40px; text-align: center; border: 2px dashed #ccc; background: #f9f9f9; width: 100%;">
+        <h3>{{ section.settings.heading | default: 'WYMS Hero About' }}</h3>
+        <p>This section is currently empty. Please add a heading or an image in the settings to display it on the storefront.</p>
+      </div>
+    {%- else -%}
+      
+      <div class="hero-split__wrapper-white">
+        
+        <div class="hero-split__wrapper-grey">
+          
+          <div class="hero-split__inner">
+            
+            <div class="hero-split__text-col">
+              {%- if section.settings.decorative_icon != blank -%}
+                <img src="{{ section.settings.decorative_icon | image_url: width: 600 }}" 
+                     alt="" 
+                     class="hero-split__deco-icon" 
+                     loading="eager"
+                     width="{{ section.settings.decorative_icon.width }}"
+                     height="{{ section.settings.decorative_icon.height }}">
+              {%- endif -%}
+
+              <div class="hero-split__text-content">
+                {%- if section.settings.heading != blank -%}
+                  <h1 class="hero-split__heading">{{ section.settings.heading }}</h1>
+                {%- endif -%}
+                
+                {%- if section.settings.subtext != blank -%}
+                  <div class="hero-split__subtext">{{ section.settings.subtext }}</div>
+                {%- endif -%}
+              </div>
+            </div>
+
+            <div class="hero-split__image-col">
+              {%- if section.settings.desktop_image != blank -%}
+                <picture>
+                  {%- if section.settings.mobile_image != blank -%}
+                    <source media="(max-width: 768px)" srcset="{{ section.settings.mobile_image | image_url: width: 800 }}">
+                  {%- endif -%}
+                  <img src="{{ section.settings.desktop_image | image_url: width: 1600 }}" 
+                       alt="{{ section.settings.heading | escape }}" 
+                       class="hero-split__main-img" 
+                       loading="eager"
+                       width="{{ section.settings.desktop_image.width }}"
+                       height="{{ section.settings.desktop_image.height }}">
+                </picture>
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg hero-split__main-img' }}
+              {%- endif -%}
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    {%- endif -%}
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "WYMS Hero About",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#D9D9D9"
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Großwerden verändert alles"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Und wir sind mittendrin"
+    },
+    {
+      "type": "header",
+      "content": "Main Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image (Optional)"
+    },
+    {
+      "type": "header",
+      "content": "Decorative Green Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "decorative_icon",
+      "label": "Icon Image"
+    },
+    {
+      "type": "paragraph",
+      "content": "--- Desktop Settings (769px - 1440px) ---"
+    },
+    {
+      "type": "range",
+      "id": "icon_width_desktop",
+      "min": 100, "max": 400, "step": 5, "unit": "px",
+      "label": "Icon Width", "default": 230
+    },
+    {
+      "type": "range",
+      "id": "icon_top_desktop",
+      "min": -50, "max": 100, "step": 2, "unit": "px",
+      "label": "Top Position Offset", "default": 20
+    },
+    {
+      "type": "range",
+      "id": "icon_left_desktop",
+      "min": -50, "max": 100, "step": 2, "unit": "px",
+      "label": "Left Position Offset", "default": 0
+    },
+    {
+      "type": "paragraph",
+      "content": "--- Wide Screens (1440px+) ---"
+    },
+    {
+      "type": "range",
+      "id": "icon_top_wide",
+      "min": -50, "max": 100, "step": 2, "unit": "px",
+      "label": "Top Position Offset", "default": 10
+    },
+    {
+      "type": "range",
+      "id": "icon_left_wide",
+      "min": -50, "max": 100, "step": 2, "unit": "px",
+      "label": "Left Position Offset", "default": 6
+    },
+    {
+      "type": "paragraph",
+      "content": "--- Mobile Settings (Under 768px) ---"
+    },
+    {
+      "type": "range",
+      "id": "icon_width_mobile",
+      "min": 50, "max": 300, "step": 5, "unit": "px",
+      "label": "Icon Width", "default": 175
+    },
+    {
+      "type": "range",
+      "id": "icon_top_mobile",
+      "min": -50, "max": 100, "step": 2, "unit": "px",
+      "label": "Top Position Offset", "default": 0
+    },
+    {
+      "type": "range",
+      "id": "icon_left_mobile",
+      "min": -50, "max": 100, "step": 2, "unit": "px",
+      "label": "Left Position Offset", "default": -10
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Hero About"
+    }
+  ]
+}
+{% endschema %}

@@ -36,8 +36,8 @@ class WymsFeaturesCarousel extends HTMLElement {
     });
     resizeObserver.observe(this.list);
 
-    this._onPageScroll = () => this.positionArrows();
-    window.addEventListener('scroll', this._onPageScroll, { passive: true });
+    // this._onPageScroll = () => this.positionArrows();
+    // window.addEventListener('scroll', this._onPageScroll, { passive: true });
   }
 
   disconnectedCallback() {
@@ -76,17 +76,22 @@ class WymsFeaturesCarousel extends HTMLElement {
     if (!this.arrowLeft && !this.arrowRight) return;
     if (!this.list) return;
 
-    const trackRect   = this.list.getBoundingClientRect();
+    const listOffsetTop = this.list.offsetTop; 
     const paddingTop  = parseInt(getComputedStyle(this.list).paddingTop) || 32;
     
     const firstMedia = this.querySelector('.wyms-feature-card__media');
     const mediaHeight = firstMedia ? firstMedia.offsetHeight : 320; 
 
-    const mediaCenterY = trackRect.top + paddingTop + mediaHeight / 2;
-    const topPx = mediaCenterY - 20; 
+    const topPx = listOffsetTop + paddingTop + (mediaHeight / 2); 
 
-    if (this.arrowLeft)  this.arrowLeft.style.top  = topPx + 'px';
-    if (this.arrowRight) this.arrowRight.style.top = topPx + 'px';
+    if (this.arrowLeft) {
+      this.arrowLeft.style.top = topPx + 'px';
+      this.arrowLeft.style.transform = 'translateY(-50%)';
+    }
+    if (this.arrowRight) {
+      this.arrowRight.style.top = topPx + 'px';
+      this.arrowRight.style.transform = 'translateY(-50%)';
+    }
   }
 
   checkOverflow() {

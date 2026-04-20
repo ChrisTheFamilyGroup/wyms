@@ -1,0 +1,244 @@
+{{ 'wyms-image-text.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign has_content = false
+  if section.settings.heading != blank or section.settings.image != blank
+    assign has_content = true
+  endif
+-%}
+
+{%- if has_content or request.design_mode -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} {
+      --icon-width: {{ section.settings.icon_width }}px;
+      --icon-top-desktop: {{ section.settings.icon_top_desktop }}%;
+      --icon-right-desktop: {{ section.settings.icon_right_desktop }}%;
+      --icon-top-wide: {{ section.settings.icon_top_wide }}%;
+      --icon-right-wide: {{ section.settings.icon_right_wide }}%;
+      --icon-top-mobile: {{ section.settings.icon_top_mobile }}%;
+      --icon-right-mobile: {{ section.settings.icon_right_mobile }}%;
+    }
+  {%- endstyle -%}
+
+  <section class="wyms-image-text">
+    
+    {%- if has_content == false and request.design_mode -%}
+      <div style="padding: 40px; text-align: center; border: 2px dashed #ccc; background: #f9f9f9; width: 100%; z-index: 10; position: relative;">
+        <h3>Image with Text section is empty</h3>
+        <p>Please add a heading or an image in the section settings to display it on the storefront.</p>
+      </div>
+    {%- else -%}
+
+      <!-- Background Blob -->
+      {%- if section.settings.bg_blob != blank -%}
+        <img src="{{ section.settings.bg_blob | image_url: width: 900 }}" 
+             alt="" 
+             class="wyms-image-text__blob" 
+             loading="lazy"
+             width="{{ section.settings.bg_blob.width }}"
+             height="{{ section.settings.bg_blob.height }}">
+      {%- endif -%}
+
+      <!-- Main Content Container -->
+      <div class="wyms-image-text__container">
+        
+        <!-- Left Column: Text Content -->
+        <div class="wyms-image-text__content">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="wyms-image-text__heading">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+
+          {%- if section.settings.top_text != blank -%}
+            <div class="wyms-image-text__top-body">
+              {{ section.settings.top_text }}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.text != blank -%}
+            <div class="wyms-image-text__body">
+              {{ section.settings.text }}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.highlight_text != blank -%}
+            <div class="wyms-image-text__highlight">{{ section.settings.highlight_text }}</div>
+          {%- endif -%}
+        </div>
+
+        <!-- Right Column: Image & Floating Icon -->
+        <div class="wyms-image-text__media">
+          
+          <!-- Floating Icon -->
+          {%- if section.settings.floating_icon != blank -%}
+            <img src="{{ section.settings.floating_icon | image_url: width: 300 }}" 
+                 alt="" 
+                 class="wyms-image-text__floating-icon" 
+                 loading="lazy"
+                 width="{{ section.settings.floating_icon.width }}"
+                 height="{{ section.settings.floating_icon.height }}">
+          {%- endif -%}
+
+          <!-- Main Image -->
+          {%- if section.settings.image != blank -%}
+            <img src="{{ section.settings.image | image_url: width: 1200 }}" 
+                 alt="{{ section.settings.heading | escape }}" 
+                 class="wyms-image-text__img" 
+                 loading="lazy"
+                 width="{{ section.settings.image.width }}"
+                 height="{{ section.settings.image.height }}">
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg wyms-image-text__img' }}
+          {%- endif -%}
+        </div>
+
+      </div>
+
+    {%- endif -%}
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "WYMS Image with Text",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Wir sind WYMS"
+    },
+    {
+      "type": "richtext",
+      "id": "top_text",
+      "label": "Top Body Text",
+      "default": "<p>Hinter WYMS steht...</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Body Text",
+      "default": "<p>WYMS ist für Tage, die größer werden.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "highlight_text",
+      "label": "Bottom Highlight Text",
+      "default": "WYMS ist neu.\nWYMS ist anders.\nWYMS ist für dich."
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Main Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_blob",
+      "label": "Background Blob"
+    },
+    {
+      "type": "header",
+      "content": "Floating Icon (On Image)"
+    },
+    {
+      "type": "image_picker",
+      "id": "floating_icon",
+      "label": "Icon Image"
+    },
+    {
+      "type": "range",
+      "id": "icon_width",
+      "min": 20,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Width",
+      "default": 80
+    },
+    {
+      "type": "paragraph",
+      "content": "--- Desktop Positioning ---"
+    },
+    {
+      "type": "range",
+      "id": "icon_top_desktop",
+      "min": -50,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "label": "Top Offset (%)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "icon_right_desktop",
+      "min": -50,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "label": "Right Offset (%)",
+      "default": 0
+    },
+    {
+      "type": "paragraph",
+      "content": "--- Wide Screens (1440px+) ---"
+    },
+    {
+      "type": "range",
+      "id": "icon_top_wide",
+      "min": -50,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "label": "Top Offset (%)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "icon_right_wide",
+      "min": -50,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "label": "Right Offset (%)",
+      "default": 0
+    },
+    {
+      "type": "paragraph",
+      "content": "--- Mobile Positioning ---"
+    },
+    {
+      "type": "range",
+      "id": "icon_top_mobile",
+      "min": -50,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "label": "Top Offset (%)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "icon_right_mobile",
+      "min": -50,
+      "max": 100,
+      "step": 2,
+      "unit": "%",
+      "label": "Right Offset (%)",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Image with Text"
+    }
+  ]
+}
+{% endschema %}

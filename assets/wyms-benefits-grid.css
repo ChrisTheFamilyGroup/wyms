@@ -123,7 +123,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  margin-bottom: auto; /* Працює як space-between, відштовхуючи текст вниз */
+  margin-bottom: auto;
   transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease;
 }
 
@@ -137,7 +137,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0px; /* Відступ з'явиться плавно на hover */
+  gap: 0px; 
   align-self: stretch;
   transition: gap 0.3s ease;
 }
@@ -151,7 +151,6 @@
   margin: 0;
 }
 
-/* Опис прихований за замовчуванням (анімація через Grid) */
 .benefits-item-desc-wrapper {
   display: grid;
   grid-template-rows: 0fr;
@@ -171,24 +170,23 @@
   margin: 0;
 }
 
-/* --- HOVER ЛОГІКА ДЛЯ ДЕСКТОПУ --- */
 @media screen and (min-width: 769px) {
   .benefits-item:hover .benefits-item-icon {
     width: 32px;
     height: 32px;
-    margin-bottom: 24px; /* Заміняємо space-between на фіксований gap 24px */
+    margin-bottom: 24px; 
   }
 
   .benefits-item:hover .benefits-item-content {
-    gap: 4px; /* Відстань між заголовком і текстом */
+    gap: 4px; 
   }
 
   .benefits-item:hover .benefits-item-desc-wrapper {
-    grid-template-rows: 1fr; /* Плавне відкриття висоти */
+    grid-template-rows: 1fr;
   }
 
   .benefits-item:hover .benefits-item-desc {
-    opacity: 1; /* Плавна поява тексту */
+    opacity: 1; 
   }
 }
 
@@ -256,7 +254,6 @@
     z-index: 2;
   }
 
-  /* Мобільна картка: завжди все видно */
   .benefits-item {
     height: auto;
     min-height: auto;
@@ -275,7 +272,6 @@
     gap: 4px;
   }
 
-  /* Текст на мобільному завжди відкритий */
   .benefits-item-desc-wrapper {
     display: block;
   }
@@ -284,7 +280,6 @@
     overflow: visible;
   }
 
-  /* Колір заголовку на мобільному має пріоритет над Inline-стилем */
   .benefits-item-text {
     font-size: var(--display-xs, 24px);
     line-height: var(--lh-display-xs, 32px);

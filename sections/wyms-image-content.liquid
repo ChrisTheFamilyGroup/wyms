@@ -1,0 +1,153 @@
+{{ 'wyms-image-content.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign has_content = false
+  if section.settings.heading != blank or section.settings.image != blank
+    assign has_content = true
+  endif
+-%}
+
+{%- if has_content or request.design_mode -%}
+  <section class="wyms-image-content">
+    
+    {%- if has_content == false and request.design_mode -%}
+      <div class="wyms-image-content__empty-state">
+        <h3>Image & Content section is empty</h3>
+        <p>Please add content or images in the section settings to display it on the storefront.</p>
+      </div>
+    {%- else -%}
+
+      <div class="wyms-image-content__inner page-width">
+        
+        <!-- Left Column: Image -->
+        <div class="wyms-image-content__media">
+          {%- if section.settings.image != blank -%}
+            <img src="{{ section.settings.image | image_url: width: 1200 }}" 
+                 alt="{{ section.settings.heading | escape }}" 
+                 class="wyms-image-content__img" 
+                 loading="lazy"
+                 width="{{ section.settings.image.width }}"
+                 height="{{ section.settings.image.height }}">
+          {%- else -%}
+            {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg wyms-image-content__img' }}
+          {%- endif -%}
+        </div>
+
+        <!-- Right Column: Content & Badge -->
+        <div class="wyms-image-content__info">
+          
+          <!-- Text and Button Wrapper -->
+          <div class="wyms-image-content__text-group">
+            
+            <div class="wyms-image-content__text-wrapper">
+              {%- if section.settings.heading != blank -%}
+                <h2 class="wyms-image-content__heading">{{ section.settings.heading }}</h2>
+              {%- endif -%}
+
+              {%- if section.settings.body_text != blank -%}
+                <div class="wyms-image-content__body"> {{ section.settings.body_text }}</div>
+              {%- endif -%}
+
+              {%- if section.settings.highlight_text != blank -%}
+                <div class="wyms-image-content__highlight">{{ section.settings.highlight_text }}</div>
+              {%- endif -%}
+            </div>
+
+            <!-- Button -->
+            {%- if section.settings.btn_label != blank and section.settings.btn_link != blank -%}
+              <div class="wyms-image-content__btn-wrapper">
+                <a href="{{ section.settings.btn_link }}" class="wyms-image-content__btn">
+                  {{ section.settings.btn_label }}
+                </a>
+              </div>
+            {%- endif -%}
+
+          </div>
+
+          <!-- Bottom Right Badge (Icon / GIF) -->
+          {%- if section.settings.badge_icon != blank -%}
+            <div class="wyms-image-content__badge-wrapper">
+              <img src="{{ section.settings.badge_icon | image_url: width: 250 }}" 
+                   alt="Badge" 
+                   class="wyms-image-content__badge-img" 
+                   loading="lazy"
+                   width="{{ section.settings.badge_icon.width }}"
+                   height="{{ section.settings.badge_icon.height }}">
+            </div>
+          {%- endif -%}
+
+        </div>
+
+      </div>
+
+    {%- endif -%}
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "WYMS Image & Content",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Main Image"
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "WYMS geht neue Wege"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Main Body Text",
+      "default": "Nachhaltigkeit heißt für uns: Dinge so zu bauen, dass sie bleiben.\n\nSchulranzen und Begleiter, die viel aushalten, mitwachsen und nicht nach kurzer Zeit ersetzt werden müssen."
+    },
+    {
+      "type": "textarea",
+      "id": "highlight_text",
+      "label": "Bottom Highlight Text",
+      "default": "damit Nachhaltigkeit im Alltag ankommt,\nnicht nur auf dem Papier."
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Zum Nachhaltigkeit"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Right Badge"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_icon",
+      "label": "Badge Icon / GIF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Image & Content"
+    }
+  ]
+}
+{% endschema %}

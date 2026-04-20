@@ -24,7 +24,6 @@
     z-index: 99999 !important;
   }
   
-  /* Гарантовано витягуємо вікно самого мобільного меню на самий перед */
   body.mobile-menu-open #MobileNav {
     position: fixed !important;
     z-index: 99999 !important;

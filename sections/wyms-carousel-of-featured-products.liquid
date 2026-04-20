@@ -45,6 +45,17 @@
                     height: product.featured_image.height
                   }}
 
+                  {%- if product.metafields.custom.hover_image -%}
+                    {%- assign hover_img = product.metafields.custom.hover_image.value -%}
+                    {{ hover_img | image_url: width: 800 | image_tag: 
+                      class: 'hover-product-img', 
+                      loading: 'lazy', 
+                      alt: product.title,
+                      width: hover_img.width,
+                      height: hover_img.height
+                    }}
+                  {%- endif -%}
+
                   {%- if product.metafields.custom.top_left_icon -%}
                     {%- assign meta_icon = product.metafields.custom.top_left_icon.value -%}
                     <div class="meta-icon-top-left">
