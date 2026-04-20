@@ -183,14 +183,11 @@ class MainProduct {
           return;
         }
   
-        // Open cart drawer (theme-agnostic: try common patterns)
         if (window.wymsCart && typeof window.wymsCart.refreshAndOpen === 'function') {
-          // Оновлюємо іконку кошика в хедері
           const newCartRes = await fetch(`${window.Shopify?.routes?.root || '/'}cart.js`);
           const newCart = await newCartRes.json();
           window.wymsCart.updateCartCount(newCart.item_count);
           
-          // Оновлюємо вміст і відкриваємо
           await window.wymsCart.refreshAndOpen();
         } else {
           document.dispatchEvent(new CustomEvent('cart:open'));
@@ -219,29 +216,9 @@ class MainProduct {
     }
   }
   
-  /* --------------------------------------------------------------------------
-     USP Drawer
-     Separate class — completely independent from product logic.
-     
-     FIX for overlay not appearing:
-     The overlay MUST be a direct child of <body> or at minimum outside of any
-     element that has transform, filter, or will-change applied — those CSS
-     properties create a new stacking context which clips fixed-position children.
-     In Shopify themes this often happens because section wrappers get
-     transform: translateZ(0) or will-change: transform for animation.
-     The overlay is rendered as a sibling to .usp-drawer inside the section,
-     but because both are position:fixed they escape the section's stacking
-     context — UNLESS the section itself has transform/filter/will-change.
-     
-     If the overlay still doesn't appear: add this to your theme.liquid just
-     before </body>:
-       <div id="usp-overlay-portal" class="usp-drawer-overlay js-usp-overlay"></div>
-       <div id="usp-drawer-portal" class="usp-drawer js-usp-drawer">...</div>
-     and remove them from the section liquid. The JS below handles both cases.
-  -------------------------------------------------------------------------- */
+  
   class USPDrawer {
     constructor() {
-      // Support both in-section and portal (body-level) placement
       this.overlay   = document.querySelector('.js-usp-overlay');
       this.drawer    = document.querySelector('.js-usp-drawer');
       this.titleEl   = document.querySelector('.js-usp-title');

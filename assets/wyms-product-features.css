@@ -61,7 +61,7 @@
   padding: var(--spacing-md, 8px);
   justify-content: center;
   align-items: center;
-  position: fixed;
+  position: absolute; 
   z-index: 10;
   border-radius: var(--radius-full, 9999px);
   background: var(--button-primary-bg, #242352);
@@ -71,6 +71,15 @@
   opacity: 0;
   pointer-events: none;
 }
+
+.wyms-carousel-arrow--left  { left: 16px; }
+.wyms-carousel-arrow--right { right: 16px; }
+
+
+@media screen and (min-width: 1480px) {
+  .wyms-carousel-arrow--left { left: -120px; }
+  .wyms-carousel-arrow--right { right: -120px; }
+}
 .wyms-carousel-arrow.is-visible {
   opacity: 1;
   pointer-events: auto;
@@ -78,8 +87,6 @@
 .wyms-carousel-arrow:hover {
   background: var(--button-primary-bg-hover, #191839);
 }
-.wyms-carousel-arrow--left  { left: 16px; }
-.wyms-carousel-arrow--right { right: 16px; }
 
 .wyms-carousel-arrow.is-hidden {
   opacity: 0 !important;

@@ -35,7 +35,13 @@
         </div>
       {%- endif -%}
 
-      <div class="footer-newsletter__content">
+      {% form 'customer', class: 'footer-newsletter__content', id: 'contact_form' %}
+        <input
+          type="hidden"
+          name="contact[tags]"
+          value="newsletter"
+        >
+
         {%- if section.settings.nl_title != blank -%}
           <h2 class="footer-newsletter__title">
             {{ section.settings.nl_title }}
@@ -43,12 +49,11 @@
         {%- endif -%}
 
         <div class="footer-newsletter__form-container">
-          {% form 'customer', class: 'footer-newsletter__form' %}
-            <input
-              type="hidden"
-              name="contact[tags]"
-              value="newsletter"
-            >
+          {%- if form.posted_successfully? -%}
+            <div class="footer-newsletter__success-message">
+              {{ section.settings.nl_success_text }}
+            </div>
+          {%- else -%}
             <div class="footer-newsletter__input-wrapper">
               <input
                 type="email"
@@ -79,15 +84,25 @@
                 </svg>
               </button>
             </div>
-          {% endform %}
 
-          {%- if section.settings.nl_subtext != blank -%}
+            {%- if form.errors -%}
+              <div class="footer-newsletter__error">
+                {%- if section.settings.nl_error_text != blank -%}
+                  {{ section.settings.nl_error_text }}
+                {%- else -%}
+                  {{ form.errors | default_errors }}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- if section.settings.nl_subtext != blank and form.posted_successfully? == blank -%}
             <p class="footer-newsletter__subtext">
               {{ section.settings.nl_subtext }}
             </p>
           {%- endif -%}
         </div>
-      </div>
+      {% endform %}
 
     </div>
   </div>
@@ -254,6 +269,18 @@
       "id": "nl_subtext",
       "label": "Consent Text",
       "default": "By subscribing you agree to with our Privacy Policy..."
+    },
+    {
+      "type": "text",
+      "id": "nl_success_text",
+      "label": "Success Message",
+      "default": "Thank you for subscribing!"
+    },
+    {
+      "type": "text",
+      "id": "nl_error_text",
+      "label": "Custom Error Message (Optional)",
+      "info": "If left blank, Shopify will show a standard error (e.g. 'Please enter a valid email')"
     },
     {
       "type": "header",

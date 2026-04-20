@@ -1,0 +1,151 @@
+{{ 'wyms-editorial-split.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign has_content = false
+  if section.settings.heading != blank or section.settings.image_right != blank
+    assign has_content = true
+  endif
+-%}
+
+{%- if has_content or request.design_mode -%}
+  <section class="wyms-editorial-split">
+    
+    {%- if has_content == false and request.design_mode -%}
+      <div class="wyms-editorial-split__empty-state">
+        <h3>Editorial Split section is empty</h3>
+        <p>Please add content or images in the section settings to display it on the storefront.</p>
+      </div>
+    {%- else -%}
+
+      <div class="wyms-editorial-split__inner page-width">
+        
+        <!-- Left Column: Text + Small Image -->
+        <div class="wyms-editorial-split__left-col">
+          
+          <!-- Text & Button Block -->
+          <div class="wyms-editorial-split__text-group">
+            <div class="wyms-editorial-split__text-wrapper">
+              
+              {%- if section.settings.heading != blank -%}
+                <h2 class="wyms-editorial-split__heading">{{ section.settings.heading }}</h2>
+              {%- endif -%}
+
+              {%- if section.settings.body_text != blank -%}
+                <div class="wyms-editorial-split__body">{{ section.settings.body_text }}</div>
+              {%- endif -%}
+
+              {%- if section.settings.highlight_text != blank -%}
+                <div class="wyms-editorial-split__highlight">{{ section.settings.highlight_text }}</div>
+              {%- endif -%}
+
+            </div>
+
+            <!-- Button -->
+            {%- if section.settings.btn_label != blank and section.settings.btn_link != blank -%}
+              <div class="wyms-editorial-split__btn-wrapper">
+                <a href="{{ section.settings.btn_link }}" class="wyms-editorial-split__btn">
+                  {{ section.settings.btn_label }}
+                </a>
+              </div>
+            {%- endif -%}
+          </div>
+
+          <!-- Bottom Left Small Image -->
+          <div class="wyms-editorial-split__small-img-wrapper">
+            {%- if section.settings.image_left != blank -%}
+              <img src="{{ section.settings.image_left | image_url: width: 600 }}" 
+                   alt="{{ section.settings.heading | escape }}" 
+                   class="wyms-editorial-split__img" 
+                   loading="lazy"
+                   width="{{ section.settings.image_left.width }}"
+                   height="{{ section.settings.image_left.height }}">
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg wyms-editorial-split__img' }}
+            {%- endif -%}
+          </div>
+
+        </div>
+
+        <!-- Right Column: Big Image -->
+        <div class="wyms-editorial-split__right-col">
+          {%- if section.settings.image_right != blank -%}
+            <img src="{{ section.settings.image_right | image_url: width: 1200 }}" 
+                 alt="{{ section.settings.heading | escape }}" 
+                 class="wyms-editorial-split__img" 
+                 loading="lazy"
+                 width="{{ section.settings.image_right.width }}"
+                 height="{{ section.settings.image_right.height }}">
+          {%- else -%}
+            {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg wyms-editorial-split__img' }}
+          {%- endif -%}
+        </div>
+
+      </div>
+
+    {%- endif -%}
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "WYMS Editorial Split",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Verantwortung\nist kein Label"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Main Body Text",
+      "default": "Für uns bedeutet Verantwortung, genau hinzusehen.\n\nWer produziert unsere Produkte? Unter welchen Bedingungen? Und wie lange halten sie wirklich?\n\nDarum arbeiten wir mit ausgewählten Partnern, setzen auf überprüfbare Standards und bauen Produkte, die lange genutzt werden können."
+    },
+    {
+      "type": "textarea",
+      "id": "highlight_text",
+      "label": "Bottom Highlight Text",
+      "default": "So entsteht Wirkung nicht durch Versprechen, sondern durch Haltung und Konsequenz."
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Zum Nachhaltigkeit"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Left Image (Small Square)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Right Image (Big Vertical)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Editorial Split"
+    }
+  ]
+}
+{% endschema %}

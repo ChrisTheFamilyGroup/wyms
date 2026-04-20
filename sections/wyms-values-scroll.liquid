@@ -1,0 +1,97 @@
+{{ 'wyms-values-scroll.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-values-scroll.js' | asset_url }}" defer="defer"></script>
+
+<section id="WymsValues-{{ section.id }}" class="wyms-values-scroll js-values-section" style="--block-count: {{ section.blocks.size }};">
+  
+  <div class="values-sticky-wrapper">
+    
+    <div class="values-bg-container">
+      {%- if section.settings.bg_blob != blank -%}
+        <img src="{{ section.settings.bg_blob | image_url: width: 1000 }}" 
+             alt="" 
+             class="values-bg-blob" 
+             loading="lazy"
+             width="{{ section.settings.bg_blob.width }}"
+             height="{{ section.settings.bg_blob.height }}">
+      {%- endif -%}
+    </div>
+
+    <div class="values-content-container">
+      
+      <div class="values-left-col js-values-title">
+        <h2 class="values-main-heading">{{ section.settings.heading }}</h2>
+      </div>
+
+      <div class="values-right-col">
+        <div class="values-track js-values-track">
+          
+          {%- for block in section.blocks -%}
+            <div class="value-item js-value-item" {{ block.shopify_attributes }}>
+              <span class="value-item-text">{{ block.settings.text }}</span>
+              <div class="value-item-icon">
+                {%- if block.settings.icon != blank -%}
+                  <img src="{{ block.settings.icon | image_url: width: 120 }}" 
+                       alt="{{ block.settings.text | escape }}" 
+                       loading="lazy"
+                       width="60"
+                       height="60">
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WYMS Values Scroll",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Wir glauben an Alltag in Bewegung"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_blob",
+      "label": "Background Blob Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Value Text",
+          "default": "Produkte, die mithalten"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Value Icon"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Values Scroll",
+      "blocks": [
+        { "type": "value" },
+        { "type": "value" },
+        { "type": "value" },
+        { "type": "value" }
+      ]
+    }
+  ]
+}
+{% endschema %}

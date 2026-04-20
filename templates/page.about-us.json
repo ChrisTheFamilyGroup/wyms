@@ -1,0 +1,210 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "wyms_hero_about_XThV9h": {
+      "type": "wyms-hero-about",
+      "name": "WYMS Hero About",
+      "settings": {
+        "bg_color": "#d9d9d9",
+        "heading": "Großwerden verändert alles",
+        "subtext": "Und wir sind mittendrin",
+        "desktop_image": "shopify://shop_images/form.png",
+        "mobile_image": "shopify://shop_images/form_0edcc95f-a9ba-4c68-922b-8a81fe660c45.png",
+        "decorative_icon": "shopify://shop_images/Vector_b4b48cbc-7de6-4f28-96c3-fb07166a97f9.svg",
+        "icon_width_desktop": 235,
+        "icon_top_desktop": 28,
+        "icon_left_desktop": 4,
+        "icon_top_wide": 28,
+        "icon_left_wide": 4,
+        "icon_width_mobile": 175,
+        "icon_top_mobile": -6,
+        "icon_left_mobile": 4
+      }
+    },
+    "wyms_values_scroll_Dkg948": {
+      "type": "wyms-values-scroll",
+      "blocks": {
+        "value_knW7GM": {
+          "type": "value",
+          "settings": {
+            "text": "Alltag in Bewegung",
+            "icon": "shopify://shop_images/101.svg"
+          }
+        },
+        "value_dPAYXW": {
+          "type": "value",
+          "settings": {
+            "text": "Produkte, die mithalten",
+            "icon": "shopify://shop_images/Frame_1.svg"
+          }
+        },
+        "value_JDW4xn": {
+          "type": "value",
+          "settings": {
+            "text": "Dinge, die bleiben",
+            "icon": "shopify://shop_images/65.svg"
+          }
+        },
+        "value_PFWpty": {
+          "type": "value",
+          "settings": {
+            "text": "Freiheit im Alltag",
+            "icon": "shopify://shop_images/Frame_2.svg"
+          }
+        }
+      },
+      "block_order": [
+        "value_knW7GM",
+        "value_dPAYXW",
+        "value_JDW4xn",
+        "value_PFWpty"
+      ],
+      "name": "WYMS Values Scroll",
+      "settings": {
+        "heading": "Wir glauben an",
+        "bg_blob": "shopify://shop_images/Vector_8f3a296a-1e22-446d-8c0b-a0aef598c9af.svg"
+      }
+    },
+    "wyms_image_text_AK46pC": {
+      "type": "wyms-image-text",
+      "name": "WYMS Image with Text",
+      "settings": {
+        "heading": "Wir sind WYMS",
+        "top_text": "",
+        "text": "<p>WYMS ist für Tage, die größer werden. Für Wege, die länger sind, Und für alles, was man plötzlich jeden Tag dabeihat.</p><p>Mit der weiterführenden Schule verändert sich der Alltag. Mehr unterwegs. Mehr Eigenes. Mehr Freiheit. Genau hier setzen wir an.Schulranzen und Begleiter, die mithalten. Für Schule – und alles danach.</p><p>Unsere Produkte sind gemacht fürs Mitgehen. Für Bewegung, Nutzung und alles, was dazugehört.</p><p>Du bist in Bewegung. Wir sorgen dafür, dass du nicht stehenbleibst.</p>",
+        "highlight_text": "WYMS ist neu.  \nWYMS ist anders.  \nWYMS ist für dich.",
+        "image": "shopify://shop_images/Placeholder_Image_b794624f-188f-4bd7-9976-e5559c3e16e7.png",
+        "bg_blob": "shopify://shop_images/Vector_5b7c0090-5780-4fab-9b62-b271fcdf4f42.svg",
+        "icon_width": 80,
+        "icon_top_desktop": -30,
+        "icon_right_desktop": 0,
+        "icon_top_wide": 0,
+        "icon_right_wide": 0,
+        "icon_top_mobile": -20,
+        "icon_right_mobile": 0
+      }
+    },
+    "wyms_two_images_text_39TbBi": {
+      "type": "wyms-two-images-text",
+      "name": "WYMS Two Images & Text",
+      "settings": {
+        "heading": "Gemacht fürs echte Leben",
+        "body_text": "WYMS vom englischen whims steht für spontane Ideen, Einfälle, Bewegungen. \nGenau das, was Alltag oft ausmacht.\n\nWYMS steht für Neugier, Bewegung und die Freiheit, Dinge auf die eigene Art zu tun.\nNicht geplant bis ins letzte Detail. \nSondern offen, flexibel und bereit für das, was kommt.\n\nWir glauben, dass gute Produkte Freiheit geben. \nFreiheit, sich zu bewegen. \nFreiheit, unterwegs zu sein. \nFreiheit, sich auf den eigenen Tag zu konzentrieren – nicht auf das, was man trägt.",
+        "highlight_text": "Dafür steht WYMS. \nHeute. Und für das, was kommt.",
+        "image_left": "shopify://shop_images/Placeholder_Image_1.png",
+        "image_right": "shopify://shop_images/Placeholder_Image_2.png"
+      }
+    },
+    "wyms_image_text_aTdnJe": {
+      "type": "wyms-image-text",
+      "name": "WYMS Image with Text",
+      "settings": {
+        "heading": "WYMS ist NEU - aber nicht unerfahren",
+        "top_text": "<p>Hinter WYMS steht Florian Michajlezko, der ergobag und satch gegründet hat und heute mit WYMS ein neues Kapitel aufschlägt.</p>",
+        "text": "<p>Nach vielen Jahren Erfahrung in der Entwicklung von Schulranzen bringt er dieses Know-how nun in eine Marke ein, die bewusst neu denkt  - Mit frischem Blick. Neuer Energie.</p>",
+        "highlight_text": "",
+        "image": "shopify://shop_images/Vector_ad856fcc-24d2-4efe-af06-ddd66ee5e543.png",
+        "floating_icon": "shopify://shop_images/sticker.svg",
+        "icon_width": 100,
+        "icon_top_desktop": 0,
+        "icon_right_desktop": 0,
+        "icon_top_wide": 0,
+        "icon_right_wide": 12,
+        "icon_top_mobile": -6,
+        "icon_right_mobile": 0
+      }
+    },
+    "wyms_image_content_RMY8Ji": {
+      "type": "wyms-image-content",
+      "name": "WYMS Image & Content",
+      "settings": {
+        "image": "shopify://shop_images/Placeholder_Image_68499103-3c04-4a13-b94b-ace19b2654f9.png",
+        "heading": "WYMS geht neue Wege",
+        "body_text": "Nachhaltigkeit heißt für uns: Dinge so zu bauen, dass sie bleiben.\n\nSchulranzen und Begleiter, die viel aushalten, mitwachsen und nicht nach kurzer Zeit ersetzt werden müssen.\n\nWir kombinieren robuste Materialien, saubere Verarbeitung und bewusste Entscheidungen entlang der Entwicklung",
+        "highlight_text": "damit Nachhaltigkeit im Alltag ankommt,\nnicht nur auf dem Papier.",
+        "btn_label": "Zum Nachhaltigkeit",
+        "btn_link": "#",
+        "badge_icon": "shopify://shop_images/badge_sustainability.svg"
+      }
+    },
+    "wyms_editorial_split_9txz3H": {
+      "type": "wyms-editorial-split",
+      "name": "WYMS Editorial Split",
+      "settings": {
+        "heading": "Verantwortung\nist kein Label",
+        "body_text": "Für uns bedeutet Verantwortung, genau hinzusehen.\n\nWer produziert unsere Produkte? Unter welchen Bedingungen? Und wie lange halten sie wirklich?\n\nDarum arbeiten wir mit ausgewählten Partnern, setzen auf überprüfbare Standards und bauen Produkte, die lange genutzt werden können.",
+        "highlight_text": "So entsteht Wirkung nicht durch Versprechen, sondern durch Haltung und Konsequenz.",
+        "btn_label": "Zum Nachhaltigkeit",
+        "btn_link": "#",
+        "image_left": "shopify://shop_images/Placeholder_Image_86108e7e-aaf1-4170-8722-fe414b943cd6.png",
+        "image_right": "shopify://shop_images/Placeholder_Image_edcfe135-0fc7-4d29-a321-b654532e3cbe.png"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "wyms_hero_about_XThV9h",
+    "wyms_values_scroll_Dkg948",
+    "wyms_image_text_AK46pC",
+    "wyms_two_images_text_39TbBi",
+    "wyms_image_text_aTdnJe",
+    "wyms_image_content_RMY8Ji",
+    "wyms_editorial_split_9txz3H"
+  ]
+}

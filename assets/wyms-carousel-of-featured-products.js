@@ -50,7 +50,6 @@ class FeaturedProducts extends HTMLElement {
     const scrollLeft = track.scrollLeft;
     const maxScroll = track.scrollWidth - track.clientWidth;
 
-    // 1. Очищаємо всі класи та стилі перед новими обчисленнями
     dots.forEach((dot) => {
       dot.classList.remove('active', 'is-looping');
       dot.style.removeProperty('--loop-progress');
@@ -61,34 +60,26 @@ class FeaturedProducts extends HTMLElement {
       return;
     }
 
-    // 2. Визначаємо ширину одного "кроку" (ширина картки + 24px gap)
     const firstCard = track.querySelector('.product-card-wrapper');
     const slideWidth = firstCard ? firstCard.clientWidth + 24 : track.clientWidth * 0.8;
 
-    // exactIndex показує точну позицію. Наприклад, 1.5 - це рівно посередині між 2 і 3 карткою.
     const exactIndex = scrollLeft / slideWidth;
     const maxIndex = maxScroll / slideWidth;
 
-    // 3. Логіка розподілу
     if (exactIndex < 1.0) {
-      // ЗОНА 1: Перехід від 1-ї до 2-ї картки (стандартна поведінка)
       if (exactIndex < 0.5) dots[0].classList.add('active');
       else dots[1].classList.add('active');
     } 
     else if (exactIndex > maxIndex - 1.0) {
-      // ЗОНА 3: Перехід до останньої картки (стандартна поведінка)
       if (exactIndex > maxIndex - 0.5) dots[2].classList.add('active');
       else dots[1].classList.add('active');
     } 
     else {
-      // ЗОНА 2: Всі середні товари (наш конвеєр!)
       dots[1].classList.add('is-looping');
       
-      // Рахуємо залишок від ділення на 1. 
-      // Якщо ми між 2-ю і 3-ю карткою, progress буде йти від 0.0 до 1.0
+      
       const progress = exactIndex % 1;
       
-      // Передаємо в CSS
       dots[1].style.setProperty('--loop-progress', progress);
     }
   }

@@ -1,0 +1,200 @@
+
+.wyms-values-scroll {
+    width: 100%;
+    position: relative;
+    height: calc(100vh + (var(--block-count) * 40vh));
+    background: transparent;
+  }
+  
+  .values-sticky-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh; 
+    padding: 0 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    overflow: hidden; 
+  }
+  
+  
+  .values-bg-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    width: 900px;
+    height: 900px;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .values-bg-blob {
+    width: 824.381px;
+    height: 838.085px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+  
+  .values-content-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--spacing-xl, 16px);
+    align-self: stretch;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .values-left-col {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-end;   
+    height: 100vh;           
+  }
+  
+  
+  .values-main-heading {
+    max-width: var(--width-md, 560px);
+    color: var(--text-primary, #191839);
+    text-align: right;
+    font-family: var(--font-family-highlights, "Clash Grotesk");
+    font-size: var(--display-lg, 48px);
+    font-weight: 400;
+    line-height: var(--lh-display-lg, 60px);
+    margin: 0;
+  }
+  
+  
+  .values-right-col {
+    flex: 1 1 50%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden; 
+  }
+  
+  .values-track {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: var(--spacing-3xl, 24px);
+    width: 100%;
+    will-change: transform;
+    padding-top: calc(50vh - 30px);
+    padding-bottom: calc(50vh - 30px);
+  }
+  
+  .value-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3xl, 24px);
+    align-self: stretch;
+    opacity: 0.1;
+    will-change: opacity;
+  }
+  
+  .value-item-text {
+    color: var(--text-primary, #191839);
+    font-family: var(--font-family-highlights, "Clash Grotesk");
+    font-size: var(--display-lg, 48px);
+    font-weight: 400;
+    line-height: var(--lh-display-lg, 60px);
+  }
+  
+  .value-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .value-item-icon img {
+    width: 100%;
+    height: 50px;
+    object-fit: contain;
+  }
+  
+@media screen and (max-width: 768px) {
+    .wyms-values-scroll {
+      height: calc(100vh + (var(--block-count) * 35vh));
+    }
+  
+    .values-sticky-wrapper {
+      padding: 64px 20px;
+    }
+  
+    .values-bg-container {
+      width: 852px;
+      height: 852px;
+      padding: 29.307px 35.793px;
+    }
+  
+    .values-bg-blob {
+      width: 780.414px;
+      height: 793.387px;
+    }
+  
+    .values-content-container {
+      flex-direction: column;
+      align-items: flex-start; 
+      justify-content: center;
+      gap: 16px;
+      height: 100vh;
+    }
+  
+    .values-left-col {
+      flex: 1;
+      width: 100%;
+      height: auto; 
+      justify-content: flex-end;
+      align-items: flex-start; 
+      margin-top: 0;
+      z-index: 5;
+    }
+  
+    .values-main-heading {
+      text-align: left; 
+      font-size: var(--display-md, 36px);
+      line-height: var(--lh-display-md, 44px);
+      max-width: 100%;
+    }
+  
+    .values-right-col {
+      width: 100%;
+      height: auto;
+      flex: 1;
+      overflow: hidden;
+      mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    }
+  
+    .values-track {
+      align-items: flex-start; 
+      gap: var(--spacing-xl, 16px);
+      padding-top: 0; 
+      padding-bottom: 50vh; 
+    }
+  
+    .value-item {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: var(--spacing-md, 8px);
+      text-align: left;
+    }
+  
+    .value-item-text {
+      font-size: var(--display-md, 36px);
+      line-height: var(--lh-display-md, 44px);
+    }
+  }
