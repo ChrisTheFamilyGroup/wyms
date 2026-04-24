@@ -8,78 +8,103 @@
 -%}
 
 {%- if has_content or request.design_mode -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} {
+      /* Frame Paddings (Outer Margin) */
+      --padding-top: {{ section.settings.padding_top }}px;
+      --padding-bottom: {{ section.settings.padding_bottom }}px;
+      --padding-left: {{ section.settings.padding_left }}px;
+      --padding-right: {{ section.settings.padding_right }}px;
+      --padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+      --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+      --padding-left-mobile: {{ section.settings.padding_left_mobile }}px;
+      --padding-right-mobile: {{ section.settings.padding_right_mobile }}px;
+
+      /* Internal Text Block Paddings */
+      --text-p-top: {{ section.settings.text_p_top }}px;
+      --text-p-bottom: {{ section.settings.text_p_bottom }}px;
+      --text-p-left: {{ section.settings.text_p_left }}px;
+      --text-p-right: {{ section.settings.text_p_right }}px;
+      --text-p-top-mob: {{ section.settings.text_p_top_mob }}px;
+      --text-p-bottom-mob: {{ section.settings.text_p_bottom_mob }}px;
+      --text-p-left-mob: {{ section.settings.text_p_left_mob }}px;
+      --text-p-right-mob: {{ section.settings.text_p_right_mob }}px;
+
+      /* Internal Image Block Paddings (Mobile Only) */
+      --img-p-top-mob: {{ section.settings.img_p_top_mob }}px;
+      --img-p-bottom-mob: {{ section.settings.img_p_bottom_mob }}px;
+      --img-p-left-mob: {{ section.settings.img_p_left_mob }}px;
+      --img-p-right-mob: {{ section.settings.img_p_right_mob }}px;
+
+      /* Visual Styles */
+      --inner-bg-color: {{ section.settings.inner_bg_color }};
+      --color-heading: {{ section.settings.color_heading }};
+      --color-body: {{ section.settings.color_body }};
+      --color-highlight: {{ section.settings.color_highlight }};
+      --inner-radius: {{ section.settings.inner_radius }}px;
+    }
+  {%- endstyle -%}
+
   <section class="wyms-image-content">
-    
     {%- if has_content == false and request.design_mode -%}
       <div class="wyms-image-content__empty-state">
         <h3>Image & Content section is empty</h3>
-        <p>Please add content or images in the section settings to display it on the storefront.</p>
+        <p>Please add content or images in the settings.</p>
       </div>
     {%- else -%}
 
-      <div class="wyms-image-content__inner page-width">
-        
-        <!-- Left Column: Image -->
-        <div class="wyms-image-content__media">
-          {%- if section.settings.image != blank -%}
-            <img src="{{ section.settings.image | image_url: width: 1200 }}" 
-                 alt="{{ section.settings.heading | escape }}" 
-                 class="wyms-image-content__img" 
-                 loading="lazy"
-                 width="{{ section.settings.image.width }}"
-                 height="{{ section.settings.image.height }}">
-          {%- else -%}
-            {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg wyms-image-content__img' }}
-          {%- endif -%}
-        </div>
-
-        <!-- Right Column: Content & Badge -->
-        <div class="wyms-image-content__info">
-          
-          <!-- Text and Button Wrapper -->
-          <div class="wyms-image-content__text-group">
+      <div class="wyms-image-content__frame">
+        <div class="wyms-image-content__wrapper-inner">
+          <div class="wyms-image-content__inner page-width {% if section.settings.mobile_layout == 'text_first' %}wyms-image-content__inner--reverse-mobile{% endif %}">
             
-            <div class="wyms-image-content__text-wrapper">
-              {%- if section.settings.heading != blank -%}
-                <h2 class="wyms-image-content__heading">{{ section.settings.heading }}</h2>
-              {%- endif -%}
-
-              {%- if section.settings.body_text != blank -%}
-                <div class="wyms-image-content__body"> {{ section.settings.body_text }}</div>
-              {%- endif -%}
-
-              {%- if section.settings.highlight_text != blank -%}
-                <div class="wyms-image-content__highlight">{{ section.settings.highlight_text }}</div>
+            <div class="wyms-image-content__media">
+              {%- if section.settings.image != blank -%}
+                <img src="{{ section.settings.image | image_url: width: 1200 }}" 
+                     alt="{{ section.settings.heading | escape }}" 
+                     class="wyms-image-content__img" 
+                     loading="lazy"
+                     width="{{ section.settings.image.width }}"
+                     height="{{ section.settings.image.height }}">
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg wyms-image-content__img' }}
               {%- endif -%}
             </div>
 
-            <!-- Button -->
-            {%- if section.settings.btn_label != blank and section.settings.btn_link != blank -%}
-              <div class="wyms-image-content__btn-wrapper">
-                <a href="{{ section.settings.btn_link }}" class="wyms-image-content__btn">
-                  {{ section.settings.btn_label }}
-                </a>
+            <div class="wyms-image-content__info">
+              <div class="wyms-image-content__text-group">
+                <div class="wyms-image-content__text-wrapper">
+                  {%- if section.settings.heading != blank -%}
+                    <h2 class="wyms-image-content__heading">{{ section.settings.heading }}</h2>
+                  {%- endif -%}
+
+                  {%- if section.settings.body_text != blank -%}
+                    <div class="wyms-image-content__body">{{ section.settings.body_text }}</div>
+                  {%- endif -%}
+
+                  {%- if section.settings.highlight_text != blank -%}
+                    <div class="wyms-image-content__highlight">{{ section.settings.highlight_text }}</div>
+                  {%- endif -%}
+                </div>
+
+                {%- if section.settings.btn_label != blank and section.settings.btn_link != blank -%}
+                  <div class="wyms-image-content__btn-wrapper">
+                    <a href="{{ section.settings.btn_link }}" class="wyms-image-content__btn">
+                      {{ section.settings.btn_label }}
+                    </a>
+                  </div>
+                {%- endif -%}
               </div>
-            {%- endif -%}
+
+              {%- if section.settings.badge_icon != blank -%}
+                <div class="wyms-image-content__badge-wrapper">
+                  <img src="{{ section.settings.badge_icon | image_url: width: 250 }}" alt="Badge" class="wyms-image-content__badge-img" loading="lazy" width="115" height="115">
+                </div>
+              {%- endif -%}
+            </div>
 
           </div>
-
-          <!-- Bottom Right Badge (Icon / GIF) -->
-          {%- if section.settings.badge_icon != blank -%}
-            <div class="wyms-image-content__badge-wrapper">
-              <img src="{{ section.settings.badge_icon | image_url: width: 250 }}" 
-                   alt="Badge" 
-                   class="wyms-image-content__badge-img" 
-                   loading="lazy"
-                   width="{{ section.settings.badge_icon.width }}"
-                   height="{{ section.settings.badge_icon.height }}">
-            </div>
-          {%- endif -%}
-
         </div>
-
       </div>
-
     {%- endif -%}
   </section>
 {%- endif -%}
@@ -90,64 +115,67 @@
   "settings": [
     {
       "type": "header",
-      "content": "Image"
+      "content": "Mobile Settings"
     },
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Main Image"
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile Order",
+      "options": [
+        { "value": "image_first", "label": "Image First" },
+        { "value": "text_first", "label": "Text First" }
+      ],
+      "default": "image_first"
     },
-    {
-      "type": "header",
-      "content": "Text Content"
-    },
-    {
-      "type": "textarea",
-      "id": "heading",
-      "label": "Heading",
-      "default": "WYMS geht neue Wege"
-    },
-    {
-      "type": "textarea",
-      "id": "body_text",
-      "label": "Main Body Text",
-      "default": "Nachhaltigkeit heißt für uns: Dinge so zu bauen, dass sie bleiben.\n\nSchulranzen und Begleiter, die viel aushalten, mitwachsen und nicht nach kurzer Zeit ersetzt werden müssen."
-    },
-    {
-      "type": "textarea",
-      "id": "highlight_text",
-      "label": "Bottom Highlight Text",
-      "default": "damit Nachhaltigkeit im Alltag ankommt,\nnicht nur auf dem Papier."
-    },
+    { "type": "range", "id": "text_p_left_mob", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Text Internal Left (Mobile)", "default": 20 },
+    { "type": "range", "id": "text_p_right_mob", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Text Internal Right (Mobile)", "default": 20 },
+    { "type": "range", "id": "img_p_top_mob", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Image Internal Top (Mobile)", "default": 0 },
+    { "type": "range", "id": "img_p_bottom_mob", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Image Internal Bottom (Mobile)", "default": 0 },
+    { "type": "range", "id": "img_p_left_mob", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Image Internal Left (Mobile)", "default": 0 },
+    { "type": "range", "id": "img_p_right_mob", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Image Internal Right (Mobile)", "default": 0 },
     {
       "type": "header",
-      "content": "Button"
+      "content": "Colors"
     },
-    {
-      "type": "text",
-      "id": "btn_label",
-      "label": "Button Label",
-      "default": "Zum Nachhaltigkeit"
-    },
-    {
-      "type": "url",
-      "id": "btn_link",
-      "label": "Button Link"
-    },
+    { "type": "color", "id": "inner_bg_color", "label": "Inner Background", "default": "#F4F4F4" },
+    { "type": "color", "id": "color_heading", "label": "Heading Color", "default": "#191839" },
+    { "type": "color", "id": "color_body", "label": "Body Text Color", "default": "#191839" },
+    { "type": "color", "id": "color_highlight", "label": "Highlight Text Color", "default": "#191839" },
     {
       "type": "header",
-      "content": "Bottom Right Badge"
+      "content": "Outer Frame (White Margin)"
     },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Top", "default": 112 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Bottom", "default": 32 },
+    { "type": "range", "id": "padding_left", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Left", "default": 64 },
+    { "type": "range", "id": "padding_right", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Right", "default": 64 },
+    { "type": "range", "id": "padding_top_mobile", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top (Mobile)", "default": 64 },
+    { "type": "range", "id": "padding_bottom_mobile", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom (Mobile)", "default": 20 },
+    { "type": "range", "id": "padding_left_mobile", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Left (Mobile)", "default": 8 },
+    { "type": "range", "id": "padding_right_mobile", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Right (Mobile)", "default": 8 },
     {
-      "type": "image_picker",
-      "id": "badge_icon",
-      "label": "Badge Icon / GIF"
-    }
+      "type": "header",
+      "content": "Internal Text Paddings (Desktop)"
+    },
+    { "type": "range", "id": "text_p_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Text Padding Top", "default": 0 },
+    { "type": "range", "id": "text_p_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Text Padding Bottom", "default": 0 },
+    { "type": "range", "id": "text_p_left", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Text Padding Left", "default": 32 },
+    { "type": "range", "id": "text_p_right", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Text Padding Right", "default": 64 },
+    { "type": "range", "id": "text_p_top_mob", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Mobile Text Padding Top", "default": 24 },
+    { "type": "range", "id": "text_p_bottom_mob", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Mobile Text Padding Bottom", "default": 64 },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    { "type": "range", "id": "inner_radius", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Radius", "default": 16 },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Heading" },
+    { "type": "textarea", "id": "body_text", "label": "Body Text", "default": "Body text" },
+    { "type": "textarea", "id": "highlight_text", "label": "Highlight Text", "default": "Highlight" },
+    { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Action" },
+    { "type": "url", "id": "btn_link", "label": "Button Link" },
+    { "type": "image_picker", "id": "badge_icon", "label": "Badge GIF/Icon" }
   ],
-  "presets": [
-    {
-      "name": "WYMS Image & Content"
-    }
-  ]
+  "presets": [{ "name": "WYMS Image & Content" }]
 }
 {% endschema %}

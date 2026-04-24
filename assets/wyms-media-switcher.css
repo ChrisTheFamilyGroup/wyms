@@ -1,0 +1,217 @@
+.wyms-switcher {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    background: var(--bg-primary, #FFFFFF);
+    overflow: hidden;
+  }
+  
+  .wyms-switcher__blob {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1200px;
+    height: 815px;
+    object-fit: contain;
+    max-width: none;
+    z-index: 0;
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+  
+  
+  .wyms-switcher__header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    padding: 112px 64px 0 64px;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    align-self: stretch;
+  }
+  
+  .wyms-switcher__header-inner {
+    display: flex;
+    width: 100%;
+    max-width: 768px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  .wyms-switcher__main-title {
+    color: var(--text-primary, #191839);
+    text-align: center;
+    font-family: var(--font-family-display, "Clash Grotesk");
+    font-size: var(--display-lg, 48px);
+    font-weight: 600;
+    line-height: var(--lh-display-lg, 60px);
+    letter-spacing: -0.96px;
+    margin: 0;
+  }
+  
+  .wyms-switcher__main-sub {
+    color: var(--text-primary, #191839);
+    text-align: center;
+    font-family: var(--font-family-body, Inter);
+    font-size: var(--text-md, 16px);
+    font-weight: 400;
+    line-height: var(--lh-text-md, 24px);
+    white-space: pre-line;
+  }
+  
+  
+  .wyms-switcher__content-outer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    padding: 40px 64px 112px 64px;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    align-self: stretch;
+  }
+  
+  .wyms-switcher__content-inner {
+    display: flex;
+    max-width: var(--width-4xl, 1440px);
+    width: 100%;
+    align-items: center;
+    gap: 80px;
+    align-self: stretch;
+  }
+  
+  
+  .wyms-switcher__triggers {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    flex: 1 0 0;
+  }
+  
+  .wyms-switcher__item {
+    display: flex;
+    padding-left: 24px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+    background: transparent;
+    border: none;
+    border-left: 2px solid transparent;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+  }
+  
+  .wyms-switcher__item.is-active {
+    border-left: 2px solid var(--Colors-Blue-blue, #6865EA);
+  }
+  
+  .wyms-switcher__item-title {
+    color: var(--text-primary, #191839);
+    font-family: var(--font-family-highlights, "Clash Grotesk");
+    font-size: var(--display-xs, 24px);
+    font-weight: 400;
+    line-height: var(--lh-display-xs, 32px);
+  }
+  
+  .wyms-switcher__item-desc {
+    display: none; /* Hidden by default */
+    color: var(--text-primary, #191839);
+    font-family: var(--font-family-body, Inter);
+    font-size: var(--text-md, 16px);
+    font-weight: 400;
+    line-height: var(--lh-text-md, 24px);
+    white-space: pre-line;
+  }
+  
+  .wyms-switcher__item.is-active .wyms-switcher__item-desc {
+    display: block;
+  }
+  
+  
+  .wyms-switcher__media {
+    position: relative;
+    flex: 1 0 0;
+    height: 640px;
+    border-radius: var(--radius-xl, 12px);
+    overflow: hidden;
+  }
+  
+  .wyms-switcher__media-item {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  
+  .wyms-switcher__media-item.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .wyms-switcher__img,
+  .wyms-switcher__video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .wyms-switcher__blob {
+      width: 545px;
+      height: 554px;
+      top: 0; 
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: none; 
+      object-fit: contain;
+    }
+  
+    .wyms-switcher__header {
+      padding: 64px 20px;
+    }
+  
+    .wyms-switcher__main-title {
+      font-size: var(--display-md, 36px);
+      line-height: var(--lh-display-md, 44px);
+    }
+  
+    .wyms-switcher__content-outer {
+      padding: 64px 20px;
+      gap: 48px;
+    }
+  
+    .wyms-switcher__content-inner {
+      flex-direction: column;
+      gap: 40px;
+    }
+  
+    .wyms-switcher__triggers {
+      width: 100%;
+      gap: 32px;
+    }
+  
+    .wyms-switcher__item {
+      padding-left: 16px;
+      border-left: none; 
+      gap: 8px;
+    }
+  
+    .wyms-switcher__media {
+      width: 100%;
+      height: 348px;
+      flex: none;
+    }
+  }

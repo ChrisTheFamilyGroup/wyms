@@ -1,0 +1,96 @@
+.wyms-outro {
+    display: block;
+    width: 100%;
+    background: var(--bg-primary, #FFF);
+    overflow: visible; 
+  }
+  
+  .wyms-outro__inner {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 100%;
+    max-width: var(--width-4xl, 1440px);
+    margin: 0 auto;
+    
+    padding: 64px 64px 112px 64px;
+  }
+  
+  .wyms-outro__blob {
+    position: absolute;
+    top: -100px; 
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 549.588px;
+    height: 558.723px;
+    object-fit: contain;
+    
+    z-index: 1; 
+    pointer-events: none; 
+  }
+  
+  .wyms-outro__content {
+    position: relative;
+    z-index: 2; 
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    
+    width: 100%;
+    max-width: 768px;
+  }
+  
+  .wyms-outro__icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+  
+  .wyms-outro__heading {
+    margin: 0;
+    color: var(--text-primary, #191839);
+    text-align: center;
+    font-family: var(--font-family-display, "Clash Grotesk");
+    font-size: var(--display-lg, 48px);
+    font-weight: 600;
+    line-height: var(--lh-display-lg, 60px);
+    letter-spacing: -0.96px;
+  }
+  
+  .wyms-outro__text {
+    margin: 0;
+    color: var(--text-primary, #191839);
+    text-align: center;
+    font-family: var(--font-family-highlights, "Clash Grotesk");
+    font-size: var(--display-xs, 24px);
+    font-weight: 400;
+    line-height: var(--lh-display-xs, 32px);
+  }
+  
+  @media screen and (max-width: 768px) {
+    .wyms-outro__inner {
+      padding: 20px 20px 64px 20px;
+    }
+  
+    .wyms-outro__blob {
+      top: -40px; 
+      width: 366.392px;
+      height: 372.482px;
+    }
+  
+    .wyms-outro__content {
+      gap: 20px; 
+    }
+  
+    .wyms-outro__heading {
+      font-size: var(--display-md, 36px);
+      line-height: var(--lh-display-md, 44px);
+      letter-spacing: normal; 
+    }
+    
+  }

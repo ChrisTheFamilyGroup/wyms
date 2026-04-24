@@ -1,0 +1,68 @@
+{{ 'wyms-outro-text.css' | asset_url | stylesheet_tag }}
+
+<section class="wyms-outro">
+  <div class="wyms-outro__inner">
+    
+    {%- if section.settings.blob_image != blank -%}
+      {{ section.settings.blob_image | image_url: width: 1200 | image_tag: class: 'wyms-outro__blob', loading: 'lazy' }}
+    {%- endif -%}
+
+    <div class="wyms-outro__content">
+      
+      {%- if section.settings.icon_image != blank -%}
+        {{ section.settings.icon_image | image_url: width: 100 | image_tag: class: 'wyms-outro__icon', loading: 'lazy' }}
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="wyms-outro__heading">
+          {{ section.settings.heading | newline_to_br }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <p class="wyms-outro__text">
+          {{ section.settings.text | newline_to_br }}
+        </p>
+      {%- endif -%}
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WYMS Outro Text",
+  "tag": "section",
+  "class": "wyms-section-outro",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "blob_image",
+      "label": "Background Blob Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_image",
+      "label": "Top Icon (48x48)"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Paragraph Text",
+      "default": "Add Some Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Outro Text"
+    }
+  ]
+}
+{% endschema %}

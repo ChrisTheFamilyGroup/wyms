@@ -61,6 +61,9 @@
             {%- if section.settings.body_text != blank -%} <div class="wyms-two-images-text__body"> {{ section.settings.body_text }}</div>
             {%- endif -%}
 
+            {%- if section.settings.bottom_body_text != blank -%} <div class="wyms-two-images-text__bottom_body_text"> {{ section.settings.bottom_body_text }}</div>
+            {%- endif -%}
+
             {%- if section.settings.highlight_text != blank -%}
               <div class="wyms-two-images-text__highlight"> {{ section.settings.highlight_text }}</div>
             {%- endif -%}
@@ -86,19 +89,25 @@
       "type": "textarea",
       "id": "heading",
       "label": "Heading",
-      "default": "Einfach schlau."
+      "default": "Heading"
     },
     {
       "type": "textarea",
       "id": "body_text",
       "label": "Body Text",
-      "default": "<p>Intelligente Fächeraufteilung trifft auf ergonomisches Design. Alles hat seinen Platz, das Gewicht wird optimal verteilt.</p>"
+      "default": "Body Text</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_body_text",
+      "label": "Bottom Body Text",
+      "default": "Bottom Body Text"
     },
     {
       "type": "textarea",
       "id": "highlight_text",
       "label": "Bottom Highlight Text",
-      "default": "Damit der Rücken entlastet bleibt – jeden Tag."
+      "default": "Bottom Highlight Text"
     },
     {
       "type": "header",

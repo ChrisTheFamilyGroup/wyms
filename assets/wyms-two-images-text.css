@@ -1,6 +1,4 @@
-/* -----------------------------------
-   1. MAIN SECTION & CONTAINERS
------------------------------------ */
+
 .wyms-two-images-text {
     display: flex;
     flex-direction: column;
@@ -28,26 +26,22 @@
     padding: 0;
   }
   
-  /* -----------------------------------
-     2. IMAGE COLUMN
-  ----------------------------------- */
   .wyms-two-images-text__images {
     display: flex;
     align-items: flex-start;
     gap: 32px;
-    flex: 1 1 58%; /* Images take ~58% of the space to match Figma proportions */
-    max-width: 810px; /* 334px + 444px + 32px gap */
+    flex: 1 1 58%;
+    max-width: 810px; 
   }
   
-  /* We use percentages to keep layout fluid before breakpoint */
   .wyms-two-images-text__img-wrapper--left {
-    width: 41.23%; /* 334px relative to 810px */
+    width: 41.23%; 
     aspect-ratio: 1 / 1;
   }
   
   .wyms-two-images-text__img-wrapper--right {
-    width: 54.81%; /* 444px relative to 810px */
-    aspect-ratio: 2 / 3; /* 444:666 ratio */
+    width: 54.81%; 
+    aspect-ratio: 2 / 3; 
   }
   
   .wyms-two-images-text__img {
@@ -58,16 +52,13 @@
     display: block;
   }
   
-  /* -----------------------------------
-     3. TEXT COLUMN
-  ----------------------------------- */
   .wyms-two-images-text__content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     flex: 1 1 450px;
-    align-self: stretch; /* Stretches to match the height of the images column */
+    align-self: stretch;
   }
   
   .wyms-two-images-text__heading {
@@ -86,7 +77,6 @@
     align-items: flex-start;
     gap: 16px;
     align-self: stretch;
-    /* margin-top: auto pushes this block to the bottom if content is shorter than images */
     margin-top: auto; 
   }
   
@@ -96,6 +86,17 @@
     font-size: var(--text-md, 16px);
     font-weight: 400;
     line-height: var(--lh-text-md, 24px);
+    margin: 0;
+    white-space: pre-line;
+  }
+
+  .wyms-two-images-text__bottom_body_text{
+    color: var(--Colors-Text-text-primary, #191839);
+    font-family: var(--Font-family-font-family-highlights, "Clash Grotesk");
+    font-size: var(--Font-size-display-xs, 24px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--Line-height-display-xs, 32px);
     margin: 0;
     white-space: pre-line;
   }
@@ -117,9 +118,6 @@
     white-space: pre-line;
   }
   
-  /* -----------------------------------
-     4. MOBILE ADAPTATION
-  ----------------------------------- */
   @media screen and (max-width: 768px) {
     .wyms-two-images-text {
       padding: 64px 20px;
@@ -127,12 +125,10 @@
     }
   
     .wyms-two-images-text__inner {
-      /* Reverses the layout: Text goes top, Images go bottom */
       flex-direction: column-reverse; 
       gap: 48px;
     }
   
-    /* Text Styles Mobile */
     .wyms-two-images-text__content {
       flex: none;
       gap: 20px;
@@ -142,21 +138,19 @@
     .wyms-two-images-text__heading {
       font-size: var(--display-md, 36px);
       line-height: var(--lh-display-md, 44px);
-      margin: 0; /* Removing the bottom margin used in desktop */
+      margin: 0; 
     }
   
     .wyms-two-images-text__desc-block {
       gap: 8px;
-      margin-top: 0; /* Resetting margin auto */
+      margin-top: 0; 
     }
   
-    /* Image Styles Mobile */
     .wyms-two-images-text__images {
       flex: none;
       gap: var(--spacing-xl, 16px);
       width: 100%;
       max-width: none;
-      flex: 1 1 810px; 
       max-width: 810px; 
     }
   

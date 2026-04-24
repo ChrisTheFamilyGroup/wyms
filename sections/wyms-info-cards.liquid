@@ -1,0 +1,156 @@
+{{ 'wyms-info-cards.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign has_content = false
+  if section.settings.heading != blank or section.blocks.size > 0
+    assign has_content = true
+  endif
+-%}
+
+{%- if has_content or request.design_mode -%}
+  <section class="wyms-cards">
+    
+    {%- if has_content == false and request.design_mode -%}
+      <div class="wyms-cards__empty-state">
+        <h3>Info Cards section is empty</h3>
+        <p>Please add a heading and card blocks in the settings.</p>
+      </div>
+    {%- else -%}
+
+      <div class="wyms-cards__header page-width">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="wyms-cards__main-title">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <div class="wyms-cards__main-sub">{{ section.settings.subheading }}</div>
+        {%- endif -%}
+      </div>
+
+      <div class="wyms-cards__content page-width">
+        
+        <div class="wyms-cards__grid">
+          {%- for block in section.blocks -%}
+            <div class="wyms-cards__card" {{ block.shopify_attributes }}>
+              
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 800 }}" 
+                     alt="{{ block.settings.title | escape }}" 
+                     class="wyms-cards__card-img" 
+                     loading="lazy"
+                     width="{{ block.settings.image.width }}"
+                     height="{{ block.settings.image.height }}">
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg wyms-cards__card-img' }}
+              {%- endif -%}
+
+              <div class="wyms-cards__overlay">
+                <div class="wyms-cards__text-wrapper">
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="wyms-cards__card-title">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.subtitle != blank -%}
+                    <div class="wyms-cards__card-sub">{{ block.settings.subtitle }}</div>
+                  {%- endif -%}
+                </div>
+              </div>
+
+              {%- if block.settings.link != blank -%}
+                <a href="{{ block.settings.link }}" class="wyms-cards__card-link" aria-label="{{ block.settings.title }}"></a>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if section.settings.btn_label != blank and section.settings.btn_link != blank -%}
+          <div class="wyms-cards__btn-container">
+            <a href="{{ section.settings.btn_link }}" class="wyms-cards__btn">
+              {{ section.settings.btn_label }}
+            </a>
+          </div>
+        {%- endif -%}
+
+      </div>
+
+    {%- endif -%}
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "WYMS Info Cards",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Klar im Design.\nStark im Auftritt."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Subtitle text goes here"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Mehr erfahren"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Info Card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "Feature Name"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Card Subtitle (Hover)",
+          "default": "Description text that appears on hover."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Card Link (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Info Cards",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

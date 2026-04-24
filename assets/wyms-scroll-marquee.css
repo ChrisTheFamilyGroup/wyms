@@ -1,0 +1,203 @@
+
+.wyms-scroll-marquee {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 112px 64px;
+    background: var(--bg-primary, #FFFFFF);
+    gap: 80px;
+    position: relative;
+    overflow: hidden; 
+  }
+  
+  .wyms-scroll-marquee__empty-state {
+    padding: 40px;
+    text-align: center;
+    border: 2px dashed #ccc;
+    background: #f9f9f9;
+    width: 100%;
+    max-width: var(--width-4xl, 1440px);
+  }
+  
+  .wyms-scroll-marquee__header {
+    display: flex;
+    max-width: var(--width-4xl, 1440px);
+    width: 100%;
+    align-items: flex-end;
+    gap: var(--spacing-9xl, 96px);
+    position: relative;
+    z-index: 2; 
+    padding: 0 18px 0 0;
+  }
+  
+  .wyms-scroll-marquee__col-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1 0 0;
+  }
+  
+  .wyms-scroll-marquee__col-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    flex: 1 0 0;
+  }
+  
+  .wyms-scroll-marquee__heading {
+    color: var(--text-primary, #191839);
+    font-family: var(--font-family-display, "Clash Grotesk");
+    font-size: var(--display-lg, 48px);
+    font-weight: 600;
+    line-height: var(--lh-display-lg, 60px);
+    letter-spacing: -0.96px;
+    margin: 0;
+    white-space: pre-line;
+  }
+  
+  .wyms-scroll-marquee__text {
+    color: var(--text-primary, #191839);
+    font-family: var(--font-family-body, Inter);
+    font-size: var(--text-md, 16px);
+    font-weight: 400;
+    line-height: var(--lh-text-md, 24px);
+    margin: 0;
+    white-space: pre-line;
+  }
+  
+  .wyms-scroll-marquee__highlight {
+    color: var(--text-primary, #191839);
+    font-family: var(--font-family-highlights, "Clash Grotesk");
+    font-size: var(--display-sm, 30px);
+    font-weight: 400;
+    line-height: var(--lh-display-sm, 38px);
+    margin: 0;
+    white-space: pre-line;
+  }
+  
+  
+  .wyms-scroll-marquee__carousels-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-3xl, 24px);
+    width: 100%;
+    position: relative;
+    z-index: 2; 
+  }
+  
+  .wyms-scroll-marquee__row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-3xl, 24px);
+    width: 1712px; 
+    will-change: transform; 
+  }
+  
+  .wyms-scroll-marquee__row--top {
+    margin-left: 160px; 
+  }
+  .wyms-scroll-marquee__row--bottom {
+    margin-left: -100px; 
+  }
+  
+  .wyms-scroll-marquee__item {
+    height: 320px;
+    aspect-ratio: 13 / 10; 
+    border-radius: var(--radius-radius-xl-12, 12px);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  
+  .wyms-scroll-marquee__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .wyms-scroll-marquee__bg-text {
+    position: absolute;
+    bottom: var(--bg-text-bottom-desktop); 
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--Colors-Blue-blue_light, #D0CFF8);
+    font-family: var(--font-family-display, "Clash Grotesk");
+    font-size: 128px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    z-index: 1; 
+    pointer-events: none;
+  }
+  
+  
+  @media screen and (max-width: 1024px) {
+  .wyms-scroll-marquee__heading{
+    font-size: var(--display-md, 36px);
+    line-height: var(--lh-display-md, 44px);
+  }
+  }
+  @media screen and (max-width: 768px) {
+    .wyms-scroll-marquee {
+      padding: 64px 20px;
+      gap: 48px;
+    }
+  
+    .wyms-scroll-marquee__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+    }
+  
+    .wyms-scroll-marquee__col-left {
+      gap: 12px;
+    }
+  
+    .wyms-scroll-marquee__col-right {
+      gap: var(--spacing-xl, 16px);
+    }
+  
+    .wyms-scroll-marquee__heading {
+      font-size: var(--display-md, 36px);
+      line-height: var(--lh-display-md, 44px);
+    }
+  
+    .wyms-scroll-marquee__highlight {
+      font-size: var(--display-xs, 24px);
+      line-height: var(--lh-display-xs, 32px);
+    }
+  
+    .wyms-scroll-marquee__carousels-container {
+      gap: 16px;
+    }
+  
+    .wyms-scroll-marquee__row {
+      gap: 16px;
+      width: 856px; 
+    }
+  
+    .wyms-scroll-marquee__row--top {
+      margin-left: 80px; 
+    }
+    .wyms-scroll-marquee__row--bottom {
+      margin-left: -50px;
+    }
+  
+    .wyms-scroll-marquee__item {
+      height: 160px; 
+      border-radius: 8px;
+    }
+  
+    .wyms-scroll-marquee__bg-text {
+      bottom: var(--bg-text-bottom-mobile);
+      font-size: var(--display-md, 36px);
+      line-height: var(--lh-display-md, 44px);
+    }
+  }

@@ -58,6 +58,7 @@
     font-weight: 400;
     line-height: var(--lh-display-xs, 32px);
     margin: 0;
+    white-space: pre-line;
   }
   
   .wyms-image-text__body {
@@ -67,14 +68,25 @@
     font-weight: 400;
     line-height: var(--lh-text-md, 24px);
     margin: 0;
+    white-space: pre-line;
   }
-  
+
+  .wyms-image-text__bottom-body{
+    color: var(--Colors-Text-text-primary, #191839);
+    font-family: var(--Font-family-font-family-highlights, "Clash Grotesk");
+    font-size: var(--Font-size-display-xs, 24px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--Line-height-display-xs, 32px); /* 133.333% */
+    white-space: pre-line;
+  }
+/*   
   .wyms-image-text__body p {
     margin: 0 0 16px 0;
   }
   .wyms-image-text__body p:last-child {
     margin-bottom: 0;
-  }
+  } */
   
   .wyms-image-text__highlight {
     color: var(--text-primary, #191839);
@@ -113,6 +125,50 @@
     right: var(--icon-right-desktop);
   }
   
+  /* -----------------------------------
+   LIST ITEMS (CHECKMARKS)
+----------------------------------- */
+.wyms-image-text__list {
+  display: flex;
+  padding: 8px 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  margin-top: 8px; 
+}
+
+.wyms-image-text__list-item {
+  display: flex;
+  max-width: 616px;
+  align-items: center;
+  gap: 16px;
+}
+
+.wyms-image-text__list-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wyms-image-text__list-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.wyms-image-text__list-text {
+  color: var(--text-primary, #191839);
+  font-family: var(--font-family-body, Inter);
+  font-size: var(--text-md, 16px);
+  font-weight: 400;
+  line-height: var(--lh-text-md, 24px);
+  margin: 0;
+  white-space: pre-line;
+}
   
   @media screen and (min-width: 1441px) {
     .wyms-image-text__floating-icon {
@@ -157,7 +213,23 @@
     }
   
     .wyms-image-text__floating-icon {
+      width: var(--icon-width-mobile);
       top: var(--icon-top-mobile);
       right: var(--icon-right-mobile);
+    }
+
+    .wyms-image-text__list {
+      gap: 16px;
+      margin-top: 0; 
+    }
+  
+    .wyms-image-text__list-item {
+      gap: var(--spacing-lg, 12px);
+      align-self: stretch;
+    }
+  
+    .wyms-image-text__list-icon {
+      width: 16px;
+      height: 16px;
     }
   }

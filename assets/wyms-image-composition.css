@@ -1,0 +1,179 @@
+
+.wyms-img-comp {
+    display: flex;
+    padding: 112px 64px;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-primary, #FFFFFF);
+    width: 100%;
+  }
+  
+  .wyms-img-comp__empty-state {
+    padding: 40px;
+    text-align: center;
+    border: 2px dashed #ccc;
+    background: #f9f9f9;
+    width: 100%;
+    max-width: var(--width-4xl, 1440px);
+  }
+  
+  .wyms-img-comp__inner {
+    display: flex;
+    max-width: var(--width-4xl, 1440px);
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+ 
+  .wyms-img-comp__header {
+    display: flex;
+    width: 100%;
+    max-width: 560px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    position: relative;
+    z-index: 3;
+  }
+  
+  .wyms-img-comp__heading {
+    color: var(--text-primary, #191839);
+    font-family: var(--font-family-display, "Clash Grotesk");
+    font-size: var(--display-lg, 48px);
+    font-weight: 600;
+    line-height: var(--lh-display-lg, 60px);
+    letter-spacing: -0.96px;
+    margin: 0;
+    white-space: pre-line;
+  }
+  
+  .wyms-img-comp__content {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    gap: 64px;
+    align-self: stretch;
+    position: relative;
+    z-index: 2; 
+  }
+  
+  .wyms-img-comp__left {
+    flex: 1 0 0;
+    aspect-ratio: 139 / 145;
+  }
+  
+  .wyms-img-comp__big-img {
+    width: 100%;
+    height: 100%;
+    min-width: 300px;
+    object-fit: contain; 
+    display: block;
+  }
+  
+  
+  .wyms-img-comp__right {
+    display: flex;
+    width: 521px; 
+    flex-direction: column;
+    align-items: flex-end; 
+    gap: 20px;
+    align-self: stretch;
+  }
+  
+  .wyms-img-comp__small-img-wrapper {
+    width: 320px;
+    height: 320px;
+    flex-shrink: 0;
+  }
+  
+  .wyms-img-comp__small-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-xl, 12px);
+    display: block;
+  }
+  
+  .wyms-img-comp__text-block {
+    display: flex;
+    padding: 0 52px 0 26px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1 0 0;
+    align-self: stretch;
+  }
+  
+  .wyms-img-comp__text-top {
+    color: var(--text-primary, #191839);
+    font-family: var(--font-family-body, Inter);
+    font-size: var(--text-md, 16px);
+    font-weight: 400;
+    line-height: var(--lh-text-md, 24px);
+    margin: 0;
+    white-space: pre-line; 
+  }
+  
+  .wyms-img-comp__text-bottom {
+    color: var(--text-primary, #191839);
+    font-family: var(--font-family-highlights, "Clash Grotesk");
+    font-size: var(--display-xs, 24px);
+    font-weight: 400;
+    line-height: var(--lh-display-xs, 32px);
+    margin: 0;
+    white-space: pre-line;
+  }
+  
+
+  
+  @media screen and (max-width: 1320px) {
+    .wyms-img-comp {
+      padding: 64px 20px;
+    }
+  
+    .wyms-img-comp__header {
+      max-width: 100%;
+    }
+  
+    .wyms-img-comp__heading {
+      font-size: var(--display-md, 36px);
+      line-height: var(--lh-display-md, 44px);
+    }
+  
+    .wyms-img-comp__content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 48px;
+      margin-top: -40px; 
+    }
+  
+    .wyms-img-comp__left {
+      width: 100%;
+      flex: none;
+      aspect-ratio: 139 / 145;
+    }
+  
+    .wyms-img-comp__right {
+      width: 100%;
+      flex-direction: column-reverse; 
+      gap: 48px;
+    }
+  
+    .wyms-img-comp__text-block {
+      padding: 0 16px 0 32px;
+      gap: 8px;
+      flex: none;
+    }
+  
+    .wyms-img-comp__small-img-wrapper {
+      width: 100%;
+      height: 100%;
+      align-self: stretch;
+      aspect-ratio: 1/1;
+    }
+  }

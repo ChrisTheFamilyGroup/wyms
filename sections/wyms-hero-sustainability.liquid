@@ -1,0 +1,169 @@
+{{ 'wyms-hero-sustainability.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign has_content = false
+  if section.settings.heading != blank or section.settings.main_image != blank
+    assign has_content = true
+  endif
+-%}
+
+{%- if has_content or request.design_mode -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} {
+      --bg-color: {{ section.settings.bg_color }};
+      
+      --blob-width-desktop: {{ section.settings.blob_width_desktop }}px;
+      --blob-top-desktop: {{ section.settings.blob_top_desktop }}px;
+      --blob-left-desktop: {{ section.settings.blob_left_desktop }}px;
+      
+      --blob-width-mobile: {{ section.settings.blob_width_mobile }}px;
+      --blob-top-mobile: {{ section.settings.blob_top_mobile }}px;
+      --blob-left-mobile: {{ section.settings.blob_left_mobile }}px;
+    }
+  {%- endstyle -%}
+
+  <section class="wyms-hero-sus">
+    
+    {%- if has_content == false and request.design_mode -%}
+      <div class="wyms-hero-sus__empty-state">
+        <h3>Sustainability Hero section is empty</h3>
+        <p>Please add a heading or an image in the section settings.</p>
+      </div>
+    {%- else -%}
+
+      <div class="wyms-hero-sus__inner">
+        
+        <div class="wyms-hero-sus__text-block">
+          
+          {%- if section.settings.bg_blob != blank -%}
+            <img src="{{ section.settings.bg_blob | image_url: width: 600 }}" 
+                 alt="" 
+                 class="wyms-hero-sus__blob" 
+                 loading="eager"
+                 width="{{ section.settings.bg_blob.width }}"
+                 height="{{ section.settings.bg_blob.height }}">
+          {%- endif -%}
+
+          {%- if section.settings.small_text != blank -%}
+            <div class="wyms-hero-sus__small-text">{{ section.settings.small_text }}</div>
+          {%- endif -%}
+
+          {%- if section.settings.heading != blank -%}
+            <h1 class="wyms-hero-sus__heading">{{ section.settings.heading }}</h1>
+          {%- endif -%}
+          
+        </div>
+
+        <div class="wyms-hero-sus__image-wrapper">
+          {%- if section.settings.main_image != blank -%}
+            <img src="{{ section.settings.main_image | image_url: width: 1800 }}" 
+                 alt="{{ section.settings.heading | escape }}" 
+                 class="wyms-hero-sus__image" 
+                 loading="eager"
+                 width="{{ section.settings.main_image.width }}"
+                 height="{{ section.settings.main_image.height }}">
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg wyms-hero-sus__image' }}
+          {%- endif -%}
+        </div>
+
+      </div>
+
+    {%- endif -%}
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "WYMS Hero Sustainability",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#00380B"
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "small_text",
+      "label": "Small Top Text",
+      "default": "Haltung statt Label"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Nachhaltigkeit bei WYMS"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Bottom Image (PNG recommended)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_blob",
+      "label": "Decorative Blob (Behind Text)"
+    },
+    {
+      "type": "header",
+      "content": "Blob Positioning (Desktop)"
+    },
+    {
+      "type": "number",
+      "id": "blob_width_desktop",
+      "label": "Width (px)",
+      "default": 231
+    },
+    {
+      "type": "number",
+      "id": "blob_top_desktop",
+      "label": "Top Offset (px)",
+      "info": "Negative values move it up, positive values move it down.",
+      "default": 41
+    },
+    {
+      "type": "number",
+      "id": "blob_left_desktop",
+      "label": "Horizontal Offset (px)",
+      "info": "0 is perfectly centered. Use negative for left, positive for right.",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Blob Positioning (Mobile)"
+    },
+    {
+      "type": "number",
+      "id": "blob_width_mobile",
+      "label": "Width (px)",
+      "default": 173
+    },
+    {
+      "type": "number",
+      "id": "blob_top_mobile",
+      "label": "Top Offset (px)",
+      "default": 20
+    },
+    {
+      "type": "number",
+      "id": "blob_left_mobile",
+      "label": "Horizontal Offset (px)",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Hero Sustainability"
+    }
+  ]
+}
+{% endschema %}

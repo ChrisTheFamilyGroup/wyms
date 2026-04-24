@@ -1,0 +1,164 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "wyms_hero_sustainability_YWzGph": {
+      "type": "wyms-hero-sustainability",
+      "name": "WYMS Hero Sustainability",
+      "settings": {
+        "bg_color": "#00380b",
+        "small_text": "Haltung statt Label",
+        "heading": "Nachhaltigkeit bei WYMS",
+        "main_image": "shopify://shop_images/Vector_ab85a0d8-3aba-498c-b67b-abb1fc9b5706.png",
+        "bg_blob": "shopify://shop_images/Vector_d1c5a933-cc01-4d5a-aa74-753676ff6873.svg",
+        "blob_width_desktop": 231,
+        "blob_top_desktop": -71,
+        "blob_left_desktop": 0,
+        "blob_width_mobile": 173,
+        "blob_top_mobile": -22,
+        "blob_left_mobile": 0
+      }
+    },
+    "wyms_image_text_3BEbD6": {
+      "type": "wyms-image-text",
+      "name": "WYMS Image with Text",
+      "settings": {
+        "heading": "Nachhaltigkeit, die bleibt",
+        "top_text": "",
+        "text": "Nachhaltigkeit ist für uns kein Trend und kein Versprechen für später. \nSie beginnt dort, wo Produkte entstehen, und endet nicht nach dem Kauf.\n\nWir glauben daran, dass der größte Hebel in der Langlebigkeit liegt. \nDenn der nachhaltigste Schulranzen ist der, der nicht ersetzt werden muss.\n\nDarum denken wir Nachhaltigkeit nicht in einzelnen Maßnahmen, sondern im gesamten Produkt:",
+        "bottom_text": "<p>von der Materialwahl über die Verarbeitung bis zur Nutzung im Alltag</p>",
+        "highlight_text": "",
+        "image": "shopify://shop_images/Placeholder_Image_1.png",
+        "bg_blob": "shopify://shop_images/Vector_5b7c0090-5780-4fab-9b62-b271fcdf4f42.svg",
+        "icon_width": 80,
+        "icon_top_desktop": 0,
+        "icon_right_desktop": 0,
+        "icon_top_wide": 0,
+        "icon_right_wide": 0,
+        "icon_top_mobile": 0,
+        "icon_right_mobile": 0
+      }
+    },
+    "wyms_image_composition_mexKja": {
+      "type": "wyms-image-composition",
+      "name": "WYMS Image Composition",
+      "settings": {
+        "heading": "Langlebigkeit als Prinzip",
+        "top_text": "Unsere Schulranzen und Begleiter sind dafür gemacht, benutzt zu werden. \nTäglich. Intensiv. Über viele Jahre.\n\nRobuste Materialien, saubere Verarbeitung und durchdachte Konstruktionen sorgen dafür, dass unsere Produkte Belastung aushalten und mitgehen, wenn der Alltag größer wird.",
+        "bottom_text": "Weniger Wegwerfen. \nMehr Nutzen. \nSo verstehen wir Verantwortung.",
+        "image_large": "shopify://shop_images/Vector_93dac07b-844c-4a5e-9619-4e23b100ec11.png",
+        "image_small": "shopify://shop_images/Placeholder_Image_edcfe135-0fc7-4d29-a321-b654532e3cbe.png"
+      }
+    },
+    "wyms_editorial_split_KrCN3d": {
+      "type": "wyms-editorial-split",
+      "name": "WYMS Editorial Split",
+      "settings": {
+        "heading": "Materialien & Verarbeitung",
+        "body_text": "Bei der Auswahl unserer Materialien achten wir auf Haltbarkeit, Funktion und Qualität. Denn nur Materialien, die lange halten, können nachhaltig sein.\n\nWo immer es sinnvoll und möglich ist, setzen wir auf recycelte Materialien – ohne Kompromisse bei Alltagstauglichkeit, Sicherheit oder Langlebigkeit einzugehen.\n\nWir arbeiten kontinuierlich daran, unsere Materialien und Prozesse weiterzuentwickeln, mit dem Ziel, Ressourcen zu schonen und Produkte zu bauen, die im echten Alltag bestehen.",
+        "highlight_text": "",
+        "btn_label": "Zum Nachhaltigkeit",
+        "btn_link": "",
+        "image_left": "shopify://shop_images/Placeholder_Image_3647ef07-b477-487f-97b6-f9e34152a908.png",
+        "image_right": "shopify://shop_images/Placeholder_Image_86108e7e-aaf1-4170-8722-fe414b943cd6.png"
+      }
+    },
+    "wyms_interim_information_nNEAhQ": {
+      "type": "wyms-interim-information",
+      "name": "WYMS Interim Info",
+      "settings": {
+        "image_desktop": "shopify://shop_images/Content_desctop.png",
+        "image_mobile": "shopify://shop_images/Content_mobile.png",
+        "top_text": "Nachhaltigkeit bedeutet für uns auch, nichts zu versprechen, was wir nicht halten können.",
+        "bottom_text": "Lieber Schritt für Schritt besser werden, als große Worte zu machen"
+      }
+    },
+    "wyms_two_images_text_4Tb4YW": {
+      "type": "wyms-two-images-text",
+      "name": "WYMS Two Images & Text",
+      "settings": {
+        "heading": "Verantwortung in der Produktion",
+        "body_text": "Wir arbeiten mit ausgewählten Produktionspartnern in Europa und Asien zusammen, die wir kennen, regelmäßig besuchen und mit denen wir langfristig planen.\n\nFaire Arbeitsbedingungen, saubere Prozesse und überprüfbare Standards sind für uns die Grundlage jeder Zusammenarbeit.",
+        "bottom_body_text": "Nicht, weil es gut klingt –  sondern weil Verantwortung dort beginnt, wo Produkte entstehen.",
+        "highlight_text": "",
+        "image_left": "shopify://shop_images/Placeholder_Image2_85e41c05-b60d-4141-9778-d277be81b3a8.png",
+        "image_right": "shopify://shop_images/Placeholder_Image3_0a181e36-9bad-4d3f-9a33-513a7ebbb16c.png"
+      }
+    },
+    "wyms_outro_text_HJBxfj": {
+      "type": "wyms-outro-text",
+      "name": "WYMS Outro Text",
+      "settings": {
+        "blob_image": "shopify://shop_images/form_13700323-05fd-4448-825b-dde860f31b25.svg",
+        "icon_image": "shopify://shop_images/Donation-Charity-Donate-Heart-Flower--Streamline-Freehand-Duotone.svg",
+        "heading": "Heute. Und Morgen.",
+        "text": "Nachhaltigkeit ist kein Zustand, den man erreicht und abhakt. \nSie ist ein Prozess."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "wyms_hero_sustainability_YWzGph",
+    "wyms_image_text_3BEbD6",
+    "wyms_image_composition_mexKja",
+    "wyms_editorial_split_KrCN3d",
+    "wyms_interim_information_nNEAhQ",
+    "wyms_two_images_text_4Tb4YW",
+    "wyms_outro_text_HJBxfj"
+  ]
+}

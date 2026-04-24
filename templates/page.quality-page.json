@@ -1,0 +1,291 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "wyms_hero_sustainability_NGPwgt": {
+      "type": "wyms-hero-sustainability",
+      "name": "WYMS Hero Sustainability",
+      "settings": {
+        "bg_color": "#64033c",
+        "small_text": "Design trifft Substanz",
+        "heading": "Sieht gut aus. Hält mehr aus",
+        "main_image": "shopify://shop_images/Vector_014c13d5-a700-4e47-8c82-5c90f7090004.png",
+        "bg_blob": "shopify://shop_images/Vector_f8fd6d90-8ac7-4898-9f40-c7fa1dab3b55.svg",
+        "blob_width_desktop": 231,
+        "blob_top_desktop": -70,
+        "blob_left_desktop": 10,
+        "blob_width_mobile": 173,
+        "blob_top_mobile": 20,
+        "blob_left_mobile": 0
+      }
+    },
+    "wyms_scroll_marquee_jGatWE": {
+      "type": "wyms-scroll-marquee",
+      "blocks": {
+        "top_image_4zCJnt": {
+          "type": "top_image",
+          "settings": {
+            "image": "shopify://shop_images/marquee_element_5.png",
+            "bg_color": "#eae4e9"
+          }
+        },
+        "top_image_tTaWTP": {
+          "type": "top_image",
+          "settings": {
+            "image": "shopify://shop_images/marquee_element_6.png",
+            "bg_color": "#eae4e9"
+          }
+        },
+        "top_image_gLNAzW": {
+          "type": "top_image",
+          "settings": {
+            "image": "shopify://shop_images/marquee_element_7.png",
+            "bg_color": "#eae4e9"
+          }
+        },
+        "top_image_kyM3pN": {
+          "type": "top_image",
+          "settings": {
+            "image": "shopify://shop_images/marquee_element_8.png",
+            "bg_color": "#eae4e9"
+          }
+        },
+        "bottom_image_yyCP4i": {
+          "type": "bottom_image",
+          "settings": {
+            "image": "shopify://shop_images/marquee_element_1.png",
+            "bg_color": "#f4f6f0"
+          }
+        },
+        "bottom_image_fBCUMR": {
+          "type": "bottom_image",
+          "settings": {
+            "image": "shopify://shop_images/marquee_element_2.png",
+            "bg_color": "#f4f6f0"
+          }
+        },
+        "bottom_image_ekEw6D": {
+          "type": "bottom_image",
+          "settings": {
+            "image": "shopify://shop_images/marquee_element_3.png",
+            "bg_color": "#f4f6f0"
+          }
+        },
+        "bottom_image_mxP6pG": {
+          "type": "bottom_image",
+          "settings": {
+            "image": "shopify://shop_images/marquee_element_4.png",
+            "bg_color": "#f4f6f0"
+          }
+        }
+      },
+      "block_order": [
+        "top_image_4zCJnt",
+        "top_image_tTaWTP",
+        "top_image_gLNAzW",
+        "top_image_kyM3pN",
+        "bottom_image_yyCP4i",
+        "bottom_image_fBCUMR",
+        "bottom_image_ekEw6D",
+        "bottom_image_mxP6pG"
+      ],
+      "name": "WYMS Scroll Marquee",
+      "settings": {
+        "heading": "Klar im Design.\nStark im Auftritt.",
+        "text_left": "Hinter jedem Wyms Design steckt eine klare Idee. \nGrafische Muster, starke Farben und saubere Linien greifen ineinander und bilden ein Gesamtbild, das funktioniert.",
+        "text_right_top": "Keine zufälligen Prints. Keine überladenen Flächen. \nSondern Designs, die bewusst gebaut sind und genau deshalb auffallen.",
+        "text_right_bottom": "Funktion trifft Design.\nSo Individuell wie du.",
+        "bg_text": "DESIGN, DAS WIRKT",
+        "bg_text_bottom_desktop": 15,
+        "bg_text_bottom_mobile": 30
+      }
+    },
+    "wyms_image_text_f6RQnf": {
+      "type": "wyms-image-text",
+      "blocks": {
+        "list_item_MCKrih": {
+          "type": "list_item",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_1520b9f3-039d-44d8-90c8-301c3355ba38.svg",
+            "text": "Strapazierfähige Außenstoffe, die täglicher Belastung standhalten"
+          }
+        },
+        "list_item_NiiYT8": {
+          "type": "list_item",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_1520b9f3-039d-44d8-90c8-301c3355ba38.svg",
+            "text": "Verstärkte Bodenbereiche, die Stabilität geben"
+          }
+        },
+        "list_item_A9Wp3H": {
+          "type": "list_item",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_1520b9f3-039d-44d8-90c8-301c3355ba38.svg",
+            "text": "Wasserabweisende Materialien, die den Inhalt schützen"
+          }
+        },
+        "list_item_DDzQKN": {
+          "type": "list_item",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_1520b9f3-039d-44d8-90c8-301c3355ba38.svg",
+            "text": "Hochwertige Reißverschlüsse, entwickelt für tausende Nutzungen"
+          }
+        },
+        "list_item_kXQkic": {
+          "type": "list_item",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_1520b9f3-039d-44d8-90c8-301c3355ba38.svg",
+            "text": "Belastbare Nähte an stark beanspruchten Stellen"
+          }
+        }
+      },
+      "block_order": [
+        "list_item_MCKrih",
+        "list_item_NiiYT8",
+        "list_item_A9Wp3H",
+        "list_item_DDzQKN",
+        "list_item_kXQkic"
+      ],
+      "name": "WYMS Image with Text",
+      "settings": {
+        "heading": "Robust beginnt beim Material",
+        "top_text": "",
+        "text": "Ein Schulrucksack muss mehr können als gut aussehen.\n\nEr wird getragen, abgestellt, geöffnet, vollgepackt und jeden Tag aufs Neue genutzt.\n\nDeshalb setzen wir bei Wyms auf Materialien und Verarbeitung, die genau dafür gemacht sind:",
+        "bottom_text": "",
+        "highlight_text": "",
+        "image": "shopify://shop_images/Vector_21fbbb38-f813-43b5-9f3c-90ce8024fdd6.png",
+        "floating_icon": "shopify://shop_images/103.svg",
+        "icon_width": 244,
+        "icon_top_desktop": 74,
+        "icon_right_desktop": -10,
+        "icon_top_wide": 70,
+        "icon_right_wide": 18,
+        "icon_width_mobile": 174,
+        "icon_top_mobile": 76,
+        "icon_right_mobile": -4
+      }
+    },
+    "wyms_exploding_gallery_KMWmen": {
+      "type": "wyms-exploding-gallery",
+      "blocks": {
+        "gallery_image_p7cd8i": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/exploding-gallery_1.png"
+          }
+        },
+        "gallery_image_Wa9PdE": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/exploding-gallery_2.png"
+          }
+        },
+        "gallery_image_ziYDUf": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/exploding-gallery_3.png"
+          }
+        },
+        "gallery_image_n4m36Y": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/exploding-gallery_4.png"
+          }
+        },
+        "gallery_image_riTzqk": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/exploding-gallery_5.png"
+          }
+        }
+      },
+      "block_order": [
+        "gallery_image_p7cd8i",
+        "gallery_image_Wa9PdE",
+        "gallery_image_ziYDUf",
+        "gallery_image_n4m36Y",
+        "gallery_image_riTzqk"
+      ],
+      "name": "WYMS Exploding Gallery",
+      "settings": {
+        "heading": "Nicht wie die Anderen",
+        "logo": "shopify://shop_images/logo_5c3f0fd2-abc0-41ed-a030-ce8fdd89a3bb.svg",
+        "bg_blob": "shopify://shop_images/Vector_c2313e3f-08c4-42b5-bcc7-be429d1e630b.svg"
+      }
+    },
+    "wyms_intro_media_43eCy6": {
+      "type": "wyms-intro-media",
+      "name": "WYMS Intro Media",
+      "settings": {
+        "image": "shopify://shop_images/Vector_fd74c314-5d54-42bf-a635-5cf44b31c946.png",
+        "gif_image": "shopify://shop_images/badge.svg",
+        "heading": "Hält was er Verspricht",
+        "middle_text": "Ein Rucksack ist jeden Tag im Einsatz. Deshalb muss er halten.\n\nWir entwickeln unsere Produkte so, dass sie genau dafür gemacht sind mit hochwertigen Materialien, sauberer Verarbeitung und einer Konstruktion, die langfristig funktioniert.\n\nDeshalb geben wir auf jeden Wyms Rucksack 3 Jahre Garantie online. Wenn du im Handel gekauft hast, einfach registrieren und 1 Jahr Garantie verlängerung bekommen\n\nUnd wenn doch einmal etwas nicht passt, kümmern wir uns.",
+        "bottom_text": "Gemacht, um zu bleiben"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "wyms_hero_sustainability_NGPwgt",
+    "wyms_scroll_marquee_jGatWE",
+    "wyms_image_text_f6RQnf",
+    "wyms_exploding_gallery_KMWmen",
+    "wyms_intro_media_43eCy6"
+  ]
+}

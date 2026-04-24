@@ -11,6 +11,7 @@
   {%- style -%}
     #shopify-section-{{ section.id }} {
       --icon-width: {{ section.settings.icon_width }}px;
+      --icon-width-mobile: {{ section.settings.icon_width_mobile }}px;
       --icon-top-desktop: {{ section.settings.icon_top_desktop }}%;
       --icon-right-desktop: {{ section.settings.icon_right_desktop }}%;
       --icon-top-wide: {{ section.settings.icon_top_wide }}%;
@@ -49,23 +50,43 @@
           {%- endif -%}
 
           {%- if section.settings.top_text != blank -%}
-            <div class="wyms-image-text__top-body">
-              {{ section.settings.top_text }}
-            </div>
+            <div class="wyms-image-text__top-body">{{ section.settings.top_text }}</div>
           {%- endif -%}
 
           {%- if section.settings.text != blank -%}
-            <div class="wyms-image-text__body">
-              {{ section.settings.text }}
-            </div>
+            <div class="wyms-image-text__body">{{ section.settings.text }}</div>
+          {%- endif -%}
+
+          {%- if section.settings.bottom_text != blank -%}
+            <div class="wyms-image-text__bottom-body">{{ section.settings.bottom_text }}</div>
           {%- endif -%}
 
           {%- if section.settings.highlight_text != blank -%}
             <div class="wyms-image-text__highlight">{{ section.settings.highlight_text }}</div>
           {%- endif -%}
+
+          <!-- NEW: Checkmark List Block -->
+          {%- if section.blocks.size > 0 -%}
+            <div class="wyms-image-text__list">
+              {%- for block in section.blocks -%}
+                <div class="wyms-image-text__list-item" {{ block.shopify_attributes }}>
+                  <div class="wyms-image-text__list-icon">
+                    {%- if block.settings.icon != blank -%}
+                      <img src="{{ block.settings.icon | image_url: width: 48 }}" 
+                           alt="icon" 
+                           loading="lazy"
+                           width="{{ block.settings.icon.width }}"
+                           height="{{ block.settings.icon.height }}">
+                    {%- endif -%}
+                  </div>
+                  <div class="wyms-image-text__list-text">{{ block.settings.text }} </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
         </div>
 
-        <!-- Right Column: Image & Floating Icon -->
+      
         <div class="wyms-image-text__media">
           
           <!-- Floating Icon -->
@@ -109,25 +130,31 @@
       "type": "textarea",
       "id": "heading",
       "label": "Heading",
-      "default": "Wir sind WYMS"
+      "default": "Heading"
     },
     {
-      "type": "richtext",
+      "type": "textarea",
       "id": "top_text",
       "label": "Top Body Text",
-      "default": "<p>Hinter WYMS steht...</p>"
+      "default": "Top Body Text"
     },
     {
-      "type": "richtext",
+      "type": "textarea",
       "id": "text",
       "label": "Body Text",
-      "default": "<p>WYMS ist für Tage, die größer werden.</p>"
+      "default": "Body Text"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_text",
+      "label": "Bottom Body Text",
+      "default": "Bottom Body Text"
     },
     {
       "type": "textarea",
       "id": "highlight_text",
       "label": "Bottom Highlight Text",
-      "default": "WYMS ist neu.\nWYMS ist anders.\nWYMS ist für dich."
+      "default": "Bottom Highlight Text"
     },
     {
       "type": "header",
@@ -156,8 +183,8 @@
       "type": "range",
       "id": "icon_width",
       "min": 20,
-      "max": 200,
-      "step": 2,
+      "max": 300,
+      "step": 4,
       "unit": "px",
       "label": "Icon Width",
       "default": 80
@@ -216,6 +243,16 @@
     },
     {
       "type": "range",
+      "id": "icon_width_mobile",
+      "min": 80,
+      "max": 180,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon Width (Mobile)",
+      "default": 80
+    },
+    {
+      "type": "range",
       "id": "icon_top_mobile",
       "min": -50,
       "max": 100,
@@ -235,9 +272,33 @@
       "default": 0
     }
   ],
+  "blocks": [
+    {
+      "type": "list_item",
+      "name": "List Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon (Checkmark)"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "List item text goes here"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "WYMS Image with Text"
+      "name": "WYMS Image with Text",
+      "blocks": [
+        { "type": "list_item" },
+        { "type": "list_item" },
+        { "type": "list_item" }
+      ]
     }
   ]
 }

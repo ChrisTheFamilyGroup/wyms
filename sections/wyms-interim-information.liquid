@@ -1,0 +1,69 @@
+{{ 'wyms-interim-information.css' | asset_url | stylesheet_tag }}
+
+<div class="wyms-interim-info">
+  
+  <div class="wyms-interim-info__inner">
+    
+    {%- if section.settings.image_desktop != blank -%}
+      {{ section.settings.image_desktop | image_url: width: 1600 | image_tag: class: 'wyms-interim-info__bg wyms-interim-info__bg--desktop', loading: 'lazy' }}
+    {%- endif -%}
+
+    {%- if section.settings.image_mobile != blank -%}
+      {{ section.settings.image_mobile | image_url: width: 800 | image_tag: class: 'wyms-interim-info__bg wyms-interim-info__bg--mobile', loading: 'lazy' }}
+    {%- endif -%}
+
+    <div class="wyms-interim-info__text-box">
+      
+      {%- if section.settings.top_text != blank -%}
+        <h2 class="wyms-interim-info__top-text">
+          {{ section.settings.top_text | newline_to_br }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section.settings.bottom_text != blank -%}
+        <p class="wyms-interim-info__bottom-text">
+          {{ section.settings.bottom_text | newline_to_br }}
+        </p>
+      {%- endif -%}
+
+    </div>
+    
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "WYMS Interim Information",
+    "tag": "section",
+    "class": "wyms-section-interim",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image_desktop",
+            "label": "Desktop Background Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Mobile Background Image"
+        },
+        {
+            "type": "textarea",
+            "id": "top_text",
+            "label": "Top Text",
+            "default": "Enter your main headline here"
+        },
+        {
+            "type": "textarea",
+            "id": "bottom_text",
+            "label": "Bottom Text",
+            "default": "Enter secondary text here"
+        }
+        ],
+        "presets": [
+    {
+      "name": "WYMS Interim Info"
+    }
+  ]
+}
+{% endschema %}

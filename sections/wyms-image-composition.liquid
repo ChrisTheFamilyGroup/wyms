@@ -1,0 +1,125 @@
+{{ 'wyms-image-composition.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign has_content = false
+  if section.settings.heading != blank or section.settings.image_large != blank
+    assign has_content = true
+  endif
+-%}
+
+{%- if has_content or request.design_mode -%}
+  <section class="wyms-img-comp">
+    
+    {%- if has_content == false and request.design_mode -%}
+      <div class="wyms-img-comp__empty-state">
+        <h3>Image Composition section is empty</h3>
+        <p>Please add content or images in the section settings to display it on the storefront.</p>
+      </div>
+    {%- else -%}
+
+      <div class="wyms-img-comp__inner page-width">
+        
+        <div class="wyms-img-comp__header">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="wyms-img-comp__heading">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+        </div>
+
+        <div class="wyms-img-comp__content">
+          
+          <div class="wyms-img-comp__left">
+            {%- if section.settings.image_large != blank -%}
+              <img src="{{ section.settings.image_large | image_url: width: 1200 }}" 
+                   alt="{{ section.settings.heading | escape }}" 
+                   class="wyms-img-comp__big-img" 
+                   loading="lazy"
+                   width="{{ section.settings.image_large.width }}"
+                   height="{{ section.settings.image_large.height }}">
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg wyms-img-comp__big-img' }}
+            {%- endif -%}
+          </div>
+
+          <div class="wyms-img-comp__right">
+            
+            <div class="wyms-img-comp__small-img-wrapper">
+              {%- if section.settings.image_small != blank -%}
+                <img src="{{ section.settings.image_small | image_url: width: 800 }}" 
+                     alt="Detail" 
+                     class="wyms-img-comp__small-img" 
+                     loading="lazy"
+                     width="{{ section.settings.image_small.width }}"
+                     height="{{ section.settings.image_small.height }}">
+              {%- else -%}
+                {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg wyms-img-comp__small-img' }}
+              {%- endif -%}
+            </div>
+
+            <div class="wyms-img-comp__text-block">
+              {%- if section.settings.top_text != blank -%}
+                <div class="wyms-img-comp__text-top">{{ section.settings.top_text }}</div>
+              {%- endif -%}
+
+              {%- if section.settings.bottom_text != blank -%}
+                <div class="wyms-img-comp__text-bottom">{{ section.settings.bottom_text }}</div>
+              {%- endif -%}
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    {%- endif -%}
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "WYMS Image Composition",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "top_text",
+      "label": "Top Text",
+      "default": "Top Text"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_text",
+      "label": "Bottom Text",
+      "default": "Bottom Text"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_large",
+      "label": "Large Image (Left, Irregular edges)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_small",
+      "label": "Small Image (Right/Bottom)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Image Composition"
+    }
+  ]
+}
+{% endschema %}

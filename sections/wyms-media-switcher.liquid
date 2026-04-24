@@ -1,0 +1,143 @@
+{{ 'wyms-media-switcher.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-media-switcher.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign has_content = false
+  if section.settings.heading != blank or section.blocks.size > 0
+    assign has_content = true
+  endif
+-%}
+
+{%- if has_content or request.design_mode -%}
+  <section class="wyms-switcher js-switcher-section">
+    
+ʼ    {%- if section.settings.bg_blob != blank -%}
+      <img src="{{ section.settings.bg_blob | image_url: width: 1200 }}" 
+           alt="" 
+           class="wyms-switcher__blob" 
+           loading="lazy"
+           width="1200"
+           height="815">
+    {%- endif -%}
+
+    <div class="wyms-switcher__header">
+      <div class="wyms-switcher__header-inner">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="wyms-switcher__main-title">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <div class="wyms-switcher__main-sub">{{ section.settings.subheading }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="wyms-switcher__content-outer">
+      <div class="wyms-switcher__content-inner page-width">
+        
+        <div class="wyms-switcher__triggers">
+          {%- for block in section.blocks -%}
+            <button type="button" 
+                    class="wyms-switcher__item js-switcher-trigger {% if forloop.first %}is-active{% endif %}" 
+                    data-index="{{ forloop.index0 }}"
+                    {{ block.shopify_attributes }}>
+              <span class="wyms-switcher__item-title">{{ block.settings.title }}</span>
+              {%- if block.settings.text != blank -%}
+                <div class="wyms-switcher__item-desc js-switcher-desc">{{ block.settings.text }}</div>
+              {%- endif -%}
+            </button>
+          {%- endfor -%}
+        </div>
+
+        <div class="wyms-switcher__media">
+          {%- for block in section.blocks -%}
+            <div class="wyms-switcher__media-item js-switcher-media {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}">
+              {%- if block.settings.video_url != blank -%}
+                {{ block.settings.video_url | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'wyms-switcher__video' }}
+              {%- elsif block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 1200 }}" 
+                     alt="{{ block.settings.title | escape }}" 
+                     loading="lazy"
+                     width="{{ block.settings.image.width }}"
+                     height="{{ block.settings.image.height }}"
+                     class="wyms-switcher__img">
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "WYMS Media Switcher",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_blob",
+      "label": "Background Blob Image"
+    },
+    {
+      "type": "header",
+      "content": "Header Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Everything you need"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Main Subheading",
+      "default": "Subheading text goes here"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Item Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Item Description",
+          "default": "Short description for this feature."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Feature Image"
+        },
+        {
+          "type": "video",
+          "id": "video_url",
+          "label": "Feature Video (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Media Switcher",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
+      ]
+    }
+  ]
+}
+{% endschema %}

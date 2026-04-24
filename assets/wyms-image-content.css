@@ -1,195 +1,388 @@
-/* -----------------------------------
-   1. MAIN SECTION & CONTAINERS
------------------------------------ */
+
 .wyms-image-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 112px 64px 32px 64px;
-    background: var(--bg-primary, #FFFFFF);
+  width: 100%;
+  background: var(--bg-primary, #FFFFFF);
+}
+
+.wyms-image-content__empty-state {
+  padding: 40px;
+  text-align: center;
+  border: 2px dashed #ccc;
+  width: 100%;
+}
+
+.wyms-image-content__frame {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
+  padding-left: var(--padding-left);
+  padding-right: var(--padding-right);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.wyms-image-content__wrapper-inner {
+  background-color: var(--inner-bg-color);
+  border-radius: var(--inner-radius);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.wyms-image-content__inner {
+  display: flex;
+  max-width: var(--width-4xl, 1440px);
+  width: 100%;
+  align-items: center; 
+  gap: 64px;
+  padding: 64px 0;
+}
+
+
+.wyms-image-content__media {
+  flex: 1 0 0;
+  aspect-ratio: 1 / 1;
+}
+
+.wyms-image-content__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-radius-xl-12, 12px);
+  display: block;
+}
+
+.wyms-image-content__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  gap: 0;
+  flex: 1 0 0;
+}
+
+.wyms-image-content__text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  padding: 0 64px 0 32px;
+}
+
+.wyms-image-content__text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.wyms-image-content__heading {
+  color: var(--text-primary, #191839);
+  font-family: var(--font-family-display, "Clash Grotesk");
+  font-size: var(--display-lg, 48px);
+  font-weight: 600;
+  line-height: var(--lh-display-lg, 60px);
+  letter-spacing: -0.96px;
+  margin: 0;
+}
+
+.wyms-image-content__body,
+.wyms-image-content__highlight {
+  color: var(--text-primary, #191839);
+  margin: 0;
+  white-space: pre-line;
+}
+
+.wyms-image-content__body {
+  font-family: var(--font-family-body, Inter);
+  font-size: var(--text-md, 16px);
+  font-weight: 400;
+  line-height: var(--lh-text-md, 24px);
+}
+
+.wyms-image-content__highlight {
+  font-family: var(--font-family-highlights, "Clash Grotesk");
+  font-size: var(--display-xs, 24px);
+  font-weight: 400;
+  line-height: var(--lh-display-xs, 32px);
+}
+
+.wyms-image-content__btn-wrapper {
+  display: flex;
+  padding-top: 16px;
+  align-items: center;
+}
+
+.wyms-image-content__btn {
+  display: flex;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  background: var(--button-primary-bg, #242352);
+  color: var(--button-primary-fg, #FFFFFF);
+  font-family: var(--font-family-body, Inter);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Badge */
+.wyms-image-content__badge-wrapper {
+  width: 180px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wyms-image-content__badge-img {
+  width: 115px;
+  height: 115px;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 768px) {
+  .wyms-image-content__frame {
+    padding-top: var(--padding-top-mobile);
+    padding-bottom: var(--padding-bottom-mobile);
+    padding-left: var(--padding-left-mobile);
+    padding-right: var(--padding-right-mobile);
   }
-  
-  .wyms-image-content__empty-state {
-    padding: 40px;
-    text-align: center;
-    border: 2px dashed #ccc;
-    background: #f9f9f9;
-    width: 100%;
-    max-width: var(--width-4xl, 1440px);
-  }
-  
+
   .wyms-image-content__inner {
-    display: flex;
-    max-width: var(--width-4xl, 1440px);
-    width: 100%;
-    align-items: flex-start;
-    gap: 64px;
-    align-self: stretch;
-    padding: 0;
+    flex-direction: column;
+    gap: 48px;
+    padding: 0; 
   }
-  
-  /* -----------------------------------
-     2. IMAGE COLUMN
-  ----------------------------------- */
+
   .wyms-image-content__media {
-    flex: 1 0 0;
-    /* At 1440px screen, this container is exactly 624px wide, so 1/1 ratio makes it 624px high */
-    aspect-ratio: 1 / 1;
-  }
-  
-  .wyms-image-content__img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: var(--radius-radius-xl-12, 12px);
-    display: block;
+    aspect-ratio: 353 / 335;
   }
-  
-  /* -----------------------------------
-     3. RIGHT COLUMN (TEXT, BTN, BADGE)
-  ----------------------------------- */
+
   .wyms-image-content__info {
-    display: flex;
-    flex-direction: column;
-    /* Aligns the badge to the right edge */
-    align-items: flex-end; 
-    gap: var(--spacing-none, 0);
-    flex: 1 0 0;
+    width: 100%;
   }
-  
-  /* Text and Button Group */
+
   .wyms-image-content__text-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    align-self: stretch; /* Stretches back to full width inside the flex-end container */
-    padding: 0 64px 0 32px;
+    padding: 24px 16px 64px 16px;
   }
-  
-  .wyms-image-content__text-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-    align-self: stretch;
-  }
-  
+
   .wyms-image-content__heading {
-    color: var(--Colors-Text-text-primary, #191839);
-    font-family: var(--Font-family-font-family-display, "Clash Grotesk");
-    font-size: var(--Font-size-display-lg, 48px);
-    font-weight: 600;
-    line-height: var(--Line-height-display-lg, 60px);
-    letter-spacing: -0.96px;
-    margin: 0;
+    font-size: var(--display-md, 36px);
+    line-height: var(--lh-display-md, 44px);
   }
-  
-  .wyms-image-content__body {
-    color: var(--Colors-Text-text-primary, #191839);
-    font-family: var(--Font-family-font-family-body, Inter);
-    font-size: var(--Font-size-text-md, 16px);
-    font-weight: 400;
-    line-height: var(--Line-height-text-md, 24px);
-    margin: 0;
-    white-space: pre-line; /* Allows line breaks from textarea */
+}
+
+
+
+
+
+
+
+
+.wyms-image-content {
+  width: 100%;
+  background: var(--bg-primary, #FFFFFF);
+}
+
+.wyms-image-content__empty-state {
+  padding: 40px; text-align: center; border: 2px dashed #ccc; width: 100%;
+}
+
+.wyms-image-content__frame {
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding-top) var(--padding-right) var(--padding-bottom) var(--padding-left);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.wyms-image-content__wrapper-inner {
+  background-color: var(--inner-bg-color);
+  border-radius: var(--inner-radius);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.wyms-image-content__inner {
+  display: flex;
+  max-width: var(--width-4xl, 1440px);
+  width: 100%;
+  align-items: center;
+  gap: 64px;
+}
+
+.wyms-image-content__media {
+  flex: 1 0 0;
+  aspect-ratio: 1 / 1;
+}
+
+.wyms-image-content__img {
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: var(--radius-radius-xl-12, 12px);
+  display: block;
+}
+
+.wyms-image-content__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  flex: 1 0 0;
+}
+
+.wyms-image-content__text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  /* Using internal padding variables */
+  padding: var(--text-p-top) var(--text-p-right) var(--text-p-bottom) var(--text-p-left);
+}
+
+.wyms-image-content__text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.wyms-image-content__heading {
+  color: var(--color-heading);
+  font-family: var(--font-family-display, "Clash Grotesk");
+  font-size: var(--display-lg, 48px);
+  font-weight: 600;
+  line-height: var(--lh-display-lg, 60px);
+  letter-spacing: -0.96px;
+  margin: 0;
+}
+
+.wyms-image-content__body,
+.wyms-image-content__highlight {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.wyms-image-content__body {
+  color: var(--color-body);
+  font-family: var(--font-family-body, Inter);
+  font-size: var(--text-md, 16px);
+  font-weight: 400;
+  line-height: var(--lh-text-md, 24px);
+}
+
+.wyms-image-content__highlight {
+  color: var(--color-highlight);
+  font-family: var(--font-family-highlights, "Clash Grotesk");
+  font-size: var(--display-xs, 24px);
+  font-weight: 400;
+  line-height: var(--lh-display-xs, 32px);
+}
+
+.wyms-image-content__btn-wrapper { display: flex; padding-top: 16px; align-items: center; }
+
+.wyms-image-content__btn {
+  display: flex; padding: 10px 16px; border-radius: 9999px;
+  background: var(--button-primary-bg, #242352);
+  color: var(--button-primary-fg, #FFFFFF);
+  font-family: var(--font-family-body, Inter);
+  font-size: 16px; font-weight: 600; text-decoration: none; transition: opacity 0.3s ease;
+}
+
+.wyms-image-content__badge-wrapper { width: 180px; height: 180px; display: flex; justify-content: center; align-items: center; }
+.wyms-image-content__badge-img { width: 115px; height: 115px; object-fit: contain; }
+
+@media screen and (max-width: 768px) {
+  .wyms-image-content__frame {
+    padding-top: var(--padding-top-mobile);
+    padding-bottom: var(--padding-bottom-mobile);
+    padding-left: var(--spacing-md, 8px);
+    padding-right: var(--spacing-md, 8px);
   }
-  
-  .wyms-image-content__highlight {
-    color: var(--Colors-Text-text-primary, #191839);
-    font-family: var(--Font-family-font-family-highlights, "Clash Grotesk");
-    font-size: var(--Font-size-display-xs, 24px);
-    font-weight: 400;
-    line-height: var(--Line-height-display-xs, 32px);
-    margin: 0;
-    white-space: pre-line; /* Allows line breaks from textarea */
+
+  .wyms-image-content__inner {
+    flex-direction: column;
+    gap: 48px;
   }
-  
-  /* Button */
-  .wyms-image-content__btn-wrapper {
-    display: flex;
-    padding-top: 16px;
-    align-items: center;
-    gap: 24px;
+
+  .wyms-image-content__inner--reverse-mobile {
+    flex-direction: column-reverse;
   }
-  
-  .wyms-image-content__btn {
-    display: flex;
-    padding: 10px var(--spacing-xl, 16px);
-    justify-content: center;
-    align-items: center;
-    gap: var(--spacing-sm, 6px);
-    border-radius: var(--radius-button, 9999px);
-    background: var(--Component-colors-Components-Buttons-Primary-button-primary-bg, #242352);
-    color: var(--Component-colors-Components-Buttons-Primary-button-primary-fg, #FFF);
-    font-family: var(--Font-family-font-family-body, Inter);
-    font-size: var(--Font-size-text-md, 16px);
-    font-weight: 600;
-    line-height: var(--Line-height-text-md, 24px);
-    text-decoration: none;
-    transition: opacity 0.3s ease;
+
+  .wyms-image-content__media {
+    width: 100%;
+    aspect-ratio: 353 / 335;
   }
-  
-  .wyms-image-content__btn:hover {
-    opacity: 0.85;
+
+  .wyms-image-content__info {
+    width: 100%;
   }
-  
-  /* Badge (Icon / GIF) */
-  .wyms-image-content__badge-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 180px;
-    height: 180px;
+
+  .wyms-image-content__text-group {
+    /* Mobile internal paddings */
+    padding: var(--text-p-top-mob) 16px var(--text-p-bottom-mob) 32px;
   }
-  
-  /* .wyms-image-content__badge-img {
-    width: 115.191px;
-    height: 115.191px;
-    object-fit: contain;
-  } */
-  
-  /* -----------------------------------
-     4. MOBILE ADAPTATION
-  ----------------------------------- */
-  @media screen and (max-width: 768px) {
-    .wyms-image-content {
-      padding: 64px 20px 20px 20px;
-      gap: 48px;
-      align-items: flex-start;
-    }
-  
-    .wyms-image-content__inner {
-      flex-direction: column;
-      gap: 48px;
-    }
-  
-    /* Image Column Mobile */
-    .wyms-image-content__media {
-      width: 100%;
-      flex: none;
-      /* Calculated ratio to get 335px height at 393px screen width (minus paddings) */
-      aspect-ratio: 353 / 335;
-    }
-  
-    /* Right Column Mobile */
-    .wyms-image-content__info {
-      width: 100%;
-      flex: none;
-    }
-  
-    .wyms-image-content__text-group {
-      padding: 0 32px 0 16px;
-      gap: 8px;
-    }
-  
-    .wyms-image-content__text-wrapper {
-      gap: 20px;
-    }
-  
-    .wyms-image-content__heading {
-      font-size: var(--Font-size-display-md, 36px);
-      line-height: var(--Line-height-display-md, 44px);
-    }
+
+  .wyms-image-content__heading {
+    font-size: var(--display-md, 36px);
+    line-height: var(--lh-display-md, 44px);
   }
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .wyms-image-content__frame {
+    padding-top: var(--padding-top-mobile);
+    padding-bottom: var(--padding-bottom-mobile);
+    padding-left: var(--padding-left-mobile);
+    padding-right: var(--padding-right-mobile);
+  }
+
+  .wyms-image-content__inner {
+    flex-direction: column;
+    gap: 0; 
+  }
+
+  .wyms-image-content__inner--reverse-mobile {
+    flex-direction: column-reverse;
+  }
+
+  .wyms-image-content__media {
+    width: 100%;
+    aspect-ratio: auto; 
+    padding-top: var(--img-p-top-mob);
+    padding-bottom: var(--img-p-bottom-mob);
+    padding-left: var(--img-p-left-mob);
+    padding-right: var(--img-p-right-mob);
+    box-sizing: border-box;
+  }
+
+  .wyms-image-content__img {
+    object-fit: cover;
+  }
+
+  .wyms-image-content__info {
+    width: 100%;
+  }
+
+  .wyms-image-content__text-group {
+    padding-top: var(--text-p-top-mob);
+    padding-bottom: var(--text-p-bottom-mob);
+    padding-left: var(--text-p-left-mob);
+    padding-right: var(--text-p-right-mob);
+    box-sizing: border-box;
+  }
+
+  .wyms-image-content__heading {
+    font-size: var(--display-md, 36px);
+    line-height: var(--lh-display-md, 44px);
+  }
+}

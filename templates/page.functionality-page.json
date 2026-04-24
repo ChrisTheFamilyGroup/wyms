@@ -1,0 +1,265 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "wyms_hero_functionality_RJAhLw": {
+      "type": "wyms-hero-functionality",
+      "name": "WYMS Hero Functionality",
+      "settings": {
+        "bg_color": "#cff804",
+        "top_text": "Everything in view",
+        "heading": "Klarheit im Inneren.",
+        "main_image": "shopify://shop_images/Placeholder_Image_5bc08060-d45e-4b61-8ba0-3a47fdfeff57.png",
+        "blob_image": "shopify://shop_images/Vector_34310756-adba-4e9b-b47c-fc074e9b7e7f.svg"
+      }
+    },
+    "wyms_media_switcher_MLNkpy": {
+      "type": "wyms-media-switcher",
+      "blocks": {
+        "feature_LRAgHK": {
+          "type": "feature",
+          "settings": {
+            "title": "Großes Hauptfach mit innovativer Öffnung",
+            "text": "→ schnell alles im Blick, ohne zu wühlen",
+            "image": "shopify://shop_images/Placeholder_Image_1feb86df-f0e9-4c71-b96b-e7f730c76321.png"
+          }
+        },
+        "feature_9KVpq9": {
+          "type": "feature",
+          "settings": {
+            "title": "Sinnvoll unterteiltes Innenleben",
+            "text": "Short description for this feature.",
+            "image": "shopify://shop_images/hourglass-02.svg"
+          }
+        },
+        "feature_DKfKcr": {
+          "type": "feature",
+          "settings": {
+            "title": "Zwei große Seitentaschen aus Mesh",
+            "text": "Short description for this feature."
+          }
+        },
+        "feature_gjiPUa": {
+          "type": "feature",
+          "settings": {
+            "title": "Geräumiges Brotdosenfach mit Zugang von beiden Seiten",
+            "text": "Short description for this feature."
+          }
+        },
+        "feature_YhVyaH": {
+          "type": "feature",
+          "settings": {
+            "title": "Integrierter Organizer im zweiten Fach",
+            "text": "Short description for this feature."
+          }
+        }
+      },
+      "block_order": [
+        "feature_LRAgHK",
+        "feature_9KVpq9",
+        "feature_DKfKcr",
+        "feature_gjiPUa",
+        "feature_YhVyaH"
+      ],
+      "name": "WYMS Media Switcher",
+      "settings": {
+        "bg_blob": "shopify://shop_images/Vector_54df6a9e-cc34-46aa-807e-b0843bb077ba.svg",
+        "heading": "Alles an Seinem Platz",
+        "subheading": "Ordnung, die funktioniert. \nSchnell finden. Statt lange suchen:"
+      }
+    },
+    "wyms_image_content_6cJbGD": {
+      "type": "wyms-image-content",
+      "name": "WYMS Image & Content",
+      "settings": {
+        "mobile_layout": "text_first",
+        "text_p_left_mob": 36,
+        "text_p_right_mob": 20,
+        "img_p_top_mob": 0,
+        "img_p_bottom_mob": 32,
+        "img_p_left_mob": 20,
+        "img_p_right_mob": 20,
+        "inner_bg_color": "#242352",
+        "color_heading": "#ffffff",
+        "color_body": "#fafafa",
+        "color_highlight": "#ffffff",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_left": 16,
+        "padding_right": 16,
+        "padding_top_mobile": 8,
+        "padding_bottom_mobile": 8,
+        "padding_left_mobile": 8,
+        "padding_right_mobile": 8,
+        "text_p_top": 0,
+        "text_p_bottom": 0,
+        "text_p_left": 32,
+        "text_p_right": 64,
+        "text_p_top_mob": 32,
+        "text_p_bottom_mob": 24,
+        "inner_radius": 16,
+        "image": "shopify://shop_images/Placeholder_Image_e3c2a270-7814-4e55-9e43-dd5ddca541be.png",
+        "heading": "Sichtbar, wenn es darauf ankommt",
+        "body_text": "Gerade in der Dämmerung zählt, dass du gesehen wirst.\n\nDeshalb sind Wyms Rucksäcke so gestaltet, dass sie auch bei schlechten Lichtverhältnissen sichtbar bleiben – durch reflektierende Elemente und gezielt platzierte Flächen.  \n\nUnd bei unseren Special Editions geht das noch weiter: Hier reflektiert der gesamte Rucksack.",
+        "highlight_text": "Sichtbar, wenn es zählt.",
+        "btn_label": "Zum Nachhaltigkeit",
+        "btn_link": ""
+      }
+    },
+    "wyms_info_cards_7jxHYC": {
+      "type": "wyms-info-cards",
+      "blocks": {
+        "card_fURk86": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Feature_card_1.png",
+            "title": "Ergonomisch aufgebau",
+            "subtitle": "→ für Bewegung und lange Tage",
+            "link": ""
+          }
+        },
+        "card_EYzKPy": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Feature_card_2.png",
+            "title": "Stufenlos verstellbar",
+            "subtitle": "→ passt sich exakt deiner Größe an",
+            "link": ""
+          }
+        },
+        "card_G6VzK4": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Feature_card_3.png",
+            "title": "Einzigartige Gewichtsverteilung",
+            "subtitle": "→ entlastet spürbar, auch bei voller Beladung",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_fURk86",
+        "card_EYzKPy",
+        "card_G6VzK4"
+      ],
+      "name": "WYMS Info Cards",
+      "settings": {
+        "heading": "Ergonomie, die entlastet.",
+        "subheading": "Flexibel. Schonend. Komfortabel. Spürbar besser.",
+        "btn_label": "Mehr erfahren",
+        "btn_link": "#"
+      }
+    },
+    "wyms_exploding_gallery_TVtQhb": {
+      "type": "wyms-exploding-gallery",
+      "blocks": {
+        "gallery_image_7eEHHz": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/exploding-gallery_1.png"
+          }
+        },
+        "gallery_image_4qpcW8": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/exploding-gallery_2.png"
+          }
+        },
+        "gallery_image_wJQ7EK": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/exploding-gallery_3.png"
+          }
+        },
+        "gallery_image_cYDxwY": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/exploding-gallery_4.png"
+          }
+        },
+        "gallery_image_wPDzk4": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/exploding-gallery_5.png"
+          }
+        }
+      },
+      "block_order": [
+        "gallery_image_7eEHHz",
+        "gallery_image_4qpcW8",
+        "gallery_image_wJQ7EK",
+        "gallery_image_cYDxwY",
+        "gallery_image_wPDzk4"
+      ],
+      "name": "WYMS Exploding Gallery",
+      "settings": {
+        "heading": "Nicht wie die Anderen",
+        "logo": "shopify://shop_images/logo_5c3f0fd2-abc0-41ed-a030-ce8fdd89a3bb.svg",
+        "bg_blob": "shopify://shop_images/Vector_c2313e3f-08c4-42b5-bcc7-be429d1e630b.svg"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "wyms_hero_functionality_RJAhLw",
+    "wyms_media_switcher_MLNkpy",
+    "wyms_image_content_6cJbGD",
+    "wyms_info_cards_7jxHYC",
+    "wyms_exploding_gallery_TVtQhb"
+  ]
+}

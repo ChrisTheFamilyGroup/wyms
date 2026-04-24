@@ -1,0 +1,124 @@
+{{ 'wyms-exploding-gallery.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-exploding-gallery.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign has_content = false
+  if section.settings.heading != blank or section.blocks.size > 0
+    assign has_content = true
+  endif
+-%}
+
+{%- if has_content or request.design_mode -%}
+  <section class="wyms-exploding js-exploding-section">
+    
+    {%- if has_content == false and request.design_mode -%}
+      <div class="wyms-exploding__empty-state">
+        <h3>Exploding Gallery section is empty</h3>
+        <p>Please add a heading and up to 5 image blocks in the settings.</p>
+      </div>
+    {%- else -%}
+
+        
+      <div class="wyms-exploding__inner">
+
+      <div class="wyms-exploding__blob-wrapper">
+        {%- if section.settings.bg_blob != blank -%}
+          <img src="{{ section.settings.bg_blob | image_url: width: 800 }}" 
+               alt="" 
+               class="wyms-exploding__blob" 
+               loading="lazy"
+               width="{{ section.settings.bg_blob.width }}"
+               height="{{ section.settings.bg_blob.height }}">
+        {%- endif -%}
+      </div>
+
+
+        <div class="wyms-exploding__center-content">
+          <div class="wyms-exploding__text-block">
+            {%- if section.settings.heading != blank -%}
+              <h2 class="wyms-exploding__heading">{{ section.settings.heading }}</h2>
+            {%- endif -%}
+          </div>
+          
+          {%- if section.settings.logo != blank -%}
+            <img src="{{ section.settings.logo | image_url: width: 800 }}" 
+                 alt="Logo" 
+                 class="wyms-exploding__logo" 
+                 loading="lazy"
+                 width="{{ section.settings.logo.width }}"
+                 height="{{ section.settings.logo.height }}">
+          {%- endif -%}
+        </div>
+
+        <div class="wyms-exploding__images-container js-exploding-container">
+          {%- for block in section.blocks limit: 5 -%}
+            <div class="wyms-exploding__img-wrap img-pos-{{ forloop.index }}" {{ block.shopify_attributes }}>
+              <div class="wyms-exploding__img-inner js-exploding-item">
+                {%- if block.settings.image != blank -%}
+                  <img src="{{ block.settings.image | image_url: width: 600 }}" 
+                       alt="" 
+                       loading="lazy"
+                       width="{{ block.settings.image.width }}"
+                       height="{{ block.settings.image.height }}">
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+      </div>
+
+    {%- endif -%}
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "WYMS Exploding Gallery",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Klar im Design.\nStark im Auftritt."
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Center Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_blob",
+      "label": "Background Blob"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_image",
+      "name": "Gallery Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Exploding Gallery",
+      "blocks": [
+        { "type": "gallery_image" },
+        { "type": "gallery_image" },
+        { "type": "gallery_image" },
+        { "type": "gallery_image" },
+        { "type": "gallery_image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

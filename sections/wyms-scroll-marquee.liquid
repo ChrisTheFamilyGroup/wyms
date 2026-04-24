@@ -1,0 +1,215 @@
+{{ 'wyms-scroll-marquee.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-scroll-marquee.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign has_content = false
+  if section.settings.heading != blank or section.blocks.size > 0
+    assign has_content = true
+  endif
+
+  assign top_blocks = section.blocks | where: "type", "top_image"
+  assign bottom_blocks = section.blocks | where: "type", "bottom_image"
+-%}
+
+{%- if has_content or request.design_mode -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} {
+      --bg-text-bottom-desktop: {{ section.settings.bg_text_bottom_desktop }}px;
+      --bg-text-bottom-mobile: {{ section.settings.bg_text_bottom_mobile }}px;
+    }
+  {%- endstyle -%}
+
+  <section class="wyms-scroll-marquee js-marquee-section">
+    
+    {%- if has_content == false and request.design_mode -%}
+      <div class="wyms-scroll-marquee__empty-state">
+        <h3>Scroll Marquee section is empty</h3>
+        <p>Please add a heading or images in the section settings.</p>
+      </div>
+    {%- else -%}
+
+      <div class="wyms-scroll-marquee__header page-width">
+        <div class="wyms-scroll-marquee__col-left">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="wyms-scroll-marquee__heading">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.text_left != blank -%}
+            <div class="wyms-scroll-marquee__text">{{ section.settings.text_left }}</div>
+          {%- endif -%}
+        </div>
+
+        <div class="wyms-scroll-marquee__col-right">
+          {%- if section.settings.text_right_top != blank -%}
+            <div class="wyms-scroll-marquee__text">{{ section.settings.text_right_top }}</div>
+          {%- endif -%}
+          {%- if section.settings.text_right_bottom != blank -%}
+            <div class="wyms-scroll-marquee__highlight">{{ section.settings.text_right_bottom }}</div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="wyms-scroll-marquee__carousels-container">
+        
+        <div class="wyms-scroll-marquee__row wyms-scroll-marquee__row--top js-marquee-top">
+          {%- for block in top_blocks -%}
+            <div class="wyms-scroll-marquee__item" style="background-color: {{ block.settings.bg_color }};" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 600 }}" 
+                     alt="" 
+                     class="wyms-scroll-marquee__img" 
+                     loading="lazy"
+                     width="{{ block.settings.image.width }}"
+                     height="{{ block.settings.image.height }}">
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg wyms-scroll-marquee__img' }}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="wyms-scroll-marquee__row wyms-scroll-marquee__row--bottom js-marquee-bottom">
+          {%- for block in bottom_blocks -%}
+            <div class="wyms-scroll-marquee__item" style="background-color: {{ block.settings.bg_color }};" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 600 }}" 
+                     alt="" 
+                     class="wyms-scroll-marquee__img" 
+                     loading="lazy"
+                     width="{{ block.settings.image.width }}"
+                     height="{{ block.settings.image.height }}">
+              {%- else -%}
+                {{ 'product-2' | placeholder_svg_tag: 'placeholder-svg wyms-scroll-marquee__img' }}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+      </div>
+
+      {%- if section.settings.bg_text != blank -%}
+        <div class="wyms-scroll-marquee__bg-text">{{ section.settings.bg_text }}</div>
+      {%- endif -%}
+
+    {%- endif -%}
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "WYMS Scroll Marquee",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Column"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "text_left",
+      "label": "Text Below Heading",
+      "default": "Text Below Heading"
+    },
+    {
+      "type": "header",
+      "content": "Right Column"
+    },
+    {
+      "type": "textarea",
+      "id": "text_right_top",
+      "label": "Top Text",
+      "default": "Top Text"
+    },
+    {
+      "type": "textarea",
+      "id": "text_right_bottom",
+      "label": "Bottom Highlight Text",
+      "default": "Bottom Highlight Text"
+    },
+    {
+      "type": "header",
+      "content": "Background Text"
+    },
+    {
+      "type": "text",
+      "id": "bg_text",
+      "label": "Big Background Text",
+      "default": "Big Background Text"
+    },
+    {
+      "type": "range",
+      "id": "bg_text_bottom_desktop",
+      "min": -200,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Text Offset Bottom (Desktop)",
+      "info": "Negative values push it below the section.",
+      "default": -50
+    },
+    {
+      "type": "range",
+      "id": "bg_text_bottom_mobile",
+      "min": -200,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Text Offset Bottom (Mobile)",
+      "default": 10
+    }
+  ],
+  "blocks": [
+    {
+      "type": "top_image",
+      "name": "Top Row Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color",
+          "default": "#EAE4E9"
+        }
+      ]
+    },
+    {
+      "type": "bottom_image",
+      "name": "Bottom Row Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color",
+          "default": "#F4F6F0"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Scroll Marquee",
+      "blocks": [
+        { "type": "top_image" },
+        { "type": "top_image" },
+        { "type": "top_image" },
+        { "type": "bottom_image" },
+        { "type": "bottom_image" },
+        { "type": "bottom_image" }
+      ]
+    }
+  ]
+}
+{% endschema %}
