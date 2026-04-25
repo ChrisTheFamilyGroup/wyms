@@ -77,19 +77,6 @@
     "variant_button_border_width": 1,
     "variant_button_radius": 14,
     "variant_button_width": "equal-width-buttons",
-    "sections": {
-      "section-wyms-cart-drawer": {
-        "type": "section-wyms-cart-drawer",
-        "settings": {
-          "cart_title": "Cart",
-          "empty_cart_icon": "shopify://shop_images/Group.svg",
-          "empty_cart_text": "Your cart is currently empty.",
-          "total_label": "Total",
-          "checkout_label": "Checkout",
-          "tax_note": "Taxes and shipping calculated at checkout"
-        }
-      }
-    },
     "content_for_index": [],
     "color_schemes": {
       "scheme-1": {

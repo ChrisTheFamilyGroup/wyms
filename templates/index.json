@@ -15,10 +15,10 @@
       "settings": {
         "image": "shopify://shop_images/Vector.png",
         "title": "Bereit für den nächsten Schritt",
-        "subtitle": "Wyms - gemacht für wachsende Körper, neue Freiheit und viele Jahre Alltag.",
+        "subtitle": "wyms - gemacht für wachsende Körper, neue Freiheit und viele Jahre Alltag.",
         "button_label": "Finde deinen Wyms",
         "button_link": "",
-        "bg_color": "#64033c",
+        "bg_color": "#242352",
         "border_radius": 16
       }
     },
@@ -41,8 +41,8 @@
           "type": "benefit",
           "settings": {
             "icon": "shopify://shop_images/Expandable.svg",
-            "heading": "Benefit Title",
-            "description": "Ergonomisch entwickelt für wachsende Körper und viel Bewegung im Schulalltag.",
+            "heading": "Mitwachsend",
+            "description": "Passt sich deinem Körper an – Ergonomisch und stufenlos verstellbar für den perfekten Sitz",
             "text_color": "#191839"
           }
         },
@@ -50,8 +50,8 @@
           "type": "benefit",
           "settings": {
             "icon": "shopify://shop_images/long-lasting.svg",
-            "heading": "Benefit Title",
-            "description": "Ergonomisch entwickelt für wachsende Körper und viel Bewegung im Schulalltag.",
+            "heading": "Langlebig",
+            "description": "Gemacht für echten Alltag – robust, widerstandsfähig und bereit für alles, was täglich passiert.",
             "text_color": "#64033c"
           }
         },
@@ -59,8 +59,8 @@
           "type": "benefit",
           "settings": {
             "icon": "shopify://shop_images/innovative.svg",
-            "heading": "Benefit Title",
-            "description": "Ergonomisch entwickelt für wachsende Körper und viel Bewegung im Schulalltag.",
+            "heading": "Innovativ",
+            "description": "So entwickelt, dass er sich im Alltag einfach besser anfühlt – vom ersten Tragen an.",
             "text_color": "#00380b"
           }
         }
@@ -154,7 +154,7 @@
           "settings": {
             "label": "Ergonomisch",
             "heading": "Trägt sich richtig gut. Auch nach langen Tagen",
-            "text": "Ergonomisch entwickelt für wachsende Körper und viel Bewegung im Schulalltag.",
+            "text": "Dein wyms sitzt nah am Körper und lässt sich individuell einstellen –\nso bleibt das Gewicht da, wo es hingehört, und zieht nicht nach hinten.\n\nDas entlastet Schultern und Rücken spürbar – gerade dann, wenn der Tag länger wird.",
             "button_label": "Mehr erfahren",
             "button_link": "#",
             "image": "shopify://shop_images/Placeholder_Image1.png",
@@ -175,8 +175,8 @@
           "type": "item",
           "settings": {
             "label": "Haltbarkeit",
-            "heading": "Hält mehr als ein Schuljahr",
-            "text": "Robuste Materialien und saubere Verarbeitung – gemacht für mehrere Jahre Nutzung.",
+            "heading": "Hält, was dein Alltag verlangt.",
+            "text": "Dein wyms ist für täglichen Einsatz gebaut: robuste Materialien, belastbare Nähte\nund eine Konstruktion, die auch bei voller Nutzung stabil bleibt.\n<br><br>\nSo begleitet dich dein wyms nicht nur durch ein Jahr – sondern über viele Abenteuer hinweg.",
             "button_label": "Mehr erfahren",
             "button_link": "#",
             "image": "shopify://shop_images/Placeholder_Image2.png",
@@ -197,7 +197,7 @@
           "settings": {
             "label": "Funktionalität",
             "heading": "Alles hat seinen Platz",
-            "text": "Durchdachte Fächer für Bücher, Laptop, Sport und Kleinkram.",
+            "text": "Fächer und Aufteilung sind so gedacht, dass du schnell findest, was du brauchst –\negal ob Bücher, Laptop, Sportzeug oder Kleinkram.\n<br><br>\nWeniger Suchen, mehr Überblick –\nauch wenn es mal schnell gehen muss.",
             "button_label": "Mehr erfahren",
             "button_link": "#",
             "image": "shopify://shop_images/Placeholder_Image3.png",
@@ -218,8 +218,8 @@
           "type": "item",
           "settings": {
             "label": "Design",
-            "heading": "Sieht nicht nach „Kinderrucksack“ aus",
-            "text": "Durchdachte Fächer für Bücher, Laptop, Sport und Kleinkram.",
+            "heading": "Alles andere als Standard",
+            "text": "Ein wyms ist kein klassischer Schulrucksack – sondern etwas, das du wirklich tragen willst.\n<br><br>\nKein kindlicher Look, kein austauschbares Design.\nSondern Styles, die auffallen, ohne laut zu sein und die du auch außerhalb der Schule gerne nutzt.\n<br> <br>\nEin wyms passt zu dir –\nnicht nur zur Schule.",
             "button_label": "Mehr erfahren",
             "button_link": "#",
             "image": "shopify://shop_images/Placeholder_Image4.png",
@@ -252,8 +252,8 @@
           "type": "row_type_a",
           "settings": {
             "text_position": "left",
-            "title": "Hey wir sind Wyms",
-            "description": "<p>Mit der weiterführenden Schule verändert sich mehr, als man am Anfang denkt. Die Tage werden länger, du  bist mehr unterwegs und du übernimmst mehr Verantwortung für deinen Alltag.</p><p><br/>Genau dafür gibt es WYMS. Wir machen Schulranzen und Zubehör für euch - wenn Schule nicht mehr nur Schule ist, sondern Teil eines viel größeren Alltags. </p>",
+            "title": "Hey wir sind wyms",
+            "description": "<p>Mit der weiterführenden Schule verändert sich mehr, als man am Anfang denkt. Die Tage werden länger, du  bist mehr unterwegs und du übernimmst mehr Verantwortung für deinen Alltag.</p><p><br/>Genau dafür gibt es <strong>wyms</strong>. Wir machen Schulranzen und Zubehör für euch - wenn Schule nicht mehr nur Schule ist, sondern Teil eines viel größeren Alltags. </p>",
             "bottom_text": "<p>Grow up.<br/>Carry on.</p>",
             "icon": "shopify://shop_images/logo_21460039-47fc-46bd-be2a-0bd0f9e53f63.svg",
             "image_1": "shopify://shop_images/mosaic_card_1.png",
