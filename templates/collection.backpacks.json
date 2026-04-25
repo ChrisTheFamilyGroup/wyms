@@ -156,7 +156,7 @@
           "settings": {
             "icon": "shopify://shop_images/Icon.svg",
             "label": "Mäppchen",
-            "link": ""
+            "link": "shopify://collections/mappchen"
           }
         },
         "nav_button_EXDfnd": {
@@ -164,7 +164,7 @@
           "settings": {
             "icon": "shopify://shop_images/bottle-01.svg",
             "label": "Flaschen  dosen",
-            "link": ""
+            "link": "shopify://collections/trinkflaschen"
           }
         },
         "nav_button_G96biX": {
@@ -172,7 +172,7 @@
           "settings": {
             "icon": "shopify://shop_images/sport-bag-01.svg",
             "label": "Sporttaschen",
-            "link": ""
+            "link": "shopify://collections/sporttaschen"
           }
         }
       },
@@ -198,10 +198,8 @@
       "type": "wyms-collection-grid",
       "name": "WYMS Collection Grid",
       "settings": {
-        "collection": "schulrucksacke",
-        "title_override": "Rucksack",
-        "count_label": "Artikel",
-        "products_per_page": 12
+        "title_override": "",
+        "count_label": "Artikel"
       }
     },
     "wyms_faq_accordion_Vkir4Q": {

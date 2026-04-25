@@ -2,10 +2,7 @@
 <script src="{{ 'wyms-collection-grid.js' | asset_url }}" defer></script>
 
 {%- liquid
-  assign grid_collection = collections[section.settings.collection]
-  if grid_collection == blank
-    assign grid_collection = collection
-  endif
+  assign grid_collection = collection
 -%}
 
 <section class="wyms-collection-grid" data-section-id="{{ section.id }}">
@@ -29,7 +26,7 @@
     </div>
 
     <div class="wyms-collection-grid__rows">
-      {%- paginate grid_collection.products by section.settings.products_per_page -%}
+      {%- paginate grid_collection.products by 24 -%}
 
         {%- assign col_index = 0 -%}
         {%- assign row_products = '' -%}
@@ -103,11 +100,6 @@
   "class": "section-wyms-collection-grid",
   "settings": [
     {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
       "type": "text",
       "id": "title_override",
       "label": "Section title (leave empty to use collection name)"
@@ -117,15 +109,6 @@
       "id": "count_label",
       "label": "Word after product count",
       "default": "Artikel"
-    },
-    {
-      "type": "range",
-      "id": "products_per_page",
-      "min": 6,
-      "max": 24,
-      "step": 3,
-      "label": "Products per page",
-      "default": 12
     }
   ],
   "presets": [
