@@ -31,7 +31,7 @@
         "products_to_show": 8,
         "default_subtext": "Model Name",
         "button_label": "Finde deinen Wyms",
-        "button_link": ""
+        "button_link": "shopify://collections/schulrucksacke"
       }
     },
     "wyms_benefits_grid_98cYK7": {
@@ -156,7 +156,7 @@
             "heading": "Trägt sich richtig gut. Auch nach langen Tagen",
             "text": "Dein wyms sitzt nah am Körper und lässt sich individuell einstellen –\nso bleibt das Gewicht da, wo es hingehört, und zieht nicht nach hinten.\n\nDas entlastet Schultern und Rücken spürbar – gerade dann, wenn der Tag länger wird.",
             "button_label": "Mehr erfahren",
-            "button_link": "#",
+            "button_link": "shopify://pages/ergonomics",
             "image": "shopify://shop_images/Placeholder_Image1.png",
             "mobile_image": "shopify://shop_images/Placeholder_Image1_mobile.png",
             "bg_icon": "shopify://shop_images/Vector_56e37cd4-8990-4726-b233-08d83b08ad5e.svg",
@@ -178,7 +178,7 @@
             "heading": "Hält, was dein Alltag verlangt.",
             "text": "Dein wyms ist für täglichen Einsatz gebaut: robuste Materialien, belastbare Nähte\nund eine Konstruktion, die auch bei voller Nutzung stabil bleibt.\n<br><br>\nSo begleitet dich dein wyms nicht nur durch ein Jahr – sondern über viele Abenteuer hinweg.",
             "button_label": "Mehr erfahren",
-            "button_link": "#",
+            "button_link": "shopify://pages/design-quality-page",
             "image": "shopify://shop_images/Placeholder_Image2.png",
             "bg_icon": "shopify://shop_images/Vector2.svg",
             "icon_image": "shopify://shop_images/sticker2.svg",
@@ -199,7 +199,7 @@
             "heading": "Alles hat seinen Platz",
             "text": "Fächer und Aufteilung sind so gedacht, dass du schnell findest, was du brauchst –\negal ob Bücher, Laptop, Sportzeug oder Kleinkram.\n<br><br>\nWeniger Suchen, mehr Überblick –\nauch wenn es mal schnell gehen muss.",
             "button_label": "Mehr erfahren",
-            "button_link": "#",
+            "button_link": "shopify://pages/functionality-page",
             "image": "shopify://shop_images/Placeholder_Image3.png",
             "mobile_image": "shopify://shop_images/Placeholder_Image3_mobile.png",
             "bg_icon": "shopify://shop_images/Vector3.svg",
@@ -221,7 +221,7 @@
             "heading": "Alles andere als Standard",
             "text": "Ein wyms ist kein klassischer Schulrucksack – sondern etwas, das du wirklich tragen willst.\n<br><br>\nKein kindlicher Look, kein austauschbares Design.\nSondern Styles, die auffallen, ohne laut zu sein und die du auch außerhalb der Schule gerne nutzt.\n<br> <br>\nEin wyms passt zu dir –\nnicht nur zur Schule.",
             "button_label": "Mehr erfahren",
-            "button_link": "#",
+            "button_link": "shopify://pages/design-quality-page",
             "image": "shopify://shop_images/Placeholder_Image4.png",
             "bg_icon": "shopify://shop_images/Vector4.svg",
             "icon_image": "shopify://shop_images/sticker4.svg",
@@ -269,7 +269,7 @@
             "description": "<p>Unsere Produkte sind dafür gemacht, benutzt zu werden, mitzuhalten und dich durch deine Schuljahre zu begleiten – egal, wie dein Tag aussieht.</p>",
             "slogan": "<p>Du entscheidest, was zu dir passt. Wir sorgen dafür, dass es funktioniert.</p>",
             "button_label": "Mehr erfahren",
-            "button_link": "#",
+            "button_link": "shopify://pages/about-us",
             "image_1": "shopify://shop_images/mosaic_card_3.png",
             "bg_color_1": "#d9d9d9",
             "image_2": "shopify://shop_images/mosaic_card_4.png",

@@ -78,9 +78,11 @@
       ],
       "name": "WYMS Footer",
       "settings": {
-        "nl_title": "Join our newsletter to stay up to date",
-        "nl_placeholder": "Enter your email",
-        "nl_subtext": "By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.",
+        "nl_title": "Werde Teil von wyms. Verpass nichts, was kommt.",
+        "nl_placeholder": "Deine Email",
+        "nl_subtext": "Mit deiner Anmeldung stimmst du unserer Datenschutzerklärung zu und erklärst dich damit einverstanden, Updates von uns zu erhalten.",
+        "nl_success_text": "Danke, dass du Teil von uns bist.",
+        "nl_error_text": "Das hat nicht geklappt. Einfach nochmal versuchen.",
         "blob_left": "shopify://shop_images/form_left.svg",
         "blob_right": "shopify://shop_images/form_right.svg",
         "blob_mobile": "shopify://shop_images/form_left.svg",
@@ -92,7 +94,7 @@
         "brands_title": "Unsere Marken",
         "brands_logo": "shopify://shop_images/Vector_79ba1ac8-48db-4751-9274-31aa688a44c8.svg",
         "brands_url": "#",
-        "copyright_text": "Wyms. Alle Rechte vorbehalten.",
+        "copyright_text": "wyms. Alle Rechte vorbehalten.",
         "bottom_menu": "bottom-links"
       }
     }

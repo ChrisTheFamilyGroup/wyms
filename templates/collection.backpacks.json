@@ -163,8 +163,16 @@
           "type": "nav_button",
           "settings": {
             "icon": "shopify://shop_images/bottle-01.svg",
-            "label": "Flaschen  dosen",
+            "label": "Trinkflaschen",
             "link": "shopify://collections/trinkflaschen"
+          }
+        },
+        "nav_button_L9347k": {
+          "type": "nav_button",
+          "settings": {
+            "icon": "shopify://shop_images/lunchbox_icon_white_1.svg",
+            "label": "Brotdosen",
+            "link": ""
           }
         },
         "nav_button_G96biX": {
@@ -180,12 +188,13 @@
         "nav_button_HJeprn",
         "nav_button_UKperz",
         "nav_button_EXDfnd",
+        "nav_button_L9347k",
         "nav_button_G96biX"
       ],
       "name": "Collection Navigation",
       "settings": {
-        "title": "Wyms Rucksäcke",
-        "description": "Leicht. Ergonomisch. Für die Schule gemacht",
+        "title": "wyms One",
+        "description": "Dein Rucksack für jeden Schultag – mit perfektem Sitz, leichtem Tragegefühl und einem Fit, der mit dir mitgeht.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",
         "blob_left_wide": "shopify://shop_images/formLO.svg",
         "blob_left_mobile": "shopify://shop_images/formLM.svg",
@@ -205,39 +214,46 @@
     "wyms_faq_accordion_Vkir4Q": {
       "type": "wyms-faq-accordion",
       "blocks": {
+        "faq_item_gphRTz": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Warum wyms One?",
+            "answer": "<p>Weil er besser sitzt, mehr kann und länger mit dir mithält als ein klassischer Schulrucksack – ohne dabei wie einer auszusehen.</p>"
+          }
+        },
         "faq_item_NdecL6": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Passt der wyms One für mich?",
+            "answer": "<p>Der wyms One ist ein Schulrucksack für die weiterführende Schule und passt sich deinem Rücken individuell an. Egal ob du gerade startest oder schon größer bist – er wächst einfach mit.</p>"
           }
         },
         "faq_item_mwAE4J": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Ist der wyms One ergonomisch?",
+            "answer": "<p>Ja – und zwar auf einem neuen Level.<br/><br/>Mit dem Exoframe-System wird das Gewicht gezielt auf Rücken und Hüfte verteilt, sodass Schultern spürbar entlastet werden. Der Rucksack sitzt stabil am Körper und bleibt auch bei voller Beladung angenehm zu tragen.<br/><br/>Eines der durchdachtesten Ergonomie-Konzepte im Markt.</p>"
           }
         },
         "faq_item_ic6Lny": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Ist der wyms One höhenverstellbar?",
+            "answer": "<p>Ja  und mehr als das. Der wyms One ist stufenlos höhenverstellbar und einer der ersten Rucksäcke, bei dem auch die Load-Control mitwandert. Dadurch wird das Tragesystem nicht nur länger oder kürzer, sondern passt sich wirklich in der Höhe deinem Rücken an – für einen perfekten Sitz.</p>"
           }
         },
         "faq_item_EL6CwL": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Wie viel passt in den wyms One?",
+            "answer": "<p>Der wyms One bietet genug Platz für Bücher, Laptop, Trinkflasche und alles, was du täglich brauchst – ohne unnötig bulky zu sein.</p>"
           }
         },
         "faq_item_EwXx74": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Hält der wyms One Regen aus?",
+            "answer": "<p>Ja. Der wyms One ist wasserabweisend und schützt deine Sachen im Alltag zuverlässig vor Regen.  Und für starken Regen gibts unseren stylischen Raincover als Zubehör</p>"
           }
         },
         "button_jJbj6m": {
@@ -258,6 +274,7 @@
         }
       },
       "block_order": [
+        "faq_item_gphRTz",
         "faq_item_NdecL6",
         "faq_item_mwAE4J",
         "faq_item_ic6Lny",
