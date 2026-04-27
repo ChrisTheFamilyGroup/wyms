@@ -13,12 +13,14 @@
 <div class="wyms-features-section">
   <div class="wyms-features__global-wrapper">
     
-    {%- if manual_entry != blank -%}
-      {%- render 'wyms-feature-snippet', section_data: manual_entry -%}
-    {%- elsif features_list != blank -%}
+    {%- if features_list != blank -%}
       {%- for section_entry in features_list -%}
         {%- render 'wyms-feature-snippet', section_data: section_entry -%}
       {%- endfor -%}
+      
+      {%- elsif manual_entry != blank -%}
+        {%- render 'wyms-feature-snippet', section_data: manual_entry -%}
+
     {%- endif -%}
 
   </div>
