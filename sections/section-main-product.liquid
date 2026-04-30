@@ -3,6 +3,7 @@
 
 {%- liquid
   assign selected_variant = product.selected_or_first_available_variant
+  assign model_name = product.metafields.custom.model_name.value
   assign current_product_bg = product.metafields.custom.product_background | default: '#F5F5F5'
   assign usp_list = product.metafields.custom.usp_content.value
   assign siblings_collection = section.settings.collection_select
@@ -121,8 +122,8 @@
                   </button>
                 </div>
                 <p class="product-category-label">
-                  {%- if siblings_collection != blank -%}
-                    {{ siblings_collection.title }}
+                  {%- if model_name != blank -%}
+                    {{ model_name }}
                   {%- else -%}
                     {{ product.type }}
                   {%- endif -%}
@@ -153,29 +154,50 @@
         </div>
         
         {%- if siblings_collection != blank -%}
-          <div class="variant-selector-block">
-            <div class="variant-selector-header">
-              <span class="variant-label">{{ variant_label }}:</span>
-              <span class="variant-value">{{ product.title }}</span>
+          {%- liquid
+            assign current_type_tag = blank
+            for tag in product.tags
+              if tag contains 'swatch:'
+                assign current_type_tag = tag
+                break
+              endif
+            endfor
+          -%}
+        
+          {%- if current_type_tag != blank -%}
+            <div class="variant-selector-block">
+              <div class="variant-selector-header">
+                <span class="variant-label">{{ variant_label }}:</span>
+                <span class="variant-value">{{ product.title }}</span>
+              </div>
+              <div class="swatch-list">
+                {%- for sibling in siblings_collection.products -%}
+                  {%- liquid
+                    assign is_same_type = false
+                    if sibling.tags contains current_type_tag
+                      assign is_same_type = true
+                    endif
+                  -%}
+        
+                  {%- if is_same_type -%}
+                    {%- liquid
+                      assign sibling_bg = sibling.metafields.custom.product_background | default: '#F5F5F5'
+                    -%}
+                    <a href="{{ sibling.url }}"
+                       class="swatch-item {% if sibling.handle == product.handle %}is-active{% endif %}"
+                       style="background-color: {{ sibling_bg }};"
+                       aria-label="{{ sibling.title }}">
+                      <div class="swatch-image-wrap">
+                        {%- if sibling.featured_media != blank -%}
+                          {{ sibling.featured_media | image_url: width: 112, height: 128, crop: 'center' | image_tag: alt: sibling.title, loading: 'lazy' }}
+                        {%- endif -%}
+                      </div>
+                    </a>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
             </div>
-            <div class="swatch-list">
-              {%- for sibling in siblings_collection.products -%}
-                {%- liquid
-                  assign sibling_bg = sibling.metafields.custom.product_background | default: '#F5F5F5'
-                -%}
-                <a href="{{ sibling.url }}"
-                   class="swatch-item {% if sibling.handle == product.handle %}is-active{% endif %}"
-                   style="background-color: {{ sibling_bg }};"
-                   aria-label="{{ sibling.title }}">
-                  <div class="swatch-image-wrap">
-                    {%- if sibling.featured_media != blank -%}
-                      {{ sibling.featured_media | image_url: width: 112, height: 128, crop: 'center' | image_tag: alt: sibling.title, loading: 'lazy' }}
-                    {%- endif -%}
-                  </div>
-                </a>
-              {%- endfor -%}
-            </div>
-          </div>
+          {%- endif -%}
         {%- endif -%}
 
         <div class="purchase-block">
@@ -271,6 +293,33 @@
       </div>
     </div>
   </div>
+
+  <!-- Product Lightbox Modal -->
+<!-- Product Lightbox Modal -->
+<div class="product-lightbox js-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <!-- Top Bar: Counter & Close -->
+  <div class="lightbox-top-bar">
+    <span class="lightbox-counter js-lightbox-counter">1 of 1</span>
+    <button class="lightbox-close js-lightbox-close" aria-label="Close">
+      {% render 'icon-close' %}
+    </button>
+  </div>
+
+  <!-- Navigation Arrows -->
+  <button class="lightbox-nav lightbox-nav--prev js-lightbox-prev" aria-label="Previous">
+    {% render 'icon-left-sharp-arrow' %}
+  </button>
+  <button class="lightbox-nav lightbox-nav--next js-lightbox-next" aria-label="Next">
+    {% render 'icon-right-sharp-arrow' %}
+  </button>
+
+  <!-- Main Image Container -->
+  <div class="lightbox-content js-lightbox-content">
+    <div class="lightbox-image-container js-lightbox-bg">
+      <img src="" alt="" width="" height="" class="lightbox-img js-lightbox-img">
+    </div>
+  </div>
+</div>
 
 </section>
 

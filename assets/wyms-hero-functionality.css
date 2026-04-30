@@ -37,7 +37,7 @@
   
   
   .wyms-hero-func__text-col {
-    flex: 1 1 40%; /* Гнучка ширина */
+    flex: 1 1 40%;
     display: flex;
     padding-left: var(--spacing-6xl, 48px);
     flex-direction: column;

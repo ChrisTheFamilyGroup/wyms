@@ -301,3 +301,91 @@ class MainProduct {
     new USPDrawer();
   });
   
+
+  
+  
+  
+  class ProductLightbox {
+    constructor() {
+      this.section = document.querySelector('.js-product-section');
+      if (!this.section) return;
+  
+      this.lightbox = document.querySelector('.js-lightbox');
+      this.lightboxImg = this.lightbox?.querySelector('.js-lightbox-img');
+      this.counter = this.lightbox?.querySelector('.js-lightbox-counter');
+      this.content = this.lightbox?.querySelector('.js-lightbox-content');
+      
+      this.triggers = Array.from(this.section.querySelectorAll('.media-item img'));
+      this.currentIndex = 0;
+  
+      this.init();
+    }
+  
+    init() {
+      this.triggers.forEach((img, index) => {
+        img.addEventListener('click', (e) => {
+          if (e.target.closest('.js-usp-trigger')) return;
+          this.currentIndex = index;
+          this.open();
+        });
+      });
+  
+      this.lightbox?.querySelector('.js-lightbox-prev')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.changeStep(-1);
+      });
+  
+      this.lightbox?.querySelector('.js-lightbox-next')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.changeStep(1);
+      });
+  
+      this.content?.addEventListener('click', () => {
+        this.lightbox.classList.toggle('is-zoomed');
+      });
+  
+      this.lightbox?.querySelector('.js-lightbox-close')?.addEventListener('click', () => this.close());
+      
+      document.addEventListener('keydown', (e) => {
+        if (!this.lightbox.classList.contains('is-active')) return;
+        if (e.key === 'Escape') this.close();
+        if (e.key === 'ArrowLeft') this.changeStep(-1);
+        if (e.key === 'ArrowRight') this.changeStep(1);
+      });
+    }
+  
+    open() {
+      this.updateImage();
+      this.lightbox.classList.add('is-active');
+      document.body.classList.add('lightbox-open');
+    }
+  
+    changeStep(direction) {
+      this.lightbox.classList.remove('is-zoomed'); 
+      this.currentIndex += direction;
+      
+      if (this.currentIndex >= this.triggers.length) this.currentIndex = 0;
+      if (this.currentIndex < 0) this.currentIndex = this.triggers.length - 1;
+      
+      this.updateImage();
+    }
+  
+    updateImage() {
+      const img = this.triggers[this.currentIndex];
+      const highResSrc = img.src.split('?')[0] + '?width=2000'; 
+      
+      this.lightboxImg.src = highResSrc;
+      this.counter.textContent = `${this.currentIndex + 1} of ${this.triggers.length}`;
+    }
+  
+    close() {
+      this.lightbox.classList.remove('is-active', 'is-zoomed');
+      document.body.classList.remove('lightbox-open');
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    new MainProduct();
+    new USPDrawer();
+    new ProductLightbox();
+  });

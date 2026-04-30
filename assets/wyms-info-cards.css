@@ -214,7 +214,6 @@
   
     .wyms-cards__overlay {
       padding: 40px 24px 24px 24px;
-      /* Гарантуємо видимість градієнту */
       background: linear-gradient(180deg, rgba(25, 24, 57, 0.00) 0%, rgba(25, 24, 57, 0.70) 100%);
     }
   

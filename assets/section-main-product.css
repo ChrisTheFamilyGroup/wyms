@@ -399,7 +399,7 @@
     font-family: var(--font-display, "Clash Grotesk");
     font-size: 48px !important;
     font-weight: 600;
-    line-height: 60px;
+    line-height: 60px !important;
     letter-spacing: -0.96px;
     margin: 0;
   }
@@ -995,3 +995,117 @@
       padding: 12px 24px;
     }
   }
+
+
+
+  /* -----------------------------------
+   PRODUCT LIGHTBOX (DOPE SNOW STYLE)
+----------------------------------- */
+body.lightbox-open { overflow: hidden; }
+
+.product-lightbox {
+  position: fixed;
+  inset: 0;
+  background: #000000; 
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.product-lightbox.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10002;
+  color: #fff;
+}
+
+.lightbox-counter {
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.lightbox-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  padding: 10px;
+}
+.lightbox-close svg { width: 24px; height: 24px; stroke: currentColor; }
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 20px;
+  z-index: 10002;
+  transition: opacity 0.2s;
+}
+.lightbox-nav:hover { opacity: 0.7; }
+.lightbox-nav svg { width: 30px; height: 30px; fill: currentColor; }
+.lightbox-nav--prev { left: 10px; }
+.lightbox-nav--next { right: 10px; }
+
+.lightbox-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
+}
+
+.lightbox-image-container {
+  background: #ffffff; 
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-in;
+  position: relative;
+  transition: max-width 0.4s ease, max-height 0.4s ease;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  user-select: none;
+  will-change: transform;
+}
+
+.product-lightbox.is-zoomed .lightbox-image-container {
+  cursor: zoom-out;
+  max-width: 100%; 
+  max-height: 100vh;
+  overflow: auto; 
+}
+
+.product-lightbox.is-zoomed .lightbox-img {
+  transform: scale(0.7); 
+  max-width: 100%;
+  max-height: none;
+}
