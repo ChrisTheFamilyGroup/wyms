@@ -125,11 +125,11 @@
       "type": "wyms-image-text",
       "name": "WYMS Image with Text",
       "settings": {
-        "heading": "Wir sind WYMS",
+        "heading": "Wir sind wyms",
         "top_text": "",
-        "text": "<p>WYMS ist für Tage, die größer werden. Für Wege, die länger sind, Und für alles, was man plötzlich jeden Tag dabeihat.</p><p>Mit der weiterführenden Schule verändert sich der Alltag. Mehr unterwegs. Mehr Eigenes. Mehr Freiheit. Genau hier setzen wir an.Schulranzen und Begleiter, die mithalten. Für Schule – und alles danach.</p><p>Unsere Produkte sind gemacht fürs Mitgehen. Für Bewegung, Nutzung und alles, was dazugehört.</p><p>Du bist in Bewegung. Wir sorgen dafür, dass du nicht stehenbleibst.</p>",
-        "bottom_text": "Bottom Body Text",
-        "highlight_text": "WYMS ist neu.  \nWYMS ist anders.  \nWYMS ist für dich.",
+        "text": "<p>wyms ist für Tage, die größer werden. Für Wege, die länger sind, Und für alles, was man plötzlich jeden Tag dabeihat.</p><p>Mit der weiterführenden Schule verändert sich der Alltag. Mehr unterwegs. Mehr Eigenes. Mehr Freiheit. Genau hier setzen wir an.Schulranzen und Begleiter, die mithalten. Für Schule – und alles danach.</p><p>Unsere Produkte sind gemacht fürs Mitgehen. Für Bewegung, Nutzung und alles, was dazugehört.</p><p>Du bist in Bewegung. Wir sorgen dafür, dass du nicht stehenbleibst.</p>",
+        "bottom_text": "",
+        "highlight_text": "<strong> wyms</strong> ist neu.  \n<strong> wyms</strong> ist anders.  \n<strong> wyms</strong> ist für dich.",
         "image": "shopify://shop_images/Placeholder_Image_b794624f-188f-4bd7-9976-e5559c3e16e7.png",
         "bg_blob": "shopify://shop_images/Vector_5b7c0090-5780-4fab-9b62-b271fcdf4f42.svg",
         "icon_width": 80,
@@ -147,9 +147,9 @@
       "name": "WYMS Two Images & Text",
       "settings": {
         "heading": "Gemacht fürs echte Leben",
-        "body_text": "WYMS vom englischen whims steht für spontane Ideen, Einfälle, Bewegungen. \nGenau das, was Alltag oft ausmacht.\n\nWYMS steht für Neugier, Bewegung und die Freiheit, Dinge auf die eigene Art zu tun.\nNicht geplant bis ins letzte Detail. \nSondern offen, flexibel und bereit für das, was kommt.\n\nWir glauben, dass gute Produkte Freiheit geben. \nFreiheit, sich zu bewegen. \nFreiheit, unterwegs zu sein. \nFreiheit, sich auf den eigenen Tag zu konzentrieren – nicht auf das, was man trägt.",
-        "bottom_body_text": "Bottom Body Text",
-        "highlight_text": "Dafür steht WYMS. \nHeute. Und für das, was kommt.",
+        "body_text": "wyms vom englischen whims steht für spontane Ideen, Einfälle, Bewegungen. \nGenau das, was Alltag oft ausmacht.\n\nwyms steht für Neugier, Bewegung und die Freiheit, Dinge auf die eigene Art zu tun.\nNicht geplant bis ins letzte Detail. \nSondern offen, flexibel und bereit für das, was kommt.",
+        "bottom_body_text": "Wir glauben, dass gute Produkte Freiheit geben. \nFreiheit, sich zu bewegen. \nFreiheit, unterwegs zu sein. \nFreiheit, sich auf den eigenen Tag zu konzentrieren – nicht auf das, was man trägt.",
+        "highlight_text": "Dafür steht <strong>wyms</strong>. \nHeute. Und für das, was kommt.",
         "image_left": "shopify://shop_images/Placeholder_Image_1.png",
         "image_right": "shopify://shop_images/Placeholder_Image_2.png"
       }
@@ -158,8 +158,8 @@
       "type": "wyms-image-text",
       "name": "WYMS Image with Text",
       "settings": {
-        "heading": "WYMS ist NEU - aber nicht unerfahren",
-        "top_text": "<p>Hinter WYMS steht Florian Michajlezko, der ergobag und satch gegründet hat und heute mit WYMS ein neues Kapitel aufschlägt.</p>",
+        "heading": "wyms ist NEU - aber nicht unerfahren",
+        "top_text": "<p>Hinter wyms steht Florian Michajlezko, der ergobag und satch gegründet hat und heute mit wyms ein neues Kapitel aufschlägt.</p>",
         "text": "<p>Nach vielen Jahren Erfahrung in der Entwicklung von Schulranzen bringt er dieses Know-how nun in eine Marke ein, die bewusst neu denkt  - Mit frischem Blick. Neuer Energie.</p>",
         "bottom_text": "Bottom Body Text",
         "highlight_text": "",
@@ -206,9 +206,9 @@
         "text_p_bottom_mob": 64,
         "inner_radius": 16,
         "image": "shopify://shop_images/Placeholder_Image_68499103-3c04-4a13-b94b-ace19b2654f9.png",
-        "heading": "WYMS geht neue Wege",
-        "body_text": "Nachhaltigkeit heißt für uns: Dinge so zu bauen, dass sie bleiben.\n\nSchulranzen und Begleiter, die viel aushalten, mitwachsen und nicht nach kurzer Zeit ersetzt werden müssen.\n\nWir kombinieren robuste Materialien, saubere Verarbeitung und bewusste Entscheidungen entlang der Entwicklung",
-        "highlight_text": "damit Nachhaltigkeit im Alltag ankommt,\nnicht nur auf dem Papier.",
+        "heading": "wyms geht neue Wege",
+        "body_text": "Nachhaltigkeit heißt für uns: Dinge so zu bauen, dass sie bleiben.\n\nSchulranzen und Begleiter, die viel aushalten, mitwachsen und nicht nach kurzer Zeit ersetzt werden müssen.",
+        "highlight_text": "Wir kombinieren robuste Materialien, saubere Verarbeitung und bewusste Entscheidungen entlang der Entwicklung damit Nachhaltigkeit im Alltag ankommt,\nnicht nur auf dem Papier.",
         "btn_label": "Zum Nachhaltigkeit",
         "btn_link": "#",
         "badge_icon": "shopify://shop_images/badge_sustainability.svg"

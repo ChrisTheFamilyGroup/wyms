@@ -147,7 +147,7 @@
       "name": "WYMS Scroll Marquee",
       "settings": {
         "heading": "Klar im Design.\nStark im Auftritt.",
-        "text_left": "Hinter jedem Wyms Design steckt eine klare Idee. \nGrafische Muster, starke Farben und saubere Linien greifen ineinander und bilden ein Gesamtbild, das funktioniert.",
+        "text_left": "Hinter jedem wyms Design steckt eine klare Idee. \nGrafische Muster, starke Farben und saubere Linien greifen ineinander und bilden ein Gesamtbild, das funktioniert.",
         "text_right_top": "Keine zufälligen Prints. Keine überladenen Flächen. \nSondern Designs, die bewusst gebaut sind und genau deshalb auffallen.",
         "text_right_bottom": "Funktion trifft Design.\nSo Individuell wie du.",
         "bg_text": "DESIGN, DAS WIRKT",
@@ -205,7 +205,7 @@
       "settings": {
         "heading": "Robust beginnt beim Material",
         "top_text": "",
-        "text": "Ein Schulrucksack muss mehr können als gut aussehen.\n\nEr wird getragen, abgestellt, geöffnet, vollgepackt und jeden Tag aufs Neue genutzt.\n\nDeshalb setzen wir bei Wyms auf Materialien und Verarbeitung, die genau dafür gemacht sind:",
+        "text": "Ein Schulrucksack muss mehr können als gut aussehen.\n\nEr wird getragen, abgestellt, geöffnet, vollgepackt und jeden Tag aufs Neue genutzt.\n\nDeshalb setzen wir bei wyms auf Materialien und Verarbeitung, die genau dafür gemacht sind:",
         "bottom_text": "",
         "highlight_text": "",
         "image": "shopify://shop_images/Vector_21fbbb38-f813-43b5-9f3c-90ce8024fdd6.png",
@@ -263,7 +263,7 @@
       ],
       "name": "WYMS Exploding Gallery",
       "settings": {
-        "heading": "Nicht wie die Anderen",
+        "heading": "NICHT WIE DIE ANDEREN.",
         "logo": "shopify://shop_images/logo_5c3f0fd2-abc0-41ed-a030-ce8fdd89a3bb.svg",
         "bg_blob": "shopify://shop_images/Vector_c2313e3f-08c4-42b5-bcc7-be429d1e630b.svg"
       }
@@ -275,7 +275,7 @@
         "image": "shopify://shop_images/Vector_fd74c314-5d54-42bf-a635-5cf44b31c946.png",
         "gif_image": "shopify://shop_images/badge.svg",
         "heading": "Hält was er Verspricht",
-        "middle_text": "Ein Rucksack ist jeden Tag im Einsatz. Deshalb muss er halten.\n\nWir entwickeln unsere Produkte so, dass sie genau dafür gemacht sind mit hochwertigen Materialien, sauberer Verarbeitung und einer Konstruktion, die langfristig funktioniert.\n\nDeshalb geben wir auf jeden Wyms Rucksack 3 Jahre Garantie online. Wenn du im Handel gekauft hast, einfach registrieren und 1 Jahr Garantie verlängerung bekommen\n\nUnd wenn doch einmal etwas nicht passt, kümmern wir uns.",
+        "middle_text": "Ein Rucksack ist jeden Tag im Einsatz. Deshalb muss er halten.\n\nWir entwickeln unsere Produkte so, dass sie genau dafür gemacht sind mit hochwertigen Materialien, sauberer Verarbeitung und einer Konstruktion, die langfristig funktioniert.\n\nDeshalb geben wir auf jeden wyms Rucksack 3 Jahre Garantie online. Wenn du im Handel gekauft hast, einfach registrieren und 1 Jahr Garantieverlängerung bekommen\n\nUnd wenn doch einmal etwas nicht passt, kümmern wir uns.",
         "bottom_text": "Gemacht, um zu bleiben"
       }
     }

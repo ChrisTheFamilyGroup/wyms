@@ -63,7 +63,7 @@
       "settings": {
         "bg_color": "#00380b",
         "small_text": "Haltung statt Label",
-        "heading": "Nachhaltigkeit bei WYMS",
+        "heading": "Nachhaltigkeit bei wyms",
         "main_image": "shopify://shop_images/Vector_ab85a0d8-3aba-498c-b67b-abb1fc9b5706.png",
         "bg_blob": "shopify://shop_images/Vector_d1c5a933-cc01-4d5a-aa74-753676ff6873.svg",
         "blob_width_desktop": 231,
@@ -90,6 +90,7 @@
         "icon_right_desktop": 0,
         "icon_top_wide": 0,
         "icon_right_wide": 0,
+        "icon_width_mobile": 80,
         "icon_top_mobile": 0,
         "icon_right_mobile": 0
       }
