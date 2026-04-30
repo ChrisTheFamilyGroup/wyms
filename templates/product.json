@@ -368,6 +368,7 @@
       "type": "wyms-product-features",
       "name": "WYMS Product Features",
       "settings": {
+        "feature_index": 0,
         "features_metaobject": "funktionalitat"
       }
     },
@@ -390,6 +391,7 @@
       "type": "wyms-product-features",
       "name": "WYMS Product Features",
       "settings": {
+        "feature_index": 1,
         "features_metaobject": "ergonomie"
       }
     }

@@ -3,23 +3,24 @@
 
 {%- liquid
   assign manual_entry = section.settings.features_metaobject
-  
+  assign feature_index = section.settings.feature_index | default: 0
+
   assign features_list = product.selected_or_first_available_variant.metafields.custom.product_features.value
   if features_list == blank
     assign features_list = product.metafields.custom.product_features.value
   endif
+
+  assign section_entry = features_list[feature_index]
 -%}
 
-<div class="wyms-features-section">
+<div class="wyms-features-section" id="WymsFeaturesSection-{{ section.settings.feature_index }}">
   <div class="wyms-features__global-wrapper">
-    
-    {%- if features_list != blank -%}
-      {%- for section_entry in features_list -%}
-        {%- render 'wyms-feature-snippet', section_data: section_entry -%}
-      {%- endfor -%}
-      
-      {%- elsif manual_entry != blank -%}
-        {%- render 'wyms-feature-snippet', section_data: manual_entry -%}
+
+    {%- if section_entry != blank -%}
+      {%- render 'wyms-feature-snippet', section_data: section_entry, section_index: feature_index -%}
+
+    {%- elsif manual_entry != blank -%}
+      {%- render 'wyms-feature-snippet', section_data: manual_entry, section_index: feature_index -%}
 
     {%- endif -%}
 
@@ -33,11 +34,18 @@
   "class": "section-wyms-features",
   "settings": [
     {
+      "type": "number",
+      "id": "feature_index",
+      "label": "Feature Index",
+      "default": 0,
+      "info": "0 = first item, 1 = second item, etc. Selects which item from the product's feature list to display in this section."
+    },
+    {
       "type": "metaobject",
       "id": "features_metaobject",
-      "label": "Select Feature Section Entry",
+      "label": "Fallback Feature Entry",
       "metaobject_type": "feature_section",
-      "info": "Overrides product metafields if selected."
+      "info": "Used only when the product has no feature list set."
     }
   ],
   "presets": [

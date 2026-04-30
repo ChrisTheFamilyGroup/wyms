@@ -13,11 +13,11 @@
       "type": "wyms-hero-page",
       "name": "WYMS Hero Page",
       "settings": {
-        "image": "shopify://shop_images/Vector.png",
+        "image": "shopify://shop_images/wymsheader.png",
         "title": "Bereit für den nächsten Schritt",
-        "subtitle": "wyms - gemacht für wachsende Körper, neue Freiheit und viele Jahre Alltag.",
-        "button_label": "Finde deinen Wyms",
-        "button_link": "",
+        "subtitle": "Schulranzen von wyms - gemacht für wachsende Körper, neue Freiheit und viele Jahre Alltag.",
+        "button_label": "Finde deinen wyms",
+        "button_link": "shopify://collections/schulrucksacke",
         "bg_color": "#242352",
         "border_radius": 16
       }
@@ -29,8 +29,8 @@
         "title": "Unsere Highlights",
         "collection": "featured-products-carousel",
         "products_to_show": 8,
-        "default_subtext": "Model Name",
-        "button_label": "Finde deinen Wyms",
+        "default_subtext": "wyms One",
+        "button_label": "Finde deinen wyms",
         "button_link": "shopify://collections/schulrucksacke"
       }
     },

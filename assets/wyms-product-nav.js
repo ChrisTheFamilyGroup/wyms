@@ -11,9 +11,24 @@ class WymsProductNav extends HTMLElement {
   
       if (!this.navWrapper) return;
   
+      this.filterMissingTargets();
       this.initStickyPosition();
       this.initNavLinks();
       this.initScrollSpy();
+    }
+
+    filterMissingTargets() {
+      this.navLinks.forEach((link) => {
+        const targetId = link.getAttribute('data-target-id');
+        if (document.getElementById(targetId)) {
+          link.style.display = '';
+          link.style.opacity = '0';
+          requestAnimationFrame(() => {
+            link.style.transition = 'opacity 0.2s ease';
+            link.style.opacity = '1';
+          });
+        }
+      });
     }
   
     getStickyTop() {
@@ -64,6 +79,7 @@ class WymsProductNav extends HTMLElement {
         let activeId = null;
   
         this.navLinks.forEach((link) => {
+          if (!document.getElementById(link.getAttribute('data-target-id'))) return;
           const targetEl = document.getElementById(link.getAttribute('data-target-id'));
           if (!targetEl) return;
           if (targetEl.getBoundingClientRect().top <= threshold) {

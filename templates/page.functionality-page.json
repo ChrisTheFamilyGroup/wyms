@@ -62,8 +62,8 @@
       "name": "WYMS Hero Functionality",
       "settings": {
         "bg_color": "#cff804",
-        "top_text": "Everything in view",
-        "heading": "Klarheit im Inneren.",
+        "top_text": "Durchdacht bis ins Detail",
+        "heading": "FUNKTIONIERT.\nJEDEN TAG.",
         "main_image": "shopify://shop_images/Placeholder_Image_5bc08060-d45e-4b61-8ba0-3a47fdfeff57.png",
         "blob_image": "shopify://shop_images/Vector_34310756-adba-4e9b-b47c-fc074e9b7e7f.svg"
       }
@@ -75,7 +75,7 @@
           "type": "feature",
           "settings": {
             "title": "Großes Hauptfach mit innovativer Öffnung",
-            "text": "→ schnell alles im Blick, ohne zu wühlen",
+            "text": "> Schnell alles im Blick, ohne zu wühlen",
             "image": "shopify://shop_images/Placeholder_Image_1feb86df-f0e9-4c71-b96b-e7f730c76321.png"
           }
         },
@@ -83,7 +83,7 @@
           "type": "feature",
           "settings": {
             "title": "Sinnvoll unterteiltes Innenleben",
-            "text": "Short description for this feature.",
+            "text": "> Bücher, Hefte und Technik bleiben an ihrem Platz",
             "image": "shopify://shop_images/hourglass-02.svg"
           }
         },
@@ -91,13 +91,20 @@
           "type": "feature",
           "settings": {
             "title": "Zwei große Seitentaschen aus Mesh",
-            "text": "Short description for this feature."
+            "text": "> für Flaschen und alles, was schnell griffbereit sein muss"
           }
         },
         "feature_gjiPUa": {
           "type": "feature",
           "settings": {
             "title": "Geräumiges Brotdosenfach mit Zugang von beiden Seiten",
+            "text": "> einfach erreichbar, egal wie voll der Rucksack ist"
+          }
+        },
+        "feature_kCmtaw": {
+          "type": "feature",
+          "settings": {
+            "title": "Feature Title",
             "text": "Short description for this feature."
           }
         },
@@ -105,7 +112,7 @@
           "type": "feature",
           "settings": {
             "title": "Integrierter Organizer im zweiten Fach",
-            "text": "Short description for this feature."
+            "text": "> Platz für Kleinteile, die sonst verloren gehen"
           }
         }
       },
@@ -114,13 +121,14 @@
         "feature_9KVpq9",
         "feature_DKfKcr",
         "feature_gjiPUa",
+        "feature_kCmtaw",
         "feature_YhVyaH"
       ],
       "name": "WYMS Media Switcher",
       "settings": {
         "bg_blob": "shopify://shop_images/Vector_54df6a9e-cc34-46aa-807e-b0843bb077ba.svg",
-        "heading": "Alles an Seinem Platz",
-        "subheading": "Ordnung, die funktioniert. \nSchnell finden. Statt lange suchen:"
+        "heading": "Ordnung, die funktioniert. ",
+        "subheading": "Alles an Seinem Platz.\nSchnell finden. Statt lange suchen:"
       }
     },
     "wyms_image_content_6cJbGD": {
@@ -248,7 +256,7 @@
       ],
       "name": "WYMS Exploding Gallery",
       "settings": {
-        "heading": "Nicht wie die Anderen",
+        "heading": "NICHT WIE DIE ANDEREN.",
         "logo": "shopify://shop_images/logo_5c3f0fd2-abc0-41ed-a030-ce8fdd89a3bb.svg",
         "bg_blob": "shopify://shop_images/Vector_c2313e3f-08c4-42b5-bcc7-be429d1e630b.svg"
       }

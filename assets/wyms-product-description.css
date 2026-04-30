@@ -210,7 +210,7 @@
 }
 
 .wyms-card-text {
-  text-align: center;
+  text-align: left;
   font-family: var(--Font-family-font-family-display, "Clash Grotesk");
   font-size: var(--Font-size-display-xs, 24px);
   font-style: normal;

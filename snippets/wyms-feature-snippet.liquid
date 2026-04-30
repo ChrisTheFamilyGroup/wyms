@@ -28,29 +28,36 @@
       </div>
 
       <div class="wyms-features__items-list js-carousel-list">
-        {%- for card in section_data.feature_cards.value -%}
-          <div class="wyms-feature-card js-carousel-item">
+  {%- for card in section_data.feature_cards.value -%}
+    <div class="wyms-feature-card js-carousel-item">
 
-            <div class="wyms-feature-card__media" style="background-color: {{ card.card_background.value | default: '#FBFBFB' }};">
-              {%- if card.card_product_image.value != blank -%}
-                {{ card.card_product_image.value | image_url: width: 600 | image_tag: class: 'wyms-feature-card__img', loading: 'lazy' }}
-              {%- endif -%}
-            </div>
+      {%- liquid
+        assign media_class = "wyms-feature-card__media"
+        if card.contain_image.value == true
+          assign media_class = media_class | append: " is-contained"
+        endif
+      -%}
 
-            <div class="wyms-feature-card__text-group">
-              {%- if card.promo_title.value != blank -%}
-                <h3 class="wyms-feature-card__title">{{ card.promo_title.value }}</h3>
-              {%- endif -%}
-              {%- if card.promo_description.value != blank -%}
-                <div class="wyms-feature-card__paragraph rte">
-                  {{ card.promo_description | metafield_tag }}
-                </div>
-              {%- endif -%}
-            </div>
-
-          </div>
-        {%- endfor -%}
+      <div class="{{ media_class }}" style="background-color: {{ card.card_background.value | default: '#FBFBFB' }};">
+        {%- if card.card_product_image.value != blank -%}
+          {{ card.card_product_image.value | image_url: width: 600 | image_tag: class: 'wyms-feature-card__img', loading: 'lazy' }}
+        {%- endif -%}
       </div>
+
+      <div class="wyms-feature-card__text-group">
+        {%- if card.promo_title.value != blank -%}
+          <h3 class="wyms-feature-card__title">{{ card.promo_title.value }}</h3>
+        {%- endif -%}
+        {%- if card.promo_description.value != blank -%}
+          <div class="wyms-feature-card__paragraph rte">
+            {{ card.promo_description | metafield_tag }}
+          </div>
+        {%- endif -%}
+      </div>
+
+    </div>
+  {%- endfor -%}
+</div>
 
       <div class="wyms-features__pagination">
         <div class="wyms-features__pagination-inner">

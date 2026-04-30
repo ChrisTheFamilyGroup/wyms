@@ -4,6 +4,80 @@
   assign model_name = product.metafields.custom.model_name.value
   assign price      = product.price | money
   assign compare    = product.compare_at_price
+
+  assign card_variant = product.selected_or_first_available_variant
+
+  assign card_color = ''
+  assign card_color_mf = card_variant.metafields.shopify['color-pattern']
+  if card_color_mf == blank
+    assign card_color_mf = product.metafields.shopify['color-pattern']
+  endif
+  if card_color_mf != blank
+    assign card_color = card_color_mf | metafield_text: field: 'label' | strip
+    if card_color == blank
+      assign card_color = card_color_mf | metafield_text: field: 'name' | strip
+    endif
+  endif
+  if card_color == blank and card_color_mf != blank
+    assign card_color_val = card_color_mf.value
+    if card_color_mf.list?
+      assign card_color_val = card_color_val.first
+    endif
+    if card_color_val.label != blank
+      assign card_color = card_color_val.label | strip
+    elsif card_color_val.name != blank
+      assign card_color = card_color_val.name | strip
+    elsif card_color_val != blank
+      assign card_color = card_color_val | strip
+    endif
+  endif
+  if card_color == blank
+    for product_option in product.options_with_values
+      assign card_opt_str = ''
+      assign card_swatch_opts = product_option.values | map: 'swatch' | compact | size
+      if card_swatch_opts == 0
+        continue
+      endif
+      case product_option.position
+        when 1
+          assign card_opt_str = card_variant.option1 | strip
+        when 2
+          assign card_opt_str = card_variant.option2 | strip
+        when 3
+          assign card_opt_str = card_variant.option3 | strip
+      endcase
+      if card_opt_str == blank
+        continue
+      endif
+      for product_option_value in product_option.values
+        if product_option_value.name == card_opt_str
+          assign card_color = product_option_value.name | strip
+          break
+        endif
+      endfor
+      if card_color != blank
+        break
+      endif
+    endfor
+  endif
+  if card_color == blank
+    for product_option in product.options_with_values
+      assign opt_name_l = product_option.name | downcase | strip
+      if opt_name_l == 'color' or opt_name_l == 'colour' or opt_name_l == 'farbe'
+        case product_option.position
+          when 1
+            assign card_color = card_variant.option1 | default: '' | strip
+          when 2
+            assign card_color = card_variant.option2 | default: '' | strip
+          when 3
+            assign card_color = card_variant.option3 | default: '' | strip
+        endcase
+        break
+      endif
+    endfor
+  endif
+
+  assign card_color_line = card_color | default: product.title
 -%}
 
 <article class="wyms-product-card" data-product-id="{{ product.id }}">
@@ -68,7 +142,7 @@
         <div class="wyms-product-card__text-price">
 
           <div class="wyms-product-card__text">
-            <span class="wyms-product-card__title">{{ product.title }}</span>
+            <span class="wyms-product-card__title">{{ card_color_line }}</span>
             {%- if model_name -%}
               <span class="wyms-product-card__model">{{ model_name }}</span>
             {%- endif -%}

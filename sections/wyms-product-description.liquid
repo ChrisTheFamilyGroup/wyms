@@ -10,6 +10,79 @@
   assign faq_bg_val    = section.settings.faq_bg_custom    | default: section.settings.faq_bg    | default: '#FBFBFB'
   assign faq_q_val     = section.settings.faq_q_color_custom | default: section.settings.faq_q_color | default: '#191839'
   assign faq_a_val     = section.settings.faq_a_color_custom | default: section.settings.faq_a_color | default: '#414651'
+
+  # FAQ rich-text answers: replace literal tokens like {{ sku }} in the rich text (loop below).
+  assign faq_variant = product.selected_or_first_available_variant
+  assign faq_sku = faq_variant.sku | default: '' | strip
+  assign faq_barcode = faq_variant.barcode | default: '' | strip
+
+  assign faq_weight = ''
+  if faq_variant.weight != blank and faq_variant.weight_unit != blank
+    assign faq_weight = faq_variant.weight | weight_with_unit: faq_variant.weight_unit
+  endif
+
+  # Size: variant or product metafield (custom.product_size)
+  assign faq_size = faq_variant.metafields.custom.product_size.value | default: product.metafields.custom.product_size.value | default: '' | strip
+
+  # Color: category metafield shopify.color-pattern (often list.metaobject_reference; not always on variant in Liquid)
+  assign faq_color = ''
+  assign faq_color_mf = faq_variant.metafields.shopify['color-pattern']
+  if faq_color_mf == blank
+    assign faq_color_mf = product.metafields.shopify['color-pattern']
+  endif
+  if faq_color_mf != blank
+    assign faq_color = faq_color_mf | metafield_text: field: 'label' | strip
+    if faq_color == blank
+      assign faq_color = faq_color_mf | metafield_text: field: 'name' | strip
+    endif
+  endif
+  if faq_color == blank and faq_color_mf != blank
+    assign faq_color_val = faq_color_mf.value
+    if faq_color_mf.list?
+      assign faq_color_val = faq_color_val.first
+    endif
+    if faq_color_val.label != blank
+      assign faq_color = faq_color_val.label | strip
+    elsif faq_color_val.name != blank
+      assign faq_color = faq_color_val.name | strip
+    elsif faq_color_val != blank
+      assign faq_color = faq_color_val | strip
+    endif
+  endif
+  if faq_color == blank
+    for product_option in product.options_with_values
+      assign faq_swatch_opts = product_option.values | map: 'swatch' | compact | size
+      if faq_swatch_opts == 0
+        continue
+      endif
+      case product_option.position
+        when 1
+          assign faq_opt_pick = faq_variant.option1 | default: '' | strip
+        when 2
+          assign faq_opt_pick = faq_variant.option2 | default: '' | strip
+        when 3
+          assign faq_opt_pick = faq_variant.option3 | default: '' | strip
+        else
+          assign faq_opt_pick = ''
+      endcase
+      for product_option_value in product_option.values
+        if product_option_value.selected or product_option_value.name == faq_opt_pick
+          assign faq_color = product_option_value.name | strip
+          break
+        endif
+      endfor
+      if faq_color != blank
+        break
+      endif
+    endfor
+  endif
+
+  # FAQ token replacements insert into rendered rich text HTML — escape inserts only (not whole markup).
+  assign faq_t_sku = faq_sku | escape
+  assign faq_t_barcode = faq_barcode | escape
+  assign faq_t_color = faq_color | escape
+  assign faq_t_weight = faq_weight | escape
+  assign faq_t_size = faq_size | escape
 -%}
 
 {% comment %} {% if description_subtext != blank %} {% endcomment %}
@@ -47,7 +120,12 @@
               {%- for faq in faq_list -%}
                 {%- liquid
                   assign q = faq.question | default: faq.question.value
-                  assign a = faq.answer   | metafield_tag
+                  assign a = faq.answer | metafield_tag
+                  assign a = a | replace: '{{ sku }}', faq_t_sku
+                  assign a = a | replace: '{{ barcode }}', faq_t_barcode
+                  assign a = a | replace: '{{ color }}', faq_t_color
+                  assign a = a | replace: '{{ weight }}', faq_t_weight
+                  assign a = a | replace: '{{ size }}', faq_t_size
                 -%}
                 <div class="wyms-faq-item js-faq-item">
                   <button type="button" class="wyms-faq-trigger js-faq-trigger" aria-expanded="false">

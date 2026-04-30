@@ -397,7 +397,7 @@
   .product-title {
     color: var(--color-text-primary, #191839);
     font-family: var(--font-display, "Clash Grotesk");
-    font-size: 48px;
+    font-size: 48px !important;
     font-weight: 600;
     line-height: 60px;
     letter-spacing: -0.96px;
