@@ -138,11 +138,7 @@
   align-items: center;
 }
 
-.wyms-image-content__badge-img {
-  width: 115px;
-  height: 115px;
-  object-fit: contain;
-}
+
 
 @media screen and (max-width: 768px) {
   .wyms-image-content__frame {
@@ -297,7 +293,6 @@
 }
 
 .wyms-image-content__badge-wrapper { width: 180px; height: 180px; display: flex; justify-content: center; align-items: center; }
-.wyms-image-content__badge-img { width: 115px; height: 115px; object-fit: contain; }
 
 @media screen and (max-width: 768px) {
   .wyms-image-content__frame {
@@ -341,7 +336,7 @@
 @media screen and (max-width: 768px) {
   .wyms-image-content__frame {
     padding-top: var(--padding-top-mobile);
-    padding-bottom: var(--padding-bottom-mobile);
+    padding-bottom: 0 !important;
     padding-left: var(--padding-left-mobile);
     padding-right: var(--padding-right-mobile);
   }
@@ -375,7 +370,7 @@
 
   .wyms-image-content__text-group {
     padding-top: var(--text-p-top-mob);
-    padding-bottom: var(--text-p-bottom-mob);
+    padding-bottom: 0;
     padding-left: var(--text-p-left-mob);
     padding-right: var(--text-p-right-mob);
     box-sizing: border-box;

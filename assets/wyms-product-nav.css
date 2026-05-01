@@ -136,3 +136,19 @@
     display: none;
   }
 }
+
+
+
+@media screen and (max-width: 768px) {
+  .product-nav-sticky-wrapper {
+    padding: 0px 16px 16px 16px;
+    transition: padding-top 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .product-nav-sticky-wrapper.header-is-visible {
+  }
+
+  .product-nav-sticky-wrapper.header-is-hidden {
+    padding-top: 12px;
+  }
+}
