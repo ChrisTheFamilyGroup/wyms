@@ -324,7 +324,7 @@
           "type": "nav_link",
           "settings": {
             "title": "Funktionalität",
-            "link_id": "funktionalitat",
+            "link_id": "WymsFeaturesSection-0",
             "icon_normal": "shopify://shop_images/placeholder.svg",
             "icon_hover": "shopify://shop_images/placeholder_1623ed4d-7227-48c8-ba39-84d3f255d9cc.svg"
           }
@@ -342,7 +342,7 @@
           "type": "nav_link",
           "settings": {
             "title": "Ergonomie",
-            "link_id": "ergonomie",
+            "link_id": "WymsFeaturesSection-1",
             "icon_normal": "shopify://shop_images/heart.svg",
             "icon_hover": "shopify://shop_images/heart_1569dca2-3e22-423d-abeb-32ed3edf97c5.svg"
           }
