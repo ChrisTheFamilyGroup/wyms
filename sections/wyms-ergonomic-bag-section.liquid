@@ -1,0 +1,449 @@
+<div class="wyms-ergonomic-bag-section">
+  <div class="first-section" style="background-image: url('{{ section.settings.first_bg_image | image_url }}');">
+    <div class="page-width">
+      <div class="first-left-right-parts">
+        <div class="first-left-part">
+            <div class="main-image">
+            {% if section.settings.main_left_image != blank %}
+                    <img
+                          srcset="
+                          {%- if section.settings.main_left_image.width >= 165 -%}{{ section.settings.main_left_image | image_url: width: 165 }} 165w,{%- endif -%}
+                          {%- if section.settings.main_left_image.width >= 360 -%}{{ section.settings.main_left_image | image_url: width: 360 }} 360w,{%- endif -%}
+                          {%- if section.settings.main_left_image.width >= 533 -%}{{ section.settings.main_left_image | image_url: width: 533 }} 533w,{%- endif -%}
+                          {%- if section.settings.main_left_image.width >= 720 -%}{{ section.settings.main_left_image | image_url: width: 720 }} 720w,{%- endif -%}
+                          {%- if section.settings.main_left_image.width >= 940 -%}{{ section.settings.main_left_image | image_url: width: 940 }} 940w,{%- endif -%}
+                          {%- if section.settings.main_left_image.width >= 1066 -%}{{ section.settings.main_left_image | image_url: width: 1066 }} 1066w,{%- endif -%}
+                          {{ section.settings.main_left_image | image_url }} {{ section.settings.main_left_image.width }}w
+                          "
+                          src="{{ section.settings.main_left_image | image_url: width: 533 }}"
+                          alt="{{ section.settings.main_left_image.alt | escape }}"
+                          class="img-fluid main-left-img"
+                          loading="lazy"
+                          width="{{ section.settings.main_left_image.width }}"
+                          height="{{ section.settings.main_left_image.height }}"
+                    >
+                {% endif %}            
+
+            <div class="main-bag-buttons-wrap">
+            {% for block in section.blocks %}
+              {% if block.type == 'main_bag_btn' %}
+                <a class="main-bag-btn-wrap" href="{{ block.settings.bag_btn_link }}">
+                {% if block.settings.main_bag_btn != blank %}
+                    <img
+                          srcset="
+                          {%- if block.settings.main_bag_btn.width >= 165 -%}{{ block.settings.main_bag_btn | image_url: width: 165 }} 165w,{%- endif -%}
+                          {%- if block.settings.main_bag_btn.width >= 360 -%}{{ block.settings.main_bag_btn | image_url: width: 360 }} 360w,{%- endif -%}
+                          {%- if block.settings.main_bag_btn.width >= 533 -%}{{ block.settings.main_bag_btn | image_url: width: 533 }} 533w,{%- endif -%}
+                          {%- if block.settings.main_bag_btn.width >= 720 -%}{{ block.settings.main_bag_btn | image_url: width: 720 }} 720w,{%- endif -%}
+                          {%- if block.settings.main_bag_btn.width >= 940 -%}{{ block.settings.main_bag_btn | image_url: width: 940 }} 940w,{%- endif -%}
+                          {%- if block.settings.main_bag_btn.width >= 1066 -%}{{ block.settings.main_bag_btn | image_url: width: 1066 }} 1066w,{%- endif -%}
+                          {{ block.settings.main_bag_btn | image_url }} {{ block.settings.main_bag_btn.width }}w
+                          "
+                          src="{{ block.settings.main_bag_btn | image_url: width: 533 }}"
+                          alt="{{ block.settings.main_bag_btn.alt | escape }}"
+                          class="img-fluid main-bag-btn {{forloop.index}}-btn"
+                          loading="lazy"
+                          width="{{ block.settings.main_bag_btn.width }}"
+                          height="{{ block.settings.main_bag_btn.height }}"
+                    >
+                {% endif %}
+            </a>
+            {% endif %}
+            {% endfor %}
+
+            </div>
+            </div>
+        </div>
+
+        <div class="right-content-part">
+          <div class="right-main-heading">
+            {{ section.settings.right_main_heading }}
+          </div>
+            <div class="right-main-subheading">
+            {{ section.settings.right_main_subheading }}
+          </div>
+          <div class="right-main-dec">
+            {{ section.settings.right_main_dec }}
+          </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="sticky-btns-wrap">
+  <div class="sec-sticky-section">
+    {% for block in section.blocks %}
+      {% if block.type == 'main_btns' %}
+          <a class="sec-btn-wrap" href="{{ block.settings.sec_btn_link }}">
+          {% if block.settings.sec_btn_icon != blank %}
+              <img
+                    srcset="
+                    {%- if block.settings.sec_btn_icon.width >= 165 -%}{{ block.settings.sec_btn_icon | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if block.settings.sec_btn_icon.width >= 360 -%}{{ block.settings.sec_btn_icon | image_url: width: 360 }} 360w,{%- endif -%}
+                    {%- if block.settings.sec_btn_icon.width >= 533 -%}{{ block.settings.sec_btn_icon | image_url: width: 533 }} 533w,{%- endif -%}
+                    {%- if block.settings.sec_btn_icon.width >= 720 -%}{{ block.settings.sec_btn_icon | image_url: width: 720 }} 720w,{%- endif -%}
+                    {%- if block.settings.sec_btn_icon.width >= 940 -%}{{ block.settings.sec_btn_icon | image_url: width: 940 }} 940w,{%- endif -%}
+                    {%- if block.settings.sec_btn_icon.width >= 1066 -%}{{ block.settings.sec_btn_icon | image_url: width: 1066 }} 1066w,{%- endif -%}
+                    {{ block.settings.sec_btn_icon | image_url }} {{ block.settings.sec_btn_icon.width }}w
+                    "
+                    src="{{ block.settings.sec_btn_icon | image_url: width: 533 }}"
+                    alt="{{ block.settings.sec_btn_icon.alt | escape }}"
+                    class="img-fluid sec-btn-icon"
+                    loading="lazy"
+                    width="{{ block.settings.sec_btn_icon.width }}"
+                    height="{{ block.settings.sec_btn_icon.height }}"
+              >
+          {% endif %}
+          <div class="sec-btn-text">
+             {{ block.settings.sec_btn_text }}
+            </div>
+      </a>
+      {% endif %}
+      {% endfor %}
+  </div>
+  </div>
+</div>
+
+
+
+<style>
+
+    .wyms-ergonomic-bag-section .first-section { padding-top: {{ section.settings.padding_top_desktop }}px; padding-bottom: {{ section.settings.padding_bottom_desktop }}px; }
+    .wyms-ergonomic-bag-section { overflow: visible !important; }
+    .wyms-ergonomic-bag-section img.img-fluid { height: auto; width: 100%; display: block; }
+    .wyms-ergonomic-bag-section .first-left-part, .wyms-ergonomic-bag-section .right-content-part { width: 50%; }
+    .wyms-ergonomic-bag-section .first-section, .wyms-ergonomic-bag-section .main-image { background-size: cover; background-position: center; background-repeat: no-repeat; }
+    .wyms-ergonomic-bag-section img.img-fluid.main-bag-btn { height: 50px; width: 50px; object-fit: contain; }
+    .wyms-ergonomic-bag-section .first-left-right-parts { display: flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: -5%; padding-bottom: 96px; }
+    .wyms-ergonomic-bag-section .right-main-heading { font-family: var(--font-family-display); color: #191839; font-size: 48px; font-style: normal; font-weight: 600; line-height: 60px; letter-spacing: -0.96px; }
+    .wyms-ergonomic-bag-section .right-main-subheading { font-family: var(--font-family-highlights); font-size: 24px; font-weight: 400; line-height: 32px; padding-top: 24px; padding-bottom: 24px; color: #191839; }
+    .wyms-ergonomic-bag-section .main-image { position: relative; }
+    .wyms-ergonomic-bag-section .main-bag-btn-wrap img { transition: transform 0.3s ease; }
+    .wyms-ergonomic-bag-section .main-bag-btn-wrap img:hover { transform: scale(1.09) }
+    .main-bag-buttons-wrap .main-bag-btn-wrap:first-child img.main-bag-btn { position: absolute; top: 26%; left: 36%; }
+    .main-bag-buttons-wrap .main-bag-btn-wrap:nth-child(2) img.main-bag-btn { position: absolute; left: 59%; top: 42%; }
+    .main-bag-buttons-wrap .main-bag-btn-wrap:nth-child(3) img.main-bag-btn { position: absolute; left: 28%; top: 54%; }
+    .main-bag-buttons-wrap .main-bag-btn-wrap:nth-child(4) img.main-bag-btn { position: absolute; left: 57%; top: 71%; }
+    .main-bag-buttons-wrap .main-bag-btn-wrap:nth-child(5) img.main-bag-btn { position: absolute; left: 41%; top: 65%; }
+    .wyms-ergonomic-bag-section img.img-fluid.sec-btn-icon { height: 40px; width: 40px; }
+    .wyms-ergonomic-bag-section a.sec-btn-wrap { display: flex; align-items: center; gap: 6px; color: #251F18; text-decoration: unset; background: #EFEBE6; padding: 10px 14px; border-radius: 9999px; transition: all 0.4s ease; font-family: var(--font-family-body, "Inter"); font-size: 18px; font-weight: 600; line-height: 28px; }
+    .wyms-ergonomic-bag-section .sec-sticky-section { display: flex; justify-content: center; gap: 8px; }
+    .wyms-ergonomic-bag-section .sticky-btns-wrap { display: none; padding-top: 16px; padding-bottom: 16px; background: #fff; position: -webkit-sticky; position: sticky; top: 10%; z-index: 2; margin-top: 0; }
+    .wyms-ergonomic-bag-section .sticky-btns-wrap.is-sticky { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .wyms-ergonomic-bag-section a.sec-btn-wrap:hover { background: #00103f; color: #fff; }
+    .wyms-ergonomic-bag-section .right-main-dec { font-family: var(--font-family-body, "Inter"); font-size: 16px; font-weight: 400; line-height: 24px; color: #191839; }
+
+    html.js.page-test-par,
+    html.js.page-test-par body,
+    html.js.page-test-par main,
+    html.js.page-test-par .main-content { overflow: unset !important; }
+    .fix-div { position: fixed !important; width: 100%; }
+
+
+
+
+@media (max-width: 1599.98px) {
+  .wyms-ergonomic-bag-section .first-section { padding-top: {{ section.settings.padding_top_laptop }}px; padding-bottom: {{ section.settings.padding_bottom_laptop }}px; }
+}
+
+@media (max-width: 991.98px) { 
+  .wyms-ergonomic-bag-section .first-section { padding-top: {{ section.settings.padding_top_tablet }}px; padding-bottom: {{ section.settings.padding_bottom_tablet }}px; }
+  .wyms-ergonomic-bag-section img.img-fluid.main-bag-btn { height: 43px; width: 43px; }
+}
+
+@media (max-width: 767.98px) {
+  .wyms-ergonomic-bag-section .first-section { padding-top: {{ section.settings.padding_top_mobile }}px; padding-bottom: {{ section.settings.padding_bottom_mobile }}px; }
+  .wyms-ergonomic-bag-section .right-main-heading { font-size: 30px; line-height: 44px; }
+  .wyms-ergonomic-bag-section .right-main-subheading { padding-top: 20px; }
+  .wyms-ergonomic-bag-section .first-left-right-parts { flex-direction: column; margin-bottom: 0%; }
+  .wyms-ergonomic-bag-section .first-left-part, .wyms-ergonomic-bag-section .right-content-part { width: 100%; }
+  .wyms-ergonomic-bag-section .right-content-part { order: -1; }
+  .wyms-ergonomic-bag-section img.img-fluid.main-bag-btn { height: auto; width: 28px; }
+
+} 
+
+@media (max-width: 575.98px) { 
+  .main-bag-buttons-wrap .main-bag-btn-wrap:nth-child(2) img.main-bag-btn { left: 65%; top: 38%; }
+  .main-bag-buttons-wrap .main-bag-btn-wrap:nth-child(5) img.main-bag-btn { left: 36%; top: 74%; }
+  .main-bag-buttons-wrap .main-bag-btn-wrap:nth-child(3) img.main-bag-btn { left: 26%; }
+  .main-bag-buttons-wrap .main-bag-btn-wrap:nth-child(4) img.main-bag-btn { left: 62%; top: 67%; }
+}
+
+
+</style>
+
+
+
+
+{% comment %} <script>
+document.addEventListener('DOMContentLoaded', function () {
+  var stickyBar = document.querySelector('.sticky-btns-wrap');
+  if (!stickyBar) return;
+
+  function setStickyHeight() {
+    var h = stickyBar.offsetHeight;
+    document.documentElement.style.setProperty('--sticky-bar-height', h + 'px');
+    document.querySelectorAll('#section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five').forEach(function(el) {
+      el.style.scrollMarginTop = h + 'px';
+    });
+  }
+  setStickyHeight();
+  window.addEventListener('resize', setStickyHeight);
+
+  var sentinel = document.createElement('div');
+  sentinel.style.cssText = 'position:absolute;top:0;left:0;height:1px;width:100%;pointer-events:none;';
+  stickyBar.parentNode.insertBefore(sentinel, stickyBar);
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) {
+        stickyBar.classList.add('is-sticky');
+      } else {
+        stickyBar.classList.remove('is-sticky');
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px' });
+
+  observer.observe(sentinel);
+
+  document.querySelectorAll('a[href^="#section-block-"]').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.getElementById(this.getAttribute('href').replace('#', ''));
+      if (!target) return;
+      var offset = target.getBoundingClientRect().top + window.pageYOffset - stickyBar.offsetHeight;
+      window.scrollTo({ top: offset, behavior: 'smooth' });
+    });
+  });
+});
+</script> {% endcomment %}
+
+
+
+
+{% comment %} <script>
+document.addEventListener('DOMContentLoaded', function () {
+  
+  var stickyBar = document.querySelector('.sticky-btns-wrap');
+  
+  function setStickyHeight() {
+    if (stickyBar) {
+      var h = stickyBar.offsetHeight;
+      document.documentElement.style.setProperty('--sticky-bar-height', h + 'px');
+    }
+  }
+  
+  setStickyHeight();
+  window.addEventListener('resize', setStickyHeight);
+
+  document.querySelectorAll('a[href^="#section-block-"]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var targetId = this.getAttribute('href').replace('#', '');
+      var target = document.getElementById(targetId);
+      if (!target) return;
+
+      var stickyHeight = stickyBar ? stickyBar.offsetHeight : 0;
+      var targetTop = target.getBoundingClientRect().top + window.pageYOffset - stickyHeight;
+
+      window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    });
+  });
+
+});
+</script> {% endcomment %}
+
+
+{% comment %} <script>
+  const section = document.querySelector('.sticky-btns-wrap');
+const target = document.querySelector('.wyms-ergonomic-content-with-bg');
+
+const placeholder = document.createElement('div');
+let offsetTop = section.offsetTop;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY >= offsetTop) {
+
+    if (!section.classList.contains('fix-div')) {
+      // add placeholder to prevent jump
+      placeholder.style.height = section.offsetHeight + 'px';
+      section.parentNode.insertBefore(placeholder, section);
+
+      section.classList.add('fix-div');
+      target.classList.add('extra-margin'); // 👈 add class
+    }
+
+  } else {
+
+    if (section.classList.contains('fix-div')) {
+      section.classList.remove('fix-div');
+      target.classList.remove('extra-margin'); // 👈 remove class
+
+      if (placeholder.parentNode) {
+        placeholder.parentNode.removeChild(placeholder);
+      }
+    }
+
+  }
+});
+
+// update on resize
+window.addEventListener('resize', () => {
+  offsetTop = section.offsetTop;
+});
+</script> {% endcomment %}
+
+
+{% schema %}
+{
+  "name": "Bag Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "first_bg_image",
+      "label": "First BG Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_left_image",
+      "label": "Add Left IMG"
+    },
+    {
+      "type": "text",
+      "id": "right_main_heading",
+      "label": "Add Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "right_main_subheading",
+      "label": "Add Sub-Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "right_main_dec",
+      "label": "Add Description"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "default": 110,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "default": 110,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Laptop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_laptop",
+      "label": "Padding Top (Laptop)",
+      "default": 80,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_laptop",
+      "label": "Padding Bottom (Laptop)",
+      "default": 80,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_tablet",
+      "label": "Padding Top (Tablet)",
+      "default": 60,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_tablet",
+      "label": "Padding Bottom (Tablet)",
+      "default": 60,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "default": 40,
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "default": 40,
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "main_bag_btn",
+      "name": "Main Bag Btn",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "main_bag_btn",
+          "label": "Bag Image"
+        },
+        {
+          "type": "url",
+          "id": "bag_btn_link",
+          "label": "IMG Button Link"
+        },
+      ]
+    },
+  ],
+  "presets": [
+    {
+      "name": "Bag Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

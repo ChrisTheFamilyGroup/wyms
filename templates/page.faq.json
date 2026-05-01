@@ -1,0 +1,286 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "wyms_collection_nav_6wQgBp": {
+      "type": "wyms-collection-nav",
+      "name": "Collection Navigation",
+      "settings": {
+        "title": "Häufige Fragen",
+        "description": "<p>Wir freuen uns über Ihr Interesse an WYMS! Wir haben die häufigsten Fragen, die Eltern uns stellen,<br> gesammelt, um die Dinge einfach und klar zu machen.</p>\n<p>Und wenn Sie weiterhin Hilfe benötigen, ist unser Support-Team immer nur eine E-Mail entfernt.</p>",
+        "blob_left_desktop": "shopify://shop_images/Vector_ea21626b-09bf-4744-acbf-e19ed3b9de9e.png",
+        "blob_left_wide": "shopify://shop_images/Vector_013a4182-b149-480f-b249-05bb2c73bc7a.png",
+        "blob_left_mobile": "shopify://shop_images/Vector_05bb1be3-f446-43ef-b9cd-f539889c9a21.png",
+        "blob_right_desktop": "shopify://shop_images/Vector_d1399891-3e62-49d0-bde8-adcb39326339.png",
+        "blob_right_wide": "shopify://shop_images/Vector_0e430ee7-ae78-41eb-ac76-998233fb5ef9.png",
+        "blob_right_mobile": "shopify://shop_images/Vector_02a83462-d364-4655-8e02-2022ba959547.png"
+      }
+    },
+    "sticky_faq_section_xiGCif": {
+      "type": "wyms-sticky-faq-section",
+      "blocks": {
+        "category_iW6e6W": {
+          "type": "category",
+          "settings": {
+            "title": "Bestellung"
+          }
+        },
+        "faq_EHFNag": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_iJatxk": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_PNGFpT": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_4CqeNL": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_9my8x8": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "category_BWw94M": {
+          "type": "category",
+          "settings": {
+            "title": "Pflege"
+          }
+        },
+        "faq_tpWh4C": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_tnVU4t": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_K9FwQc": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_mAMaTb": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_A8kTDf": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "category_XVzzMm": {
+          "type": "category",
+          "settings": {
+            "title": "Produktion"
+          }
+        },
+        "faq_3ELxEh": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_zaWBr6": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_wH6WBB": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_xbb48F": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_kReXbB": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "category_A7mWda": {
+          "type": "category",
+          "settings": {
+            "title": "Bestellung"
+          }
+        },
+        "faq_PEaUtA": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_iGfRM9": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_Jkhyni": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_njDH8p": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        },
+        "faq_U3Y3hc": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a free trial available?",
+            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "category_iW6e6W",
+        "faq_EHFNag",
+        "faq_iJatxk",
+        "faq_PNGFpT",
+        "faq_4CqeNL",
+        "faq_9my8x8",
+        "category_BWw94M",
+        "faq_tpWh4C",
+        "faq_tnVU4t",
+        "faq_K9FwQc",
+        "faq_mAMaTb",
+        "faq_A8kTDf",
+        "category_XVzzMm",
+        "faq_3ELxEh",
+        "faq_zaWBr6",
+        "faq_wH6WBB",
+        "faq_xbb48F",
+        "faq_kReXbB",
+        "category_A7mWda",
+        "faq_PEaUtA",
+        "faq_iGfRM9",
+        "faq_Jkhyni",
+        "faq_njDH8p",
+        "faq_U3Y3hc"
+      ],
+      "name": "Main Sticky FAQ",
+      "settings": {
+        "padding_top_desktop": 95,
+        "padding_bottom_desktop": 95,
+        "padding_top_laptop": 80,
+        "padding_bottom_laptop": 80,
+        "padding_top_tablet": 70,
+        "padding_bottom_tablet": 70,
+        "padding_top_mobile": 65,
+        "padding_bottom_mobile": 65
+      }
+    }
+  },
+  "order": [
+    "main",
+    "wyms_collection_nav_6wQgBp",
+    "sticky_faq_section_xiGCif"
+  ]
+}

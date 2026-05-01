@@ -1,0 +1,330 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "ergonomic_hero_banner_YyQ9tU": {
+      "type": "wyms-ergonomic-hero-banner",
+      "blocks": {
+        "section_list_eD63RL": {
+          "type": "section-list",
+          "settings": {
+            "reverse_layout": false,
+            "sec_heading": "Gemacht für Bewegung. Nicht für Stillstand",
+            "sec_dec": "<p>Ergonomie</p>",
+            "sec_btn": "",
+            "sec_btn_mobile": "",
+            "sec_btn_link": "",
+            "sec_btn_bg": "#00103f",
+            "sec_btn_text": "#ffffff",
+            "featured_image": "shopify://shop_images/Image_container.png"
+          }
+        }
+      },
+      "block_order": [
+        "section_list_eD63RL"
+      ],
+      "name": "Ergonomic Hero Banner",
+      "settings": {
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 100,
+        "padding_top_laptop": 80,
+        "padding_bottom_laptop": 80,
+        "padding_top_tablet": 60,
+        "padding_bottom_tablet": 60,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "ergonomic_bag_section_zLgdcq": {
+      "type": "wyms-ergonomic-bag-section",
+      "blocks": {
+        "main_bag_btn_Jzqhjh": {
+          "type": "main_bag_btn",
+          "settings": {
+            "main_bag_btn": "shopify://shop_images/Numbers.png",
+            "bag_btn_link": "#section-block-one"
+          }
+        },
+        "main_bag_btn_RB9YUP": {
+          "type": "main_bag_btn",
+          "settings": {
+            "main_bag_btn": "shopify://shop_images/Numbers-1.png",
+            "bag_btn_link": "#section-block-two"
+          }
+        },
+        "main_bag_btn_aBnXXT": {
+          "type": "main_bag_btn",
+          "settings": {
+            "main_bag_btn": "shopify://shop_images/Numbers-2.png",
+            "bag_btn_link": "#section-block-three"
+          }
+        },
+        "main_bag_btn_XNJVXK": {
+          "type": "main_bag_btn",
+          "settings": {
+            "main_bag_btn": "shopify://shop_images/Numbers-3.png",
+            "bag_btn_link": "#section-block-four"
+          }
+        },
+        "main_bag_btn_whnTxX": {
+          "type": "main_bag_btn",
+          "settings": {
+            "main_bag_btn": "shopify://shop_images/Numbers-4.png",
+            "bag_btn_link": "#section-block-five"
+          }
+        }
+      },
+      "block_order": [
+        "main_bag_btn_Jzqhjh",
+        "main_bag_btn_RB9YUP",
+        "main_bag_btn_aBnXXT",
+        "main_bag_btn_XNJVXK",
+        "main_bag_btn_whnTxX"
+      ],
+      "name": "Bag Section",
+      "settings": {
+        "first_bg_image": "shopify://shop_images/194.png",
+        "main_left_image": "shopify://shop_images/Placeholder_Image_b19ae8d2-384d-4b75-96a2-3267a525a2e0.png",
+        "right_main_heading": "Wyms Balance System",
+        "right_main_subheading": "Ergonomie, die mitwächst und den Rücken spürbar entlastet",
+        "right_main_dec": "Das Wyms Balance System verbindet mitwachsende Passform, gezielte Gewichtsführung und echte Bewegungsfreiheit, damit schwere Ranzen nicht drücken, sondern getragen werden können – und wachsende Rücken spürbar entlastet werden.",
+        "padding_top_desktop": 110,
+        "padding_bottom_desktop": 110,
+        "padding_top_laptop": 80,
+        "padding_bottom_laptop": 80,
+        "padding_top_tablet": 60,
+        "padding_bottom_tablet": 60,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "stickey_btns_section_GHwdgz": {
+      "type": "wyms-sticky-btns-section",
+      "blocks": {
+        "main_btns_mc7XJ7": {
+          "type": "main_btns",
+          "settings": {
+            "sec_btn_text": " Adaptive Fit Control",
+            "sec_btn_icon": "shopify://shop_images/Icon_83e8da78-726b-47b9-86d0-89d6968fa351.svg",
+            "sec_btn_link": "#section-block-one"
+          }
+        },
+        "main_btns_tRetHY": {
+          "type": "main_btns",
+          "settings": {
+            "sec_btn_text": "Wyms ExoFrame™",
+            "sec_btn_icon": "shopify://shop_images/icon_88e58f7c-48bf-48ca-81f4-10b34008b15e.svg",
+            "sec_btn_link": "#section-block-two"
+          }
+        },
+        "main_btns_8MaiVf": {
+          "type": "main_btns",
+          "settings": {
+            "sec_btn_text": "Pelvic Support Wings",
+            "sec_btn_icon": "shopify://shop_images/Icon_a3d2fec3-31cf-4ef4-815f-f45f5fcf1f21.svg",
+            "sec_btn_link": "#section-block-three"
+          }
+        },
+        "main_btns_7AmVRt": {
+          "type": "main_btns",
+          "settings": {
+            "sec_btn_text": "FreeMove Geometry",
+            "sec_btn_icon": "shopify://shop_images/Icon_82572094-89de-4b30-af59-f531f0f74f16.svg",
+            "sec_btn_link": "#section-block-four"
+          }
+        },
+        "main_btns_EdcMWH": {
+          "type": "main_btns",
+          "settings": {
+            "sec_btn_text": "Comfort Contact Back",
+            "sec_btn_icon": "shopify://shop_images/Icon_e4614434-1e1c-4a49-9907-dc46b2f0906e.svg",
+            "sec_btn_link": "#section-block-five"
+          }
+        }
+      },
+      "block_order": [
+        "main_btns_mc7XJ7",
+        "main_btns_tRetHY",
+        "main_btns_8MaiVf",
+        "main_btns_7AmVRt",
+        "main_btns_EdcMWH"
+      ],
+      "name": "Sticky buttons",
+      "settings": {
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "padding_top_laptop": 0,
+        "padding_bottom_laptop": 0,
+        "padding_top_tablet": 0,
+        "padding_bottom_tablet": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "ergonomic_content_with_bg_hH9N6F": {
+      "type": "wyms-ergonomic-content-with-bg",
+      "blocks": {
+        "section_list_ETfN3G": {
+          "type": "section-list",
+          "settings": {
+            "reverse_layout": false,
+            "sec_heading": "Adaptive Fit Control",
+            "sec_sub_heading": "Stufenlos. Mitwachsend. Immer passend. Homogene Gewichtsverteilung – unabhängig von Körpergröße.",
+            "sec_dec": "<p>Das Wyms Tragesystem lässt sich stufenlos in der Höhe verstellen und passt sich exakt an die Rückenlänge des Kindes an.</p>\n<p>Besonders entscheidend:  Die Upper-Load-Control wächst mit. So bleibt das Gewicht in jeder Größe nah am Körper und wird gleichmäßig verteilt – nicht nur am Anfang, sondern über Jahre hinweg.</p>",
+            "sec_btn": "Zur Höheneinstellung",
+            "sec_btn_bg": "#242352",
+            "sec_btn_text": "#ffffff",
+            "featured_image": "shopify://shop_images/Placeholder_Image_b47c9e71-4e96-4478-a10d-e66ffe48c961.png",
+            "last_img": "shopify://shop_images/Vector_49592d17-6dab-47b1-9499-0446b9d31e51.png",
+            "img_text": "1",
+            "img_text_color": "#c3c3c3"
+          }
+        },
+        "section_list_9eVxVE": {
+          "type": "section-list",
+          "settings": {
+            "reverse_layout": true,
+            "sec_heading": "Wyms ExoFrame™",
+            "sec_sub_heading": "Stabilität, die trägt – nicht belastet.  <br>Mehr Stabilität. Weniger Belastung für  Schultern und Rücken.",
+            "sec_dec": "<p>Im Inneren des Ranzens sorgt ein ExoFrame-Skelett aus stabilen Rahmenstrukturen und gezielten Verstärkungspunkten für die kontrollierte Führung des Gewichts.</p>\n<p>Das Gewicht wird vom Rücken weg und gezielt in Richtung Becken geleitet. So werden Schultern und Wirbelsäule spürbar entlastet – insbesondere bei hohem Gewicht</p>",
+            "sec_btn": "",
+            "sec_btn_bg": "#00103f",
+            "sec_btn_text": "#ffffff",
+            "featured_image": "shopify://shop_images/Placeholder_Image_363ff31a-81ce-4c64-af6a-12606747b5dd.png",
+            "last_img": "shopify://shop_images/Vector_cd210ad3-4f71-4879-a9ca-25e34d59442f.png",
+            "img_text": "2",
+            "img_text_color": "#d0cff8"
+          }
+        },
+        "section_list_N3ayD6": {
+          "type": "section-list",
+          "settings": {
+            "reverse_layout": false,
+            "sec_heading": "Pelvic Support Wings",
+            "sec_sub_heading": "Das Becken trägt. Nicht die Schultern. <br>Spürbare Entlastung der Schultern. Mehr Stabilität beim Gehen, Rennen und Toben",
+            "sec_dec": "<p>Großflächige, ergonomisch geformte Beckenflossen übernehmen einen Großteil des Gewichts und leiten es direkt in den stabilsten Bereich des Körpers.</p>\n<p>Sie sitzen nah, ohne einzuengen, und sorgen für sicheren Halt – auch in Bewegung.</p>",
+            "sec_btn": "",
+            "sec_btn_bg": "#00103f",
+            "sec_btn_text": "#ffffff",
+            "featured_image": "shopify://shop_images/Placeholder_Image_38c1a71b-c891-4bf5-b154-828d24bc2fad.png",
+            "last_img": "shopify://shop_images/Vector_8da1853b-0ec5-473d-9913-9718b8fcc43b.png",
+            "img_text": "3",
+            "img_text_color": "#badf04"
+          }
+        },
+        "section_list_EQJQrg": {
+          "type": "section-list",
+          "settings": {
+            "reverse_layout": true,
+            "sec_heading": "FreeMove Geometry",
+            "sec_sub_heading": "Bewegung bleibt Bewegung. <br> Natürliches Laufen, Drehen, Spielen – auch mit Ranzen.",
+            "sec_dec": "<p>Die besondere Form des Ranzens,die nach innen geführten Schulterträger  und den schnellschließenden Brustgurt ermöglichen volle Bewegungsfreiheit für Arme und Oberkörper.</p>\n<p>Nichts zieht nach außen. <br>Nichts blockiert. <br>Der Ranzen bewegt sich mit – nicht gegen das Kind.</p>",
+            "sec_btn": "",
+            "sec_btn_bg": "#00103f",
+            "sec_btn_text": "#ffffff",
+            "featured_image": "shopify://shop_images/Placeholder_Image_e88cee6b-18b0-49bd-a221-e88b0ead8a7c.png",
+            "last_img": "shopify://shop_images/Vector_76001e59-b75a-4a9f-bd83-cad3d7c61d9e.png",
+            "img_text": "4",
+            "img_text_color": "#64033c"
+          }
+        },
+        "section_list_ECVGBG": {
+          "type": "section-list",
+          "settings": {
+            "reverse_layout": false,
+            "sec_heading": "Comfort Contact Back",
+            "sec_sub_heading": "Flächig tragen statt punktuell drücken.  <br>Weniger Druckpunkte. <br>Mehr Tragekomfort – auch über längere Zeit.",
+            "sec_dec": "<p>Der gepolsterte Kontaktrücken liegt vollflächig am Rücken an. So können auch höhere Gewichte gleichmäßig über die gesamte Rückenfläche verteilt werden.</p>\n<p>Für spürbaren Tragekomfort – auch über längere Zeit.</p>",
+            "sec_btn": "",
+            "sec_btn_bg": "#00103f",
+            "sec_btn_text": "#ffffff",
+            "featured_image": "shopify://shop_images/Placeholder_Image_cfff652e-7d1e-4f24-b5f8-2df5403368e4.png",
+            "last_img": "shopify://shop_images/Vector_8767fa5c-897e-4bd2-a87f-d4203680778b.png",
+            "img_text": "5",
+            "img_text_color": "#00380b"
+          }
+        }
+      },
+      "block_order": [
+        "section_list_ETfN3G",
+        "section_list_9eVxVE",
+        "section_list_N3ayD6",
+        "section_list_EQJQrg",
+        "section_list_ECVGBG"
+      ],
+      "name": "Content with BG Section",
+      "settings": {
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "padding_top_laptop": 0,
+        "padding_bottom_laptop": 0,
+        "padding_top_tablet": 0,
+        "padding_bottom_tablet": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ergonomic_hero_banner_YyQ9tU",
+    "ergonomic_bag_section_zLgdcq",
+    "stickey_btns_section_GHwdgz",
+    "ergonomic_content_with_bg_hH9N6F"
+  ]
+}

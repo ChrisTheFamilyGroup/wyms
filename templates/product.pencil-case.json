@@ -333,7 +333,7 @@
           "type": "nav_link",
           "settings": {
             "title": "Unsere Highlights",
-            "link_id": "carousel-template--28650630578503__wyms_carousel_of_featured_products_TzUjjY",
+            "link_id": "wyms-carousel-section",
             "icon_normal": "shopify://shop_images/triangle.svg",
             "icon_hover": "shopify://shop_images/triangle_a9675dfb-49d8-4190-80af-e0da2539c928.svg"
           }
@@ -351,6 +351,7 @@
       "type": "wyms-product-features",
       "name": "WYMS Product Features",
       "settings": {
+        "feature_index": 0,
         "features_metaobject": "funktionalitat-1"
       }
     },

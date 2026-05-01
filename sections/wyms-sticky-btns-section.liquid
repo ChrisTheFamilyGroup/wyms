@@ -1,0 +1,382 @@
+{%- comment -%}
+  Horizontal sticky CTA bar; pins below the header while scrolling until the footer.
+{%- endcomment -%}
+
+<div class="wyms-sticky-btns-section">
+  <div
+    id="StickyBtnsBar-{{ section.id }}"
+    class="wyms-sticky-btns-section__bar"
+    data-wyms-sticky-btns-bar
+  >
+    <div class="wyms-sticky-btns-section__inner">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'main_btns' -%}
+          <a
+            class="wyms-sticky-btns-section__link"
+            href="{{ block.settings.sec_btn_link | default: '#' }}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.sec_btn_icon != blank -%}
+              <img
+                src="{{ block.settings.sec_btn_icon | image_url: width: 96 }}"
+                alt="{{ block.settings.sec_btn_icon.alt | escape }}"
+                class="img-fluid wyms-sticky-btns-section__icon"
+                loading="lazy"
+                width="{{ block.settings.sec_btn_icon.width }}"
+                height="{{ block.settings.sec_btn_icon.height }}"
+              >
+            {%- endif -%}
+            {%- if block.settings.sec_btn_text != blank -%}
+              <span class="wyms-sticky-btns-section__label">{{ block.settings.sec_btn_text }}</span>
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  #shopify-section-{{ section.id }} .wyms-sticky-btns-section {
+    position: relative;
+    padding-top: {{ section.settings.padding_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+
+  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+    border-bottom: 1px solid #e2dbd3;
+  }
+
+  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar.is-fixed {
+    position: fixed;
+    top: 11%;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: transparent !important;
+    border-bottom: unset !important;
+  }
+
+  #shopify-section-{{ section.id }} .wyms-sticky-btns-section.has-placeholder {
+    padding-bottom: var(--sticky-bar-height, 72px);
+  }
+
+  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__inner {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__icon {
+    height: 20px;
+    width: 20px;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #191839;
+    text-decoration: none;
+    background: #efebe6;
+    padding: 10px 14px;
+    border-radius: 9999px;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    font-family: var(--font-family-body, 'Inter', sans-serif);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+  }
+
+  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__label {
+    color: #191839;
+    font-family: var(--font-family-body, 'Inter', sans-serif);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__link:hover {
+    background: #00103f;
+    color: #fff;
+  }
+
+  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__link:hover .wyms-sticky-btns-section__label {
+    color: #fff;
+  }
+
+  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__link:hover .wyms-sticky-btns-section__icon {
+    filter: brightness(0) saturate(100%) invert(93%) sepia(8%) saturate(287%) hue-rotate(339deg) brightness(103%) contrast(90%);
+  }
+
+  @media (max-width: 1599.98px) {
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section {
+      padding-top: {{ section.settings.padding_top_laptop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_laptop }}px;
+    }
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar.is-fixed {
+      top: 12%;
+    }
+  }
+
+  @media (max-width: 1499.98px) {
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar.is-fixed {
+      top: 13%;
+    }
+  }
+
+  @media (max-width: 1299.98px) {
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar.is-fixed {
+      top: 14%;
+    }
+  }
+
+  @media (max-width: 1199.98px) {
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__label {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 1024.98px) {
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section {
+      padding-top: {{ section.settings.padding_top_tablet }}px;
+      padding-bottom: {{ section.settings.padding_bottom_tablet }}px;
+    }
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__label {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__inner {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 16px;
+      gap: 8px;
+      justify-content: flex-start;
+    }
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__inner::-webkit-scrollbar {
+      display: none;
+    }
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__link {
+      flex-shrink: 0;
+      gap: 4px;
+      font-size: 14px;
+      padding: 10px 14px;
+    }
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__icon {
+      height: 15px;
+      width: 15px;
+    }
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__label {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 450.98px) {
+    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar.is-fixed {
+      top: 14%;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById('shopify-section-{{ section.id }}');
+    if (!root) return;
+
+    var wrap = root.querySelector('[data-wyms-sticky-btns-bar]');
+    var section = root.querySelector('.wyms-sticky-btns-section');
+    if (!wrap || !section) return;
+
+    function headerOffset() {
+      var h = parseFloat(window.getComputedStyle(document.body).getPropertyValue('--header-group-height'));
+      return Number.isFinite(h) && h > 0 ? h : 104;
+    }
+
+    var headerHeight = headerOffset();
+    var triggerY = 0;
+
+    function init() {
+      headerHeight = headerOffset();
+      var rect = section.getBoundingClientRect();
+      triggerY = rect.top + window.scrollY - headerHeight;
+      section.style.setProperty('--sticky-bar-height', wrap.offsetHeight + 'px');
+    }
+
+    function onScroll() {
+      var footer = document.querySelector('footer') || document.querySelector('.footer');
+      var footerTop = footer ? footer.getBoundingClientRect().top + window.scrollY : document.body.scrollHeight;
+      var barHeight = wrap.offsetHeight;
+      var y = window.scrollY;
+
+      if (y >= triggerY && y + headerHeight + barHeight < footerTop) {
+        wrap.classList.add('is-fixed');
+        section.classList.add('has-placeholder');
+      } else {
+        wrap.classList.remove('is-fixed');
+        section.classList.remove('has-placeholder');
+      }
+    }
+
+    window.addEventListener('load', function () {
+      init();
+      onScroll();
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () {
+      init();
+      onScroll();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Sticky buttons",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Desktop padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding top (desktop)",
+      "default": 0,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding bottom (desktop)",
+      "default": 0,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Laptop padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_laptop",
+      "label": "Padding top (laptop)",
+      "default": 0,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_laptop",
+      "label": "Padding bottom (laptop)",
+      "default": 0,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Tablet padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_tablet",
+      "label": "Padding top (tablet)",
+      "default": 0,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_tablet",
+      "label": "Padding bottom (tablet)",
+      "default": 0,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "default": 0,
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "default": 0,
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "main_btns",
+      "name": "Button",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "sec_btn_text",
+          "label": "Button text"
+        },
+        {
+          "type": "image_picker",
+          "id": "sec_btn_icon",
+          "label": "Button icon"
+        },
+        {
+          "type": "url",
+          "id": "sec_btn_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sticky buttons",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

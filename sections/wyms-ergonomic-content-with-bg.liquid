@@ -1,0 +1,433 @@
+<div class="wyms-ergonomic-content-with-bg">
+  <div class="bg-bag-wrapper" style="background-image: url({{ section.settings.main_bg_image | image_url: width: 2000 }});">
+    <div class="page-width">
+
+    {% for block in section.blocks %}
+    {% comment %} <div class="second-section-img-content block-{{ forloop.index }} {% if block.settings.reverse_layout %}reverse{% endif %}"> {% endcomment %}
+        <div id="section-block-{% if forloop.index == 1 %}one{% elsif forloop.index == 2 %}two{% elsif forloop.index == 3 %}three{% elsif forloop.index == 4 %}four{% elsif forloop.index == 5 %}five{% endif %}" class="second-section-img-content {% if block.settings.reverse_layout %}reverse{% endif %}">  
+      <div class="sec-content-part">
+
+    <div class="heading-para-btn-wrap">
+        <div class="sec-heading">
+          {{ block.settings.sec_heading }}
+        </div>
+         <div class="sec-sub-heading">
+          {{ block.settings.sec_sub_heading }}
+        </div>
+        <div class="sec-dec">
+          {{ block.settings.sec_dec }}
+        </div>
+
+        {% if block.settings.sec_btn != blank %}
+       <div class="sec-btn">
+
+        <a href="{{ block.settings.sec_btn_link }}"
+            class="btn-flygge btn--blue btn--xl"
+            style="background-color: {{ block.settings.sec_btn_bg }} !important;
+            color: {{ block.settings.sec_btn_text }} !important;">
+            <span class="hide-desktop">{{ block.settings.sec_btn }}</span>
+        </a>
+        
+      </div>
+      {% endif %}
+
+        </div>
+
+        {% if block.settings.last_img != blank %}
+            <div class="last-img-wrap">
+        <img
+          srcset="
+            {%- if block.settings.last_img.width >= 165 -%}{{ block.settings.last_img | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if block.settings.last_img.width >= 360 -%}{{ block.settings.last_img | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if block.settings.last_img.width >= 533 -%}{{ block.settings.last_img | image_url: width: 533 }} 533w,{%- endif -%}
+            {%- if block.settings.last_img.width >= 720 -%}{{ block.settings.last_img | image_url: width: 720 }} 720w,{%- endif -%}
+            {%- if block.settings.last_img.width >= 940 -%}{{ block.settings.last_img | image_url: width: 940 }} 940w,{%- endif -%}
+            {%- if block.settings.last_img.width >= 1066 -%}{{ block.settings.last_img | image_url: width: 1066 }} 1066w,{%- endif -%}
+            {{ block.settings.last_img | image_url }} {{ block.settings.last_img.width }}w
+          "
+          src="{{ block.settings.last_img | image_url: width: 533 }}"
+          alt="{{ block.settings.last_img.alt | escape }}"
+          class="img-fluid last-img"
+          loading="lazy"
+          width="{{ block.settings.last_img.width }}"
+          height="{{ block.settings.last_img.height }}"
+        >
+            <div class="img-text" style="color: {{ block.settings.img_text_color }};">
+                {{ block.settings.img_text }}
+            </div>
+    </div>
+    {% endif %}
+      </div>
+
+      <div class="sec-img-part">
+        {% if block.settings.featured_image != blank %}
+          <img
+            srcset="
+              {%- if block.settings.featured_image.width >= 165 -%}{{ block.settings.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
+              {%- if block.settings.featured_image.width >= 360 -%}{{ block.settings.featured_image | image_url: width: 360 }} 360w,{%- endif -%}
+              {%- if block.settings.featured_image.width >= 533 -%}{{ block.settings.featured_image | image_url: width: 533 }} 533w,{%- endif -%}
+              {%- if block.settings.featured_image.width >= 720 -%}{{ block.settings.featured_image | image_url: width: 720 }} 720w,{%- endif -%}
+              {%- if block.settings.featured_image.width >= 940 -%}{{ block.settings.featured_image | image_url: width: 940 }} 940w,{%- endif -%}
+              {%- if block.settings.featured_image.width >= 1066 -%}{{ block.settings.featured_image | image_url: width: 1066 }} 1066w,{%- endif -%}
+              {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w
+            "
+            src="{{ block.settings.featured_image | image_url: width: 533 }}"
+            alt="{{ block.settings.featured_image.alt | escape }}"
+            class="img-fluid featured-image"
+            loading="lazy"
+            width="{{ block.settings.featured_image.width }}"
+            height="{{ block.settings.featured_image.height }}"
+          >
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .wyms-ergonomic-content-with-bg .bg-bag-wrapper { padding-top: {{ section.settings.padding_top_desktop }}px; padding-bottom: {{ section.settings.padding_bottom_desktop }}px; }
+  .wyms-ergonomic-content-with-bg h1, .wyms-ergonomic-content-with-bg h2, .wyms-ergonomic-content-with-bg h3, .wyms-ergonomic-content-with-bg h4, .wyms-ergonomic-content-with-bg h5, .wyms-ergonomic-content-with-bg h6, .wyms-ergonomic-content-with-bg p { padding: 0; margin: 0; }
+  .wyms-ergonomic-content-with-bg img.img-fluid { height: auto; width: 100%; display: block; }
+  .wyms-ergonomic-content-with-bg .first-img-wrap { width: 50%; padding-bottom: 27px; }
+  .wyms-ergonomic-content-with-bg img.img-fluid.first-img { border-radius: 20px; }
+  .wyms-ergonomic-content-with-bg .second-section-img-content { display: flex; justify-content: center; align-items: center; gap: 64px; }
+  .wyms-ergonomic-content-with-bg .sec-heading { color: #191839; font-family: var(--font-family-display); font-size: 36px; font-style: normal; font-weight: 600; line-height: 44px; text-align: left; max-width: 100%; }
+  .wyms-ergonomic-content-with-bg .sec-btn a { text-decoration: none; padding: 12px 18px !important; text-align: center; display: inline-block; border-radius: var(--radius-full, 9999px); font-family: var(--Font-family-font-family-body, Inter); font-size: var(--Font-size-text-md, 16px); font-style: normal; font-weight: 600; line-height: var(--Line-height-text-md, 24px); }
+  .wyms-ergonomic-content-with-bg .sec-dec { color: #191839; font-family: var(--Font-family-font-family-body, Inter); font-size: 16px; font-style: normal; font-weight: 400; line-height: 24px; }
+  .wyms-ergonomic-content-with-bg .sec-dec p { padding-bottom: 20px; }
+  .wyms-ergonomic-content-with-bg .sec-dec p:last-child { padding-bottom: 0; }
+  .wyms-ergonomic-content-with-bg .sec-content-part, .wyms-ergonomic-content-with-bg .sec-img-part { width: 50%; } {% comment %} { width: calc(50% - 32px); } {% endcomment %}
+  .wyms-ergonomic-content-with-bg .reverse { flex-direction: row-reverse; }
+  .wyms-ergonomic-content-with-bg .bg-bag-wrapper { background-size: cover; background-position: center; background-repeat: no-repeat; }
+  .wyms-ergonomic-content-with-bg img.img-fluid.featured-image { height: 624px; object-fit: contain; border-radius: 32px; }
+  .wyms-ergonomic-content-with-bg .second-section-img-content strong { font-family: var(--Font-family-font-family-highlights, "Concrette S"); font-size: var(--Font-size-display-xs, 24px); font-style: normal; font-weight: 350 !important; line-height: var(--Line-height-display-xs, 32px); }
+  .wyms-ergonomic-content-with-bg p:has(strong) { padding: 0 !important; }
+  .wyms-ergonomic-content-with-bg img.img-fluid.last-img { height: 320px; width: 320px; }
+  .wyms-ergonomic-content-with-bg .last-img-wrap { display: flex; justify-content: end; padding-top: 16px; }
+  .wyms-ergonomic-content-with-bg .second-section-img-content .sec-content-part { position: relative; z-index: 1; }
+  .wyms-ergonomic-content-with-bg .second-section-img-content img.img-fluid.last-img { height: 280px; width: 280px; }
+  .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { position: absolute; left: -5%; bottom: 80%; z-index: -1; }
+  {% comment %} .wyms-ergonomic-content-with-bg .second-section-img-content .heading-para-btn-wrap { padding-left: 32px; } {% endcomment %}
+  .wyms-ergonomic-content-with-bg span.hide-desktop { display: block !important; }
+  .wyms-ergonomic-content-with-bg .sec-btn { padding-top: 40px; }
+  .wyms-ergonomic-content-with-bg .img-text { font-size: 128px; font-style: normal; font-weight: 600; line-height: 100%; letter-spacing: -2.56px; font-family: var(--Font-family-font-family-display, "Concrette M"); position: absolute; left: 40%; bottom: 25%; }
+  .wyms-ergonomic-content-with-bg .sec-sub-heading { color: #191839; font-family: var(--font-family-highlights); font-size: 24px; font-style: normal; font-weight: 350; line-height: 32px; padding-top: 24px; padding-bottom: 24px; }
+  #section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five { padding-top: 200px; }
+  #section-block-five { padding-bottom: 100px; }
+  {% comment %} div#section-block-one { padding-top: 255px; } {% endcomment %}
+
+  html {
+  scroll-behavior: smooth !important;
+}
+
+    #section-block-one,
+    #section-block-two,
+    #section-block-three,
+    #section-block-four,
+    #section-block-five {
+    scroll-margin-top: 50px;
+    }
+
+
+  .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap .img-fluid.last-img { animation: steerLoop 3s ease-in-out infinite; }
+
+  @keyframes steerLoop {
+    0%   { transform: rotate(0deg); }
+    33%  { transform: rotate(-180deg); }
+    66%  { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+
+  @media (max-width: 1899.98px) {
+    #section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five { scroll-margin-top: 10px; }
+  }
+
+  @media (max-width: 1799.98px) {
+    #stickyBtnsWrap.is-fixed { top: 12%; }
+    #section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five { scroll-margin-top: -20px; }
+  }
+
+  @media (max-width: 1699.98px) {
+    #stickyBtnsWrap.is-fixed { top: 13%; }
+  }
+
+
+  @media (max-width: 1599.98px) {
+    .wyms-ergonomic-content-with-bg .bg-bag-wrapper { padding-top: {{ section.settings.padding_top_laptop }}px; padding-bottom: {{ section.settings.padding_bottom_laptop }}px; }
+    #section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five { scroll-margin-top: -70px; }
+  }
+  @media (max-width: 1550.98px) {
+    .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { bottom: 75%; }
+  }
+  @media (max-width: 1500.98px) {
+    .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { left: -1%; }
+  }
+  @media (max-width: 1499.98px) {
+    #stickyBtnsWrap.is-fixed { top: 15%; }
+}
+  @media (max-width: 1440.98px) {
+    {% comment %} .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { bottom: 10%; } {% endcomment %}
+  }
+  @media (max-width: 1399.98px) {
+    .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { bottom: 72%; }
+    .wyms-ergonomic-content-with-bg .second-section-img-content img.img-fluid.last-img { height: 250px; width: 250px; }
+    .wyms-ergonomic-content-with-bg .img-text { font-size: 100px; bottom: 31%; }
+    .wyms-ergonomic-content-with-bg img.img-fluid { height: 450px; object-fit: contain; }
+  }
+
+  @media (max-width: 1299.98px) {
+    .wyms-ergonomic-content-with-bg .second-section-img-content img.img-fluid.last-img { height: 240px; width: 240px; }
+    .wyms-ergonomic-content-with-bg .sec-heading { font-size: 43px; }
+    .wyms-ergonomic-content-with-bg .sec-sub-heading { font-size: 22px; padding-top: 25px; padding-bottom: 25px; }
+    .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { bottom: 77%; }
+  }
+
+  @media (max-width: 1266.98px) {
+    .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { bottom: 78%; }
+  }
+
+  @media (max-width: 1199.98px) {
+    .wyms-ergonomic-content-with-bg .sec-heading { font-size: 43px; }
+    {% comment %} .wyms-ergonomic-content-with-bg .sec-dec { font-size: 18px; } {% endcomment %}
+    .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { bottom: 75%; }
+    .wyms-ergonomic-content-with-bg .second-section-img-content img.img-fluid.last-img { height: 200px; width: 200px; }
+    .wyms-ergonomic-content-with-bg .img-text { font-size: 85px; }
+    #section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five { scroll-margin-top: -20px; }
+    #section-block-two, #section-block-three, #section-block-four, #section-block-five { padding-top: 100px; }
+  }
+  @media (max-width: 991.98px) {
+    .wyms-ergonomic-content-with-bg .bg-bag-wrapper { padding-top: {{ section.settings.padding_top_tablet }}px; padding-bottom: {{ section.settings.padding_bottom_tablet }}px; }
+    .wyms-ergonomic-content-with-bg .sec-dec p { padding-bottom: 15px; }
+    .main-spin-wrap { margin-top: 0; }
+    .wyms-ergonomic-content-with-bg .sec-heading { font-size: 38px; }
+    .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { bottom: 82%; }
+    .wyms-ergonomic-content-with-bg .sec-sub-heading { padding-top: 15px; padding-bottom: 15px; }
+    #section-block-one { padding-top: 150px; }
+  }
+  @media (max-width: 767.98px) {
+    .wyms-ergonomic-content-with-bg .bg-bag-wrapper { padding-top: {{ section.settings.padding_top_mobile }}px; padding-bottom: {{ section.settings.padding_bottom_mobile }}px; }
+    .wyms-ergonomic-content-with-bg .second-section-img-content { flex-direction: column; }
+    .wyms-ergonomic-content-with-bg .sec-content-part, .wyms-ergonomic-content-with-bg .sec-img-part { width: 100%; }
+    .wyms-ergonomic-content-with-bg .sec-heading { font-size: 30px; }
+    .wyms-ergonomic-content-with-bg img.img-fluid.last-img { width: 280px; }
+    .wyms-ergonomic-content-with-bg .second-section-img-content img.img-fluid.last-img { height: 250px; width: 250px; }
+    {% comment %} .wyms-ergonomic-content-with-bg .second-section-img-content .sec-dec { padding-bottom: 125px; } {% endcomment %}
+    .wyms-ergonomic-content-with-bg .first-img-wrap { width: 30%; display: flex; justify-content: center; margin-top: -2%; padding-bottom: 15px; }
+    .wyms-ergonomic-content-with-bg img.img-fluid.last-img { width: 100%; height: auto; }
+    .wyms-ergonomic-content-with-bg .second-section-img-content .heading-para-btn-wrap { padding-left: 0; }
+    .wyms-ergonomic-content-with-bg .img-text { font-size: 100px; }
+    #section-block-one { padding-top: 200px; }
+    .wyms-ergonomic-content-with-bg .sec-sub-heading { font-size: 24px; }
+    .wyms-ergonomic-content-with-bg .sec-sub-heading { padding-top: 20px; padding-bottom: 20px; }
+    .wyms-ergonomic-content-with-bg .sec-content-part { order: 2; }
+    #section-block-one { padding-top: 40px; }
+    #section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five { padding-top: 0; }
+    .wyms-ergonomic-content-with-bg .second-section-img-content { gap: 130px; }
+  }
+  {% comment %} @media screen and (max-width: 768px) {
+    .hide-mobile { display: none !important; }
+    .hide-desktop { display: block !important; }
+  } {% endcomment %}
+
+  @media (max-width: 499px) {
+    .wyms-ergonomic-content-with-bg .second-section-img-content img.img-fluid.last-img { height: 199px; width: 199px; }
+    .wyms-ergonomic-content-with-bg .img-text { bottom: 30%; left: 40%; }
+    .wyms-ergonomic-content-with-bg .second-section-img-content { gap: 0; }
+    .wyms-ergonomic-content-with-bg .img-text { font-size: 80px; }
+    .wyms-ergonomic-content-with-bg .second-section-img-content { gap: 90px; }
+     #section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five { scroll-margin-top: 50px; }
+}
+
+  @media screen and (max-width: 450px) {
+    {% comment %} .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { bottom: -2%; } {% endcomment %}
+    }
+</style>
+
+
+{% schema %}
+{
+  "name": "Content with BG Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_bg_image",
+      "label": "Main BG Image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "default": 100,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "default": 100,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Laptop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_laptop",
+      "label": "Padding Top (Laptop)",
+      "default": 80,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_laptop",
+      "label": "Padding Bottom (Laptop)",
+      "default": 80,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_tablet",
+      "label": "Padding Top (Tablet)",
+      "default": 60,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_tablet",
+      "label": "Padding Bottom (Tablet)",
+      "default": 60,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "default": 40,
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "default": 40,
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "section-list",
+      "name": "Image & Content Section",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "reverse_layout",
+          "label": "Change Position"
+        },
+        {
+          "type": "text",
+          "id": "sec_heading",
+          "label": "Add Title"
+        },
+        {
+          "type": "text",
+          "id": "sec_sub_heading",
+          "label": "Add Sub Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "sec_dec",
+          "label": "Add Description"
+        },
+        {
+          "type": "text",
+          "id": "sec_btn",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "sec_btn_link",
+          "label": "Button URL"        },
+        {
+          "type": "color",
+          "id": "sec_btn_bg",
+          "label": "Button Background Color",
+          "default": "#00103f"
+        },
+        {
+          "type": "color",
+          "id": "sec_btn_text",
+          "label": "Button Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "image_picker",
+          "id": "featured_image",
+          "label": "Add Section Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "last_img",
+          "label": "Add Last Image"
+        },
+        {
+          "type": "text",
+          "id": "img_text",
+          "label": "Add Number"
+        },
+        {
+          "type": "color",
+          "id": "img_text_color",
+          "label": "Add Number Color"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Content with BG Section"
+    }
+  ]
+}
+{% endschema %}

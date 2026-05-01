@@ -1,10 +1,11 @@
 <!doctype html>
-<html
+{% comment %} <html
   {% if request.design_mode %}
     class="shopify-design-mode"
   {% endif %}
   lang="{{ request.locale.iso_code }}"
->
+> {% endcomment %}
+   <html class="js {% if request.page_type == 'page' %}page-{{ page.handle }}{% endif %}" lang="{{ request.locale.iso_code }}">
   <head>
     {%- if settings.favicon != blank -%}
       <link
@@ -38,7 +39,14 @@
     {{ content_for_header }}
   </head>
 
-  <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
+  {% comment %} <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}"> {% endcomment %}
+    <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %} 
+  page-type-{{ request.page_type }} 
+  template-{{ template.name | handle }} 
+  {% if page %}page-{{ page.handle }}{% endif %} 
+  {% if product %}product-{{ product.handle }}{% endif %} 
+  {% if collection %}collection-{{ collection.handle }}{% endif %}">
+
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
     <div id="header-group">
       {% sections 'header-group' %}
@@ -139,5 +147,197 @@
       Do not move this into a section/snippet; fixed positioning breaks inside stacking contexts.
     {%- endcomment -%}
     <div id="WymsOverlay" class="wyms-overlay" aria-hidden="true"></div>
+
+
+
+
+
+
+
+{% comment %} Contact Page Error + Success Message {% endcomment %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var form = document.getElementById("ContactForm");
+  if (!form) return;
+  form.setAttribute("novalidate", "novalidate");
+
+  // Hide Shopify's built-in server errors
+  var styleTag = document.createElement("style");
+  styleTag.innerHTML = ".contact-form__error { display: none !important; }";
+  document.head.appendChild(styleTag);
+
+  function ok(f) {
+    var v = f.value,
+        t = (f.type || "").toLowerCase(),
+        g = f.tagName.toLowerCase();
+    if (t === "email") return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+    if (g === "textarea") return v.trim().length >= 2;
+    return v.trim() !== "";
+  }
+
+  function getWrapper(f) {
+    return f.closest(".first-name")
+        || f.closest(".last-name")
+        || f.closest(".user-email")
+        || f.closest(".user-msg")
+        || f.parentElement;
+  }
+
+  function red(f) {
+    f.style.setProperty("border", "1px solid #F04438", "important");
+    f.style.setProperty("box-shadow", "0 0 0 1px #F04438", "important");
+  }
+
+  function green(f) {
+    f.style.removeProperty("border");
+    f.style.removeProperty("box-shadow");
+    f.style.cssText = f.style.cssText.replace(/border:[^;]+;?/gi,"").replace(/box-shadow:[^;]+;?/gi,"");
+  }
+
+  function showMsg() {
+    if (document.getElementById("cf-err")) return;
+    var b = document.createElement("div");
+    b.id = "cf-err";
+    b.textContent = "Bitte füllen Sie alle erforderlichen Felder aus.";
+    b.style.cssText = "color:#fff;background:#e02b2b;padding:12px 16px;border-radius:6px;margin-bottom:16px;font-weight:600;font-size:14px;";
+    form.parentNode.insertBefore(b, form);
+    b.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function hideMsg() {
+    var b = document.getElementById("cf-err");
+    if (b) b.remove();
+  }
+
+  function showSuccess() {
+    // Hide the entire form
+    form.style.display = "none";
+    hideMsg();
+
+    // Create success card
+    var card = document.createElement("div");
+    card.id = "cf-success";
+    card.style.cssText = [
+      "display:flex;",
+      "flex-direction:column;",
+      "align-items:center;",
+      "justify-content:center;",
+      "gap:16px;",
+      "padding:48px 32px;",
+      "border-radius:12px;",
+      "background:#f0faf4;",
+      "border:1px solid #d1fae5;",
+      "text-align:center;",
+      "max-width:480px;",
+      "margin:0 auto;"
+    ].join("");
+
+    // Checkmark icon
+    var icon = document.createElement("div");
+    icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="28" fill="#D1FAE5"/><path d="M17 28.5L24.5 36L39 21" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    // Heading
+    var h = document.createElement("div");
+    h.textContent = "Thank you for reaching out!";
+    h.style.cssText = "font-size:22px;font-weight:700;color:#065f46;";
+
+    // Sub text
+    var p = document.createElement("div");
+    p.textContent = "Vielen Dank für Ihre Kontaktaufnahme mit Wyms. Wir werden uns in Kürze bei Ihnen melden.";
+    p.style.cssText = "font-size:15px;color:#374151;line-height:1.6;";
+
+    card.appendChild(icon);
+    card.appendChild(h);
+    card.appendChild(p);
+
+    form.parentNode.insertBefore(card, form);
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  var fields = Array.from(
+    form.querySelectorAll("input:not([type=hidden]):not([type=submit]), textarea")
+  );
+
+  fields.forEach(function (f) {
+    f.addEventListener("input", function () {
+      ok(f) ? green(f) : red(f);
+      if (fields.every(ok)) hideMsg();
+    });
+  });
+
+  form.addEventListener("submit", function (e) {
+    var bad = fields.filter(function (f) { return !ok(f); });
+    if (bad.length) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      bad.forEach(red);
+      showMsg();
+      return;
+    }
+
+    // All valid — let form submit, then show success
+    fields.forEach(green);
+    hideMsg();
+
+    // Show success after short delay (allow Shopify to process)
+    e.preventDefault();
+    showSuccess();
+
+    // Actually submit via fetch silently
+    var data = new FormData(form);
+    fetch(form.action || window.location.pathname, {
+      method: "POST",
+      body: data,
+      headers: { "Accept": "application/json" }
+    });
+
+  }, true);
+});
+</script>
+
+
+
+
+  <script>
+    (function () {
+      var sectionEl = document.querySelector('.wyms-ergonomic-bag-section .sticky-btns-wrap');
+      var target = document.querySelector('.wyms-ergonomic-content-with-bg');
+      if (!sectionEl || !target) return;
+
+      var placeholder = document.createElement('div');
+      var offsetTop = sectionEl.offsetTop;
+
+      function onScroll() {
+        if (window.scrollY >= offsetTop) {
+          if (!sectionEl.classList.contains('fix-div')) {
+            placeholder.style.height = sectionEl.offsetHeight + 'px';
+            sectionEl.parentNode.insertBefore(placeholder, sectionEl);
+            sectionEl.classList.add('fix-div');
+            target.classList.add('extra-margin');
+          }
+        } else if (sectionEl.classList.contains('fix-div')) {
+          sectionEl.classList.remove('fix-div');
+          target.classList.remove('extra-margin');
+          if (placeholder.parentNode) {
+            placeholder.parentNode.removeChild(placeholder);
+          }
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        offsetTop = sectionEl.offsetTop;
+      });
+      onScroll();
+    })();
+  </script>
+
+
+
+
+
+
+
+
   </body>
 </html>

@@ -1,0 +1,365 @@
+<div class="wyms-how-to-contact-us" style="background-color: {{ section.settings.background_color }};">
+  <div class="page-width">
+    <div class="main-heading">
+      {{ section.settings.main_heading }}
+    </div>
+
+    <div class="contact-box-wrap">
+      {% for block in section.blocks %}
+        <div class="main-contact-box-wrap">
+          <a
+            class="main-contact-box"
+            href="{{ block.settings.contact_link | default: '#' }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="background-color: {{ block.settings.background_color }};"
+          >
+            <div class="contact-icon-wrap">
+              {% if block.settings.main_contact_icon != blank %}
+                <img
+                  srcset="
+                    {%- if block.settings.main_contact_icon.width >= 165 -%}{{ block.settings.main_contact_icon | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if block.settings.main_contact_icon.width >= 360 -%}{{ block.settings.main_contact_icon | image_url: width: 360 }} 360w,{%- endif -%}
+                    {%- if block.settings.main_contact_icon.width >= 533 -%}{{ block.settings.main_contact_icon | image_url: width: 533 }} 533w,{%- endif -%}
+                    {%- if block.settings.main_contact_icon.width >= 720 -%}{{ block.settings.main_contact_icon | image_url: width: 720 }} 720w,{%- endif -%}
+                    {%- if block.settings.main_contact_icon.width >= 940 -%}{{ block.settings.main_contact_icon | image_url: width: 940 }} 940w,{%- endif -%}
+                    {%- if block.settings.main_contact_icon.width >= 1066 -%}{{ block.settings.main_contact_icon | image_url: width: 1066 }} 1066w,{%- endif -%}
+                    {{ block.settings.main_contact_icon | image_url }} {{ block.settings.main_contact_icon.width }}w
+                  "
+                  src="{{ block.settings.main_contact_icon | image_url: width: 533 }}"
+                  alt="{{ block.settings.main_contact_icon.alt | escape }}"
+                  class="img-fluid main-contact-icon"
+                  loading="lazy"
+                  width="{{ block.settings.main_contact_icon.width }}"
+                  height="{{ block.settings.main_contact_icon.height }}"
+                >
+              {% endif %}
+            </div>
+            <div class="contact-box-title" style="color: {{ block.settings.title_color }};">
+              {{ block.settings.contact_box_title }}
+            </div>
+            <div class="contact-box-dec" style="color: {{ block.settings.dec_color }};">
+              {{ block.settings.contact_box_dec }}
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .wyms-how-to-contact-us {
+    padding-top: {{ section.settings.padding_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+
+  .wyms-how-to-contact-us h1,
+  .wyms-how-to-contact-us h2,
+  .wyms-how-to-contact-us h3,
+  .wyms-how-to-contact-us h4,
+  .wyms-how-to-contact-us h5,
+  .wyms-how-to-contact-us h6,
+  .wyms-how-to-contact-us p {
+    padding: 0;
+    margin: 0;
+  }
+
+  .wyms-how-to-contact-us .main-heading {
+    font-family: var(--font-family-display, 'Concrette M');
+    color: #00103f;
+    text-align: center;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 60px;
+    letter-spacing: -0.96px;
+    padding-bottom: 32px;
+  }
+
+  .wyms-how-to-contact-us .contact-box-title {
+    font-family: var(--font-family-display, 'Concrette M');
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px;
+    text-decoration: none;
+    padding-top: 12px;
+    padding-bottom: 4px;
+  }
+
+  .wyms-how-to-contact-us .contact-box-dec {
+    text-align: center;
+    font-family: var(--font-family-body, 'Inter');
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    text-decoration: none;
+  }
+
+  .wyms-how-to-contact-us a.main-contact-box {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-decoration: none;
+    padding: 20px 16px;
+    align-items: center;
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .wyms-how-to-contact-us a.main-contact-box:hover {
+    transform: scale(1.05);
+    z-index: 2;
+  }
+
+  .wyms-how-to-contact-us img.img-fluid.main-contact-icon {
+    height: 72px;
+    width: 72px;
+    display: block;
+    object-fit: contain;
+  }
+
+  .wyms-how-to-contact-us .contact-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wyms-how-to-contact-us .contact-box-wrap {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 16px;
+    height: 100%;
+    flex-wrap: wrap;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .wyms-how-to-contact-us .main-contact-box-wrap {
+    width: calc(33.33% - 11px);
+    max-width: calc(33.33% - 11px);
+    display: flex;
+    flex: 1;
+  }
+
+  @media (max-width: 1599px) {
+    .wyms-how-to-contact-us {
+      padding-top: {{ section.settings.padding_top_laptop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_laptop }}px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .wyms-how-to-contact-us {
+      padding-top: {{ section.settings.padding_top_tablet }}px;
+      padding-bottom: {{ section.settings.padding_bottom_tablet }}px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .wyms-how-to-contact-us {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .wyms-how-to-contact-us .main-heading {
+      max-width: 63%;
+      margin: auto;
+      font-size: 36px;
+      line-height: 44px;
+      letter-spacing: -0.72px;
+    }
+
+    .wyms-how-to-contact-us .main-contact-box-wrap {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .wyms-how-to-contact-us .contact-box-wrap {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 470px) {
+    .wyms-how-to-contact-us .main-heading {
+      max-width: 78%;
+    }
+  }
+
+  @media (max-width: 385px) {
+    .wyms-how-to-contact-us .main-heading {
+      max-width: 97%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "How to Contact US Section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Add Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Add Heading"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "default": 95,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "default": 95,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Laptop Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_laptop",
+      "label": "Padding Top (Laptop)",
+      "default": 80,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_laptop",
+      "label": "Padding Bottom (Laptop)",
+      "default": 80,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_tablet",
+      "label": "Padding Top (Tablet)",
+      "default": 70,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_tablet",
+      "label": "Padding Bottom (Tablet)",
+      "default": 70,
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "default": 65,
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "default": 65,
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "contact-box",
+      "name": "Add Contact Box",
+      "settings": [
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Add Background Color"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_contact_icon",
+          "label": "Heading Icon"
+        },
+        {
+          "type": "text",
+          "id": "contact_box_title",
+          "label": "Contact Title"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color"
+        },
+        {
+          "type": "text",
+          "id": "contact_box_dec",
+          "label": "Contact Description"
+        },
+        {
+          "type": "color",
+          "id": "dec_color",
+          "label": "Description Color"
+        },
+        {
+          "type": "url",
+          "id": "contact_link",
+          "label": "Contact URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How to Contact US Section"
+    }
+  ]
+}
+{% endschema %}

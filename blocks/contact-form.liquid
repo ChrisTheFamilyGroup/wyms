@@ -1,11 +1,45 @@
-
+<style>
+  #contact-bg-{{ block.id }} {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 112px;
+    padding-bottom: 112px;
+    width: 100%;
+    {% if section.settings.bg_image_desktop %}
+      background-image: url('{{ section.settings.bg_image_desktop | image_url: width: 1920 }}');
+    {% endif %}
+  }
+  {% if section.settings.bg_image_laptop %}
+  @media (max-width: 1440px) {
+    #contact-bg-{{ block.id }} {
+      background-image: url('{{ section.settings.bg_image_laptop | image_url: width: 1440 }}');
+    }
+  }
+  {% endif %}
+  {% if section.settings.bg_image_mobile %}
+  @media (max-width: 575px) {
+    #contact-bg-{{ block.id }} {
+      background-image: url('{{ section.settings.bg_image_mobile | image_url: width: 575 }}');
+    }
+  }
+  {% endif %}
+    @media (max-width: 575px) {
+    #contact-bg-{{ block.id }} {
+      padding-top: 64px;
+      padding-bottom: 64px;
+    }
+  }
+</style>
 
 {% capture submit_button %}
   {% content_for 'block', type: 'contact-form-submit-button', id: 'submit-button' %}
 {% endcapture %}
 
+<div id="contact-bg-{{ block.id }}">
+
 <div
-  class="
+  class="page-width 
     contact-form
     spacing-style size-style
     {% if block.settings.inherit_color_scheme == false %}color-{{ block.settings.color_scheme }}{% endif %}
@@ -16,6 +50,11 @@
   "
   {{ block.shopify_attributes }}
 >
+
+  <div class="contact-form-title">
+  {{ section.settings.contact_form_title }}
+  </div>
+
   {% assign form_id = block.id | default: section.id | prepend: 'ContactForm-' %}
   {%- form 'contact', id: form_id, class: 'contact-form__form' -%}
     <input
@@ -49,28 +88,66 @@
     {%- endif -%}
 
     <div class="contact-form__form-row">
+
+      <!-- First Name -->
+      <div class="first-name">
       <label
-        class="visually-hidden"
-        for="ContactForm-name"
-      >
-        {{- 'blocks.contact_form.name' | t -}}
+        class="field__label"
+        for="ContactForm-first-name"
+              >
+        Vorname
       </label>
       <input
         type="text"
-        id="ContactForm-name"
+        id="ContactForm-first-name"
         class="contact-form__input"
-        autocomplete="name"
-        name="contact[name]"
-        value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-        placeholder="{{ 'blocks.contact_form.name' | t }}"
+        autocomplete="given-name"
+        name="contact[first_name]"
+        value="{% if form.first_name %}{{ form.first_name }}{% elsif customer %}{{ customer.first_name }}{% endif %}"
+        placeholder="Vorname"
+        required
       >
+       <div class="form-error-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+            <path d="M7.33073 4.66675V7.33341M7.33073 10.0001H7.3374M13.9974 7.33341C13.9974 11.0153 11.0126 14.0001 7.33073 14.0001C3.64883 14.0001 0.664062 11.0153 0.664062 7.33341C0.664062 3.65152 3.64883 0.666748 7.33073 0.666748C11.0126 0.666748 13.9974 3.65152 13.9974 7.33341Z" stroke="#F04438" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
 
+      <!-- Last Name -->
+      <div class="last-name">
       <label
-        class="visually-hidden"
+        class="field__label"
+        for="ContactForm-last-name"
+      >
+        Nachname
+      </label>
+      <input
+        type="text"
+        id="ContactForm-last-name"
+        class="contact-form__input"
+        autocomplete="family-name"
+        name="contact[last_name]"
+        value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}"
+        placeholder="Nachname"
+        required
+      >
+       <div class="form-error-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+            <path d="M7.33073 4.66675V7.33341M7.33073 10.0001H7.3374M13.9974 7.33341C13.9974 11.0153 11.0126 14.0001 7.33073 14.0001C3.64883 14.0001 0.664062 11.0153 0.664062 7.33341C0.664062 3.65152 3.64883 0.666748 7.33073 0.666748C11.0126 0.666748 13.9974 3.65152 13.9974 7.33341Z" stroke="#F04438" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+
+  <div class="user-email">
+     <label
+        class="field__label"
         for="ContactForm-email"
       >
-        {{- 'blocks.contact_form.email' | t -}}
-        <span aria-hidden="true">*</span></label
+        Email
+        <span aria-hidden="true"></span></label
       >
       <input
         type="email"
@@ -86,45 +163,44 @@
           aria-invalid="true"
           aria-describedby="ContactForm-email-error"
         {% endif %}
-        placeholder="{{ 'blocks.contact_form.email' | t }}"
+        placeholder="you@mail.com"
+        required
       >
-    </div>
+       <div class="form-error-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+            <path d="M7.33073 4.66675V7.33341M7.33073 10.0001H7.3374M13.9974 7.33341C13.9974 11.0153 11.0126 14.0001 7.33073 14.0001C3.64883 14.0001 0.664062 11.0153 0.664062 7.33341C0.664062 3.65152 3.64883 0.666748 7.33073 0.666748C11.0126 0.666748 13.9974 3.65152 13.9974 7.33341Z" stroke="#F04438" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+</div>
 
-    <label
-      class="visually-hidden"
-      for="ContactForm-phone"
-    >
-      {{- 'blocks.contact_form.phone' | t -}}
-    </label>
-    <input
-      type="tel"
-      id="ContactForm-phone"
-      class="contact-form__input"
-      autocomplete="tel"
-      name="contact[phone]"
-      pattern="[0-9\-]*"
-      value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
-      placeholder="{{ 'blocks.contact_form.phone' | t }}"
-    >
 
+<div class="user-msg">
     <label
-      class="visually-hidden"
+      class="field__label"
       for="ContactForm-body"
     >
-      {{- 'blocks.contact_form.comment' | t -}}
+      Nachricht
     </label>
     <textarea
       rows="10"
       id="ContactForm-body"
       class="contact-form__input contact-form__input--textarea"
       name="contact[body]"
-      placeholder="{{ 'blocks.contact_form.comment' | t }}"
+      placeholder="Hinterlassen Sie hier Ihre Nachricht..."
+      required
     >
       {{- form.body -}}
     </textarea>
+     <div class="form-error-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+            <path d="M7.33073 4.66675V7.33341M7.33073 10.0001H7.3374M13.9974 7.33341C13.9974 11.0153 11.0126 14.0001 7.33073 14.0001C3.64883 14.0001 0.664062 11.0153 0.664062 7.33341C0.664062 3.65152 3.64883 0.666748 7.33073 0.666748C11.0126 0.666748 13.9974 3.65152 13.9974 7.33341Z" stroke="#F04438" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+    </div>
 
     {{ submit_button }}
   {%- endform -%}
+</div>
 </div>
 
 {% stylesheet %}
@@ -196,8 +272,8 @@
       "id": "custom_width",
       "label": "t:settings.width",
       "min": 0,
-      "max": 100,
-      "step": 1,
+      "max": 200,
+      "step": 2,
       "unit": "%",
       "default": 100,
       "visible_if": "{{ block.settings.width == 'custom' }}"
@@ -223,8 +299,8 @@
       "id": "custom_width_mobile",
       "label": "t:settings.width",
       "min": 0,
-      "max": 100,
-      "step": 1,
+      "max": 200,
+      "step": 2,
       "unit": "%",
       "default": 100,
       "visible_if": "{{ block.settings.width_mobile == 'custom' }}"
@@ -251,8 +327,8 @@
       "id": "padding-block-start",
       "label": "t:settings.top",
       "min": 0,
-      "max": 100,
-      "step": 1,
+      "max": 200,
+      "step": 2,
       "unit": "px",
       "default": 0
     },
@@ -261,8 +337,8 @@
       "id": "padding-block-end",
       "label": "t:settings.bottom",
       "min": 0,
-      "max": 100,
-      "step": 1,
+      "max": 200,
+      "step": 2,
       "unit": "px",
       "default": 0
     },
@@ -271,8 +347,8 @@
       "id": "padding-inline-start",
       "label": "t:settings.left",
       "min": 0,
-      "max": 100,
-      "step": 1,
+      "max": 200,
+      "step": 2,
       "unit": "px",
       "default": 0
     },
@@ -281,8 +357,8 @@
       "id": "padding-inline-end",
       "label": "t:settings.right",
       "min": 0,
-      "max": 100,
-      "step": 1,
+      "max": 200,
+      "step": 2,
       "unit": "px",
       "default": 0
     }

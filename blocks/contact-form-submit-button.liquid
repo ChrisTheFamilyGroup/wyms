@@ -1,5 +1,6 @@
 
 {%- assign block_settings = block.settings -%}
+<div class="contact-form-btn-wrap">
 <button
   type="submit"
   class="button submit-button size-style {{ block_settings.style_class }}"
@@ -8,6 +9,7 @@
 >
   {{ block_settings.label }}
 </button>
+</div>
 
 {% stylesheet %}
   .submit-button {
