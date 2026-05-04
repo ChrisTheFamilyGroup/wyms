@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-collection",
@@ -163,8 +163,16 @@
           "type": "nav_button",
           "settings": {
             "icon": "shopify://shop_images/bottle-01.svg",
-            "label": "Flaschen  dosen",
+            "label": "Trinkflaschen",
             "link": "shopify://collections/trinkflaschen"
+          }
+        },
+        "nav_button_k6zXTU": {
+          "type": "nav_button",
+          "settings": {
+            "icon": "shopify://shop_images/lunchbox_icon_white_1.svg",
+            "label": "Brotdose",
+            "link": "shopify://collections/brotdosen"
           }
         },
         "nav_button_G96biX": {
@@ -180,12 +188,13 @@
         "nav_button_HJeprn",
         "nav_button_UKperz",
         "nav_button_EXDfnd",
+        "nav_button_k6zXTU",
         "nav_button_G96biX"
       ],
       "name": "Collection Navigation",
       "settings": {
-        "title": "Wyms Rucksäcke",
-        "description": "Leicht. Ergonomisch. Für die Schule gemacht",
+        "title": "wyms Mäppchen",
+        "description": "Kein Chaos, kein langes Suchen. Unsere Mäppchen und Schlamperboxen kombinieren clevere Organisation mit cleanem Design und richtig viel Platz.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",
         "blob_left_wide": "shopify://shop_images/formLO.svg",
         "blob_left_mobile": "shopify://shop_images/formLM.svg",
@@ -205,39 +214,53 @@
     "wyms_faq_accordion_Vkir4Q": {
       "type": "wyms-faq-accordion",
       "blocks": {
+        "faq_item_TkmpnQ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Warum heißt es Schlamperbox?",
+            "answer": "<p>Eine Schlamperbox bietet besonders viel Platz für Stifte, Zubehör und alles, was schnell verstaut werden soll. Im Gegensatz zu klassischen Mäppchen steht hier flexibler Stauraum statt fester Einteilung im Fokus.</p>"
+          }
+        },
         "faq_item_NdecL6": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Was ist der Unterschied zwischen Snap Case und Schlamperbox?",
+            "answer": "<p>Das Snap Case ist besonders organisiert aufgebaut und lässt sich aufklappen, damit du alles sofort im Blick hast. Die Schlamperbox bietet mehr flexiblen Stauraum für größere Mengen an Zubehör.</p>"
           }
         },
         "faq_item_mwAE4J": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Haben die Mäppchen zusätzliche Fächer?",
+            "answer": "<p>Ja. Viele Modelle verfügen über Organizer, Mesh-Fächer oder zusätzliche Reißverschlussfächer für mehr Übersicht.</p>"
           }
         },
         "faq_item_ic6Lny": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Sind die Mäppchen robust genug für den Schulalltag?",
+            "answer": "<p>Unsere Mäppchen und Schlamperboxen sind robust verarbeitet und für den täglichen Einsatz in Schule und Freizeit gemacht.</p>"
           }
         },
         "faq_item_EL6CwL": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Passen die Mäppchen in die wyms Rucksäcke?",
+            "answer": "<p>Ja. Alle Mäppchen Modelle sind so entwickelt, dass sie optimal in unsere wyms Rucksäcke passen.</p>"
           }
         },
         "faq_item_EwXx74": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Was macht das Snap Case besonders?",
+            "answer": "<p>Das Snap Case kombiniert zwei getrennte Bereiche mit einer aufklappbaren Front, damit alles schnell erreichbar bleibt und nichts verloren geht.</p>"
+          }
+        },
+        "faq_item_nQLHbj": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Was macht die wyms Schlamperbox besonders?",
+            "answer": "<p>Die Schlamperbox verbindet viel Stauraum mit cleveren Organizern und sorgt dafür, dass auch größere Mengen an Zubehör übersichtlich bleiben.</p>"
           }
         },
         "button_jJbj6m": {
@@ -258,11 +281,13 @@
         }
       },
       "block_order": [
+        "faq_item_TkmpnQ",
         "faq_item_NdecL6",
         "faq_item_mwAE4J",
         "faq_item_ic6Lny",
         "faq_item_EL6CwL",
         "faq_item_EwXx74",
+        "faq_item_nQLHbj",
         "button_jJbj6m",
         "button_w3m6fq"
       ],

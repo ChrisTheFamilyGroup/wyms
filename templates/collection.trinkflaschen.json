@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-collection",
@@ -163,8 +163,16 @@
           "type": "nav_button",
           "settings": {
             "icon": "shopify://shop_images/bottle-01.svg",
-            "label": "Flaschen  dosen",
+            "label": "Trinkflaschen",
             "link": "shopify://collections/trinkflaschen"
+          }
+        },
+        "nav_button_UqrE8f": {
+          "type": "nav_button",
+          "settings": {
+            "icon": "shopify://shop_images/lunchbox_icon_white_1.svg",
+            "label": "Brotdosen",
+            "link": ""
           }
         },
         "nav_button_G96biX": {
@@ -180,12 +188,13 @@
         "nav_button_HJeprn",
         "nav_button_UKperz",
         "nav_button_EXDfnd",
+        "nav_button_UqrE8f",
         "nav_button_G96biX"
       ],
       "name": "Collection Navigation",
       "settings": {
-        "title": "Wyms Rucksäcke",
-        "description": "Leicht. Ergonomisch. Für die Schule gemacht",
+        "title": "wyms Trinkflaschen",
+        "description": "Trinkflaschen mit durchdachten Details, hochwertigen Materialien und genau der richtigen Größe für unterwegs.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",
         "blob_left_wide": "shopify://shop_images/formLO.svg",
         "blob_left_mobile": "shopify://shop_images/formLM.svg",
@@ -205,39 +214,46 @@
     "wyms_faq_accordion_Vkir4Q": {
       "type": "wyms-faq-accordion",
       "blocks": {
+        "faq_item_AzUUYV": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Sind die Trinkflaschen leicht zu reinigen?",
+            "answer": "<p>Die verwendeten Materialien sind robust und alltagstauglich und lassen sich ohne Probleme reinigen.</p>"
+          }
+        },
         "faq_item_NdecL6": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Welche Trinkflaschen gibt es von wyms?",
+            "answer": "<p>Unsere Trinkflaschen sind je nach Modell aus hochwertigem Edelstahl oder robustem Tritan gefertigt und für Schule, Sport und Alltag gemacht.</p>"
           }
         },
         "faq_item_mwAE4J": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Sind die wyms Trinkflaschen auslaufsicher?",
+            "answer": "<p>Ja. Unsere Trinkflaschen sind so entwickelt, dass Getränke sicher transportiert werden können, ohne auszulaufen.</p>"
           }
         },
         "faq_item_ic6Lny": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Was ist der Unterschied zwischen Tritan und Edelstahl?",
+            "answer": "<p>Tritan ist besonders leicht und transparent, während Edelstahl sehr robust, langlebig und geschmacksneutral ist.</p>"
           }
         },
         "faq_item_EL6CwL": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Passen die Trinkflaschen in die wyms Rucksäcke?",
+            "answer": "<p>Ja. Die Flaschen passen optimal in die Seitentaschen der wyms Rucksäcke und bleiben schnell griffbereit.</p>"
           }
         },
         "faq_item_EwXx74": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Können auch kohlensäurehaltige Getränke eingefüllt werden?",
+            "answer": "<p>Ja unser Trinkflaschen Modelle eignen sich unsere Trinkflaschen auch für Getränke mit geringer Kohlensäure.</p>"
           }
         },
         "button_jJbj6m": {
@@ -258,6 +274,7 @@
         }
       },
       "block_order": [
+        "faq_item_AzUUYV",
         "faq_item_NdecL6",
         "faq_item_mwAE4J",
         "faq_item_ic6Lny",

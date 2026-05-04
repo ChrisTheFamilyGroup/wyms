@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-collection",
@@ -163,8 +163,16 @@
           "type": "nav_button",
           "settings": {
             "icon": "shopify://shop_images/bottle-01.svg",
-            "label": "Flaschen  dosen",
+            "label": "Trinkflaschen",
             "link": "shopify://collections/trinkflaschen"
+          }
+        },
+        "nav_button_G6ippc": {
+          "type": "nav_button",
+          "settings": {
+            "icon": "shopify://shop_images/lunchbox_icon_white_1.svg",
+            "label": "Brotdose",
+            "link": "shopify://collections/brotdosen"
           }
         },
         "nav_button_G96biX": {
@@ -180,12 +188,13 @@
         "nav_button_HJeprn",
         "nav_button_UKperz",
         "nav_button_EXDfnd",
+        "nav_button_G6ippc",
         "nav_button_G96biX"
       ],
       "name": "Collection Navigation",
       "settings": {
-        "title": "Wyms Rucksäcke",
-        "description": "Leicht. Ergonomisch. Für die Schule gemacht",
+        "title": "wyms Sporttasche",
+        "description": "Viel Platz, durchdachte Fächer und flexibel tragbar. Unsere Sporttaschen sind gemacht für Schule, Training und alles dazwischen.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",
         "blob_left_wide": "shopify://shop_images/formLO.svg",
         "blob_left_mobile": "shopify://shop_images/formLM.svg",
@@ -208,36 +217,36 @@
         "faq_item_NdecL6": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Können die wyms Sporttaschen auch als Rucksack getragen werden?",
+            "answer": "<p>Ja. Dank integrierter Rucksackträger lassen sich die Sporttaschen flexibel als Tasche oder auf dem Rücken tragen.</p>"
           }
         },
         "faq_item_mwAE4J": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Wie viel passt in die wyms Sporttaschen?",
+            "answer": "<p>Mit 23 Litern Volumen bieten die Taschen genug Platz für Kleidung, Schuhe, Handtuch und alles, was du fürs Training brauchst.</p>"
           }
         },
         "faq_item_ic6Lny": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Gibt es ein separates Fach für Schuhe oder nasse Kleidung?",
+            "answer": "<p>Ja. Unsere Sporttaschen verfügen über ein separates Fach für Schuhe oder Nasswäsche, damit der Rest deiner Sachen sauber und trocken bleibt.</p>"
           }
         },
         "faq_item_EL6CwL": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Haben die Sporttaschen zusätzliche Fächer?",
+            "answer": "<p>Neben dem großen Hauptfach gibt es zusätzliche Organizer und kleinere Fächer für Dinge, die schnell griffbereit sein müssen.</p>"
           }
         },
         "faq_item_EwXx74": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Sind die wyms Sporttaschen für Schule und Freizeit geeignet?",
+            "answer": "<p>Ja. Die Taschen sind so aufgebaut, dass sie sich sowohl für Schulsport als auch für Training, Freizeit und unterwegs eignen.</p>"
           }
         },
         "button_jJbj6m": {

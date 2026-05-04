@@ -83,7 +83,7 @@
       "name": "Collection Navigation",
       "settings": {
         "title": "Kontakt",
-        "description": "<p>Fragen, Ideen oder Feedback? Wir würden uns freuen, von Ihnen zu hören.</p>\n<p>Unser Team ist bereit zu helfen und sicherzustellen, dass Sie und Ihr kleiner Entdecker die<br> bestmögliche Erfahrung haben.</p>",
+        "description": "<p>Fragen, Ideen oder Probleme? Schreib uns einfach.\nEgal ob es um Produkte, Bestellungen oder Feedback geht – wir helfen dir weiter.</p>",
         "blob_left_desktop": "shopify://shop_images/Vector_50d9d1dc-5fb4-4ad5-bc69-eca490574204.png",
         "blob_left_wide": "shopify://shop_images/Vector_8aeac53f-4772-4cb9-b516-141bb8759d61.png",
         "blob_left_mobile": "shopify://shop_images/Vector_a70fed73-28cf-443d-be0e-b48c34ffbcbd.png",
@@ -102,7 +102,7 @@
             "main_contact_icon": "shopify://shop_images/Conversation-Chat.png",
             "contact_box_title": "Nachricht senden",
             "title_color": "#191839",
-            "contact_box_dec": "Senden Sie uns eine Nachricht",
+            "contact_box_dec": "Sende uns eine Nachricht",
             "dec_color": "#191839",
             "contact_link": ""
           }
@@ -126,9 +126,9 @@
             "main_contact_icon": "shopify://shop_images/Vector_607d855b-5da2-4886-8764-afebd9af2a03.png",
             "contact_box_title": "E-Mail",
             "title_color": "#00380b",
-            "contact_box_dec": "crew@wyms.com",
+            "contact_box_dec": "customerservice@wyms.eu",
             "dec_color": "#00380b",
-            "contact_link": "mailto:crew@wyms.com"
+            "contact_link": "mailto:customerservice@wyms.com"
           }
         }
       },
@@ -140,7 +140,7 @@
       "name": "How to Contact US Section",
       "settings": {
         "background_color": "#ffffff",
-        "main_heading": "So erreichen Sie uns",
+        "main_heading": "So erreicht ihr uns",
         "padding_top_desktop": 110,
         "padding_bottom_desktop": 65,
         "padding_top_laptop": 110,
@@ -173,7 +173,7 @@
               "type": "contact-form-submit-button",
               "static": true,
               "settings": {
-                "label": "Submit",
+                "label": "Nachricht absenden",
                 "style_class": "button",
                 "width": "fit-content",
                 "custom_width": 100,

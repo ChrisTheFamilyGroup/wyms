@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "cart-section": {
       "type": "main-cart",
@@ -57,7 +58,7 @@
         }
       },
       "settings": {
-        "section_width": "page-width",
+        "section_width": "full-width",
         "color_scheme": "",
         "padding-block-start": 24,
         "padding-block-end": 0
@@ -236,6 +237,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "Featured collection",
       "settings": {
         "collection": "all",
@@ -256,10 +258,23 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "wyms_carousel_of_featured_products_aGrEC7": {
+      "type": "wyms-carousel-of-featured-products",
+      "name": "Featured Products Carousel",
+      "settings": {
+        "title": "Entdecke jetzt",
+        "collection": "featured-products-carousel",
+        "products_to_show": 8,
+        "default_subtext": "Model Name",
+        "button_label": "Finde deinen Wyms",
+        "button_link": "shopify://collections/schulrucksacke"
+      }
     }
   },
   "order": [
     "cart-section",
-    "product_list_NNFgcy"
+    "product_list_NNFgcy",
+    "wyms_carousel_of_featured_products_aGrEC7"
   ]
 }

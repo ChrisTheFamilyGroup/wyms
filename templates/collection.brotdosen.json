@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-collection",
@@ -163,8 +163,16 @@
           "type": "nav_button",
           "settings": {
             "icon": "shopify://shop_images/bottle-01.svg",
-            "label": "Flaschen  dosen",
+            "label": "Trinkflaschen",
             "link": "shopify://collections/trinkflaschen"
+          }
+        },
+        "nav_button_QQyDcx": {
+          "type": "nav_button",
+          "settings": {
+            "icon": "shopify://shop_images/lunchbox_icon_white_1.svg",
+            "label": "Brotdosen",
+            "link": "shopify://collections/brotdosen"
           }
         },
         "nav_button_G96biX": {
@@ -180,12 +188,13 @@
         "nav_button_HJeprn",
         "nav_button_UKperz",
         "nav_button_EXDfnd",
+        "nav_button_QQyDcx",
         "nav_button_G96biX"
       ],
       "name": "Collection Navigation",
       "settings": {
-        "title": "Wyms Rucksäcke",
-        "description": "Leicht. Ergonomisch. Für die Schule gemacht",
+        "title": "wyms Brotdosen",
+        "description": "Hochwertige Edelstahlbrotdosen mit durchdachter Aufteilung, robustem Design und genug Platz für alles von Snacks bis Mittagspause.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",
         "blob_left_wide": "shopify://shop_images/formLO.svg",
         "blob_left_mobile": "shopify://shop_images/formLM.svg",
@@ -208,36 +217,43 @@
         "faq_item_NdecL6": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Sind die wyms Edelstahl Brotdosen auslaufsicher?",
+            "answer": "<p>Unsere Edelstahl Brotdosen sind so aufgebaut, dass Mahlzeiten und Snacks sicher verstaut bleiben und nichts ungewollt ausläuft.</p>"
           }
         },
         "faq_item_mwAE4J": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Welche Vorteile haben Edelstahl Brotdosen?",
+            "answer": "<p>Edelstahl ist besonders robust, langlebig und geschmacksneutral. Außerdem nimmt das Material keine Gerüche an und lässt sich leicht reinigen.</p>"
           }
         },
         "faq_item_ic6Lny": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Können warme und kalte Speisen transportiert werden?",
+            "answer": "<p>Ja. Unsere Edelstahl Brotdosen eignen sich für kalte Snacks genauso wie für warme Mahlzeiten.</p>"
           }
         },
         "faq_item_EL6CwL": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Haben die Brotdosen mehrere Fächer?",
+            "answer": "<p>Dank flexibel einsetzbarem Divider und zusätzlicher Innenbox lassen sich Speisen sauber voneinander trennen.</p>"
           }
         },
         "faq_item_EwXx74": {
           "type": "faq_item",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>"
+            "question": "Passen die Edelstahl Brotdosen in die wyms Rucksäcke?",
+            "answer": "<p>Ja. Die Brotdosen sind so entwickelt, dass sie optimal in die dafür vorgesehenen Fächer der wyms Rucksäcke passen.</p>"
+          }
+        },
+        "faq_item_fhREWG": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Sind die Edelstahl Brotdosen leicht zu reinigen?",
+            "answer": "<p>Die glatten lackierten und unlackierte Edelstahlflächen lassen sich einfach reinigen und sind besonders alltagstauglich.</p>"
           }
         },
         "button_jJbj6m": {
@@ -263,6 +279,7 @@
         "faq_item_ic6Lny",
         "faq_item_EL6CwL",
         "faq_item_EwXx74",
+        "faq_item_fhREWG",
         "button_jJbj6m",
         "button_w3m6fq"
       ],

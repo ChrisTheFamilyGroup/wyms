@@ -59,10 +59,22 @@
     },
     "wyms_collection_nav_6wQgBp": {
       "type": "wyms-collection-nav",
+      "blocks": {
+        "nav_button_r6cyAT": {
+          "type": "nav_button",
+          "settings": {
+            "label": "Jetzt deinen Wyms entdecken",
+            "link": "shopify://collections/schulrucksacke"
+          }
+        }
+      },
+      "block_order": [
+        "nav_button_r6cyAT"
+      ],
       "name": "Collection Navigation",
       "settings": {
         "title": "Häufige Fragen",
-        "description": "<p>Wir freuen uns über Ihr Interesse an WYMS! Wir haben die häufigsten Fragen, die Eltern uns stellen,<br> gesammelt, um die Dinge einfach und klar zu machen.</p>\n<p>Und wenn Sie weiterhin Hilfe benötigen, ist unser Support-Team immer nur eine E-Mail entfernt.</p>",
+        "description": "<p>Wir haben die wichtigsten Fragen rund um wyms, unsere Produkte und den Schulalltag gesammelt, damit du schnell findest, was du wissen willst.\n\nUnd falls doch noch etwas offen bleibt, ist unser Support-Team nur eine Nachricht entfernt..</p>",
         "blob_left_desktop": "shopify://shop_images/Vector_ea21626b-09bf-4744-acbf-e19ed3b9de9e.png",
         "blob_left_wide": "shopify://shop_images/Vector_013a4182-b149-480f-b249-05bb2c73bc7a.png",
         "blob_left_mobile": "shopify://shop_images/Vector_05bb1be3-f446-43ef-b9cd-f539889c9a21.png",
@@ -77,165 +89,234 @@
         "category_iW6e6W": {
           "type": "category",
           "settings": {
-            "title": "Bestellung"
+            "title": "Allgemeine Fragen"
           }
         },
         "faq_EHFNag": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Welcher Schulrucksack eignet sich für die weiterführende Schule?",
+            "answer": "<p>Ein guter Schulrucksack für die weiterführende Schule sollte ausreichend Platz, ein ergonomisches Tragesystem und eine clevere Organisation bieten. Wichtig sind außerdem eine gute Gewichtsverteilung und robuste Materialien für den täglichen Einsatz.</p>"
           }
         },
         "faq_iJatxk": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Wie wichtig ist Ergonomie bei Schulrucksäcken?",
+            "answer": "<p>Ergonomie spielt eine große Rolle, da Schulrucksäcke täglich über viele Stunden getragen werden. Ein gutes Tragesystem entlastet Rücken und Schultern und sorgt für eine bessere Gewichtsverteilung.</p>"
           }
         },
         "faq_PNGFpT": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Wie schwer darf ein Schulrucksack sein?",
+            "answer": "<p>Ein Schulrucksack sollte möglichst leicht sein und das Gewicht nah am Körper tragen. Entscheidend ist nicht nur das Eigengewicht, sondern vor allem die richtige Gewichtsverteilung.</p>"
           }
         },
         "faq_4CqeNL": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Was macht einen guten Schulrucksack aus?",
+            "answer": "<p>Ein guter Schulrucksack kombiniert Ergonomie, ausreichend Stauraum, clevere Organisation und robuste Materialien. Zusätzlich spielen Tragekomfort und Alltagstauglichkeit eine wichtige Rolle.</p>"
           }
         },
         "faq_9my8x8": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Warum sind höhenverstellbare Schulrucksäcke sinnvoll?",
+            "answer": "<p>Ein höhenverstellbares Tragesystem passt sich an die Körpergröße an und sorgt dafür, dass der Rucksack auch über längere Zeit angenehm sitzt.</p>"
           }
         },
         "category_BWw94M": {
           "type": "category",
           "settings": {
-            "title": "Pflege"
+            "title": "wyms One"
           }
         },
         "faq_tpWh4C": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Was ist der wyms one?",
+            "answer": "<p>Der wyms one ist unser Schulrucksack für die weiterführende Schule. Er kombiniert viel Stauraum, clevere Organisation und ein ergonomisches Tragesystem.</p>"
           }
         },
         "faq_tnVU4t": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Welche Besonderheiten hat der wyms one?",
+            "answer": "<p>Zu den wichtigsten Features gehören das Exoframe-Tragesystem, die stufenlose Höhenverstellung, große Mesh-Seitentaschen, Organizer-Fächer und Daisy Chains zur Individualisierung.</p>"
           }
         },
         "faq_K9FwQc": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Hat der wyms one ein separates Brotdosenfach?",
+            "answer": "<p>Ja. Der wyms one verfügt über ein geräumiges Brotdosenfach mit Zugang von beiden Seiten.</p>"
           }
         },
         "faq_mAMaTb": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Was ist das wyms Exoframe System?",
+            "answer": "<p>Das Exoframe System sorgt dafür, dass das Gewicht gezielt verteilt wird und Schultern sowie Rücken entlastet werden.</p>"
           }
         },
         "faq_A8kTDf": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Ist der wyms one höhenverstellbar?",
+            "answer": "<p>Ja. Das Tragesystem lässt sich stufenlos an die Körpergröße anpassen und wächst mit.</p>"
           }
         },
-        "category_XVzzMm": {
-          "type": "category",
+        "faq_jUiaTY": {
+          "type": "faq",
           "settings": {
-            "title": "Produktion"
+            "question": "Warum sind die Beckenflossen wichtig?",
+            "answer": "<p>Die ergonomischen Beckenflossen übernehmen einen Teil des Gewichts und entlasten dadurch Schultern und Rücken.</p>"
           }
         },
         "faq_3ELxEh": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Wie verteilt sich das Gewicht beim wyms one?",
+            "answer": "<p>Das Gewicht wird möglichst nah am Körper getragen und gleichmäßig verteilt, damit sich der Rucksack angenehmer anfühlt.</p>"
           }
         },
         "faq_zaWBr6": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Was sind Daisy Chains am Schulrucksack?",
+            "answer": "<p>Daisy Chains sind äußere Befestigungsschlaufen, an denen Zubehör oder individuelle Accessories angebracht werden können.</p>"
+          }
+        },
+        "category_XVzzMm": {
+          "type": "category",
+          "settings": {
+            "title": "Mäppchen & Schlamperboxen"
           }
         },
         "faq_wH6WBB": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Was ist der Unterschied zwischen Mäppchen und Schlamperbox?",
+            "answer": "<p>Ein klassisches Mäppchen setzt stärker auf feste Organisation und Stiftschlaufen. Eine Schlamperbox bietet flexibleren Stauraum für größere Mengen an Zubehör.</p>"
           }
         },
         "faq_xbb48F": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Was ist der Unterschied zwischen Snap Case und Schlamperbox?",
+            "answer": "<p>Das Snap Case ist besonders organisiert aufgebaut und bietet direkten Zugriff auf alle Inhalte. Die Schlamperbox bietet flexibleren Stauraum für größere Mengen an Zubehör.</p>"
           }
         },
         "faq_kReXbB": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Warum heißt es Schlamperbox?",
+            "answer": "<p>Eine Schlamperbox bietet besonders viel flexiblen Stauraum für Stifte und Zubehör und setzt weniger auf feste Einteilungen.</p>"
+          }
+        },
+        "faq_CJkmiK": {
+          "type": "faq",
+          "settings": {
+            "question": "Was gehört in eine Schlamperbox?",
+            "answer": "<p>In einer Schlamperbox finden Stifte, Schere, Kleber, Taschenrechner, Marker und weitere Schulutensilien Platz.</p>"
+          }
+        },
+        "faq_73KbjD": {
+          "type": "faq",
+          "settings": {
+            "question": "Haben die wyms Mäppchen zusätzliche Organizer?",
+            "answer": "<p>Ja. Viele Modelle verfügen über Organizer, Mesh-Fächer oder zusätzliche Reißverschlussfächer.</p>"
+          }
+        },
+        "faq_9Ugtnp": {
+          "type": "faq",
+          "settings": {
+            "question": "Wie viele Stifte passen in die wyms Mäppchen?",
+            "answer": "<p>Je nach Modell bieten unsere Mäppchen Platz für zahlreiche Stifte, Zubehör und weitere Kleinteile des Schulalltags.</p>"
           }
         },
         "category_A7mWda": {
           "type": "category",
           "settings": {
-            "title": "Bestellung"
+            "title": "Trinkflaschen"
           }
         },
         "faq_PEaUtA": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Welche Trinkflasche eignet sich für die Schule?",
+            "answer": "<p>Eine gute Trinkflasche für die Schule sollte robust, auslaufsicher und leicht zu reinigen sein. Außerdem sollte sie gut in die Seitentaschen eines Schulrucksacks passen.</p>"
           }
         },
         "faq_iGfRM9": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Sind die wyms Trinkflaschen auslaufsicher?",
+            "answer": "<p>Ja. Unsere Trinkflaschen sind so entwickelt, dass Getränke sicher transportiert werden können.</p>"
           }
         },
         "faq_Jkhyni": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Was ist besser: Edelstahl oder Tritan?",
+            "answer": "<p>Edelstahl ist besonders robust, langlebig und geschmacksneutral. Tritan ist leichter und transparent. Welche Variante besser passt, hängt vom persönlichen Alltag ab.</p>"
           }
         },
         "faq_njDH8p": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Passen die wyms Trinkflaschen in die Seitentaschen der Rucksäcke?",
+            "answer": "<p>Ja. Die Flaschen passen optimal in die dafür vorgesehenen Seitentaschen der wyms Schulrucksäcke.</p>"
           }
         },
-        "faq_U3Y3hc": {
+        "category_9qEGEn": {
+          "type": "category",
+          "settings": {
+            "title": "Bestellung, Versand & Pflege"
+          }
+        },
+        "faq_bJ7mRP": {
           "type": "faq",
           "settings": {
-            "question": "Is there a free trial available?",
-            "answer": "<p>Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</p>"
+            "question": "Wie lange dauert der Versand?",
+            "answer": "<p>Die Lieferzeit hängt vom jeweiligen Produkt und Zielland ab. Genauere Informationen findest du im Checkout. In Deutschland versenden wir meist noch am gleichen Tag.</p>"
+          }
+        },
+        "faq_MmTCQi": {
+          "type": "faq",
+          "settings": {
+            "question": "In welche Länder liefert wyms?",
+            "answer": "<p>Wir liefern aktuell in alle europäische Länder.</p>"
+          }
+        },
+        "faq_8JgHEf": {
+          "type": "faq",
+          "settings": {
+            "question": "Kann ich meine Bestellung zurückgeben?",
+            "answer": "<p>Ja. Du kannst deine Bestellung innerhalb von 30 Tagen zurückschicken.</p>"
+          }
+        },
+        "faq_C4VVTQ": {
+          "type": "faq",
+          "settings": {
+            "question": "Sind die wyms Produkte wasserabweisend?",
+            "answer": "<p>Viele unserer Produkte verfügen über wasserabweisende Materialien oder Beschichtungen und für starken Regen gibts noch unser Raincover.</p>"
+          }
+        },
+        "faq_4dm4tp": {
+          "type": "faq",
+          "settings": {
+            "question": "Wie reinige ich meinen wyms Rucksack?",
+            "answer": "<p>Leichte Verschmutzungen lassen sich am besten mit einem feuchten Tuch entfernen.</p>"
+          }
+        },
+        "faq_bphXgw": {
+          "type": "faq",
+          "settings": {
+            "question": "Sind die Materialien langlebig?",
+            "answer": "<p>Ja. Unsere Produkte sind für den täglichen Einsatz entwickelt und robust verarbeitet.</p>"
           }
         }
       },
@@ -252,18 +333,28 @@
         "faq_K9FwQc",
         "faq_mAMaTb",
         "faq_A8kTDf",
-        "category_XVzzMm",
+        "faq_jUiaTY",
         "faq_3ELxEh",
         "faq_zaWBr6",
+        "category_XVzzMm",
         "faq_wH6WBB",
         "faq_xbb48F",
         "faq_kReXbB",
+        "faq_CJkmiK",
+        "faq_73KbjD",
+        "faq_9Ugtnp",
         "category_A7mWda",
         "faq_PEaUtA",
         "faq_iGfRM9",
         "faq_Jkhyni",
         "faq_njDH8p",
-        "faq_U3Y3hc"
+        "category_9qEGEn",
+        "faq_bJ7mRP",
+        "faq_MmTCQi",
+        "faq_8JgHEf",
+        "faq_C4VVTQ",
+        "faq_4dm4tp",
+        "faq_bphXgw"
       ],
       "name": "Main Sticky FAQ",
       "settings": {
