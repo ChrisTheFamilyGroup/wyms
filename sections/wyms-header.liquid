@@ -71,9 +71,9 @@
       {% comment %} === 4. ICONS (Right) === {% endcomment %}
       <div class="header-block header-block--icons">
         <div class="header-user-actions">
-          <a href="{{ routes.search_url }}" class="icon-div-wrapper hide-mobile">{% render 'icon-search' %}</a>
-          <a href="{{ routes.account_url }}" class="icon-div-wrapper hide-mobile">{% render 'icon-account' %}</a>
-          <button type="button" class="icon-div-wrapper cart-drawer-trigger">
+          <a href="{{ routes.search_url }}" class="icon-div-wrapper hide-mobile" aria-label="Search">{% render 'icon-search' %}</a>
+          <a href="{{ routes.account_url }}" class="icon-div-wrapper hide-mobile" aria-label="{{ 'accessibility.account' | t }}">{% render 'icon-account' %}</a>
+          <button type="button" class="icon-div-wrapper cart-drawer-trigger" aria-label="{{ 'accessibility.cart' | t }}">
             {% render 'icon-cart' %}
             <span class="cart-count-badge js-cart-count{% if cart.item_count == 0 %} is-hidden{% endif %}">{{ cart.item_count }}</span>
           </button>
@@ -87,13 +87,13 @@
   <div class="mobile-menu-overlay" id="MobileNav" style="display: none;">
     <div class="mobile-menu-card">
       <div class="mobile-menu-header-row">
-        <button type="button" class="icon-div-wrapper js-mobile-close">{% render 'icon-close' %}</button>
+        <button type="button" class="icon-div-wrapper js-mobile-close" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
         <div class="mobile-logo-center">
           {%- if section.settings.logo != blank -%}
             {{ section.settings.logo | image_url: width: 200 | image_tag: class: 'header-logo-img', loading: 'lazy' }}
           {%- endif -%}
         </div>
-        <button type="button" class="icon-div-wrapper cart-drawer-trigger">
+        <button type="button" class="icon-div-wrapper cart-drawer-trigger" aria-label="{{ 'accessibility.cart' | t }}">
           {% render 'icon-cart' %}
           <span class="cart-count-badge js-cart-count{% if cart.item_count == 0 %} is-hidden{% endif %}">{{ cart.item_count }}</span>
         </button>

@@ -39,9 +39,9 @@
             <img
               class="wyms-card-insert__spot"
               src="{{ spot_bg | image_url: width: 526 }}"
+              width="{{ spot_bg.width }}"
+              height="{{ spot_bg.height }}"
               alt=""
-              width=""
-              height=""
               aria-hidden="true"
               loading="lazy">
           </div>
@@ -52,8 +52,8 @@
           srcset="{{ product_image | image_url: width: 400 }} 400w,
                   {{ product_image | image_url: width: 574 }} 574w"
           sizes="(max-width: 767px) 100vw, 40vw"
-          width=""
-              height=""
+          width="{{ product_image.width }}"
+          height="{{ product_image.height }}"
           alt="{{ product_image.alt | escape }}"
           loading="lazy">
       </div>
@@ -79,8 +79,8 @@
           srcset="{{ product_image | image_url: width: 600 }} 600w,
                   {{ product_image | image_url: width: 900 }} 900w"
           sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 66vw"
-          width=""
-              height=""
+          width="{{ product_image.width }}"
+          height="{{ product_image.height }}"
           alt="{{ product_image.alt | escape }}"
           loading="lazy">
       </picture>

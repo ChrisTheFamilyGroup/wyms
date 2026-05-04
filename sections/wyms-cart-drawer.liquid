@@ -13,7 +13,7 @@
     <div class="cart-drawer-header">
       <div class="cart-header-inner">
         <h2 class="cart-title">{{ section.settings.cart_title }}</h2>
-        <button type="button" class="cart-close-btn js-cart-close" aria-label="{{ 'accessibility.close' | t | default: 'Close' }}">
+        <button type="button" class="cart-close-btn js-cart-close" aria-label="{{ 'accessibility.close' | t }}">
           {% render 'icon-close' %}
         </button>
       </div>
@@ -30,7 +30,9 @@
                 data-key="{{ item.key }}"
               >
                 <div class="cart-item-image-wrapper" style="background-color: {{ item.product.metafields.custom.cart_background | default: '#F7F7F7' }};">
-                  <img src="{{ item.image | image_url: width: 228 }}" alt="{{ item.product.title }}" width="auto" height="auto" loading="lazy">
+                  {%- if item.image != blank -%}
+                    {{ item.image | image_url: width: 228 | image_tag: alt: item.product.title, loading: 'lazy', width: item.image.width, height: item.image.height }}
+                  {%- endif -%}
                 </div>
 
                 <div class="cart-item-info">

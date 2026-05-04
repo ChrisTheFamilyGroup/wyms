@@ -1,22 +1,13 @@
-/**
- * @class WymsFeaturesCarousel
- * @extends HTMLElement
- */
 class WymsFeaturesCarousel extends HTMLElement {
   constructor() {
     super();
   }
 
   connectedCallback() {
-    /** @type {HTMLElement | null} */
     this.list = this.querySelector('.js-carousel-list');
-    /** @type {NodeListOf<HTMLElement>} */
     this.dots = this.querySelectorAll('.wyms-pagination-dot');
-    /** @type {HTMLElement | null} */
     this.paginationContainer = this.querySelector('.wyms-features__pagination');
-    /** @type {HTMLElement | null} */
     this.arrowLeft = this.querySelector('.js-arrow-left');
-    /** @type {HTMLElement | null} */
     this.arrowRight = this.querySelector('.js-arrow-right');
 
     if (!this.list) return;
@@ -29,20 +20,17 @@ class WymsFeaturesCarousel extends HTMLElement {
     this.checkOverflow();
     this.positionArrows();
 
-    const resizeObserver = new ResizeObserver(() => {
+    this._resizeObserver = new ResizeObserver(() => {
       this.checkOverflow();
       this.updateActiveDot();
       this.positionArrows();
     });
-    resizeObserver.observe(this.list);
-
-    // this._onPageScroll = () => this.positionArrows();
-    // window.addEventListener('scroll', this._onPageScroll, { passive: true });
+    this._resizeObserver.observe(this.list);
   }
 
   disconnectedCallback() {
-    if (this._onPageScroll) {
-      window.removeEventListener('scroll', this._onPageScroll);
+    if (this._resizeObserver) {
+      this._resizeObserver.disconnect();
     }
     if (this._intersectionObserver) {
       this._intersectionObserver.disconnect();
@@ -61,7 +49,12 @@ class WymsFeaturesCarousel extends HTMLElement {
 
           if (isVisible) {
             this.positionArrows();
-            this.updateScrollEdgeState();
+            const { scrollLeft, scrollWidth, clientWidth } = this.list;
+            const atEnd = scrollLeft >= scrollWidth - clientWidth - 4;
+            this.arrowLeft?.classList.add('is-hidden');
+            if (this.arrowRight) {
+              this.arrowRight.classList.toggle('is-hidden', atEnd);
+            }
           }
         });
       },
@@ -76,13 +69,11 @@ class WymsFeaturesCarousel extends HTMLElement {
     if (!this.arrowLeft && !this.arrowRight) return;
     if (!this.list) return;
 
-    const listOffsetTop = this.list.offsetTop; 
-    const paddingTop  = parseInt(getComputedStyle(this.list).paddingTop) || 32;
-    
+    const listOffsetTop = this.list.offsetTop;
+    const paddingTop = parseInt(getComputedStyle(this.list).paddingTop) || 32;
     const firstMedia = this.querySelector('.wyms-feature-card__media');
-    const mediaHeight = firstMedia ? firstMedia.offsetHeight : 320; 
-
-    const topPx = listOffsetTop + paddingTop + (mediaHeight / 2); 
+    const mediaHeight = firstMedia ? firstMedia.offsetHeight : 320;
+    const topPx = listOffsetTop + paddingTop + (mediaHeight / 2);
 
     if (this.arrowLeft) {
       this.arrowLeft.style.top = topPx + 'px';
@@ -102,18 +93,17 @@ class WymsFeaturesCarousel extends HTMLElement {
       this.paginationContainer.classList.toggle('is-hidden', !hasOverflow);
     }
 
-    if (this.arrowLeft)  this.arrowLeft.classList.toggle('is-hidden', !hasOverflow);
+    if (this.arrowLeft) this.arrowLeft.classList.toggle('is-hidden', !hasOverflow);
     if (this.arrowRight) this.arrowRight.classList.toggle('is-hidden', !hasOverflow);
   }
 
-  
   updateScrollEdgeState() {
     if (!this.list) return;
     const { scrollLeft, scrollWidth, clientWidth } = this.list;
     const atStart = scrollLeft <= 4;
-    const atEnd   = scrollLeft >= scrollWidth - clientWidth - 4;
+    const atEnd = scrollLeft >= scrollWidth - clientWidth - 4;
 
-    if (this.arrowLeft)  this.arrowLeft.classList.toggle('is-hidden', atStart);
+    if (this.arrowLeft) this.arrowLeft.classList.toggle('is-hidden', atStart);
     if (this.arrowRight) this.arrowRight.classList.toggle('is-hidden', atEnd);
   }
 
@@ -122,10 +112,9 @@ class WymsFeaturesCarousel extends HTMLElement {
     const firstItem = this.list.querySelector('.js-carousel-item');
     if (!firstItem) return 0;
     const gap = parseInt(window.getComputedStyle(this.list).columnGap) || 32;
-    return /** @type {HTMLElement} */ (firstItem).offsetWidth + gap;
+    return firstItem.offsetWidth + gap;
   }
 
-  
   initArrows() {
     this.arrowLeft?.addEventListener('click', (e) => {
       e.preventDefault();
@@ -138,12 +127,11 @@ class WymsFeaturesCarousel extends HTMLElement {
     });
   }
 
-  
   updateActiveDot() {
     if (!this.list || this.dots.length === 0) return;
 
     const scrollLeft = this.list.scrollLeft;
-    const maxScroll  = this.list.scrollWidth - this.list.clientWidth;
+    const maxScroll = this.list.scrollWidth - this.list.clientWidth;
 
     let activeDotIndex = 0;
     if (scrollLeft > 20 && scrollLeft < maxScroll - 20) {
@@ -162,41 +150,40 @@ class WymsFeaturesCarousel extends HTMLElement {
     this.list.addEventListener('scroll', () => {
       window.requestAnimationFrame(() => {
         this.updateActiveDot();
-        this.updateScrollEdgeState(); 
+        this.updateScrollEdgeState();
       });
     }, { passive: true });
 
     this.updateActiveDot();
   }
 
-  
   initDragToScroll() {
     if (!this.list) return;
-    let isDown    = false;
-    let startX    = 0;
+    let isDown = false;
+    let startX = 0;
     let scrollLeft = 0;
 
-    this.list.addEventListener('mousedown', /** @param {MouseEvent} e */ (e) => {
+    this.list.addEventListener('mousedown', (e) => {
       isDown = true;
-      startX = e.pageX - /** @type {HTMLElement} */ (this.list).offsetLeft;
-      scrollLeft = /** @type {HTMLElement} */ (this.list).scrollLeft;
-      this.list?.style.setProperty('cursor', 'grabbing');
+      startX = e.pageX - this.list.offsetLeft;
+      scrollLeft = this.list.scrollLeft;
+      this.list.style.setProperty('cursor', 'grabbing');
     });
 
     this.list.addEventListener('mouseleave', () => {
       isDown = false;
-      this.list?.style.removeProperty('cursor');
+      this.list.style.removeProperty('cursor');
     });
 
     this.list.addEventListener('mouseup', () => {
       isDown = false;
-      this.list?.style.removeProperty('cursor');
+      this.list.style.removeProperty('cursor');
     });
 
-    this.list.addEventListener('mousemove', /** @param {MouseEvent} e */ (e) => {
+    this.list.addEventListener('mousemove', (e) => {
       if (!isDown || !this.list) return;
       e.preventDefault();
-      const x    = e.pageX - this.list.offsetLeft;
+      const x = e.pageX - this.list.offsetLeft;
       const walk = (x - startX) * 2;
       this.list.scrollLeft = scrollLeft - walk;
     });

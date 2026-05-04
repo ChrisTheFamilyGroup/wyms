@@ -1,73 +1,64 @@
-{%- assign cards_count = section_data.feature_cards.value.size -%}
+{%- liquid
+  assign cards = section_data.feature_cards.value
+  assign cards_count = cards.size
+  assign bg_color = section_data.background_color.value | default: '#F7F7F7'
+  assign promo_title = section_data.promo_title.value
+  assign promo_description = section_data.promo_description.value
+-%}
 
-<div id="{{ section_data.system.handle }}" class="wyms-features__block-wrapper" style="background-color: {{ section_data.background_color | default: '#F7F7F7' }};">
+<div class="wyms-features__block-wrapper" style="background-color: {{ bg_color }}; margin-bottom: 24px;">
 
   <wyms-features-carousel class="wyms-features__carousel-wrapper" data-items-count="{{ cards_count }}">
 
-    {% comment %} ARROWS {% endcomment %}
     <button type="button" class="wyms-carousel-arrow wyms-carousel-arrow--left js-arrow-left" aria-label="Previous">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M15.8332 10.0003H4.1665M4.1665 10.0003L9.99984 15.8337M4.1665 10.0003L9.99984 4.16699" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15.8332 10.0003H4.1665M4.1665 10.0003L9.99984 15.8337M4.1665 10.0003L9.99984 4.16699" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
     <button type="button" class="wyms-carousel-arrow wyms-carousel-arrow--right js-arrow-right" aria-label="Next">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M4.16675 10.0003H15.8334M15.8334 10.0003L10.0001 4.16699M15.8334 10.0003L10.0001 15.8337" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4.16675 10.0003H15.8334M15.8334 10.0003L10.0001 4.16699M15.8334 10.0003L10.0001 15.8337" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
 
     <div class="wyms-features__inner-content">
 
       <div class="wyms-features__header-group">
-        {%- if section_data.promo_title.value != blank -%}
-          <h2 class="wyms-features__heading">{{ section_data.promo_title.value }}</h2>
-        {%- endif -%}
-        {%- if section_data.promo_description.value != blank -%}
-          <p class="wyms-features__description">{{ section_data.promo_description.value }}</p>
-        {%- endif -%}
+        {%- if promo_title != blank -%}<h2 class="wyms-features__heading">{{ promo_title }}</h2>{%- endif -%}
+        {%- if promo_description != blank -%}<p class="wyms-features__description">{{ promo_description }}</p>{%- endif -%}
       </div>
 
       <div class="wyms-features__items-list js-carousel-list">
-  {%- for card in section_data.feature_cards.value -%}
-    <div class="wyms-feature-card js-carousel-item">
+        {%- for card in cards -%}
+          {%- liquid
+            assign card_bg = card.card_background.value | default: '#FBFBFB'
+            assign card_image = card.card_product_image.value
+            assign card_title = card.promo_title.value
+            assign card_contained = card.contain_image.value
+          -%}
+          <div class="wyms-feature-card js-carousel-item">
+            <div class="wyms-feature-card__media {% if card_contained %}is-contained{% endif %}" style="background-color: {{ card_bg }};">
+              {%- if card_image != blank -%}
+                {{ card_image | image_url: width: 600 | image_tag: class: 'wyms-feature-card__img', loading: 'lazy' }}
+              {%- endif -%}
+            </div>
 
-      {%- liquid
-        assign media_class = "wyms-feature-card__media"
-        if card.contain_image.value == true
-          assign media_class = media_class | append: " is-contained"
-        endif
-      -%}
-
-      <div class="{{ media_class }}" style="background-color: {{ card.card_background.value | default: '#FBFBFB' }};">
-        {%- if card.card_product_image.value != blank -%}
-          {{ card.card_product_image.value | image_url: width: 600 | image_tag: class: 'wyms-feature-card__img', loading: 'lazy' }}
-        {%- endif -%}
-      </div>
-
-      <div class="wyms-feature-card__text-group">
-        {%- if card.promo_title.value != blank -%}
-          <h3 class="wyms-feature-card__title">{{ card.promo_title.value }}</h3>
-        {%- endif -%}
-        {%- if card.promo_description.value != blank -%}
-          <div class="wyms-feature-card__paragraph rte">
-            {{ card.promo_description | metafield_tag }}
+            <div class="wyms-feature-card__text-group">
+              {%- if card_title != blank -%}<h3 class="wyms-feature-card__title">{{ card_title }}</h3>{%- endif -%}
+              {%- if card.promo_description.value != blank -%}
+                <div class="wyms-feature-card__paragraph rte">{{ card.promo_description.value | metafield_tag }}</div>
+              {%- endif -%}
+            </div>
           </div>
-        {%- endif -%}
+        {%- endfor -%}
       </div>
 
-    </div>
-  {%- endfor -%}
-</div>
-
-      <div class="wyms-features__pagination">
-        <div class="wyms-features__pagination-inner">
-          <span class="wyms-pagination-dot is-active"></span>
-          <span class="wyms-pagination-dot"></span>
-          <span class="wyms-pagination-dot"></span>
+      {%- if cards_count > 1 -%}
+        <div class="wyms-features__pagination">
+          <div class="wyms-features__pagination-inner">
+            {%- for i in (1..cards_count) -%}
+              <span class="wyms-pagination-dot {% if forloop.first %}is-active{% endif %}"></span>
+            {%- endfor -%}
+          </div>
         </div>
-      </div>
+      {%- endif -%}
 
     </div>
   </wyms-features-carousel>
-
 </div>

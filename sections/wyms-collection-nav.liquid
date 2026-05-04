@@ -1,6 +1,13 @@
 {{ 'wyms-collection-nav.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'wyms-collection-nav.js' | asset_url }}" defer="defer"></script>
 
+{%- style -%}
+  .section-{{ section.id }} .collection-nav__inner {
+    background-color: {{ section.settings.bg_color }};
+  }
+{%- endstyle -%}
+
+
 <wyms-collection-nav class="collection-nav section-{{ section.id }}">
   <div class="collection-nav__outer page-width">
     
@@ -15,7 +22,10 @@
             <source media="(min-width: 769px)" srcset="{{ section.settings.blob_left_desktop | image_url: width: 600 }}">
           {%- endif -%}
           {%- if section.settings.blob_left_mobile != blank -%}
-            <img src="{{ section.settings.blob_left_mobile | image_url: width: 400 }}" width="" height="" alt="" loading="lazy">
+            <img src="{{ section.settings.blob_left_mobile | image_url: width: 400 }}"
+                 width="{{ section.settings.blob_left_mobile.width }}"
+                 height="{{ section.settings.blob_left_mobile.height }}"
+                 alt="" loading="lazy">
           {%- endif -%}
         </picture>
 
@@ -27,7 +37,10 @@
             <source media="(min-width: 769px)" srcset="{{ section.settings.blob_right_desktop | image_url: width: 600 }}">
           {%- endif -%}
           {%- if section.settings.blob_right_mobile != blank -%}
-            <img src="{{ section.settings.blob_right_mobile | image_url: width: 400 }}" width="" height="" alt="" loading="lazy">
+            <img src="{{ section.settings.blob_right_mobile | image_url: width: 400 }}"
+                 width="{{ section.settings.blob_right_mobile.width }}"
+                 height="{{ section.settings.blob_right_mobile.height }}"
+                 alt="" loading="lazy">
           {%- endif -%}
         </picture>
       </div>
@@ -80,6 +93,16 @@
 {
   "name": "Collection Navigation",
   "settings": [
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#6865EA"
+    },
     {
       "type": "header",
       "content": "Text Content"

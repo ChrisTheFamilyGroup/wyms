@@ -23,9 +23,9 @@
       {%- for block in section.blocks -%}
         {%- if block.type == 'faq_item' -%}
           <div class="faq-item" {{ block.shopify_attributes }}>
-            <button class="faq-item__trigger" aria-expanded="false">
+            <button type="button" class="faq-item__trigger" aria-expanded="false">
               <span class="faq-item__question">{{ block.settings.question }}</span>
-              <span class="faq-item__icon">
+              <span class="faq-item__icon" aria-hidden="true">
                 <svg class="icon-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 5V19M5 12H19" stroke="#191839" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>

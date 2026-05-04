@@ -83,8 +83,8 @@
         {% if block.settings.sec_btn != blank %}
        <div class="sec-btn">
 
-        <a {% if section.settings.button_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ section.settings.button_link }}"{% endif %}
-          class="btn-flygge btn--blue btn--xl" href="{{ block.settings.sec_btn_link }}"
+        <a {% if block.settings.sec_btn_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ block.settings.sec_btn_link }}"{% endif %}
+          class="btn-flygge btn--blue btn--xl"
           style="background-color: {{ block.settings.sec_btn_bg }} !important;
                   color: {{ block.settings.sec_btn_text }} !important;">
           <span class="hide-desktop">{{ block.settings.sec_btn }}</span>

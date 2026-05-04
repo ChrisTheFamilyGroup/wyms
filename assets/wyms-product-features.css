@@ -1,6 +1,8 @@
 .wyms-features-section {
   display: block;
   width: 100%;
+  overflow-x: clip; 
+
 }
 
 .wyms-features__global-wrapper {
@@ -8,6 +10,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-3xl, 24px);
+  width: 100%;
+  overflow-x: clip;
 }
 
 .wyms-features__block-wrapper {
@@ -346,3 +350,5 @@ wyms-features-carousel[data-items-count="3"] .wyms-feature-card__media {
     padding: 10px; 
   }
 }
+
+

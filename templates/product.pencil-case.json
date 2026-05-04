@@ -315,7 +315,7 @@
           "type": "nav_link",
           "settings": {
             "title": "Funktionalität",
-            "link_id": "funktionalitat-1",
+            "link_id": "features-0",
             "icon_normal": "shopify://shop_images/star-01.svg",
             "icon_hover": "shopify://shop_images/star-01_0e90dcc2-0f74-4223-ac32-8a63520f301e.svg"
           }
@@ -333,7 +333,7 @@
           "type": "nav_link",
           "settings": {
             "title": "Unsere Highlights",
-            "link_id": "wyms-carousel-section",
+            "link_id": "carousel-template--28650630578503__wyms_carousel_of_featured_products_TzUjjY",
             "icon_normal": "shopify://shop_images/triangle.svg",
             "icon_hover": "shopify://shop_images/triangle_a9675dfb-49d8-4190-80af-e0da2539c928.svg"
           }
@@ -351,8 +351,7 @@
       "type": "wyms-product-features",
       "name": "WYMS Product Features",
       "settings": {
-        "feature_index": 0,
-        "features_metaobject": ""
+        "data_source": "above"
       }
     },
     "wyms_product_description_rBfP4f": {

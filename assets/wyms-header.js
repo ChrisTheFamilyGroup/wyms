@@ -4,11 +4,18 @@ class WymsHeader extends HTMLElement {
   }
 
   connectedCallback() {
-    this.mobilePanel = this.querySelector('#MobileNav');
-    this.openBtn = this.querySelector('.js-mobile-open');
-    this.closeBtn = this.querySelector('.js-mobile-close');
-    this.mainList = this.mobilePanel?.querySelector('#MobileMainList');
-    this.submenuPages = this.mobilePanel?.querySelectorAll('.submenu-page');
+    /** @type {HTMLElement | null} */
+    this.headerOuter = /** @type {HTMLElement | null} */ (this.querySelector('.header-outer-container'));
+    /** @type {HTMLElement | null} */
+    this.mobilePanel = /** @type {HTMLElement | null} */ (this.querySelector('#MobileNav'));
+    /** @type {HTMLElement | null} */
+    this.openBtn = /** @type {HTMLElement | null} */ (this.querySelector('.js-mobile-open'));
+    /** @type {HTMLElement | null} */
+    this.closeBtn = /** @type {HTMLElement | null} */ (this.querySelector('.js-mobile-close'));
+    /** @type {HTMLElement | null} */
+    this.mainList = /** @type {HTMLElement | null} */ (this.mobilePanel?.querySelector('#MobileMainList') || null);
+    /** @type {NodeListOf<HTMLElement>} */
+    this.submenuPages = /** @type {NodeListOf<HTMLElement>} */ (this.mobilePanel?.querySelectorAll('.submenu-page') || []);
     this.isMobileMenuOpen = false;
 
     if (this.mobilePanel && this.mobilePanel.parentElement !== document.body) {
@@ -17,61 +24,102 @@ class WymsHeader extends HTMLElement {
 
     this.initDesktopNav();
     this.initMobileNav();
+    this.initHeaderCssVars();
     this.initScrollHide();
   }
 
+  disconnectedCallback() {
+    this._ro?.disconnect?.();
+    this._scrollHandler && window.removeEventListener('scroll', this._scrollHandler);
+  }
+
+  getHeaderHeight() {
+    const el = this.headerOuter || this;
+    const rect = el.getBoundingClientRect();
+    return Math.max(0, Math.round(rect.height));
+  }
+
+  /**
+   * @param {boolean} isHidden
+   */
+  setStickyTopVar(isHidden) {
+    const root = document.documentElement;
+    const headerHeight = this.getHeaderHeight();
+    root.style.setProperty('--wyms-header-height', `${headerHeight}px`);
+    root.style.setProperty('--wyms-header-hidden-gap', '12px');
+    // Product-nav container always sticks close to the top.
+    // When header is visible, we *visually* create the filled space via --wyms-product-nav-inset.
+    // No gap between the top of viewport and sticky product-nav container.
+    root.style.setProperty('--wyms-sticky-top', '0px');
+    root.style.setProperty('--wyms-product-nav-inset', isHidden ? '0px' : `${headerHeight}px`);
+  }
+
+  initHeaderCssVars() {
+    this.setStickyTopVar(false);
+
+    if (window.ResizeObserver) {
+      this._ro = new ResizeObserver(() => {
+        const isHidden = this.classList.contains('header--hidden');
+        this.setStickyTopVar(isHidden);
+      });
+      const target = this.headerOuter || this;
+      this._ro.observe(target);
+    }
+  }
+
   initScrollHide() {
-    const MOBILE_BREAKPOINT = 768;
-    const SCROLL_THRESHOLD = 8;
+    const SCROLL_THRESHOLD = 10;
+    const MIN_SCROLL_Y = 100;
+
     let lastScrollY = window.scrollY;
     let isHidden = false;
     let ticking = false;
-
+  
     const update = () => {
       const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
 
-      if (window.innerWidth > MOBILE_BREAKPOINT) {
+      // Always show header when we're near the top of the page.
+      if (currentScrollY <= MIN_SCROLL_Y) {
         if (isHidden) {
           isHidden = false;
           this.classList.remove('header--hidden');
+          this.setStickyTopVar(false);
           document.dispatchEvent(new CustomEvent('wyms:header-visible'));
+        } else {
+          this.setStickyTopVar(false);
         }
+
         lastScrollY = currentScrollY;
         ticking = false;
         return;
       }
-
-      const delta = currentScrollY - lastScrollY;
-
+  
       if (!this.isMobileMenuOpen) {
-        if (delta > SCROLL_THRESHOLD && currentScrollY > 100 && !isHidden) {
+        if (delta > SCROLL_THRESHOLD && currentScrollY > MIN_SCROLL_Y && !isHidden) {
           isHidden = true;
           this.classList.add('header--hidden');
+          this.setStickyTopVar(true);
           document.dispatchEvent(new CustomEvent('wyms:header-hidden'));
         } else if (delta < -SCROLL_THRESHOLD && isHidden) {
           isHidden = false;
           this.classList.remove('header--hidden');
+          this.setStickyTopVar(false);
           document.dispatchEvent(new CustomEvent('wyms:header-visible'));
         }
       }
-
+  
       lastScrollY = currentScrollY;
       ticking = false;
     };
-
-    window.addEventListener('scroll', () => {
+  
+    this._scrollHandler = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(update);
-    }, { passive: true });
+    };
 
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > MOBILE_BREAKPOINT && isHidden) {
-        isHidden = false;
-        this.classList.remove('header--hidden');
-        document.dispatchEvent(new CustomEvent('wyms:header-visible'));
-      }
-    });
+    window.addEventListener('scroll', this._scrollHandler, { passive: true });
   }
 
   initDesktopNav() {
@@ -115,7 +163,7 @@ class WymsHeader extends HTMLElement {
         const targetId = item.getAttribute('data-target');
         if (!targetId) return;
         if (this.mainList) this.mainList.style.display = 'none';
-        const targetMenu = this.mobilePanel.querySelector(`#${targetId}`);
+        const targetMenu = /** @type {HTMLElement | null} */ (this.mobilePanel?.querySelector(`#${targetId}`) || null);
         if (targetMenu) targetMenu.style.display = 'block';
       });
     });
@@ -135,6 +183,7 @@ class WymsHeader extends HTMLElement {
     document.body.classList.add('mobile-menu-open');
     this.isMobileMenuOpen = true;
     this.classList.remove('header--hidden');
+    this.setStickyTopVar(false);
     document.dispatchEvent(new CustomEvent('wyms:header-visible'));
   }
 

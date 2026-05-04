@@ -1,27 +1,44 @@
-#shopify-section-wyms-product-nav,
-[id*="shopify-section-sections--"] {
-  position: -webkit-sticky;
+#shopify-section-wyms-product-nav {
   position: sticky;
-  top: 0;
+  top: var(--wyms-sticky-top, 0px);
   z-index: 99;
-  display: block !important;
+  display: block;
+  background: #FFF;
+  padding-top: var(--wyms-product-nav-inset, 0px);
+  transition: padding-top 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Keep layout space, but don't show nav until it becomes sticky */
+#shopify-section-wyms-product-nav:not(.wyms-product-nav--active) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#shopify-section-wyms-product-nav.wyms-product-nav--active {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.2s ease;
 }
 
 .product-nav-sticky-wrapper {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
+  position: relative;
+  top: auto;
   left: 0;
   width: 100%;
   z-index: 90;
   display: flex;
-  padding: 105px var(--spacing-4xl, 32px) var(--spacing-xl, 16px) var(--spacing-4xl, 32px);
+  padding: var(--wyms-product-nav-pad-top, var(--spacing-xl, 16px)) var(--spacing-4xl, 32px) var(--spacing-xl, 16px) var(--spacing-4xl, 32px);
   flex-direction: column;
   align-items: center;
   gap: 8px;
   border-bottom: 1px solid #EFEBE6;
   background: #FFF;
   box-sizing: border-box;
+}
+
+#shopify-section-wyms-product-nav .product-nav-sticky-wrapper {
+  transition: padding-top 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: padding-top;
 }
 
 .product-nav-container {
@@ -121,7 +138,7 @@
 
 @media screen and (max-width: 768px) {
   .product-nav-sticky-wrapper {
-    padding: 105px 16px 16px 16px;
+    padding: var(--wyms-product-nav-pad-top, var(--spacing-xl, 16px)) 16px 16px 16px;
     align-items: flex-start;
   }
 
@@ -137,18 +154,7 @@
   }
 }
 
-
-
-@media screen and (max-width: 768px) {
-  .product-nav-sticky-wrapper {
-    padding: 0px 16px 16px 16px;
-    transition: padding-top 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .product-nav-sticky-wrapper.header-is-visible {
-  }
-
-  .product-nav-sticky-wrapper.header-is-hidden {
-    padding-top: 12px;
-  }
+.product-nav-sticky-wrapper {
+  transition: padding-top 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: padding-top;
 }

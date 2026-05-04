@@ -24,7 +24,7 @@
     gap: 8px;
     align-self: stretch;
     border-radius: var(--radius-radius-2-xl-16, 16px);
-    background: var(--Colors-Blue-blue, #6865EA);
+    /* background: var(--Colors-Blue-blue, #6865EA); */
     position: relative;
     overflow: hidden; 
     box-sizing: border-box;

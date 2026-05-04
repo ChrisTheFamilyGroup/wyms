@@ -2,30 +2,47 @@
 <script src="{{ 'wyms-product-features.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
-  assign manual_entry = section.settings.features_metaobject
-  assign feature_index = section.settings.feature_index | default: 0
+  assign data_source = section.settings.data_source
 
-  assign features_list = product.selected_or_first_available_variant.metafields.custom.product_features.value
-  if features_list == blank
-    assign features_list = product.metafields.custom.product_features.value
+  if data_source == 'below'
+    assign anchor_id = 'features-1'
+    assign variant_list = product.selected_or_first_available_variant.metafields.custom.below_product_features.value
+    assign product_list = product.metafields.custom.below_product_features.value
+  else
+    assign data_source = 'above'
+    assign anchor_id = 'features-0'
+    assign variant_list = product.selected_or_first_available_variant.metafields.custom.above_product_features.value
+    assign product_list = product.metafields.custom.above_product_features.value
   endif
 
-  assign section_entry = features_list[feature_index]
+  assign features_list = variant_list | default: product_list
+  assign fallback_entry = section.settings.features_metaobject
 -%}
 
-<div class="wyms-features-section" id="WymsFeaturesSection-{{ section.settings.feature_index }}">
-  <div class="wyms-features__global-wrapper">
-
-    {%- if section_entry != blank -%}
-      {%- render 'wyms-feature-snippet', section_data: section_entry, section_index: feature_index -%}
-
-    {%- elsif manual_entry != blank -%}
-      {%- render 'wyms-feature-snippet', section_data: manual_entry, section_index: feature_index -%}
-
-    {%- endif -%}
-
+{%- if features_list != blank -%}
+  <div class="wyms-features-section" id="{{ anchor_id }}">
+    <div class="wyms-features__global-wrapper">
+      {%- for section_entry in features_list -%}
+        {%- render 'wyms-feature-snippet', section_data: section_entry, section_index: forloop.index0 -%}
+      {%- endfor -%}
+    </div>
   </div>
-</div>
+{%- elsif fallback_entry != blank -%}
+  <div class="wyms-features-section" id="{{ anchor_id }}">
+    <div class="wyms-features__global-wrapper">
+      {%- render 'wyms-feature-snippet', section_data: fallback_entry, section_index: 0 -%}
+    </div>
+  </div>
+{%- elsif request.design_mode -%}
+  <div style="padding: 20px; text-align: center; background: #eee; border-radius: 12px; margin: 10px; color: #000;">
+    <strong>WYMS Features</strong> (Source: {{ data_source | upcase }})<br>
+    <small>Anchor ID: <strong>{{ anchor_id }}</strong></small><br>
+    <small style="color: red;">
+      Metafield <strong>custom.{{ data_source }}_product_features</strong> is empty
+      and no fallback metaobject is set.
+    </small>
+  </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -34,18 +51,22 @@
   "class": "section-wyms-features",
   "settings": [
     {
-      "type": "number",
-      "id": "feature_index",
-      "label": "Feature Index",
-      "default": 0,
-      "info": "0 = first item, 1 = second item, etc. Selects which item from the product's feature list to display in this section."
+      "type": "select",
+      "id": "data_source",
+      "label": "Data Source",
+      "info": "Above = features-0, Below = features-1",
+      "options": [
+        { "value": "above", "label": "Above Product Features (features-0)" },
+        { "value": "below", "label": "Below Product Features (features-1)" }
+      ],
+      "default": "above"
     },
     {
       "type": "metaobject",
       "id": "features_metaobject",
-      "label": "Fallback Feature Entry",
+      "label": "Fallback: Feature Section Entry",
       "metaobject_type": "feature_section",
-      "info": "Used only when the product has no feature list set."
+      "info": "Used only when the selected product/variant metafield is empty."
     }
   ],
   "presets": [

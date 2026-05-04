@@ -1,6 +1,6 @@
 <div class="wyms-pagination-pill {{ class }}">
   {%- for i in (1..dot_count) -%}
-    <span class="pagination-dot{% if for_each.first %} active{% endif %}" data-index="{{ forloop.index0 }}"></span>
+    <span class="pagination-dot{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}"></span>
   {%- endfor -%}
 </div>
 

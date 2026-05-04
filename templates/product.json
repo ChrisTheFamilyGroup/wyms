@@ -324,7 +324,7 @@
           "type": "nav_link",
           "settings": {
             "title": "Funktionalität",
-            "link_id": "WymsFeaturesSection-0",
+            "link_id": "features-0",
             "icon_normal": "shopify://shop_images/placeholder.svg",
             "icon_hover": "shopify://shop_images/placeholder_1623ed4d-7227-48c8-ba39-84d3f255d9cc.svg"
           }
@@ -342,7 +342,7 @@
           "type": "nav_link",
           "settings": {
             "title": "Ergonomie",
-            "link_id": "WymsFeaturesSection-1",
+            "link_id": "features-1",
             "icon_normal": "shopify://shop_images/heart.svg",
             "icon_hover": "shopify://shop_images/heart_1569dca2-3e22-423d-abeb-32ed3edf97c5.svg"
           }
@@ -368,8 +368,7 @@
       "type": "wyms-product-features",
       "name": "WYMS Product Features",
       "settings": {
-        "feature_index": 0,
-        "features_metaobject": "funktionalitat"
+        "data_source": "above"
       }
     },
     "wyms_product_description_rBfP4f": {
@@ -391,8 +390,7 @@
       "type": "wyms-product-features",
       "name": "WYMS Product Features",
       "settings": {
-        "feature_index": 1,
-        "features_metaobject": "ergonomie"
+        "data_source": "below"
       }
     }
   },

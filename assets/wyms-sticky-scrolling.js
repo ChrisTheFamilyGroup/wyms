@@ -131,10 +131,6 @@ class StickyScrolling extends HTMLElement {
     }
   }
   
-  customElements.define('sticky-scrolling', StickyScrolling);
-  
-  if (window.Shopify && window.Shopify.designMode) {
-    document.addEventListener('shopify:section:load', () => {
-     
-    });
+  if (!customElements.get('sticky-scrolling')) {
+    customElements.define('sticky-scrolling', StickyScrolling);
   }

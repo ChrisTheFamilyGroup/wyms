@@ -598,6 +598,7 @@
     height: 28px;
     object-fit: contain;
     display: block;
+    max-width: none;
   }
   
   .selling-point__text {
@@ -839,7 +840,7 @@
   
   @media (min-width: 990px) {
     .section-product-main {
-      padding: 0 var(--spacing-7xl, 64px);
+      padding: 0 var(--spacing-7xl, 64px) 100px;
     }
   
     .product-main-inner {
@@ -892,7 +893,7 @@
   
   @media (max-width: 989px) {
     .section-product-main {
-      padding: 0 var(--spacing-2xl, 20px);
+      padding: 0 var(--spacing-2xl, 20px) 80px;
       flex-direction: column;
       gap: var(--spacing-5xl, 40px);
     }
