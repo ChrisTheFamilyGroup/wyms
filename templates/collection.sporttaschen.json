@@ -193,6 +193,7 @@
       ],
       "name": "Collection Navigation",
       "settings": {
+        "bg_color": "#242352",
         "title": "wyms Sporttasche",
         "description": "Viel Platz, durchdachte Fächer und flexibel tragbar. Unsere Sporttaschen sind gemacht für Schule, Training und alles dazwischen.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",

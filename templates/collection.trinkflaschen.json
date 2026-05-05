@@ -193,6 +193,7 @@
       ],
       "name": "Collection Navigation",
       "settings": {
+        "bg_color": "#242352",
         "title": "wyms Trinkflaschen",
         "description": "Trinkflaschen mit durchdachten Details, hochwertigen Materialien und genau der richtigen Größe für unterwegs.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",

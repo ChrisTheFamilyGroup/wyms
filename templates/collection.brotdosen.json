@@ -193,6 +193,7 @@
       ],
       "name": "Collection Navigation",
       "settings": {
+        "bg_color": "#00380b",
         "title": "wyms Brotdosen",
         "description": "Hochwertige Edelstahlbrotdosen mit durchdachter Aufteilung, robustem Design und genug Platz für alles von Snacks bis Mittagspause.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",

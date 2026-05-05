@@ -193,6 +193,7 @@
       ],
       "name": "Collection Navigation",
       "settings": {
+        "bg_color": "#64033c",
         "title": "wyms Mäppchen",
         "description": "Kein Chaos, kein langes Suchen. Unsere Mäppchen und Schlamperboxen kombinieren clevere Organisation mit cleanem Design und richtig viel Platz.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",
