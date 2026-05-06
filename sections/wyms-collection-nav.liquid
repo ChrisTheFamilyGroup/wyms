@@ -5,8 +5,14 @@
   .section-{{ section.id }} .collection-nav__inner {
     background-color: {{ section.settings.bg_color }};
   }
+  .section-{{ section.id }} {
+    --nav-title-color: {{ section.settings.color_title }};
+    --nav-desc-color: {{ section.settings.color_desc }};
+    --nav-btn-bg: {{ section.settings.color_btn_bg }};
+    --nav-btn-text: {{ section.settings.color_btn_text }};
+    --nav-btn-bg-active: {{ section.settings.color_btn_bg_active }};
+  }
 {%- endstyle -%}
-
 
 <wyms-collection-nav class="collection-nav section-{{ section.id }}">
   <div class="collection-nav__outer page-width">
@@ -22,10 +28,7 @@
             <source media="(min-width: 769px)" srcset="{{ section.settings.blob_left_desktop | image_url: width: 600 }}">
           {%- endif -%}
           {%- if section.settings.blob_left_mobile != blank -%}
-            <img src="{{ section.settings.blob_left_mobile | image_url: width: 400 }}"
-                 width="{{ section.settings.blob_left_mobile.width }}"
-                 height="{{ section.settings.blob_left_mobile.height }}"
-                 alt="" loading="lazy">
+            <img src="{{ section.settings.blob_left_mobile | image_url: width: 400 }}" width="" height="" alt="" loading="lazy">
           {%- endif -%}
         </picture>
 
@@ -37,10 +40,7 @@
             <source media="(min-width: 769px)" srcset="{{ section.settings.blob_right_desktop | image_url: width: 600 }}">
           {%- endif -%}
           {%- if section.settings.blob_right_mobile != blank -%}
-            <img src="{{ section.settings.blob_right_mobile | image_url: width: 400 }}"
-                 width="{{ section.settings.blob_right_mobile.width }}"
-                 height="{{ section.settings.blob_right_mobile.height }}"
-                 alt="" loading="lazy">
+            <img src="{{ section.settings.blob_right_mobile | image_url: width: 400 }}" width="" height="" alt="" loading="lazy">
           {%- endif -%}
         </picture>
       </div>
@@ -95,13 +95,43 @@
   "settings": [
     {
       "type": "header",
-      "content": "Appearance"
+      "content": "Appearance & Colors"
     },
     {
       "type": "color",
       "id": "bg_color",
-      "label": "Background Color",
+      "label": "Inner Background Color",
       "default": "#6865EA"
+    },
+    {
+      "type": "color",
+      "id": "color_title",
+      "label": "Heading Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "color_desc",
+      "label": "Description Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "color_btn_bg",
+      "label": "Button Background (Default)",
+      "default": "rgba(25, 24, 57, 0.20)"
+    },
+    {
+      "type": "color",
+      "id": "color_btn_bg_active",
+      "label": "Button Background (Active/Hover)",
+      "default": "#242352"
+    },
+    {
+      "type": "color",
+      "id": "color_btn_text",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
     },
     {
       "type": "header",
@@ -121,76 +151,29 @@
     },
     {
       "type": "header",
-      "content": "Left Background Blob"
+      "content": "Background Images"
     },
-    {
-      "type": "image_picker",
-      "id": "blob_left_desktop",
-      "label": "Desktop Image (769px - 1440px)"
-    },
-    {
-      "type": "image_picker",
-      "id": "blob_left_wide",
-      "label": "Wide Image (> 1440px)"
-    },
-    {
-      "type": "image_picker",
-      "id": "blob_left_mobile",
-      "label": "Mobile Image (< 768px)"
-    },
-    {
-      "type": "header",
-      "content": "Right Background Blob"
-    },
-    {
-      "type": "image_picker",
-      "id": "blob_right_desktop",
-      "label": "Desktop Image (769px - 1440px)"
-    },
-    {
-      "type": "image_picker",
-      "id": "blob_right_wide",
-      "label": "Wide Image (> 1440px)"
-    },
-    {
-      "type": "image_picker",
-      "id": "blob_right_mobile",
-      "label": "Mobile Image (< 768px)"
-    }
+    { "type": "image_picker", "id": "blob_left_desktop", "label": "Left Blob (Desktop)" },
+    { "type": "image_picker", "id": "blob_left_wide", "label": "Left Blob (Wide)" },
+    { "type": "image_picker", "id": "blob_left_mobile", "label": "Left Blob (Mobile)" },
+    { "type": "image_picker", "id": "blob_right_desktop", "label": "Right Blob (Desktop)" },
+    { "type": "image_picker", "id": "blob_right_wide", "label": "Right Blob (Wide)" },
+    { "type": "image_picker", "id": "blob_right_mobile", "label": "Right Blob (Mobile)" }
   ],
   "blocks": [
     {
       "type": "nav_button",
       "name": "Navigation Button",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "icon",
-          "label": "Button Icon (20x20)"
-        },
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Button Label",
-          "default": "Category"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link",
-          "info": "Active state depends on this link matching the current page URL."
-        }
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Category" },
+        { "type": "url", "id": "link", "label": "Link" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Collection Navigation",
-      "blocks": [
-        { "type": "nav_button" },
-        { "type": "nav_button" },
-        { "type": "nav_button" }
-      ]
+      "name": "Collection Navigation"
     }
   ]
 }

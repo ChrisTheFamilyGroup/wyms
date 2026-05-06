@@ -1,11 +1,12 @@
 {%- comment -%}
-  Horizontal sticky CTA bar; pins below the header while scrolling until the footer.
+  Horizontal sticky CTA bar; pins below the header while scrolling.
+  SYNCED LOGIC: 0px when flowing, 16px when stuck (scrolling down), Header Height when stuck (scrolling up).
 {%- endcomment -%}
 
-<div class="wyms-sticky-btns-section">
+<div class="wyms-sticky-btns-section js-sticky-section-wrapper">
   <div
     id="StickyBtnsBar-{{ section.id }}"
-    class="wyms-sticky-btns-section__bar"
+    class="wyms-sticky-btns-section__bar js-sticky-bar-element"
     data-wyms-sticky-btns-bar
   >
     <div class="wyms-sticky-btns-section__inner">
@@ -37,213 +38,97 @@
 </div>
 
 <style>
+  #shopify-section-{{ section.id }} {
+    position: -webkit-sticky;
+    position: sticky;
+    top: -1px; 
+    z-index: 99;
+    background: #fff;
+    display: block !important;
+  }
+
   #shopify-section-{{ section.id }} .wyms-sticky-btns-section {
     position: relative;
     padding-top: {{ section.settings.padding_top_desktop }}px;
     padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
   }
 
-  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar {
-    padding-top: 16px;
+  .wyms-sticky-btns-section__bar {
+    padding-top: 0 !important; 
     padding-bottom: 16px;
     background: #fff;
     width: 100%;
     box-sizing: border-box;
-    transition: box-shadow 0.3s ease;
     border-bottom: 1px solid #e2dbd3;
+    transition: padding-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar.is-fixed {
-    position: fixed;
-    top: 11%;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    background: transparent !important;
-    border-bottom: unset !important;
+  .wyms-sticky-btns-section__bar.is-stuck {
+    padding-top: var(--wyms-product-nav-inset, 105px) !important;
   }
 
-  #shopify-section-{{ section.id }} .wyms-sticky-btns-section.has-placeholder {
-    padding-bottom: var(--sticky-bar-height, 72px);
+  body.header-is-hidden #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar.is-stuck {
+    padding-top: 16px !important; 
   }
 
-  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__inner {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
+  .wyms-sticky-btns-section__inner {
+    display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
   }
-
-  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__icon {
-    height: 20px;
-    width: 20px;
-    object-fit: contain;
-  }
-
-  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__link {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: #191839;
-    text-decoration: none;
-    background: #efebe6;
-    padding: 10px 14px;
-    border-radius: 9999px;
+  .wyms-sticky-btns-section__icon { height: 20px; width: 20px; object-fit: contain; }
+  .wyms-sticky-btns-section__link {
+    display: flex; align-items: center; gap: 6px; color: #191839; text-decoration: none;
+    background: #efebe6; padding: 10px 14px; border-radius: 9999px;
     transition: background-color 0.4s ease, color 0.4s ease;
     font-family: var(--font-family-body, 'Inter', sans-serif);
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 28px;
+    font-size: 18px; font-weight: 600; line-height: 28px;
   }
-
-  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__label {
-    color: #191839;
-    font-family: var(--font-family-body, 'Inter', sans-serif);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 20px;
-  }
-
-  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__link:hover {
-    background: #00103f;
-    color: #fff;
-  }
-
-  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__link:hover .wyms-sticky-btns-section__label {
-    color: #fff;
-  }
-
-  #shopify-section-{{ section.id }} .wyms-sticky-btns-section__link:hover .wyms-sticky-btns-section__icon {
-    filter: brightness(0) saturate(100%) invert(93%) sepia(8%) saturate(287%) hue-rotate(339deg) brightness(103%) contrast(90%);
-  }
+  .wyms-sticky-btns-section__label { color: #191839; font-size: 14px; font-weight: 600; }
+  .wyms-sticky-btns-section__link:hover { background: #00103f; color: #fff; }
 
   @media (max-width: 1599.98px) {
     #shopify-section-{{ section.id }} .wyms-sticky-btns-section {
       padding-top: {{ section.settings.padding_top_laptop }}px;
       padding-bottom: {{ section.settings.padding_bottom_laptop }}px;
     }
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar.is-fixed {
-      top: 12%;
-    }
   }
-
-  @media (max-width: 1499.98px) {
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar.is-fixed {
-      top: 13%;
-    }
-  }
-
-  @media (max-width: 1299.98px) {
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar.is-fixed {
-      top: 14%;
-    }
-  }
-
-  @media (max-width: 1199.98px) {
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__label {
-      font-size: 15px;
-    }
-  }
-
   @media (max-width: 1024.98px) {
     #shopify-section-{{ section.id }} .wyms-sticky-btns-section {
       padding-top: {{ section.settings.padding_top_tablet }}px;
       padding-bottom: {{ section.settings.padding_bottom_tablet }}px;
     }
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__label {
-      font-size: 12px;
-    }
+    .wyms-sticky-btns-section__label { font-size: 12px; }
   }
-
   @media (max-width: 767.98px) {
     #shopify-section-{{ section.id }} .wyms-sticky-btns-section {
       padding-top: {{ section.settings.padding_top_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
     }
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__inner {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding: 0 16px;
-      gap: 8px;
-      justify-content: flex-start;
+    .wyms-sticky-btns-section__inner {
+      flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; padding: 0 16px; gap: 8px; justify-content: flex-start;
     }
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__inner::-webkit-scrollbar {
-      display: none;
-    }
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__link {
-      flex-shrink: 0;
-      gap: 4px;
-      font-size: 14px;
-      padding: 10px 14px;
-    }
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__icon {
-      height: 15px;
-      width: 15px;
-    }
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__label {
-      font-size: 14px;
-    }
-  }
-
-  @media (max-width: 450.98px) {
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar.is-fixed {
-      top: 14%;
-    }
+    .wyms-sticky-btns-section__inner::-webkit-scrollbar { display: none; }
+    .wyms-sticky-btns-section__link { flex-shrink: 0; font-size: 14px; padding: 10px 14px; }
   }
 </style>
 
 <script>
   (function () {
-    var root = document.getElementById('shopify-section-{{ section.id }}');
-    if (!root) return;
+    const root = document.getElementById('shopify-section-{{ section.id }}');
+    const bar = root.querySelector('.js-sticky-bar-element');
+    if (!root || !bar) return;
 
-    var wrap = root.querySelector('[data-wyms-sticky-btns-bar]');
-    var section = root.querySelector('.wyms-sticky-btns-section');
-    if (!wrap || !section) return;
-
-    function headerOffset() {
-      var h = parseFloat(window.getComputedStyle(document.body).getPropertyValue('--header-group-height'));
-      return Number.isFinite(h) && h > 0 ? h : 104;
-    }
-
-    var headerHeight = headerOffset();
-    var triggerY = 0;
-
-    function init() {
-      headerHeight = headerOffset();
-      var rect = section.getBoundingClientRect();
-      triggerY = rect.top + window.scrollY - headerHeight;
-      section.style.setProperty('--sticky-bar-height', wrap.offsetHeight + 'px');
-    }
-
-    function onScroll() {
-      var footer = document.querySelector('footer') || document.querySelector('.footer');
-      var footerTop = footer ? footer.getBoundingClientRect().top + window.scrollY : document.body.scrollHeight;
-      var barHeight = wrap.offsetHeight;
-      var y = window.scrollY;
-
-      if (y >= triggerY && y + headerHeight + barHeight < footerTop) {
-        wrap.classList.add('is-fixed');
-        section.classList.add('has-placeholder');
-      } else {
-        wrap.classList.remove('is-fixed');
-        section.classList.remove('has-placeholder');
+    const observer = new IntersectionObserver(
+      ([e]) => {
+        // Ми додаємо клас is-stuck тільки коли заголовок торкається верху
+        bar.classList.toggle('is-stuck', e.intersectionRatio < 1);
+      },
+      { 
+        threshold: [1],
+        rootMargin: '-1px 0px 0px 0px' 
       }
-    }
-
-    window.addEventListener('load', function () {
-      init();
-      onScroll();
-    });
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', function () {
-      init();
-      onScroll();
-    });
+    );
+    observer.observe(root);
   })();
 </script>
 
@@ -251,102 +136,18 @@
 {
   "name": "Sticky buttons",
   "settings": [
-    {
-      "type": "header",
-      "content": "Desktop padding"
-    },
-    {
-      "type": "range",
-      "id": "padding_top_desktop",
-      "label": "Padding top (desktop)",
-      "default": 0,
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_desktop",
-      "label": "Padding bottom (desktop)",
-      "default": 0,
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px"
-    },
-    {
-      "type": "header",
-      "content": "Laptop padding"
-    },
-    {
-      "type": "range",
-      "id": "padding_top_laptop",
-      "label": "Padding top (laptop)",
-      "default": 0,
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_laptop",
-      "label": "Padding bottom (laptop)",
-      "default": 0,
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px"
-    },
-    {
-      "type": "header",
-      "content": "Tablet padding"
-    },
-    {
-      "type": "range",
-      "id": "padding_top_tablet",
-      "label": "Padding top (tablet)",
-      "default": 0,
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_tablet",
-      "label": "Padding bottom (tablet)",
-      "default": 0,
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "px"
-    },
-    {
-      "type": "header",
-      "content": "Mobile padding"
-    },
-    {
-      "type": "range",
-      "id": "padding_top_mobile",
-      "label": "Padding top (mobile)",
-      "default": 0,
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_mobile",
-      "label": "Padding bottom (mobile)",
-      "default": 0,
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px"
-    }
+    { "type": "header", "content": "Desktop padding" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Padding top (desktop)", "default": 0, "min": 0, "max": 200, "step": 5, "unit": "px" },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Padding bottom (desktop)", "default": 0, "min": 0, "max": 200, "step": 5, "unit": "px" },
+    { "type": "header", "content": "Laptop padding" },
+    { "type": "range", "id": "padding_top_laptop", "label": "Padding top (laptop)", "default": 0, "min": 0, "max": 200, "step": 5, "unit": "px" },
+    { "type": "range", "id": "padding_bottom_laptop", "label": "Padding bottom (laptop)", "default": 0, "min": 0, "max": 200, "step": 5, "unit": "px" },
+    { "type": "header", "content": "Tablet padding" },
+    { "type": "range", "id": "padding_top_tablet", "label": "Padding top (tablet)", "default": 0, "min": 0, "max": 200, "step": 5, "unit": "px" },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Padding bottom (tablet)", "default": 0, "min": 0, "max": 200, "step": 5, "unit": "px" },
+    { "type": "header", "content": "Mobile padding" },
+    { "type": "range", "id": "padding_top_mobile", "label": "Padding top (mobile)", "default": 0, "min": 0, "max": 150, "step": 5, "unit": "px" },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Padding bottom (mobile)", "default": 0, "min": 0, "max": 150, "step": 5, "unit": "px" }
   ],
   "blocks": [
     {
@@ -354,29 +155,12 @@
       "name": "Button",
       "limit": 5,
       "settings": [
-        {
-          "type": "text",
-          "id": "sec_btn_text",
-          "label": "Button text"
-        },
-        {
-          "type": "image_picker",
-          "id": "sec_btn_icon",
-          "label": "Button icon"
-        },
-        {
-          "type": "url",
-          "id": "sec_btn_link",
-          "label": "Button link"
-        }
+        { "type": "text", "id": "sec_btn_text", "label": "Button text" },
+        { "type": "image_picker", "id": "sec_btn_icon", "label": "Button icon" },
+        { "type": "url", "id": "sec_btn_link", "label": "Button link" }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Sticky buttons",
-      "category": "Custom"
-    }
-  ]
+  "presets": [{ "name": "Sticky buttons", "category": "Custom" }]
 }
 {% endschema %}

@@ -889,6 +889,25 @@
     .usp-drawer { top: 0; left: 0; border-radius: 0; transform: translateX(-100%); }
     .usp-drawer.is-active { transform: translateX(0); }
   }
+
+  .product-video-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .product-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    display: block;
+  }
+  
+  .lightbox-img.is-video {
+    object-fit: contain;
+  }
   
   
   @media (max-width: 989px) {

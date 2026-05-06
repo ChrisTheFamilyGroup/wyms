@@ -371,10 +371,28 @@ class MainProduct {
     }
   
     updateImage() {
-      const img = this.triggers[this.currentIndex];
-      const highResSrc = img.src.split('?')[0] + '?width=2000'; 
+      const mediaElement = this.triggers[this.currentIndex]; 
+      const container = this.lightbox.querySelector('.js-lightbox-bg');
       
-      this.lightboxImg.src = highResSrc;
+      container.innerHTML = '';
+      
+      if (mediaElement.tagName === 'VIDEO') {
+        const video = document.createElement('video');
+        video.src = mediaElement.querySelector('source')?.src || mediaElement.src;
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.className = 'lightbox-img is-video';
+        container.appendChild(video);
+      } else {
+        const img = document.createElement('img');
+        const highResSrc = mediaElement.src.split('?')[0] + '?width=2000';
+        img.src = highResSrc;
+        img.className = 'lightbox-img';
+        container.appendChild(img);
+        this.lightboxImg = img;
+      }
+      
       this.counter.textContent = `${this.currentIndex + 1} of ${this.triggers.length}`;
     }
   

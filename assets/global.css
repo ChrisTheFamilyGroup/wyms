@@ -423,3 +423,35 @@ textarea:-moz-autofill {
     letter-spacing: -0.72px;
   }
 }
+
+/* ------------------------------------------------ Global section grid fix ------------------------------------------------ */
+/* --page-margin and --page-width are only defined on .page-width-normal/wide/narrow elements by default.
+   Without these on :root, the .section CSS grid formula produces invalid grid-template-columns.
+   Setting them here ensures all .section elements (including standard Horizon sections) render with the correct 3-column grid. */
+:root {
+  --page-margin: 16px;
+  --page-content-width: var(--normal-page-width);
+  --page-width: calc(var(--page-content-width) + var(--page-margin) * 2);
+}
+
+@media screen and (min-width: 750px) {
+  :root {
+    --page-margin: 40px;
+  }
+}
+
+/* ------------------------------------------------ Resource list / product list section ------------------------------------------------ */
+/* Center the section header (title + any actions) so it aligns with the grid content below */
+.section-resource-list__header .group-block-content {
+  align-items: center;
+}
+
+.section-resource-list__header .text-block {
+  --text-align: center;
+  text-align: center;
+}
+
+/* Center the bottom content slot (load-more, view-all, etc.) */
+.section-resource-list__content {
+  align-items: center;
+}

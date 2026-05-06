@@ -103,7 +103,7 @@
   
   .collection-nav__title {
     margin: 0;
-    color: var(--Colors-Text-text-primary_on-brand, #FFF);
+    color: var(--nav-title-color, #FFF);
     text-align: center;
     font-family: var(--Font-family-font-family-display, "Clash Grotesk");
     font-size: var(--Font-size-display-xl, 60px);
@@ -114,7 +114,7 @@
   
   .collection-nav__desc {
     margin: 0;
-    color: var(--Colors-Text-text-primary_on-brand, #FFF);
+    color: var(--nav-desc-color, #FFF);
     text-align: center;
     font-family: var(--Font-family-font-family-body, Inter);
     font-size: var(--Font-size-text-xl, 20px);
@@ -141,7 +141,7 @@
     align-items: center;
     gap: var(--spacing-xs, 4px);
     border-radius: var(--radius-full, 9999px);
-    background: var(--Component-colors-Alpha-alpha-black-20, rgba(25, 24, 57, 0.20));
+    background: var(--nav-btn-bg, rgba(25, 24, 57, 0.20));
     text-decoration: none;
     transition: background 0.2s ease;
     flex-shrink: 0;
@@ -149,7 +149,7 @@
   
   .collection-nav__btn:hover,
   .collection-nav__btn.is-active {
-    background: var(--Colors-Foreground-fg-primary, #242352);
+    background: var(--nav-btn-bg-active, #242352);
   }
   
   .collection-nav__btn-icon {
@@ -159,7 +159,7 @@
   }
   
   .collection-nav__btn-text {
-    color: var(--Colors-Text-text-primary_on-brand, #FFF);
+    color: var(--nav-btn-text, #FFF);
     font-family: var(--Font-family-font-family-body, Inter);
     font-size: var(--Font-size-text-sm, 14px);
     font-weight: 600;
