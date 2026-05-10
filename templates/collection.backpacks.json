@@ -172,7 +172,7 @@
           "settings": {
             "icon": "shopify://shop_images/lunchbox_icon_white_1.svg",
             "label": "Brotdosen",
-            "link": ""
+            "link": "shopify://collections/brotdosen"
           }
         },
         "nav_button_G96biX": {
@@ -193,6 +193,12 @@
       ],
       "name": "Collection Navigation",
       "settings": {
+        "bg_color": "#6865ea",
+        "color_title": "#ffffff",
+        "color_desc": "#ffffff",
+        "color_btn_bg": "#19183933",
+        "color_btn_bg_active": "#242352",
+        "color_btn_text": "#ffffff",
         "title": "wyms One",
         "description": "Dein Rucksack für jeden Schultag – mit perfektem Sitz, leichtem Tragegefühl und einem Fit, der mit dir mitgeht.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",
@@ -205,10 +211,55 @@
     },
     "wyms_collection_grid_r7DmT3": {
       "type": "wyms-collection-grid",
+      "blocks": {
+        "sort_item_yBtjDW": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Bestseller",
+            "value": "manual"
+          }
+        },
+        "sort_item_RixkWn": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Neueste",
+            "value": "created-descending"
+          }
+        },
+        "sort_item_HadwWH": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Niedrigster Preis",
+            "value": "price-ascending"
+          }
+        },
+        "sort_item_etQNW3": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Höchster Preis",
+            "value": "price-descending"
+          }
+        },
+        "sort_item_nXTKbX": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Name: A–Z",
+            "value": "title-ascending"
+          }
+        }
+      },
+      "block_order": [
+        "sort_item_yBtjDW",
+        "sort_item_RixkWn",
+        "sort_item_HadwWH",
+        "sort_item_etQNW3",
+        "sort_item_nXTKbX"
+      ],
       "name": "WYMS Collection Grid",
       "settings": {
         "title_override": "",
-        "count_label": "Artikel"
+        "count_label": "Artikel",
+        "reset_label": "Alles zurücksetzen"
       }
     },
     "wyms_faq_accordion_Vkir4Q": {

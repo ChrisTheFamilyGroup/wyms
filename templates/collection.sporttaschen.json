@@ -194,6 +194,11 @@
       "name": "Collection Navigation",
       "settings": {
         "bg_color": "#242352",
+        "color_title": "#ffffff",
+        "color_desc": "#ffffff",
+        "color_btn_bg": "#19183933",
+        "color_btn_bg_active": "#242352",
+        "color_btn_text": "#ffffff",
         "title": "wyms Sporttasche",
         "description": "Viel Platz, durchdachte Fächer und flexibel tragbar. Unsere Sporttaschen sind gemacht für Schule, Training und alles dazwischen.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",
@@ -206,10 +211,55 @@
     },
     "wyms_collection_grid_r7DmT3": {
       "type": "wyms-collection-grid",
+      "blocks": {
+        "sort_item_dCwUHn": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Bestseller",
+            "value": "manual"
+          }
+        },
+        "sort_item_QYiPdX": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Neueste",
+            "value": "created-descending"
+          }
+        },
+        "sort_item_pBai9M": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Niedrigster Preis",
+            "value": "price-ascending"
+          }
+        },
+        "sort_item_mLmyjR": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Höchster Preis",
+            "value": "price-descending"
+          }
+        },
+        "sort_item_N4EHrL": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Name: A–Z",
+            "value": "title-ascending"
+          }
+        }
+      },
+      "block_order": [
+        "sort_item_dCwUHn",
+        "sort_item_QYiPdX",
+        "sort_item_pBai9M",
+        "sort_item_mLmyjR",
+        "sort_item_N4EHrL"
+      ],
       "name": "WYMS Collection Grid",
       "settings": {
         "title_override": "",
-        "count_label": "Artikel"
+        "count_label": "Artikel",
+        "reset_label": "Alles zurücksetzen"
       }
     },
     "wyms_faq_accordion_Vkir4Q": {

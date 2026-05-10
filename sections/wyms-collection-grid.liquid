@@ -19,9 +19,101 @@
             {{- section.settings.count_label | prepend: ' ' -}}
           </p>
         </div>
-        <div class="wyms-collection-header__filters">
-          {%- comment -%} Filters come later {%- endcomment -%}
+        <div class="wyms-collection-header__filters js-collection-filters">
+  <form id="FacetsFilterForm" class="facets__form">
+    <div class="facets__main-container">
+      
+      <div class="facets__group-right">
+        {%- comment -%} 1. Фільтри (Колір тощо) {%- endcomment -%}
+        <div class="facets__list-wrapper">
+          {%- for filter in collection.filters -%}
+            {%- assign active_count = filter.active_values.size -%}
+            <details class="facet-details js-filter" data-index="{{ forloop.index }}">
+              <summary class="facet-btn">
+                <div class="facet-btn__content">
+                  <span class="facet-btn__label">{{ filter.label }}</span>
+                  {%- if active_count > 0 -%}<span class="facet-btn__count">{{ active_count }}</span>{%- endif -%}
+                </div>
+                <span class="facet-btn__icon-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="#242352" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="facet-btn__icon-close"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5L15 15" stroke="#242352" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </summary>
+              <div class="facet-dropdown">
+                <ul class="facet-dropdown__list">
+                  {%- for value in filter.values -%}
+                    <li class="facet-dropdown__item">
+                      <label class="facet-checkbox-label">
+                        <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                        <span class="facet-checkbox__box">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.6654 3.5L5.2487 9.91667L2.33203 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span class="facet-checkbox__text">{{ value.label }}</span>
+                      </label>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            </details>
+          {%- endfor -%}
         </div>
+
+        {%- comment -%} 2. Кнопка Reset (текст з адмінки) {%- endcomment -%}
+        {%- liquid
+          assign has_active = false
+          for filter in collection.filters
+            if filter.active_values.size > 0
+              assign has_active = true
+            endif
+          endfor
+        -%}
+        {%- if has_active -%}
+          <a href="{{ collection.url }}?sort_by={{ collection.sort_by | default: collection.default_sort_by }}" class="facet-reset-btn">
+            {{ section.settings.reset_label | default: 'Alles zurücksetzen' }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5L15 15" stroke="#242352" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        {%- endif -%}
+
+        {%- comment -%} 3. Сортування (Динамічне) {%- endcomment -%}
+        <div class="facets__sort-wrapper">
+          {%- assign current_sort = collection.sort_by | default: collection.default_sort_by -%}
+          <details class="facet-details facet-details--sort js-filter">
+            <summary class="facet-btn">
+              <span class="facet-btn__icon-sort">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5.83333 3.3335V16.6668M5.83333 16.6668L2.5 13.3335M5.83333 16.6668L9.16667 13.3335M14.1667 16.6668V3.3335M14.1667 3.3335L10.8333 6.66683M14.1667 3.3335L17.5 6.66683" stroke="#242352" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="facet-btn__label">
+                {%- assign sort_label = 'Bestseller' -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'sort_item' and block.settings.value == current_sort -%}
+                    {%- assign sort_label = block.settings.label -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                {{ sort_label }}
+              </span>
+            </summary>
+            <div class="facet-dropdown facet-dropdown--right">
+              <ul class="facet-dropdown__list">
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'sort_item' -%}
+                    <li class="facet-dropdown__item">
+                      <label class="facet-checkbox-label">
+                        <input type="radio" name="sort_by" value="{{ block.settings.value }}" {% if block.settings.value == current_sort %}checked{% endif %}>
+                        <span class="facet-checkbox__box">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.6654 3.5L5.2487 9.91667L2.33203 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span class="facet-checkbox__text">{{ block.settings.label }}</span>
+                      </label>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+          </details>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
       </div>
     </div>
 
@@ -109,6 +201,34 @@
       "id": "count_label",
       "label": "Word after product count",
       "default": "Artikel"
+    },
+    { "type": "text", 
+      "id": "reset_label", 
+      "label": "Reset Button Text", 
+      "default": "Alles zurücksetzen" 
+    },
+  ],
+  "blocks": [
+    {
+      "type": "sort_item",
+      "name": "Sorting Option",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Bestseller" },
+        {
+          "type": "select",
+          "id": "value",
+          "label": "Shopify Sort Value",
+          "options": [
+            { "value": "manual", "label": "Featured (Bestseller)" },
+            { "value": "created-descending", "label": "Date, new to old" },
+            { "value": "price-ascending", "label": "Price, low to high" },
+            { "value": "price-descending", "label": "Price, high to low" },
+            { "value": "title-ascending", "label": "Alphabetically, A-Z" },
+            { "value": "title-descending", "label": "Alphabetically, Z-A" }
+          ],
+          "default": "manual"
+        }
+      ]
     }
   ],
   "presets": [

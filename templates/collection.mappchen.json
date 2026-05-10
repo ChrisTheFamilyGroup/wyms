@@ -194,6 +194,11 @@
       "name": "Collection Navigation",
       "settings": {
         "bg_color": "#64033c",
+        "color_title": "#ffffff",
+        "color_desc": "#ffffff",
+        "color_btn_bg": "#19183933",
+        "color_btn_bg_active": "#242352",
+        "color_btn_text": "#ffffff",
         "title": "wyms Mäppchen",
         "description": "Kein Chaos, kein langes Suchen. Unsere Mäppchen und Schlamperboxen kombinieren clevere Organisation mit cleanem Design und richtig viel Platz.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",
@@ -206,10 +211,55 @@
     },
     "wyms_collection_grid_r7DmT3": {
       "type": "wyms-collection-grid",
+      "blocks": {
+        "sort_item_ALRQY7": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Bestseller",
+            "value": "manual"
+          }
+        },
+        "sort_item_EACFkz": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Neueste",
+            "value": "created-descending"
+          }
+        },
+        "sort_item_8KRnAz": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Niedrigster Preis",
+            "value": "price-ascending"
+          }
+        },
+        "sort_item_Y68kcn": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Höchster Preis",
+            "value": "price-descending"
+          }
+        },
+        "sort_item_A3xj8f": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Name: A–Z",
+            "value": "title-ascending"
+          }
+        }
+      },
+      "block_order": [
+        "sort_item_ALRQY7",
+        "sort_item_EACFkz",
+        "sort_item_8KRnAz",
+        "sort_item_Y68kcn",
+        "sort_item_A3xj8f"
+      ],
       "name": "WYMS Collection Grid",
       "settings": {
         "title_override": "",
-        "count_label": "Artikel"
+        "count_label": "Artikel",
+        "reset_label": "Alles zurücksetzen"
       }
     },
     "wyms_faq_accordion_Vkir4Q": {

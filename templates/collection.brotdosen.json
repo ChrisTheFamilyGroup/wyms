@@ -194,6 +194,11 @@
       "name": "Collection Navigation",
       "settings": {
         "bg_color": "#00380b",
+        "color_title": "#ffffff",
+        "color_desc": "#ffffff",
+        "color_btn_bg": "#19183933",
+        "color_btn_bg_active": "#242352",
+        "color_btn_text": "#ffffff",
         "title": "wyms Brotdosen",
         "description": "Hochwertige Edelstahlbrotdosen mit durchdachter Aufteilung, robustem Design und genug Platz für alles von Snacks bis Mittagspause.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",
@@ -206,10 +211,55 @@
     },
     "wyms_collection_grid_r7DmT3": {
       "type": "wyms-collection-grid",
+      "blocks": {
+        "sort_item_RRFFkE": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Bestseller",
+            "value": "manual"
+          }
+        },
+        "sort_item_B389qf": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Neueste",
+            "value": "created-descending"
+          }
+        },
+        "sort_item_rgXxpY": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Niedrigster Preis",
+            "value": "price-ascending"
+          }
+        },
+        "sort_item_cdmYhw": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Höchster Preis",
+            "value": "price-descending"
+          }
+        },
+        "sort_item_iYExbe": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Name: A–Z",
+            "value": "title-ascending"
+          }
+        }
+      },
+      "block_order": [
+        "sort_item_RRFFkE",
+        "sort_item_B389qf",
+        "sort_item_rgXxpY",
+        "sort_item_cdmYhw",
+        "sort_item_iYExbe"
+      ],
       "name": "WYMS Collection Grid",
       "settings": {
         "title_override": "",
-        "count_label": "Artikel"
+        "count_label": "Artikel",
+        "reset_label": "Alles zurücksetzen"
       }
     },
     "wyms_faq_accordion_Vkir4Q": {

@@ -11,77 +11,6 @@
 
   assign text_atc = section.settings.atc_text | default: 'Add to cart'
   assign text_sold_out = 'products.product.sold_out' | t | default: 'Sold Out'
-
-  assign card_color = ''
-  assign card_color_mf = selected_variant.metafields.shopify['color-pattern']
-  if card_color_mf == blank
-    assign card_color_mf = product.metafields.shopify['color-pattern']
-  endif
-  if card_color_mf != blank
-    assign card_color = card_color_mf | metafield_text: field: 'label' | strip
-    if card_color == blank
-      assign card_color = card_color_mf | metafield_text: field: 'name' | strip
-    endif
-  endif
-  if card_color == blank and card_color_mf != blank
-    assign card_color_val = card_color_mf.value
-    if card_color_mf.list?
-      assign card_color_val = card_color_val.first
-    endif
-    if card_color_val.label != blank
-      assign card_color = card_color_val.label | strip
-    elsif card_color_val.name != blank
-      assign card_color = card_color_val.name | strip
-    elsif card_color_val != blank
-      assign card_color = card_color_val | strip
-    endif
-  endif
-  if card_color == blank
-    for product_option in product.options_with_values
-      assign card_opt_str = ''
-      assign card_swatch_opts = product_option.values | map: 'swatch' | compact | size
-      if card_swatch_opts == 0
-        continue
-      endif
-      case product_option.position
-        when 1
-          assign card_opt_str = selected_variant.option1 | strip
-        when 2
-          assign card_opt_str = selected_variant.option2 | strip
-        when 3
-          assign card_opt_str = selected_variant.option3 | strip
-      endcase
-      if card_opt_str == blank
-        continue
-      endif
-      for product_option_value in product_option.values
-        if product_option_value.name == card_opt_str
-          assign card_color = product_option_value.name | strip
-          break
-        endif
-      endfor
-      if card_color != blank
-        break
-      endif
-    endfor
-  endif
-  if card_color == blank
-    for product_option in product.options_with_values
-      assign opt_name_l = product_option.name | downcase | strip
-      if opt_name_l == 'color' or opt_name_l == 'colour' or opt_name_l == 'farbe'
-        case product_option.position
-          when 1
-            assign card_color = selected_variant.option1 | default: '' | strip
-          when 2
-            assign card_color = selected_variant.option2 | default: '' | strip
-          when 3
-            assign card_color = selected_variant.option3 | default: '' | strip
-        endcase
-        break
-      endif
-    endfor
-  endif
-  assign card_color_line = card_color | default: product.title
 -%}
 
 <section class="section-product-main js-product-section"
@@ -194,7 +123,7 @@
             <div class="title-wishlist-row">
               <div class="title-subtitle-wrap">
                 <div class="title-heart-row">
-                  <h1 class="product-title">{{ card_color_line }}</h1>
+                  <h1 class="product-title">{{ product.title }}</h1>
                   <button class="wishlist-btn" aria-label="Add to wishlist">
                     {% render 'icon-heart' %}
                   </button>
@@ -231,98 +160,51 @@
 
         </div>
         
-        {%- liquid
-          assign current_type_tag = blank
-          for tag in product.tags
-            if tag contains 'swatch:'
-              assign current_type_tag = tag
-              break
-            endif
-          endfor
-        -%}
-
-        {%- if current_type_tag != blank -%}
+        {%- if siblings_collection != blank -%}
           {%- liquid
-            assign seen_sibling_handles = product.handle | append: ','
+            assign current_type_tag = blank
+            for tag in product.tags
+              if tag contains 'swatch:'
+                assign current_type_tag = tag
+                break
+              endif
+            endfor
           -%}
-
-          {%- capture sibling_swatches -%}
-            {%- comment -%}Always render the current product first as the active swatch{%- endcomment -%}
-            {%- assign current_bg = product.metafields.custom.product_background | default: '#F5F5F5' -%}
-            <a href="{{ product.url }}"
-               class="swatch-item is-active"
-               style="background-color: {{ current_bg }};"
-               aria-label="{{ product.title | escape }}">
-              <div class="swatch-image-wrap">
-                {%- if product.featured_media != blank -%}
-                  {{ product.featured_media | image_url: width: 112, height: 128, crop: 'center' | image_tag: alt: product.title, loading: 'lazy' }}
-                {%- endif -%}
+        
+          {%- if current_type_tag != blank -%}
+            <div class="variant-selector-block">
+              <div class="variant-selector-header">
+                <span class="variant-label">{{ variant_label }}:</span>
+                <span class="variant-value">{{ product.metafields.shopify--taxonomy--metafield.color.value | first | default: product.title }}</span>
               </div>
-            </a>
-
-            {%- comment -%}
-              Search through every collection this product belongs to.
-              This covers all products across the store that share the same swatch: tag,
-              without requiring a manually configured siblings collection.
-            {%- endcomment -%}
-            {%- for collection in product.collections -%}
-              {%- for sibling in collection.products -%}
-                {%- if sibling.tags contains current_type_tag -%}
-                  {%- assign sibling_key = sibling.handle | append: ',' -%}
-                  {%- unless seen_sibling_handles contains sibling_key -%}
-                    {%- assign seen_sibling_handles = seen_sibling_handles | append: sibling_key -%}
-                    {%- assign sibling_bg = sibling.metafields.custom.product_background | default: '#F5F5F5' -%}
+              <div class="swatch-list">
+                {%- for sibling in siblings_collection.products -%}
+                  {%- liquid
+                    assign is_same_type = false
+                    if sibling.tags contains current_type_tag
+                      assign is_same_type = true
+                    endif
+                  -%}
+        
+                  {%- if is_same_type -%}
+                    {%- liquid
+                      assign sibling_bg = sibling.metafields.custom.product_background | default: '#F5F5F5'
+                    -%}
                     <a href="{{ sibling.url }}"
-                       class="swatch-item"
+                       class="swatch-item {% if sibling.handle == product.handle %}is-active{% endif %}"
                        style="background-color: {{ sibling_bg }};"
-                       aria-label="{{ sibling.title | escape }}">
+                       aria-label="{{ sibling.title }}">
                       <div class="swatch-image-wrap">
                         {%- if sibling.featured_media != blank -%}
                           {{ sibling.featured_media | image_url: width: 112, height: 128, crop: 'center' | image_tag: alt: sibling.title, loading: 'lazy' }}
                         {%- endif -%}
                       </div>
                     </a>
-                  {%- endunless -%}
-                {%- endif -%}
-              {%- endfor -%}
-            {%- endfor -%}
-
-            {%- comment -%}
-              Also check the manually selected siblings collection (if set) as an extra source,
-              in case siblings aren't in any collection shared with this product.
-            {%- endcomment -%}
-            {%- if siblings_collection != blank -%}
-              {%- for sibling in siblings_collection.products -%}
-                {%- if sibling.tags contains current_type_tag -%}
-                  {%- assign sibling_key = sibling.handle | append: ',' -%}
-                  {%- unless seen_sibling_handles contains sibling_key -%}
-                    {%- assign seen_sibling_handles = seen_sibling_handles | append: sibling_key -%}
-                    {%- assign sibling_bg = sibling.metafields.custom.product_background | default: '#F5F5F5' -%}
-                    <a href="{{ sibling.url }}"
-                       class="swatch-item"
-                       style="background-color: {{ sibling_bg }};"
-                       aria-label="{{ sibling.title | escape }}">
-                      <div class="swatch-image-wrap">
-                        {%- if sibling.featured_media != blank -%}
-                          {{ sibling.featured_media | image_url: width: 112, height: 128, crop: 'center' | image_tag: alt: sibling.title, loading: 'lazy' }}
-                        {%- endif -%}
-                      </div>
-                    </a>
-                  {%- endunless -%}
-                {%- endif -%}
-              {%- endfor -%}
-            {%- endif -%}
-          {%- endcapture -%}
-
-          <div class="variant-selector-block">
-            <div class="variant-selector-header">
-              <span class="variant-label">{{ variant_label }}:</span>
-              <span class="variant-value">{{ product.metafields.shopify--taxonomy--metafield.color.value | first | default: product.title }}</span>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
             </div>
-            <div class="swatch-list">
-              {{ sibling_swatches }}
-            </div>
-          </div>
+          {%- endif -%}
         {%- endif -%}
 
         <div class="purchase-block">

@@ -172,7 +172,7 @@
           "settings": {
             "icon": "shopify://shop_images/lunchbox_icon_white_1.svg",
             "label": "Brotdosen",
-            "link": ""
+            "link": "shopify://collections/brotdosen"
           }
         },
         "nav_button_G96biX": {
@@ -194,6 +194,11 @@
       "name": "Collection Navigation",
       "settings": {
         "bg_color": "#242352",
+        "color_title": "#ffffff",
+        "color_desc": "#ffffff",
+        "color_btn_bg": "#19183933",
+        "color_btn_bg_active": "#242352",
+        "color_btn_text": "#ffffff",
         "title": "wyms Trinkflaschen",
         "description": "Trinkflaschen mit durchdachten Details, hochwertigen Materialien und genau der richtigen Größe für unterwegs.",
         "blob_left_desktop": "shopify://shop_images/formLD.svg",
@@ -206,10 +211,55 @@
     },
     "wyms_collection_grid_r7DmT3": {
       "type": "wyms-collection-grid",
+      "blocks": {
+        "sort_item_NncLD3": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Bestseller",
+            "value": "manual"
+          }
+        },
+        "sort_item_c3CNYb": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Neueste",
+            "value": "created-descending"
+          }
+        },
+        "sort_item_QtXKLq": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Niedrigster Preis",
+            "value": "price-ascending"
+          }
+        },
+        "sort_item_KxtnDn": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Höchster Preis",
+            "value": "price-descending"
+          }
+        },
+        "sort_item_JbwgmR": {
+          "type": "sort_item",
+          "settings": {
+            "label": "Name: A–Z",
+            "value": "title-ascending"
+          }
+        }
+      },
+      "block_order": [
+        "sort_item_NncLD3",
+        "sort_item_c3CNYb",
+        "sort_item_QtXKLq",
+        "sort_item_KxtnDn",
+        "sort_item_JbwgmR"
+      ],
       "name": "WYMS Collection Grid",
       "settings": {
         "title_override": "",
-        "count_label": "Artikel"
+        "count_label": "Artikel",
+        "reset_label": "Alles zurücksetzen"
       }
     },
     "wyms_faq_accordion_Vkir4Q": {
