@@ -120,7 +120,6 @@
 
     const observer = new IntersectionObserver(
       ([e]) => {
-        // Ми додаємо клас is-stuck тільки коли заголовок торкається верху
         bar.classList.toggle('is-stuck', e.intersectionRatio < 1);
       },
       { 

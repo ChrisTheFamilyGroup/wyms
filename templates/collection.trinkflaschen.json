@@ -239,27 +239,24 @@
             "label": "Höchster Preis",
             "value": "price-descending"
           }
-        },
-        "sort_item_JbwgmR": {
-          "type": "sort_item",
-          "settings": {
-            "label": "Name: A–Z",
-            "value": "title-ascending"
-          }
         }
       },
       "block_order": [
         "sort_item_NncLD3",
         "sort_item_c3CNYb",
         "sort_item_QtXKLq",
-        "sort_item_KxtnDn",
-        "sort_item_JbwgmR"
+        "sort_item_KxtnDn"
       ],
       "name": "WYMS Collection Grid",
       "settings": {
         "title_override": "",
         "count_label": "Artikel",
-        "reset_label": "Alles zurücksetzen"
+        "reset_label": "Alles zurücksetzen",
+        "mobile_filter_btn_label": "Filter & Sortieren",
+        "mobile_drawer_title": "Filter & Sortieren",
+        "sort_label_mobile": "Sortieren",
+        "mobile_btn_reset": "Zurücksetzen",
+        "mobile_btn_apply": "Anwenden"
       }
     },
     "wyms_faq_accordion_Vkir4Q": {

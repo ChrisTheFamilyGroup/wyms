@@ -1,0 +1,67 @@
+{%- liquid
+  assign item_color = ""
+  assign item_group = ""
+  for tag in product.tags
+    if tag contains 'upsell-color:'
+      assign item_color = tag | remove: 'upsell-color:'
+    endif
+    if tag contains 'upsell-group:'
+      assign item_group = tag | remove: 'upsell-group:'
+    endif
+  endfor
+
+  assign item_collection = product.collections | first
+  assign color_hex = product.metafields.custom.color_hex | default: '#D9D9D9'
+-%}
+
+{%- assign upsell_block = section.settings -%}
+
+
+<div
+  class="cart-upsell__item js-upsell-item"
+  data-handle="{{ product.handle }}"
+  data-group="{{ item_group }}"
+  data-color="{{ item_color }}"
+  data-color-hex="{{ color_hex }}"
+  data-collection="{{ item_collection.handle }}"
+  data-collection-url="{{ item_collection.url }}"
+>
+  <div class="cart-upsell__image">
+    {%- if product.featured_image != blank -%}
+      {{ product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+    {%- endif -%}
+  </div>
+
+  <div class="cart-upsell__details">
+    <div class="cart-upsell__info-top">
+      <span class="cart-upsell__name">{{ product.title }}</span>
+      <span class="cart-upsell__price">{{ product.price | money }}</span>
+    </div>
+
+    <div class="cart-upsell__controls">
+      <button type="button" class="cart-upsell__color-btn js-upsell-color-btn">
+        <span class="cart-upsell__color-text">{{ item_color | replace: '-', ' ' }}</span>
+        {% render 'icon-chevron-down' %}
+      </button>
+
+      <div class="cart-upsell__color-dropdown js-upsell-dropdown" hidden>
+        <div class="cart-upsell__color-list js-upsell-color-list"></div>
+        <button type="button" class="cart-upsell__show-more js-upsell-show-more" hidden>
+          See more
+        </button>
+        <a class="cart-upsell__see-all js-upsell-see-all" href="{{ item_collection.url }}">
+          See all →
+        </a>
+      </div>
+
+      <button
+        type="button"
+        class="cart-upsell__add-btn js-upsell-add"
+        data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+        aria-label="Add to cart"
+      >
+        {% render 'icon-cart' %}
+      </button>
+    </div>
+  </div>
+</div>

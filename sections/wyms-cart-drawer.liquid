@@ -106,6 +106,78 @@
 
         {% if cart.item_count > 0 %}
           <div class="cart-drawer-footer">
+              <!-- RECOMMENDED PRODUCTS BLOCK -->
+      <!-- RECOMMENDED PRODUCTS BLOCK -->
+<div class="cart-upsell js-cart-upsell"
+  data-see-all-label="{{ section.settings.upsell_see_all_label | default: 'See all →' }}"
+  data-show-more-label="{{ section.settings.upsell_show_more_label | default: 'See more' }}"
+>
+  <h3 class="cart-upsell__title">{{ section.settings.upsell_title | default: 'Passend dazu' }}</h3>
+
+  <div class="cart-upsell__slider js-upsell-slider">
+    <div class="cart-upsell__track js-upsell-track">
+      {%- liquid
+        assign cart_handles = ","
+        for item in cart.items
+          assign cart_handles = cart_handles | append: item.product.handle | append: ","
+        endfor
+
+        assign shown_handles = ","
+
+        for item in cart.items
+          assign item_color = ""
+          assign item_group = ""
+          assign item_priority = ""
+
+          for tag in item.product.tags
+            if tag contains 'upsell-color:'
+              assign item_color = tag
+            endif
+            if tag contains 'upsell-group:'
+              assign item_group = tag
+            endif
+            if tag contains 'upsell-priority:'
+              assign item_priority = tag | remove: 'upsell-priority:'
+              assign item_priority = "upsell-group:" | append: item_priority
+            endif
+          endfor
+
+          if item_color == blank or item_group == blank
+            continue
+          endif
+
+          assign target_group = item_group
+          if item_priority != blank
+            assign target_group = item_priority
+          endif
+
+          for upsell_prod in collections['all'].products
+            assign handle_check = "," | append: upsell_prod.handle | append: ","
+            if cart_handles contains handle_check
+              continue
+            endif
+            if shown_handles contains handle_check
+              continue
+            endif
+
+            unless upsell_prod.tags contains item_color
+              continue
+            endunless
+            unless upsell_prod.tags contains target_group
+              continue
+            endunless
+
+            render 'wyms-cart-upsell-item', product: upsell_prod
+            assign shown_handles = shown_handles | append: upsell_prod.handle | append: ","
+          endfor
+        endfor
+      -%}
+    </div>
+  </div>
+
+  <div class="cart-upsell__pagination js-upsell-pagination"></div>
+</div>
+
             <div class="footer-divider"></div>
 
             <div class="cart-total-row">
@@ -136,12 +208,51 @@
 {
   "name": "WYMS Cart Drawer",
   "settings": [
-    { "type": "text", "id": "cart_title", "label": "Cart Title", "default": "Cart" },
-    { "type": "image_picker", "id": "empty_cart_icon", "label": "Empty Cart Icon" },
-    { "type": "textarea", "id": "empty_cart_text", "label": "Empty Cart Text", "default": "Your cart is currently empty." },
-    { "type": "text", "id": "total_label", "label": "Total Label", "default": "Total" },
-    { "type": "text", "id": "checkout_label", "label": "Checkout Label", "default": "Checkout" },
-    { "type": "textarea", "id": "tax_note", "label": "Tax Note", "default": "Taxes and shipping calculated at checkout" }
+    { "type": "text", 
+      "id": "cart_title", 
+      "label": "Cart Title", 
+      "default": "Cart" },
+    { "type": "image_picker", 
+      "id": "empty_cart_icon", 
+      "label": "Empty Cart Icon" 
+    },
+    { "type": "textarea",
+      "id": "empty_cart_text", 
+      "label": "Empty Cart Text", 
+      "default": "Your cart is currently empty." 
+    },
+    { "type": "text",
+      "id": "total_label", 
+      "label": "Total Label", 
+      "default": "Total" 
+    },
+    { "type": "text", 
+      "id": "checkout_label", 
+      "label": "Checkout Label", 
+      "default": "Checkout" },
+    { "type": "textarea", 
+      "id": "tax_note", 
+      "label": "Tax Note", 
+      "default": "Taxes and shipping calculated at checkout" 
+    },
+    {
+      "type": "text",
+      "id": "upsell_title",
+      "label": "Upsell Title",
+      "default": "Passend dazu"
+    },
+    {
+      "type": "text",
+      "id": "upsell_see_all_label",
+      "label": "Upsell — See all label",
+      "default": "See all →"
+    },
+    {
+      "type": "text",
+      "id": "upsell_show_more_label",
+      "label": "Upsell — Show more label",
+      "default": "See more"
+    }
   ],
   "presets": [{ "name": "WYMS Cart Drawer" }]
 }

@@ -77,6 +77,19 @@
     "variant_button_border_width": 1,
     "variant_button_radius": 14,
     "variant_button_width": "equal-width-buttons",
+    "sections": {
+      "wyms-cart-drawer": {
+        "type": "wyms-cart-drawer",
+        "settings": {
+          "cart_title": "Cart",
+          "empty_cart_text": "Your cart is currently empty.",
+          "total_label": "Total",
+          "checkout_label": "Checkout",
+          "tax_note": "Taxes and shipping calculated at checkout",
+          "upsell_title": "You might also be interested in"
+        }
+      }
+    },
     "content_for_index": [],
     "color_schemes": {
       "scheme-1": {
