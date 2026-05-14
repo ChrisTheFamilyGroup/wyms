@@ -12,6 +12,7 @@
   assign text_atc = section.settings.atc_text | default: 'Add to cart'
   assign text_sold_out = 'products.product.sold_out' | t | default: 'Sold Out'
 -%}
+{%- capture product_display_title -%}{%- render 'wyms-product-color-line', product: product, variant: selected_variant -%}{%- endcapture -%}
 
 <section class="section-product-main js-product-section"
          data-section="{{ section.id }}"
@@ -123,7 +124,7 @@
             <div class="title-wishlist-row">
               <div class="title-subtitle-wrap">
                 <div class="title-heart-row">
-                  <h1 class="product-title">{{ product.title }}</h1>
+                  <h1 class="product-title">{{ product_display_title }}</h1>
                   <button class="wishlist-btn" aria-label="Add to wishlist">
                     {% render 'icon-heart' %}
                   </button>
@@ -271,7 +272,7 @@
             {{ selected_variant.featured_media | default: product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: product.title }}
           </div>
           <div class="sticky-atc__text">
-            <span class="sticky-atc__title">{{ product.title }}</span>
+            <span class="sticky-atc__title">{{ product_display_title }}</span>
             <span class="sticky-atc__price js-sticky-price">{{ selected_variant.price | money }}</span>
           </div>
         </div>
