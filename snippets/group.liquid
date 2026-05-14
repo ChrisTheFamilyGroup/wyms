@@ -70,6 +70,11 @@
 </div>
 
 {% stylesheet %}
+  /* No usable background media: hide wrapper so layout isn’t offset or split. */
+  .group-block__media-wrapper:not(:has(> *)) {
+    display: none;
+  }
+
   .group-block__link {
     position: absolute;
     inset: 0;

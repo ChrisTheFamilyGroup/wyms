@@ -423,3 +423,28 @@ textarea:-moz-autofill {
     letter-spacing: -0.72px;
   }
 }
+
+/* ------------------------------------------------ 404 template ------------------------------------------------ */
+
+/*
+  Page-width sections use a 3-track grid (flexible margin | content | flexible margin).
+  On 404 that can read as an extra empty track beside the content; use a single track,
+  page padding, and center each row to the theme max width.
+*/
+body.template-404 main[data-template='404'] .section.section--page-width {
+  grid-template-columns: minmax(0, 1fr);
+  padding-inline: 16px;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 750px) {
+  body.template-404 main[data-template='404'] .section.section--page-width {
+    padding-inline: 40px;
+  }
+}
+
+body.template-404 main[data-template='404'] .section.section--page-width > * {
+  grid-column: 1;
+  width: min(100%, var(--normal-page-width));
+  justify-self: center;
+}
