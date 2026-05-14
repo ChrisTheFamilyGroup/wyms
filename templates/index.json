@@ -85,49 +85,56 @@
           "type": "collection",
           "settings": {
             "collection": "schulrucksacke",
-            "title": ""
+            "title": "",
+            "link": "shopify://collections/schulrucksacke"
           }
         },
         "collection_cTz98a": {
           "type": "collection",
           "settings": {
             "collection": "mappchen",
-            "title": ""
+            "title": "",
+            "link": "shopify://collections/mappchen"
           }
         },
         "collection_QfiEdy": {
           "type": "collection",
           "settings": {
             "collection": "trinkflaschen",
-            "title": ""
+            "title": "",
+            "link": "shopify://collections/trinkflaschen"
           }
         },
         "collection_MfrtGi": {
           "type": "collection",
           "settings": {
             "collection": "brotdosen",
-            "title": ""
+            "title": "",
+            "link": "shopify://collections/brotdosen"
           }
         },
         "collection_URmiLE": {
           "type": "collection",
           "settings": {
             "collection": "sporttaschen",
-            "title": ""
+            "title": "",
+            "link": "shopify://collections/sporttaschen"
           }
         },
         "collection_T6TzUH": {
           "type": "collection",
           "settings": {
             "collection": "schulrucksacke",
-            "title": ""
+            "title": "",
+            "link": "shopify://collections/schulrucksacke"
           }
         },
         "collection_gCeJeN": {
           "type": "collection",
           "settings": {
             "collection": "mappchen",
-            "title": ""
+            "title": "",
+            "link": "shopify://collections/mappchen"
           }
         }
       },

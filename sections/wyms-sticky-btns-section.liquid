@@ -1,6 +1,6 @@
 {%- comment -%}
-  Horizontal sticky CTA bar; pins below the header while scrolling.
-  SYNCED LOGIC: 0px when flowing, 16px when stuck (scrolling down), Header Height when stuck (scrolling up).
+  Sticky horizontal CTA bar: pins with `top: var(--wyms-sticky-top-inset)` from wyms-header.js (measured header height; 16px when header hidden).
+  No IntersectionObserver padding toggles — those caused layout ↔ observer feedback (jumping).
 {%- endcomment -%}
 
 <div class="wyms-sticky-btns-section js-sticky-section-wrapper">
@@ -18,15 +18,28 @@
             {{ block.shopify_attributes }}
           >
             {%- if block.settings.sec_btn_icon != blank -%}
-              <img
-                src="{{ block.settings.sec_btn_icon | image_url: width: 96 }}"
-                alt="{{ block.settings.sec_btn_icon.alt | escape }}"
-                class="img-fluid wyms-sticky-btns-section__icon"
-                loading="lazy"
-                width="{{ block.settings.sec_btn_icon.width }}"
-                height="{{ block.settings.sec_btn_icon.height }}"
-              >
+              <div class="wyms-sticky-btns-section__icon-container">
+                <img
+                  src="{{ block.settings.sec_btn_icon | image_url: width: 40 }}"
+                  alt="{{ block.settings.sec_btn_icon.alt | escape }}"
+                  class="img-fluid wyms-sticky-btns-section__icon icon-normal"
+                  loading="lazy"
+                  width="20"
+                  height="20"
+                >
+                {%- if block.settings.sec_btn_icon_white != blank -%}
+                  <img
+                    src="{{ block.settings.sec_btn_icon_white | image_url: width: 40 }}"
+                    alt="Hover icon"
+                    class="img-fluid wyms-sticky-btns-section__icon icon-hover"
+                    loading="lazy"
+                    width="20"
+                    height="20"
+                  >
+                {%- endif -%}
+              </div>
             {%- endif -%}
+            
             {%- if block.settings.sec_btn_text != blank -%}
               <span class="wyms-sticky-btns-section__label">{{ block.settings.sec_btn_text }}</span>
             {%- endif -%}
@@ -38,13 +51,15 @@
 </div>
 
 <style>
+  /* 1. STICKY: `top` follows header height from wyms-header.js. No IO/padding hacks (layout ↔ observer feedback = jump). */
   #shopify-section-{{ section.id }} {
     position: -webkit-sticky;
     position: sticky;
-    top: -1px; 
+    top: var(--wyms-sticky-top-inset, 0px);
     z-index: 99;
-    background: #fff;
+    background: transparent;
     display: block !important;
+    transition: top 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   #shopify-section-{{ section.id }} .wyms-sticky-btns-section {
@@ -53,49 +68,70 @@
     padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
   }
 
+  /* 2. BAR — transparent track; only pill links carry surface color (no full-bleed bar while scrolling). */
   .wyms-sticky-btns-section__bar {
-    padding-top: 0 !important; 
+    padding-top: 0;
     padding-bottom: 16px;
-    background: #fff;
+    background: transparent;
     width: 100%;
     box-sizing: border-box;
-    border-bottom: 1px solid #e2dbd3;
-    transition: padding-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: none;
+    box-shadow: none;
   }
 
-  .wyms-sticky-btns-section__bar.is-stuck {
-    padding-top: var(--wyms-product-nav-inset, 105px) !important;
+  /* 3. ICON HOVER STYLES */
+  .wyms-sticky-btns-section__icon-container {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
   }
 
-  body.header-is-hidden #shopify-section-{{ section.id }} .wyms-sticky-btns-section__bar.is-stuck {
-    padding-top: 16px !important; 
+  .wyms-sticky-btns-section__icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
   }
 
+  .icon-hover { opacity: 0; }
+
+  /* 4. BUTTON DESIGN & HOVER */
   .wyms-sticky-btns-section__inner {
     display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
   }
-  .wyms-sticky-btns-section__icon { height: 20px; width: 20px; object-fit: contain; }
+
   .wyms-sticky-btns-section__link {
     display: flex; align-items: center; gap: 6px; color: #191839; text-decoration: none;
     background: #efebe6; padding: 10px 14px; border-radius: 9999px;
-    transition: background-color 0.4s ease, color 0.4s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     font-family: var(--font-family-body, 'Inter', sans-serif);
     font-size: 18px; font-weight: 600; line-height: 28px;
   }
-  .wyms-sticky-btns-section__label { color: #191839; font-size: 14px; font-weight: 600; }
-  .wyms-sticky-btns-section__link:hover { background: #00103f; color: #fff; }
 
-  @media (max-width: 1599.98px) {
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section {
-      padding-top: {{ section.settings.padding_top_laptop }}px;
-      padding-bottom: {{ section.settings.padding_bottom_laptop }}px;
-    }
+  .wyms-sticky-btns-section__label {
+    color: #191839; font-family: inherit; font-size: 14px; font-weight: 600; line-height: 20px;
+    transition: color 0.3s ease;
   }
+
+  /* --- HOVER EFFECT --- */
+  .wyms-sticky-btns-section__link:hover {
+    background-color: #191839 !important;
+    color: #ffffff !important;
+  }
+
+  .wyms-sticky-btns-section__link:hover .wyms-sticky-btns-section__label {
+    color: #ffffff !important;
+  }
+
+  .wyms-sticky-btns-section__link:hover .icon-normal { opacity: 0; }
+  .wyms-sticky-btns-section__link:hover .icon-hover { opacity: 1; }
+
+  /* 5. RESPONSIVE ADAPTATIONS (schema has desktop + mobile only — avoid invalid `padding-top: px`) */
   @media (max-width: 1024.98px) {
-    #shopify-section-{{ section.id }} .wyms-sticky-btns-section {
-      padding-top: {{ section.settings.padding_top_tablet }}px;
-      padding-bottom: {{ section.settings.padding_bottom_tablet }}px;
-    }
     .wyms-sticky-btns-section__label { font-size: 12px; }
   }
   @media (max-width: 767.98px) {
@@ -109,25 +145,48 @@
     }
     .wyms-sticky-btns-section__inner::-webkit-scrollbar { display: none; }
     .wyms-sticky-btns-section__link { flex-shrink: 0; font-size: 14px; padding: 10px 14px; }
+    .wyms-sticky-btns-section__icon-container { width: 15px; height: 15px; }
   }
 </style>
 
 <script>
+  /**
+   * Publish measured sticky pill-bar height for anchor scroll-margin (see wyms-ergonomic-content-with-bg).
+   * Runs once per bar; updates on resize and when header changes --wyms-sticky-top-inset.
+   */
   (function () {
-    const root = document.getElementById('shopify-section-{{ section.id }}');
-    const bar = root.querySelector('.js-sticky-bar-element');
-    if (!root || !bar) return;
+    const bars = document.querySelectorAll('[data-wyms-sticky-btns-bar]');
+    if (!bars.length) return;
 
-    const observer = new IntersectionObserver(
-      ([e]) => {
-        bar.classList.toggle('is-stuck', e.intersectionRatio < 1);
-      },
-      { 
-        threshold: [1],
-        rootMargin: '-1px 0px 0px 0px' 
+    const root = document.documentElement;
+
+    const publish = () => {
+      let max = 0;
+      bars.forEach((el) => {
+        if (el instanceof HTMLElement) {
+          max = Math.max(max, Math.ceil(el.getBoundingClientRect().height));
+        }
+      });
+      const next = `${Math.max(max, 1)}px`;
+      if (root.style.getPropertyValue('--wyms-sticky-btns-chrome').trim() !== next) {
+        root.style.setProperty('--wyms-sticky-btns-chrome', next);
       }
-    );
-    observer.observe(root);
+    };
+
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(() => requestAnimationFrame(publish));
+      bars.forEach((el) => ro.observe(el));
+    }
+
+    ['wyms:sticky-top-inset', 'wyms:header-visible', 'wyms:header-hidden'].forEach((ev) => {
+      document.addEventListener(ev, () => requestAnimationFrame(publish));
+    });
+    window.addEventListener('resize', () => requestAnimationFrame(publish), { passive: true });
+    window.addEventListener('load', () => requestAnimationFrame(publish), { passive: true });
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(() => requestAnimationFrame(publish)).catch(() => {});
+    }
+    requestAnimationFrame(publish);
   })();
 </script>
 
@@ -138,12 +197,6 @@
     { "type": "header", "content": "Desktop padding" },
     { "type": "range", "id": "padding_top_desktop", "label": "Padding top (desktop)", "default": 0, "min": 0, "max": 200, "step": 5, "unit": "px" },
     { "type": "range", "id": "padding_bottom_desktop", "label": "Padding bottom (desktop)", "default": 0, "min": 0, "max": 200, "step": 5, "unit": "px" },
-    { "type": "header", "content": "Laptop padding" },
-    { "type": "range", "id": "padding_top_laptop", "label": "Padding top (laptop)", "default": 0, "min": 0, "max": 200, "step": 5, "unit": "px" },
-    { "type": "range", "id": "padding_bottom_laptop", "label": "Padding bottom (laptop)", "default": 0, "min": 0, "max": 200, "step": 5, "unit": "px" },
-    { "type": "header", "content": "Tablet padding" },
-    { "type": "range", "id": "padding_top_tablet", "label": "Padding top (tablet)", "default": 0, "min": 0, "max": 200, "step": 5, "unit": "px" },
-    { "type": "range", "id": "padding_bottom_tablet", "label": "Padding bottom (tablet)", "default": 0, "min": 0, "max": 200, "step": 5, "unit": "px" },
     { "type": "header", "content": "Mobile padding" },
     { "type": "range", "id": "padding_top_mobile", "label": "Padding top (mobile)", "default": 0, "min": 0, "max": 150, "step": 5, "unit": "px" },
     { "type": "range", "id": "padding_bottom_mobile", "label": "Padding bottom (mobile)", "default": 0, "min": 0, "max": 150, "step": 5, "unit": "px" }
@@ -155,7 +208,8 @@
       "limit": 5,
       "settings": [
         { "type": "text", "id": "sec_btn_text", "label": "Button text" },
-        { "type": "image_picker", "id": "sec_btn_icon", "label": "Button icon" },
+        { "type": "image_picker", "id": "sec_btn_icon", "label": "Normal Icon" },
+        { "type": "image_picker", "id": "sec_btn_icon_white", "label": "Hover Icon (White)" },
         { "type": "url", "id": "sec_btn_link", "label": "Button link" }
       ]
     }

@@ -108,6 +108,9 @@
   background: var(--Colors-Grey-grey_light, #FBFBFB);
   aspect-ratio: 117 / 128;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .wyms-product-card__top-left-icon {
@@ -175,7 +178,6 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: block;
 }
@@ -183,12 +185,15 @@
 .wyms-product-card__img--primary {
   z-index: 2;
   opacity: 1;
+  object-fit: contain; 
 }
 
 .wyms-product-card__img--hover {
   z-index: 3;
   opacity: 0;
   pointer-events: none;
+  object-fit: cover !important; /* FILL THE ENTIRE CARD */
+  object-position: center;
 }
 
 .wyms-product-card:hover .wyms-product-card__img--primary {

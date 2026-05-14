@@ -208,7 +208,16 @@
         {%- endif -%}
 
         <div class="purchase-block">
-          <div class="price-main js-price-display">{{ selected_variant.price | money }}</div>
+          <div class="price-container" style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;">
+            {%- if selected_variant.compare_at_price > selected_variant.price -%}
+              <s class="price-compare js-price-compare" style="color: var(--color-text-tertiary, #535862); font-size: 20px; text-decoration: line-through;">
+                {{ selected_variant.compare_at_price | money }}
+              </s>
+            {%- endif -%}
+            <div class="price-main js-price-display" style="color: var(--color-text-primary, #191839); font-size: 36px; font-weight: 500;">
+              {{ selected_variant.price | money }}
+            </div>
+          </div>
 
           {%- form 'product', product, id: 'product-form-main', class: 'js-product-form' -%}
             <input type="hidden" name="id" value="{{ selected_variant.id }}">

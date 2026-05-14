@@ -1,3 +1,6 @@
+{%- comment -%}
+  Sticky section uses documentElement --wyms-sticky-top-inset (set in wyms-header.js) for `top`, not padding toggles.
+{%- endcomment -%}
 {{ 'wyms-product-nav.css' | asset_url | stylesheet_tag }}
 
 <wyms-product-nav>

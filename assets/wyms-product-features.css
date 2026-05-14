@@ -205,6 +205,12 @@ wyms-features-carousel[data-items-count="4"] .wyms-feature-card__media {
 }
 .wyms-features__pagination.is-hidden { display: none !important; }
 
+@media screen and (min-width: 769px) {
+  .wyms-features__pagination {
+    display: none !important;
+  }
+}
+
 .wyms-features__pagination-inner {
   display: flex;
   width: 220px;
@@ -222,6 +228,7 @@ wyms-features-carousel[data-items-count="4"] .wyms-feature-card__media {
   border-radius: var(--radius-full, 9999px);
   background: var(--bg-secondary, #D9D9D9);
   transition: background 0.3s;
+  border: none !important;
 }
 .wyms-pagination-dot.is-active {
   background: var(--button-primary-bg, #242352) !important;

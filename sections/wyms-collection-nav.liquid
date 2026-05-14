@@ -56,7 +56,14 @@
           {%- endif -%}
         </div>
 
-        <div class="collection-nav__buttons-wrapper">
+        {%- comment -%}
+          data-wyms-scroll-track marks the scrollport for horizontal pills (wheel, trackpad, drag).
+          Move this attribute if the DOM changes; JS also falls back to .collection-nav__buttons-wrapper / .collection-nav__buttons.
+        {%- endcomment -%}
+        <div
+          class="collection-nav__buttons-wrapper"
+          data-wyms-scroll-track
+        >
           <div class="collection-nav__buttons">
             {%- for block in section.blocks -%}
               {%- if block.type == 'nav_button' -%}

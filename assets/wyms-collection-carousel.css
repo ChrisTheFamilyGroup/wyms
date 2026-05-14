@@ -161,6 +161,12 @@
   padding: 0 64px;
 }
 
+@media screen and (min-width: 769px) {
+  .carousel-pagination-container {
+    display: none !important;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .collection-carousel-section {
     padding: 64px 0;

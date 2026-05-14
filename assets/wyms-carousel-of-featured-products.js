@@ -9,6 +9,11 @@ class FeaturedProducts extends HTMLElement {
     this.btnNext = null;
     /** @type {HTMLElement | null} */
     this.btnPrev = null;
+
+    this.isDown = false;
+    this.startX = 0;
+    this.scrollLeftPos = 0;
+    this.hasMoved = false; 
   }
 
   connectedCallback() {
@@ -22,24 +27,77 @@ class FeaturedProducts extends HTMLElement {
 
     track.addEventListener('scroll', () => this.updateDots());
 
+    this.initArrows();
+    
+    this.initDragToScroll();
+
+    this.updateDots();
+  }
+
+  initArrows() {
     const getScrollStep = () => {
-      const firstCard = track.querySelector('.product-card-wrapper');
-      if (!firstCard) return track.clientWidth * 0.8; 
-      
+      const firstCard = this.track.querySelector('.product-card-wrapper');
+      if (!firstCard) return this.track.clientWidth * 0.8; 
       const cardWidth = firstCard.clientWidth;
       const gap = 24; 
       return cardWidth + gap;
     };
 
     this.btnNext?.addEventListener('click', () => {
-      track.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+      this.track.style.scrollSnapType = 'x mandatory'; 
+      this.track.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
     });
 
     this.btnPrev?.addEventListener('click', () => {
-      track.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
+      this.track.style.scrollSnapType = 'x mandatory';
+      this.track.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
+    });
+  }
+
+  initDragToScroll() {
+    const track = this.track;
+
+    track.addEventListener('mousedown', (e) => {
+      this.isDown = true;
+      this.hasMoved = false;
+      track.classList.add('is-dragging');
+      
+      this.startX = e.pageX - track.offsetLeft;
+      this.scrollLeftPos = track.scrollLeft;
+      
+      track.style.scrollBehavior = 'auto';
+      track.style.scrollSnapType = 'none';
     });
 
-    this.updateDots();
+    const stopDragging = () => {
+      if (!this.isDown) return;
+      this.isDown = false;
+      track.classList.remove('is-dragging');
+      
+      track.style.scrollSnapType = 'x mandatory';
+      track.style.scrollBehavior = 'smooth';
+    };
+
+    track.addEventListener('mouseleave', stopDragging);
+    track.addEventListener('mouseup', stopDragging);
+
+    track.addEventListener('mousemove', (e) => {
+      if (!this.isDown) return;
+      
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - this.startX) * 2; 
+      if (Math.abs(walk) > 5) {
+        this.hasMoved = true;
+        e.preventDefault();
+        track.scrollLeft = this.scrollLeftPos - walk;
+      }
+    });
+
+    track.addEventListener('click', (e) => {
+      if (this.hasMoved) {
+        e.preventDefault();
+      }
+    });
   }
 
   updateDots() {
@@ -76,10 +134,7 @@ class FeaturedProducts extends HTMLElement {
     } 
     else {
       dots[1].classList.add('is-looping');
-      
-      
       const progress = exactIndex % 1;
-      
       dots[1].style.setProperty('--loop-progress', progress);
     }
   }

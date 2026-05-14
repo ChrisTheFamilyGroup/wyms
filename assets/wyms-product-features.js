@@ -1,6 +1,19 @@
+/**
+ * @class WymsFeaturesCarousel
+ * @extends HTMLElement
+ */
 class WymsFeaturesCarousel extends HTMLElement {
   constructor() {
     super();
+    this._ro = null;
+    this._io = null;
+    // Momentum/Inertia variables
+    this.isDown = false;
+    this.startX = 0;
+    this.scrollLeftPos = 0;
+    this.velX = 0;
+    this.momentumID = null;
+    this.lastMouseX = 0;
   }
 
   connectedCallback() {
@@ -20,91 +33,62 @@ class WymsFeaturesCarousel extends HTMLElement {
     this.checkOverflow();
     this.positionArrows();
 
-    this._resizeObserver = new ResizeObserver(() => {
+    this._ro = new ResizeObserver(() => {
       this.checkOverflow();
       this.updateActiveDot();
       this.positionArrows();
     });
-    this._resizeObserver.observe(this.list);
+    this._ro.observe(this.list);
   }
 
   disconnectedCallback() {
-    if (this._resizeObserver) {
-      this._resizeObserver.disconnect();
-    }
-    if (this._intersectionObserver) {
-      this._intersectionObserver.disconnect();
-    }
+    this._ro?.disconnect();
+    this._io?.disconnect();
+    if (this.momentumID) cancelAnimationFrame(this.momentumID);
   }
 
   initIntersectionObserver() {
     if (!this.arrowLeft && !this.arrowRight) return;
-
-    this._intersectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const isVisible = entry.isIntersecting;
-          this.arrowLeft?.classList.toggle('is-visible', isVisible);
-          this.arrowRight?.classList.toggle('is-visible', isVisible);
-
-          if (isVisible) {
-            this.positionArrows();
-            const { scrollLeft, scrollWidth, clientWidth } = this.list;
-            const atEnd = scrollLeft >= scrollWidth - clientWidth - 4;
-            this.arrowLeft?.classList.add('is-hidden');
-            if (this.arrowRight) {
-              this.arrowRight.classList.toggle('is-hidden', atEnd);
-            }
-          }
-        });
-      },
-      { threshold: 0.05 }
-    );
-
-    const blockWrapper = this.closest('.wyms-features__block-wrapper') || this;
-    this._intersectionObserver.observe(blockWrapper);
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const isVisible = entry.isIntersecting;
+        this.arrowLeft?.classList.toggle('is-visible', isVisible);
+        this.arrowRight?.classList.toggle('is-visible', isVisible);
+        if (isVisible) {
+          this.positionArrows();
+          this.updateScrollEdgeState();
+        }
+      });
+    }, { threshold: 0.05 });
+    this._io.observe(this.closest('.wyms-features__block-wrapper') || this);
   }
 
   positionArrows() {
-    if (!this.arrowLeft && !this.arrowRight) return;
-    if (!this.list) return;
-
+    if ((!this.arrowLeft && !this.arrowRight) || !this.list) return;
     const listOffsetTop = this.list.offsetTop;
     const paddingTop = parseInt(getComputedStyle(this.list).paddingTop) || 32;
     const firstMedia = this.querySelector('.wyms-feature-card__media');
     const mediaHeight = firstMedia ? firstMedia.offsetHeight : 320;
     const topPx = listOffsetTop + paddingTop + (mediaHeight / 2);
 
-    if (this.arrowLeft) {
-      this.arrowLeft.style.top = topPx + 'px';
-      this.arrowLeft.style.transform = 'translateY(-50%)';
-    }
-    if (this.arrowRight) {
-      this.arrowRight.style.top = topPx + 'px';
-      this.arrowRight.style.transform = 'translateY(-50%)';
-    }
+    if (this.arrowLeft) this.arrowLeft.style.top = topPx + 'px';
+    if (this.arrowRight) this.arrowRight.style.top = topPx + 'px';
   }
 
   checkOverflow() {
     if (!this.list) return;
     const hasOverflow = this.list.scrollWidth > this.list.clientWidth + 5;
-
-    if (this.paginationContainer) {
-      this.paginationContainer.classList.toggle('is-hidden', !hasOverflow);
-    }
-
+    if (this.paginationContainer) this.paginationContainer.classList.toggle('is-hidden', !hasOverflow);
     if (this.arrowLeft) this.arrowLeft.classList.toggle('is-hidden', !hasOverflow);
     if (this.arrowRight) this.arrowRight.classList.toggle('is-hidden', !hasOverflow);
+    this.updateScrollEdgeState();
   }
 
   updateScrollEdgeState() {
     if (!this.list) return;
     const { scrollLeft, scrollWidth, clientWidth } = this.list;
-    const atStart = scrollLeft <= 4;
-    const atEnd = scrollLeft >= scrollWidth - clientWidth - 4;
-
-    if (this.arrowLeft) this.arrowLeft.classList.toggle('is-hidden', atStart);
-    if (this.arrowRight) this.arrowRight.classList.toggle('is-hidden', atEnd);
+    if (this.arrowLeft) this.arrowLeft.classList.toggle('is-hidden', scrollLeft <= 10);
+    if (this.arrowRight) this.arrowRight.classList.toggle('is-hidden', scrollLeft >= scrollWidth - clientWidth - 10);
   }
 
   getScrollStep() {
@@ -116,33 +100,16 @@ class WymsFeaturesCarousel extends HTMLElement {
   }
 
   initArrows() {
-    this.arrowLeft?.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.list?.scrollBy({ left: -this.getScrollStep(), behavior: 'smooth' });
-    });
-
-    this.arrowRight?.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.list?.scrollBy({ left: this.getScrollStep(), behavior: 'smooth' });
-    });
+    this.arrowLeft?.addEventListener('click', () => this.list?.scrollBy({ left: -this.getScrollStep(), behavior: 'smooth' }));
+    this.arrowRight?.addEventListener('click', () => this.list?.scrollBy({ left: this.getScrollStep(), behavior: 'smooth' }));
   }
 
   updateActiveDot() {
     if (!this.list || this.dots.length === 0) return;
-
-    const scrollLeft = this.list.scrollLeft;
-    const maxScroll = this.list.scrollWidth - this.list.clientWidth;
-
-    let activeDotIndex = 0;
-    if (scrollLeft > 20 && scrollLeft < maxScroll - 20) {
-      activeDotIndex = 1;
-    } else if (scrollLeft >= maxScroll - 20) {
-      activeDotIndex = 2;
-    }
-
-    this.dots.forEach((dot, i) => {
-      dot.classList.toggle('is-active', i === activeDotIndex);
-    });
+    const step = this.getScrollStep();
+    if (step === 0) return;
+    const activeIndex = Math.round(this.list.scrollLeft / step);
+    this.dots.forEach((dot, i) => dot.classList.toggle('is-active', i === activeIndex));
   }
 
   initDots() {
@@ -154,39 +121,71 @@ class WymsFeaturesCarousel extends HTMLElement {
       });
     }, { passive: true });
 
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        this.list.scrollTo({ left: index * this.getScrollStep(), behavior: 'smooth' });
+      });
+    });
     this.updateActiveDot();
   }
 
   initDragToScroll() {
-    if (!this.list) return;
-    let isDown = false;
-    let startX = 0;
-    let scrollLeft = 0;
+    const track = this.list;
 
-    this.list.addEventListener('mousedown', (e) => {
-      isDown = true;
-      startX = e.pageX - this.list.offsetLeft;
-      scrollLeft = this.list.scrollLeft;
-      this.list.style.setProperty('cursor', 'grabbing');
+    track.addEventListener('mousedown', (e) => {
+      this.isDown = true;
+      track.classList.add('is-dragging');
+      this.startX = e.pageX - track.offsetLeft;
+      this.scrollLeftPos = track.scrollLeft;
+      this.lastMouseX = e.pageX;
+      this.velX = 0;
+
+      cancelAnimationFrame(this.momentumID);
+      
+      track.style.scrollSnapType = 'none';
+      track.style.scrollBehavior = 'auto';
     });
 
-    this.list.addEventListener('mouseleave', () => {
-      isDown = false;
-      this.list.style.removeProperty('cursor');
-    });
+    const endDrag = () => {
+      if (!this.isDown) return;
+      this.isDown = false;
+      track.classList.remove('is-dragging');
 
-    this.list.addEventListener('mouseup', () => {
-      isDown = false;
-      this.list.style.removeProperty('cursor');
-    });
+      this.beginMomentum();
+    };
 
-    this.list.addEventListener('mousemove', (e) => {
-      if (!isDown || !this.list) return;
+    track.addEventListener('mouseleave', endDrag);
+    track.addEventListener('mouseup', endDrag);
+
+    track.addEventListener('mousemove', (e) => {
+      if (!this.isDown) return;
       e.preventDefault();
-      const x = e.pageX - this.list.offsetLeft;
-      const walk = (x - startX) * 2;
-      this.list.scrollLeft = scrollLeft - walk;
+
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - this.startX) * 1.5; 
+      
+      this.velX = e.pageX - this.lastMouseX;
+      this.lastMouseX = e.pageX;
+
+      track.scrollLeft = this.scrollLeftPos - walk;
     });
+  }
+
+  
+  beginMomentum() {
+    const track = this.list;
+    const decay = 0.95; 
+    const step = () => {
+      if (Math.abs(this.velX) > 0.5) {
+        track.scrollLeft -= this.velX;
+        this.velX *= decay; 
+        this.momentumID = requestAnimationFrame(step);
+      } else {
+        track.style.scrollSnapType = 'x mandatory';
+        track.style.scrollBehavior = 'smooth';
+      }
+    };
+    this.momentumID = requestAnimationFrame(step);
   }
 }
 

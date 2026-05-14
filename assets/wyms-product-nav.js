@@ -8,91 +8,84 @@ class WymsProductNav extends HTMLElement {
     this.navWrapper = /** @type {HTMLElement | null} */ (this.querySelector('.js-product-nav-sticky'));
     /** @type {HTMLElement | null} */
     this.shopifySection = /** @type {HTMLElement | null} */ (this.closest('.shopify-section'));
+
     /** @type {NodeListOf<HTMLElement>} */
     this.navLinks = /** @type {NodeListOf<HTMLElement>} */ (this.querySelectorAll('.js-product-nav-link'));
 
-    if (!this.navWrapper) return;
+    if (!this.navWrapper || !this.shopifySection) return;
+
+    /** @type {number} */
+    this._stickStartY = 0;
 
     this.filterMissingTargets();
-    this.makeSectionSticky();
     this.initStickyPadding();
     this.initNavLinks();
-    this.initScrollSpy();
   }
 
   disconnectedCallback() {
     this._scrollHandler && window.removeEventListener('scroll', this._scrollHandler);
+    this._resizeHandler && window.removeEventListener('resize', this._resizeHandler);
+    if (this._stickyInsetHandler) {
+      document.removeEventListener('wyms:sticky-top-inset', this._stickyInsetHandler);
+      document.removeEventListener('wyms:header-visible', this._stickyInsetHandler);
+      document.removeEventListener('wyms:header-hidden', this._stickyInsetHandler);
+    }
   }
 
-  makeSectionSticky() {
+  getStickyTopInsetPx() {
+    const raw = getComputedStyle(document.documentElement).getPropertyValue('--wyms-sticky-top-inset').trim();
+    const num = Number.parseFloat(raw);
+    return Number.isFinite(num) ? num : 0;
+  }
+
+  recalcStickStartY() {
     if (!this.shopifySection) return;
-    this.shopifySection.style.position = 'sticky';
-    this.shopifySection.style.top = 'var(--wyms-sticky-top, 0px)';
-    this.shopifySection.style.zIndex = '99';
-    this.shopifySection.style.background = '#fff';
+    const stickyTopInset = this.getStickyTopInsetPx();
+    const rect = this.shopifySection.getBoundingClientRect();
+    this._stickStartY = window.scrollY + rect.top - stickyTopInset;
   }
 
   initStickyPadding() {
     if (!this.shopifySection) return;
 
-    const SCROLL_THRESHOLD = 6;
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
-    // When window.scrollY >= stickStartY, the section is in its sticky state.
-    const stickyTop = this.getStickyTop();
-    const rect = this.shopifySection.getBoundingClientRect();
-    const stickStartY = window.scrollY + rect.top - stickyTop;
-
-    /** @param {string} padPx */
-    const apply = (padPx) => {
-      this.shopifySection?.style.setProperty('--wyms-product-nav-pad-top', padPx);
-    };
-
-    const clear = () => {
-      this.shopifySection?.style.removeProperty('--wyms-product-nav-pad-top');
-    };
+    this.recalcStickStartY();
 
     /** @param {boolean} isActive */
     const setActive = (isActive) => {
       this.shopifySection?.classList.toggle('wyms-product-nav--active', isActive);
     };
 
-    const update = () => {
-      const y = window.scrollY;
-      const delta = y - lastScrollY;
-
-      const isStickyNow = y >= stickStartY;
-      setActive(isStickyNow);
-      if (!isStickyNow) {
-        // Not sticky -> don't control padding (leave whatever the normal CSS says).
-        clear();
-        lastScrollY = y;
-        ticking = false;
-        return;
-      }
-
-      // Sticky -> change padding only based on scroll direction.
-      if (delta < -SCROLL_THRESHOLD) {
-        apply('100px');
-      } else if (delta > SCROLL_THRESHOLD) {
-        apply('16px');
-      }
-
-      lastScrollY = y;
-      ticking = false;
-    };
-
+    let ticking = false;
     this._scrollHandler = () => {
       if (ticking) return;
       ticking = true;
-      requestAnimationFrame(update);
+      requestAnimationFrame(() => {
+        setActive(window.scrollY >= this._stickStartY);
+        this.updateScrollSpy();
+        ticking = false;
+      });
+    };
+
+    this._resizeHandler = () => {
+      this.recalcStickStartY();
+      this._scrollHandler && this._scrollHandler();
+    };
+
+    this._stickyInsetHandler = () => {
+      this.recalcStickStartY();
+      this._scrollHandler && this._scrollHandler();
     };
 
     window.addEventListener('scroll', this._scrollHandler, { passive: true });
-
-    // Initialize immediately.
-    update();
+    window.addEventListener('resize', this._resizeHandler, { passive: true });
+    document.addEventListener('wyms:sticky-top-inset', this._stickyInsetHandler);
+    document.addEventListener('wyms:header-visible', this._stickyInsetHandler);
+    document.addEventListener('wyms:header-hidden', this._stickyInsetHandler);
+    requestAnimationFrame(() => {
+      this.recalcStickStartY();
+      setActive(window.scrollY >= this._stickStartY);
+      this.updateScrollSpy();
+    });
   }
 
   filterMissingTargets() {
@@ -109,10 +102,12 @@ class WymsProductNav extends HTMLElement {
     });
   }
 
-  getStickyTop() {
-    const raw = getComputedStyle(document.documentElement).getPropertyValue('--wyms-sticky-top').trim();
-    const num = Number.parseFloat(raw);
-    return Number.isFinite(num) ? num : 0;
+  /** Pixels to clear above target: sticky top inset + nav bar + gap. */
+  getAnchorScrollOffsetPx() {
+    if (!this.navWrapper) return this.getStickyTopInsetPx() + 20;
+    const topInset = this.getStickyTopInsetPx();
+    const navHeight = this.navWrapper.offsetHeight;
+    return topInset + navHeight + 20;
   }
 
   initNavLinks() {
@@ -124,41 +119,31 @@ class WymsProductNav extends HTMLElement {
         const targetEl = document.getElementById(targetId);
         if (!targetEl) return;
 
-        const stickyTop = this.getStickyTop();
-        const navHeight = this.navWrapper ? this.navWrapper.offsetHeight : 0;
-        const offset = stickyTop + navHeight + 20;
+        const offset = this.getAnchorScrollOffsetPx();
         const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - offset;
-
-        window.scrollTo({ top: targetPos, behavior: 'smooth' });
+        window.scrollTo({ top: Math.max(0, targetPos), behavior: 'smooth' });
       });
     });
   }
 
-  initScrollSpy() {
-    window.addEventListener('scroll', () => {
-      const stickyTop = this.getStickyTop();
-      const navHeight = this.navWrapper ? this.navWrapper.offsetHeight : 0;
-      const threshold = stickyTop + navHeight + 30;
+  updateScrollSpy() {
+    const threshold = this.getAnchorScrollOffsetPx() + 10;
 
-      /** @type {string | null} */
-      let activeId = null;
-      this.navLinks.forEach((link) => {
-        const id = link.getAttribute('data-target-id');
-        if (!id) return;
-        const targetEl = document.getElementById(id);
-        if (!targetEl) return;
-        if (targetEl.getBoundingClientRect().top <= threshold) {
-          activeId = id;
-        }
-      });
+    /** @type {string | null} */
+    let activeId = null;
+    this.navLinks.forEach((link) => {
+      const id = link.getAttribute('data-target-id');
+      if (!id) return;
+      const targetEl = document.getElementById(id);
+      if (!targetEl) return;
+      if (targetEl.getBoundingClientRect().top <= threshold) {
+        activeId = id;
+      }
+    });
 
-      this.navLinks.forEach((link) => {
-        link.classList.toggle(
-          'is-active',
-          link.getAttribute('data-target-id') === activeId
-        );
-      });
-    }, { passive: true });
+    this.navLinks.forEach((link) => {
+      link.classList.toggle('is-active', link.getAttribute('data-target-id') === activeId);
+    });
   }
 }
 

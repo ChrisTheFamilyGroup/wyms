@@ -298,44 +298,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-  <script>
-    (function () {
-      var sectionEl = document.querySelector('.wyms-ergonomic-bag-section .sticky-btns-wrap');
-      var target = document.querySelector('.wyms-ergonomic-content-with-bg');
-      if (!sectionEl || !target) return;
-
-      var placeholder = document.createElement('div');
-      var offsetTop = sectionEl.offsetTop;
-
-      function onScroll() {
-        if (window.scrollY >= offsetTop) {
-          if (!sectionEl.classList.contains('fix-div')) {
-            placeholder.style.height = sectionEl.offsetHeight + 'px';
-            sectionEl.parentNode.insertBefore(placeholder, sectionEl);
-            sectionEl.classList.add('fix-div');
-            target.classList.add('extra-margin');
-          }
-        } else if (sectionEl.classList.contains('fix-div')) {
-          sectionEl.classList.remove('fix-div');
-          target.classList.remove('extra-margin');
-          if (placeholder.parentNode) {
-            placeholder.parentNode.removeChild(placeholder);
-          }
-        }
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', function () {
-        offsetTop = sectionEl.offsetTop;
-      });
-      onScroll();
-    })();
-  </script>
-
-
-
-
-
 
 
 

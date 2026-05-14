@@ -94,13 +94,10 @@
         "logo_width": 95,
         "menu_label_1": "Shop",
         "menu_1": "shop",
-        "menu_icon_1": "shopify://shop_images/test.png",
         "menu_label_2": "Über wyms",
         "menu_2": "ber-wyms",
-        "menu_icon_2": "shopify://shop_images/test.png",
         "menu_label_3": "Einblicke",
-        "menu_3": "learn",
-        "menu_icon_3": "shopify://shop_images/test.png"
+        "menu_3": "learn"
       }
     }
   },

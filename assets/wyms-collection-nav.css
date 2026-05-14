@@ -86,6 +86,7 @@
     display: flex;
     width: 100%;
     max-width: 768px;
+    min-width: 0;
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-9xl, 96px);
@@ -122,16 +123,53 @@
     line-height: var(--Line-height-text-xl, 30px);
   }
   
+  /*
+   * Horizontal strip: block scrollport + inline-flex max-content row (reliable overflow).
+   * Parent .collection-nav__content uses align-items: center + max-width — wrapper stays
+   * width:100% / align-self:stretch so the scrollport is the column width, not the pills’ intrinsic width.
+   */
+  /* Block-level scrollport + max-content inner row — avoids display:contents quirks and flex shrink-to-fit edge cases. */
   .collection-nav__buttons-wrapper {
+    align-self: stretch;
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    display: block;
+    padding-inline: clamp(8px, 2vw, 16px);
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-padding-inline: 8px;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+    -webkit-tap-highlight-color: transparent;
   }
-  
+
+  .collection-nav__buttons-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .collection-nav__buttons-wrapper.is-dragging {
+    scroll-snap-type: none !important;
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  .collection-nav__buttons-wrapper:not(.is-dragging) {
+    cursor: grab;
+  }
+
   .collection-nav__buttons {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
     gap: var(--spacing-xl, 16px);
-    /* flex-wrap: wrap;  */
+    width: max-content;
+    max-width: none;
+    vertical-align: middle;
   }
   
   .collection-nav__btn {
@@ -202,37 +240,23 @@
   
     .collection-nav__buttons-wrapper {
       width: calc(100% + 40px);
+      max-width: none;
       margin-left: -20px;
       margin-right: -20px;
-    }
-  
-    .collection-nav__buttons {
-      justify-content: flex-start;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-inline: 20px;
       scroll-snap-type: x mandatory;
-      scroll-padding-left: 20px;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
+      scroll-padding-inline: 20px;
     }
-  
-    .collection-nav__buttons::-webkit-scrollbar {
-      display: none;
+
+    .collection-nav__buttons-wrapper.is-dragging {
+      scroll-snap-type: none !important;
     }
-  
-    .collection-nav__buttons.is-dragging {
-      scroll-snap-type: none;
-      cursor: grabbing;
-    }
-  
+
     .collection-nav__btn {
       scroll-snap-align: start;
-      flex-shrink: 0; 
     }
-    
-    .collection-nav__buttons.is-dragging .collection-nav__btn {
+  
+    .collection-nav__buttons-wrapper.is-dragging .collection-nav__btn {
       pointer-events: none;
     }
   }

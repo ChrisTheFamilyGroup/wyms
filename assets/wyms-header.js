@@ -1,3 +1,6 @@
+/** Synced with sticky nav / CTA CSS (e.g. wyms-sticky-btns-section). */
+const WYMS_BODY_HEADER_HIDDEN_CLASS = 'wyms-header-is-hidden';
+
 class WymsHeader extends HTMLElement {
   constructor() {
     super();
@@ -30,7 +33,12 @@ class WymsHeader extends HTMLElement {
 
   disconnectedCallback() {
     this._ro?.disconnect?.();
+    if (this._roResizeRaf) {
+      cancelAnimationFrame(this._roResizeRaf);
+      this._roResizeRaf = 0;
+    }
     this._scrollHandler && window.removeEventListener('scroll', this._scrollHandler);
+    document.body.classList.remove(WYMS_BODY_HEADER_HIDDEN_CLASS);
   }
 
   getHeaderHeight() {
@@ -47,20 +55,34 @@ class WymsHeader extends HTMLElement {
     const headerHeight = this.getHeaderHeight();
     root.style.setProperty('--wyms-header-height', `${headerHeight}px`);
     root.style.setProperty('--wyms-header-hidden-gap', '12px');
-    // Product-nav container always sticks close to the top.
-    // When header is visible, we *visually* create the filled space via --wyms-product-nav-inset.
-    // No gap between the top of viewport and sticky product-nav container.
     root.style.setProperty('--wyms-sticky-top', '0px');
-    root.style.setProperty('--wyms-product-nav-inset', isHidden ? '0px' : `${headerHeight}px`);
+    /** @deprecated Prefer --wyms-sticky-top-inset for sticky `top` + scroll math (measured header). */
+    root.style.setProperty('--wyms-product-nav-inset', isHidden ? '16px' : `${headerHeight}px`);
+    // Pin sticky subbars directly under the header (or small gap when header is translated away).
+    const stickyTopInset = isHidden ? 16 : headerHeight;
+    root.style.setProperty('--wyms-sticky-top-inset', `${stickyTopInset}px`);
+    document.dispatchEvent(new CustomEvent('wyms:sticky-top-inset'));
+  }
+
+  /**
+   * @param {boolean} isHidden
+   */
+  setBodyHeaderHiddenClass(isHidden) {
+    document.body.classList.toggle(WYMS_BODY_HEADER_HIDDEN_CLASS, isHidden);
   }
 
   initHeaderCssVars() {
     this.setStickyTopVar(false);
+    this.setBodyHeaderHiddenClass(false);
 
     if (window.ResizeObserver) {
       this._ro = new ResizeObserver(() => {
-        const isHidden = this.classList.contains('header--hidden');
-        this.setStickyTopVar(isHidden);
+        if (this._roResizeRaf) cancelAnimationFrame(this._roResizeRaf);
+        this._roResizeRaf = requestAnimationFrame(() => {
+          this._roResizeRaf = 0;
+          const isHidden = this.classList.contains('header--hidden');
+          this.setStickyTopVar(isHidden);
+        });
       });
       const target = this.headerOuter || this;
       this._ro.observe(target);
@@ -68,48 +90,90 @@ class WymsHeader extends HTMLElement {
   }
 
   initScrollHide() {
-    const SCROLL_THRESHOLD = 10;
+    /** Past this scroll position, header may hide on downward intent. */
     const MIN_SCROLL_Y = 100;
+    /** Net scroll (px) before toggling — small so a light flick hides/shows. */
+    const DOWN_INTENT_TO_HIDE = 9;
+    const UP_INTENT_TO_SHOW = 9;
+    /** Ignore smaller deltas (subpixel / wheel noise). */
+    const DELTA_DEAD_ZONE = 0.38;
+    /** Opposite-direction movement erodes intent (dampens +/-1 jitter). */
+    const OPPOSITE_EROSION = 0.42;
+    /** Cap so idle tab restore / huge jumps do not carry stale intent. */
+    const INTENT_CAP = 28;
 
-    let lastScrollY = window.scrollY;
-    let isHidden = false;
+    this._headerHideAnchorY = Math.round(window.scrollY);
+    this._headerScrollLastY = window.scrollY;
+    this._headerScrollDownIntent = 0;
+    this._headerScrollUpIntent = 0;
     let ticking = false;
-  
+
+    const clampIntent = (n) => Math.min(INTENT_CAP, Math.max(0, n));
+
+    const showHeaderFromScroll = () => {
+      this.classList.remove('header--hidden');
+      this.setStickyTopVar(false);
+      this.setBodyHeaderHiddenClass(false);
+      this._headerScrollDownIntent = 0;
+      this._headerScrollUpIntent = 0;
+      document.dispatchEvent(new CustomEvent('wyms:header-visible'));
+    };
+
+    const hideHeaderFromScroll = () => {
+      this.classList.add('header--hidden');
+      this.setStickyTopVar(true);
+      this.setBodyHeaderHiddenClass(true);
+      this._headerScrollDownIntent = 0;
+      this._headerScrollUpIntent = 0;
+      document.dispatchEvent(new CustomEvent('wyms:header-hidden'));
+    };
+
     const update = () => {
-      const currentScrollY = window.scrollY;
-      const delta = currentScrollY - lastScrollY;
+      const y = window.scrollY;
+      const dyRaw = y - this._headerScrollLastY;
+      this._headerScrollLastY = y;
+      const dy = Math.abs(dyRaw) < DELTA_DEAD_ZONE ? 0 : dyRaw;
+      const headerHidden = this.classList.contains('header--hidden');
 
       // Always show header when we're near the top of the page.
-      if (currentScrollY <= MIN_SCROLL_Y) {
-        if (isHidden) {
-          isHidden = false;
-          this.classList.remove('header--hidden');
-          this.setStickyTopVar(false);
-          document.dispatchEvent(new CustomEvent('wyms:header-visible'));
+      if (y <= MIN_SCROLL_Y) {
+        this._headerHideAnchorY = Math.round(y);
+        this._headerScrollDownIntent = 0;
+        this._headerScrollUpIntent = 0;
+        if (headerHidden) {
+          showHeaderFromScroll();
         } else {
           this.setStickyTopVar(false);
+          this.setBodyHeaderHiddenClass(false);
         }
-
-        lastScrollY = currentScrollY;
         ticking = false;
         return;
       }
-  
+
       if (!this.isMobileMenuOpen) {
-        if (delta > SCROLL_THRESHOLD && currentScrollY > MIN_SCROLL_Y && !isHidden) {
-          isHidden = true;
-          this.classList.add('header--hidden');
-          this.setStickyTopVar(true);
-          document.dispatchEvent(new CustomEvent('wyms:header-hidden'));
-        } else if (delta < -SCROLL_THRESHOLD && isHidden) {
-          isHidden = false;
-          this.classList.remove('header--hidden');
-          this.setStickyTopVar(false);
-          document.dispatchEvent(new CustomEvent('wyms:header-visible'));
+        if (!headerHidden) {
+          if (dy > 0) {
+            this._headerScrollDownIntent = clampIntent(this._headerScrollDownIntent + dy);
+          } else if (dy < 0) {
+            this._headerScrollDownIntent = clampIntent(this._headerScrollDownIntent + dy * OPPOSITE_EROSION);
+          }
+          if (this._headerScrollDownIntent >= DOWN_INTENT_TO_HIDE && y > MIN_SCROLL_Y) {
+            hideHeaderFromScroll();
+            this._headerHideAnchorY = Math.round(y);
+          }
+        } else {
+          if (dy < 0) {
+            this._headerScrollUpIntent = clampIntent(this._headerScrollUpIntent - dy);
+          } else if (dy > 0) {
+            this._headerScrollUpIntent = clampIntent(this._headerScrollUpIntent - dy * OPPOSITE_EROSION);
+          }
+          if (this._headerScrollUpIntent >= UP_INTENT_TO_SHOW) {
+            showHeaderFromScroll();
+            this._headerHideAnchorY = Math.round(y);
+          }
         }
       }
-  
-      lastScrollY = currentScrollY;
+
       ticking = false;
     };
   
@@ -184,6 +248,12 @@ class WymsHeader extends HTMLElement {
     this.isMobileMenuOpen = true;
     this.classList.remove('header--hidden');
     this.setStickyTopVar(false);
+    this.setBodyHeaderHiddenClass(false);
+    const y = Math.round(window.scrollY);
+    this._headerHideAnchorY = y;
+    this._headerScrollLastY = window.scrollY;
+    this._headerScrollDownIntent = 0;
+    this._headerScrollUpIntent = 0;
     document.dispatchEvent(new CustomEvent('wyms:header-visible'));
   }
 
@@ -192,6 +262,11 @@ class WymsHeader extends HTMLElement {
     this.mobilePanel.style.display = 'none';
     document.body.classList.remove('mobile-menu-open');
     this.isMobileMenuOpen = false;
+    const y = Math.round(window.scrollY);
+    this._headerHideAnchorY = y;
+    this._headerScrollLastY = window.scrollY;
+    this._headerScrollDownIntent = 0;
+    this._headerScrollUpIntent = 0;
     if (this.mainList) this.mainList.style.display = 'block';
     this.submenuPages?.forEach((p) => { p.style.display = 'none'; });
   }

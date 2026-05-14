@@ -88,7 +88,7 @@
 </div>
 
 <style>
-  .wyms-ergonomic-content-with-bg .bg-bag-wrapper { padding-top: {{ section.settings.padding_top_desktop }}px; padding-bottom: {{ section.settings.padding_bottom_desktop }}px; }
+  .wyms-ergonomic-content-with-bg .bg-bag-wrapper { padding-top: {{ section.settings.padding_top_desktop }}px; padding-bottom: {{ section.settings.padding_bottom_desktop }}px; border-top: 1px solid #D9D9D9;}
   .wyms-ergonomic-content-with-bg h1, .wyms-ergonomic-content-with-bg h2, .wyms-ergonomic-content-with-bg h3, .wyms-ergonomic-content-with-bg h4, .wyms-ergonomic-content-with-bg h5, .wyms-ergonomic-content-with-bg h6, .wyms-ergonomic-content-with-bg p { padding: 0; margin: 0; }
   .wyms-ergonomic-content-with-bg img.img-fluid { height: auto; width: 100%; display: block; }
   .wyms-ergonomic-content-with-bg .first-img-wrap { width: 50%; padding-bottom: 27px; }
@@ -119,20 +119,34 @@
   #section-block-five { padding-bottom: 100px; }
   {% comment %} div#section-block-one { padding-top: 255px; } {% endcomment %}
 
+  {%- comment -%}
+    Sticky anchor clearance: live header inset + measured pill bar (wyms-sticky-btns-section publishes --wyms-sticky-btns-chrome).
+    Scope `html` rules to this marketing page so reusing the section elsewhere does not change global scroll.
+  {%- endcomment -%}
+  {%- if page.handle == 'ergonomics' -%}
   html {
-  scroll-behavior: smooth !important;
-}
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--wyms-sticky-top-inset, 96px) + var(--wyms-sticky-btns-chrome, 92px) + 10px);
+  }
 
-    #section-block-one,
-    #section-block-two,
-    #section-block-three,
-    #section-block-four,
-    #section-block-five {
-    scroll-margin-top: 50px;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
     }
+  }
+  {%- endif -%}
 
+  #section-block-one,
+  #section-block-two,
+  #section-block-three,
+  #section-block-four,
+  #section-block-five {
+    scroll-margin-top: calc(var(--wyms-sticky-top-inset, 96px) + var(--wyms-sticky-btns-chrome, 92px) + 10px);
+  }
 
-  .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap .img-fluid.last-img { animation: steerLoop 3s ease-in-out infinite; }
+  .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap .img-fluid.last-img {
+    animation: steerLoop 3s ease-in-out infinite;
+  }
 
   @keyframes steerLoop {
     0%   { transform: rotate(0deg); }
@@ -141,34 +155,12 @@
     100% { transform: rotate(0deg); }
   }
 
-
-  @media (max-width: 1899.98px) {
-    #section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five { scroll-margin-top: 10px; }
-  }
-
-  @media (max-width: 1799.98px) {
-    #stickyBtnsWrap.is-fixed { top: 12%; }
-    #section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five { scroll-margin-top: -20px; }
-  }
-
-  @media (max-width: 1699.98px) {
-    #stickyBtnsWrap.is-fixed { top: 13%; }
-  }
-
-
-  @media (max-width: 1599.98px) {
-    .wyms-ergonomic-content-with-bg .bg-bag-wrapper { padding-top: {{ section.settings.padding_top_laptop }}px; padding-bottom: {{ section.settings.padding_bottom_laptop }}px; }
-    #section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five { scroll-margin-top: -70px; }
-  }
   @media (max-width: 1550.98px) {
     .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { bottom: 75%; }
   }
   @media (max-width: 1500.98px) {
     .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { left: -1%; }
   }
-  @media (max-width: 1499.98px) {
-    #stickyBtnsWrap.is-fixed { top: 15%; }
-}
   @media (max-width: 1440.98px) {
     {% comment %} .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { bottom: 10%; } {% endcomment %}
   }
@@ -196,7 +188,6 @@
     .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { bottom: 75%; }
     .wyms-ergonomic-content-with-bg .second-section-img-content img.img-fluid.last-img { height: 200px; width: 200px; }
     .wyms-ergonomic-content-with-bg .img-text { font-size: 85px; }
-    #section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five { scroll-margin-top: -20px; }
     #section-block-two, #section-block-three, #section-block-four, #section-block-five { padding-top: 100px; }
   }
   @media (max-width: 991.98px) {
@@ -239,8 +230,7 @@
     .wyms-ergonomic-content-with-bg .second-section-img-content { gap: 0; }
     .wyms-ergonomic-content-with-bg .img-text { font-size: 80px; }
     .wyms-ergonomic-content-with-bg .second-section-img-content { gap: 90px; }
-     #section-block-one, #section-block-two, #section-block-three, #section-block-four, #section-block-five { scroll-margin-top: 50px; }
-}
+  }
 
   @media screen and (max-width: 450px) {
     {% comment %} .wyms-ergonomic-content-with-bg .second-section-img-content .last-img-wrap { bottom: -2%; } {% endcomment %}

@@ -9,6 +9,7 @@ class CollectionCarousel extends HTMLElement {
     this.isDown = false;
     this.startX = 0;
     this.scrollLeftPos = 0;
+    this.hasMoved = false; 
   }
 
   connectedCallback() {
@@ -22,8 +23,15 @@ class CollectionCarousel extends HTMLElement {
 
     track.addEventListener('mousedown', (e) => this.startDragging(e));
     track.addEventListener('mouseleave', () => this.stopDragging());
-    track.addEventListener('mouseup', () => this.stopDragging());
+    track.addEventListener('mouseup', (e) => this.stopDragging(e));
     track.addEventListener('mousemove', (e) => this.doDragging(e));
+    
+    track.addEventListener('click', (e) => {
+      if (this.hasMoved) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
 
     this.updateDots();
   }
@@ -34,7 +42,7 @@ class CollectionCarousel extends HTMLElement {
     if (!track) return;
 
     this.isDown = true;
-    track.classList.add('is-dragging');
+    this.hasMoved = false; 
     
     this.startX = e.pageX - track.offsetLeft;
     this.scrollLeftPos = track.scrollLeft;
@@ -43,12 +51,15 @@ class CollectionCarousel extends HTMLElement {
     track.style.scrollSnapType = 'none';
   }
 
-  stopDragging() {
+  /** @param {MouseEvent} e */
+  stopDragging(e) {
     const track = this.track;
     if (!this.isDown || !track) return;
 
     this.isDown = false;
-    track.classList.remove('is-dragging');
+    setTimeout(() => {
+      track.classList.remove('is-dragging');
+    }, 10);
     
     track.style.scrollBehavior = 'smooth';
     track.style.scrollSnapType = 'x mandatory';
@@ -59,10 +70,18 @@ class CollectionCarousel extends HTMLElement {
     const track = this.track;
     if (!this.isDown || !track) return;
 
-    e.preventDefault();
     const x = e.pageX - track.offsetLeft;
     const walk = (x - this.startX) * 2; 
-    track.scrollLeft = this.scrollLeftPos - walk;
+
+    if (Math.abs(x - this.startX) > 5) {
+      this.hasMoved = true;
+      track.classList.add('is-dragging');
+    }
+
+    if (this.hasMoved) {
+      e.preventDefault();
+      track.scrollLeft = this.scrollLeftPos - walk;
+    }
   }
 
   updateDots() {
