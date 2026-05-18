@@ -308,3 +308,26 @@
 .collection-nav__blob--right { right: 0; }
 .collection-nav__blob--right img { object-position: right center; }
 
+.collection-nav__text-block--centered {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  align-self: center;
+}
+
+.collection-nav__text-block--centered .collection-nav__title {
+  text-align: center;
+  width: 100%;
+}
+
+.collection-nav__text-block--centered {
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.collection-nav__text-block--centered .collection-nav__title {
+  text-align: center;
+  width: 100%;
+}

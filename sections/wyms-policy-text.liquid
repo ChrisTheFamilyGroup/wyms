@@ -1,0 +1,134 @@
+{{ 'wyms-page-content.css' | asset_url | stylesheet_tag }}
+
+<section class="wyms-policy-text">
+  <div class="wyms-policy-text__content">
+    {% for block in section.blocks %}
+      <div class="wyms-policy-text__block wyms-policy-text__block--{{ block.type }}"
+           style="padding-top: {{ block.settings.padding_top }}px; padding-bottom: {{ block.settings.padding_bottom }}px;"
+           {{ block.shopify_attributes }}>
+
+        {% case block.type %}
+          {% when 'heading' %}
+            <h2 class="wyms-policy-text__heading">{{ block.settings.text }}</h2>
+
+          {% when 'paragraph' %}
+            <p class="wyms-policy-text__paragraph">{{ block.settings.text }}</p>
+
+          {% when 'quote' %}
+            <blockquote class="wyms-policy-text__quote">
+              <span class="wyms-policy-text__quote-border"></span>
+              <p>{{ block.settings.text }}</p>
+            </blockquote>
+        {% endcase %}
+
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Policy Text",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "Padding top",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "Padding bottom",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "Paragraph",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "Padding top",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "Padding bottom",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "Padding top",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "Padding bottom",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Policy Text"
+    }
+  ]
+}
+{% endschema %}

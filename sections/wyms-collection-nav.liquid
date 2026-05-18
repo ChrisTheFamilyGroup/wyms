@@ -86,14 +86,39 @@
       </div>
 
       <div class="collection-nav__content">
-        <div class="collection-nav__text-block">
-          {%- if section.settings.title != blank -%}
-            <h1 class="collection-nav__title">{{ section.settings.title }}</h1>
-          {%- endif -%}
-          {%- if section.settings.description != blank -%}
-            <div class="collection-nav__desc">{{ section.settings.description }}</div>
-          {%- endif -%}
-        </div>
+        {%- liquid
+          assign has_desc = false
+          if section.settings.description != blank
+            assign has_desc = true
+          elsif page.metafields.custom.description != blank
+            assign has_desc = true
+          endif
+        -%}
+
+        {%- liquid
+  assign has_desc = false
+  assign use_manual_desc = false
+  assign use_meta_desc = false
+
+  if section.settings.description != blank and section.settings.description != '<p></p>'
+    assign has_desc = true
+    assign use_manual_desc = true
+  elsif page.metafields.custom.description != blank
+    assign has_desc = true
+    assign use_meta_desc = true
+  endif
+-%}
+
+<div class="collection-nav__text-block {% unless has_desc %}collection-nav__text-block--centered{% endunless %}">
+  {%- if section.settings.title != blank -%}
+    <h1 class="collection-nav__title">{{ section.settings.title }}</h1>
+  {%- endif -%}
+  {%- if use_manual_desc -%}
+    <div class="collection-nav__desc">{{ section.settings.description }}</div>
+  {%- elsif use_meta_desc -%}
+    <div class="collection-nav__desc">{{ page.metafields.custom.description | metafield_tag }}</div>
+  {%- endif -%}
+</div>
 
         <div class="collection-nav__buttons-wrapper" data-wyms-scroll-track>
           <div class="collection-nav__buttons">
@@ -151,7 +176,7 @@
       "content": "Text Content"
     },
     { "type": "text", "id": "title", "label": "Heading", "default": "Unsere Rucksäcke" },
-    { "type": "textarea", "id": "description", "label": "Description" },
+    { "type": "richtext", "id": "description", "label": "Description" },
     {
       "type": "header",
       "content": "Fallback: Blobs (Left & Right)"

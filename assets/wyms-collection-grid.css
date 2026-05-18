@@ -188,12 +188,13 @@
   object-fit: contain; 
 }
 
-.wyms-product-card__img--hover {
+.wyms-product-card__img--hover,
+img.wyms-product-card__img.wyms-product-card__img--hover {
   z-index: 3;
   opacity: 0;
   pointer-events: none;
-  object-fit: cover !important; /* FILL THE ENTIRE CARD */
-  object-position: center;
+  object-fit: cover !important;
+  object-position: center top;
 }
 
 .wyms-product-card:hover .wyms-product-card__img--primary {

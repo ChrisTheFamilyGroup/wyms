@@ -1,0 +1,92 @@
+.spacing-style, .layout-panel-flex, .layout-panel-flex--column, .section-content-wrapper, .mobile-column {
+  padding: 112px 0;
+}
+
+
+
+.wyms-page-content {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.wyms-page-content h2,
+.wyms-page-content h3,
+.wyms-page-content h4 {
+  color: var(--Colors-Text-text-primary, #191839);
+  font-family: var(--Font-family-font-family-display, "Clash Grotesk");
+  font-size: var(--Font-size-display-sm, 30px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: var(--Line-height-display-sm, 38px);
+  margin: 0 0 16px 0;
+}
+
+.wyms-page-content p {
+  color: var(--Colors-Text-text-primary, #191839);
+  font-family: var(--Font-family-font-family-body, Inter);
+  font-size: var(--Font-size-text-md, 16px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--Line-height-text-md, 24px);
+  margin: 0 0 4px 0;
+}
+
+.wyms-page-content strong,
+.wyms-page-content b {
+  color: var(--Colors-Text-text-primary, #191839);
+  font-family: var(--Font-family-font-family-body, Inter);
+  font-size: var(--Font-size-text-lg, 18px);
+  font-weight: 600;
+  line-height: var(--Line-height-text-lg, 28px);
+}
+
+.wyms-page-content blockquote {
+  display: flex;
+  gap: 20px;
+  padding: 36px 0;
+  margin: 0;
+  border: none;
+}
+
+.wyms-page-content blockquote::before {
+  content: "";
+  display: block;
+  width: 2px;
+  flex-shrink: 0;
+  align-self: stretch;
+  background: var(--Colors-Foreground-fg-primary, #242352);
+}
+
+.wyms-page-content blockquote p {
+  color: var(--Colors-Text-text-primary, #191839);
+  font-family: var(--Font-family-font-family-body, Inter);
+  font-size: var(--Font-size-text-xl, 20px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: var(--Line-height-text-xl, 30px);
+  margin: 0;
+}
+
+.wyms-page-content code {
+  font-family: monospace;
+  background: #f4f4f4;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: var(--Font-size-text-md, 16px);
+}
+
+@media screen and (max-width: 768px) {
+  .wyms-page-content {
+    padding: 64px 20px;
+  }
+
+  .wyms-page-content h2,
+  .wyms-page-content h3,
+  .wyms-page-content h4 {
+    font-size: var(--Font-size-display-xs, 24px);
+    line-height: var(--Line-height-display-xs, 32px);
+  }
+}

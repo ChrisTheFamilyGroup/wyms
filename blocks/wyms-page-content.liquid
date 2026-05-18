@@ -1,0 +1,12 @@
+{{ 'wyms-page-content.css' | asset_url | stylesheet_tag }}
+
+<rte-formatter class="wyms-page-content">
+  {{ page.content }}
+</rte-formatter>
+
+{% schema %}
+{
+  "name": "WYMS Page Content",
+  "class": "wyms-page-content-wrapper"
+}
+{% endschema %}

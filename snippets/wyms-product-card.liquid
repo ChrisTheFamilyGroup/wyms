@@ -28,6 +28,18 @@
         </svg>
       </button>
 
+      {%- if hover_image -%}
+        <img
+          class="wyms-product-card__img wyms-product-card__img--hover"
+          src="{{ hover_image | image_url: width: 424 }}"
+          srcset="{{ hover_image | image_url: width: 320 }} 320w, {{ hover_image | image_url: width: 424 }} 424w, {{ hover_image | image_url: width: 600 }} 600w"
+          sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+          alt="{{ product.title | escape }} hover image"
+          width="{{ hover_image.width }}"
+          height="{{ hover_image.height }}"
+          loading="lazy">
+      {%- endif -%}
+
       <div class="wyms-product-card__spot-wrap">
         {%- if spot_bg -%}
           <img class="wyms-product-card__spot" src="{{ spot_bg | image_url: width: 424 }}" width="" height="" alt="" aria-hidden="true" loading="lazy">
@@ -42,18 +54,6 @@
             alt="{{ product.featured_image.alt | escape }}"
             width="{{ product.featured_image.width }}"
             height="{{ product.featured_image.height }}"
-            loading="lazy">
-        {%- endif -%}
-
-        {%- if hover_image -%}
-          <img
-            class="wyms-product-card__img wyms-product-card__img--hover"
-            src="{{ hover_image | image_url: width: 424 }}"
-            srcset="{{ hover_image | image_url: width: 320 }} 320w, {{ hover_image | image_url: width: 424 }} 424w, {{ hover_image | image_url: width: 600 }} 600w"
-            sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
-            alt="{{ product.title | escape }} hover image"
-            width="{{ hover_image.width }}"
-            height="{{ hover_image.height }}"
             loading="lazy">
         {%- endif -%}
       </div>

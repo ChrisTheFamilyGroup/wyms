@@ -73,18 +73,12 @@
       ],
       "name": "Collection Navigation",
       "settings": {
-        "bg_color": "#6865ea",
-        "color_title": "#ffffff",
-        "color_desc": "#ffffff",
-        "color_btn_bg": "#f2f2f533",
-        "color_btn_bg_active": "#1a1a1a",
-        "color_btn_text": "#ffffff",
-        "full_bg_wide": "shopify://shop_images/Wild-full-FAQ-icon.svg",
-        "full_bg_desktop": "shopify://shop_images/Desctop-full-FAQ-icon.svg",
         "title": "Häufige Fragen",
         "description": "<p>Wir haben die wichtigsten Fragen rund um wyms, unsere Produkte und den Schulalltag gesammelt, damit du schnell findest, was du wissen willst.\n\nUnd falls doch noch etwas offen bleibt, ist unser Support-Team nur eine Nachricht entfernt..</p>",
+        "blob_left_desktop": "shopify://shop_images/Vector_ea21626b-09bf-4744-acbf-e19ed3b9de9e.png",
         "blob_left_wide": "shopify://shop_images/Vector_013a4182-b149-480f-b249-05bb2c73bc7a.png",
         "blob_left_mobile": "shopify://shop_images/Vector_05bb1be3-f446-43ef-b9cd-f539889c9a21.png",
+        "blob_right_desktop": "shopify://shop_images/Vector_d1399891-3e62-49d0-bde8-adcb39326339.png",
         "blob_right_wide": "shopify://shop_images/Vector_0e430ee7-ae78-41eb-ac76-998233fb5ef9.png",
         "blob_right_mobile": "shopify://shop_images/Vector_02a83462-d364-4655-8e02-2022ba959547.png"
       }

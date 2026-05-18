@@ -435,7 +435,7 @@
   align-items: center;
   gap: 8px;
   align-self: stretch;
-  margin-bottom: var(--spacing-lg, 12px); /* Відступ від списку товарів */
+  margin-bottom: var(--spacing-lg, 12px); 
 }
 
 .cart-notices__slider {
