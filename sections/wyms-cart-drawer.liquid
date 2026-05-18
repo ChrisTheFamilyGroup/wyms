@@ -21,6 +21,34 @@
 
     <cart-drawer-items id="CartDrawer-CartItems">
       <div class="cart-drawer-main-and-footer">
+        {%- assign benefit_blocks = section.blocks | where: 'type', 'benefit' -%}
+          {%- if benefit_blocks.size > 0 -%}
+            <div class="cart-notices js-cart-notices">
+              <div class="cart-notices__slider js-notice-slider">
+                <div class="cart-notices__track js-notice-track">
+                  {%- for block in benefit_blocks -%}
+                    <div class="cart-notice__item js-notice-item" {{ block.shopify_attributes }}>
+                      <div class="cart-notice__content">
+                        {%- if block.settings.icon != blank -%}
+                          <img src="{{ block.settings.icon | image_url: width: 32 }}" 
+                               class="cart-notice__icon" alt="" loading="lazy" width="16" height="16">
+                        {%- endif -%}
+                        <span class="cart-notice__text">{{ block.settings.text }}</span>
+                      </div>
+                    </div>
+                  {%- endfor -%}
+                </div>
+              </div>
+
+              {%- if benefit_blocks.size > 1 -%}
+                <div class="cart-notice__pagination js-notice-pagination">
+                  {%- for block in benefit_blocks -%}
+                    <div class="notice-dot {% if forloop.first %}is-active{% endif %}"></div>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
         <div class="cart-drawer-items-container js-cart-items">
           {% if cart.item_count > 0 %}
             {% for item in cart.items %}
@@ -106,7 +134,6 @@
 
         {% if cart.item_count > 0 %}
           <div class="cart-drawer-footer">
-              <!-- RECOMMENDED PRODUCTS BLOCK -->
       <!-- RECOMMENDED PRODUCTS BLOCK -->
 <div class="cart-upsell js-cart-upsell"
   data-see-all-label="{{ section.settings.upsell_see_all_label | default: 'See all →' }}"
@@ -195,8 +222,6 @@
           </div>
         {% endif %}
       </div>
-
-      {% comment %} <div id="CartDrawer-CartErrors" role="alert" style="color: red; text-align: center; margin-top: 10px;"></div> {% endcomment %}
     </cart-drawer-items>
 
   </div>
@@ -252,6 +277,16 @@
       "id": "upsell_show_more_label",
       "label": "Upsell — Show more label",
       "default": "See more"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Notice",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon (16x16)" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Free shipping on orders over €60" }
+      ]
     }
   ],
   "presets": [{ "name": "WYMS Cart Drawer" }]

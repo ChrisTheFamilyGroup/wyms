@@ -3,78 +3,108 @@
 
 {%- style -%}
   .section-{{ section.id }} .collection-nav__inner {
-    background-color: {{ section.settings.bg_color }};
+    background-color: {{ section.settings.bg_color }} !important;
   }
-  .section-{{ section.id }} {
-    --nav-title-color: {{ section.settings.color_title }};
-    --nav-desc-color: {{ section.settings.color_desc }};
-    --nav-btn-bg: {{ section.settings.color_btn_bg }};
-    --nav-btn-text: {{ section.settings.color_btn_text }};
-    --nav-btn-bg-active: {{ section.settings.color_btn_bg_active }};
+
+  .section-{{ section.id }} .collection-nav__title {
+    color: {{ section.settings.color_title }} !important;
+  }
+
+  .section-{{ section.id }} .collection-nav__desc,
+  .section-{{ section.id }} .collection-nav__desc p,
+  .section-{{ section.id }} p.collection-nav__desc {
+    color: {{ section.settings.color_desc }} !important;
+  }
+
+  .section-{{ section.id }} .collection-nav__btn {
+    background-color: {{ section.settings.color_btn_bg }} !important;
+  }
+
+  .section-{{ section.id }} .collection-nav__btn-text {
+    color: {{ section.settings.color_btn_text }} !important;
+  }
+
+  .section-{{ section.id }} .collection-nav__btn svg path {
+    stroke: {{ section.settings.color_btn_text }} !important;
+  }
+
+  .section-{{ section.id }} .collection-nav__btn.is-active,
+  .section-{{ section.id }} .collection-nav__btn:hover {
+    background-color: {{ section.settings.color_btn_bg_active }} !important;
   }
 {%- endstyle -%}
 
 <wyms-collection-nav class="collection-nav section-{{ section.id }}">
   <div class="collection-nav__outer page-width">
-    
     <div class="collection-nav__inner">
       
       <div class="collection-nav__blobs">
-        <picture class="collection-nav__blob collection-nav__blob--left">
-          {%- if section.settings.blob_left_wide != blank -%}
-            <source media="(min-width: 1441px)" srcset="{{ section.settings.blob_left_wide | image_url: width: 800 }}">
-          {%- endif -%}
-          {%- if section.settings.blob_left_desktop != blank -%}
-            <source media="(min-width: 769px)" srcset="{{ section.settings.blob_left_desktop | image_url: width: 600 }}">
-          {%- endif -%}
-          {%- if section.settings.blob_left_mobile != blank -%}
-            <img src="{{ section.settings.blob_left_mobile | image_url: width: 400 }}" width="" height="" alt="" loading="lazy">
-          {%- endif -%}
-        </picture>
+        {%- liquid
+          assign full_bg_exists = false
+          if section.settings.full_bg_desktop != blank or section.settings.full_bg_mobile != blank
+            assign full_bg_exists = true
+          endif
+        -%}
 
-        <picture class="collection-nav__blob collection-nav__blob--right">
-          {%- if section.settings.blob_right_wide != blank -%}
-            <source media="(min-width: 1441px)" srcset="{{ section.settings.blob_right_wide | image_url: width: 800 }}">
-          {%- endif -%}
-          {%- if section.settings.blob_right_desktop != blank -%}
-            <source media="(min-width: 769px)" srcset="{{ section.settings.blob_right_desktop | image_url: width: 600 }}">
-          {%- endif -%}
-          {%- if section.settings.blob_right_mobile != blank -%}
-            <img src="{{ section.settings.blob_right_mobile | image_url: width: 400 }}" width="" height="" alt="" loading="lazy">
-          {%- endif -%}
-        </picture>
+        {%- if full_bg_exists -%}
+          <picture class="collection-nav__full-bg">
+            {%- if section.settings.full_bg_wide != blank -%}
+              <source media="(min-width: 1441px)" srcset="{{ section.settings.full_bg_wide | image_url: width: 2000 }}">
+            {%- endif -%}
+            {%- if section.settings.full_bg_desktop != blank -%}
+              <source media="(min-width: 769px)" srcset="{{ section.settings.full_bg_desktop | image_url: width: 1600 }}">
+            {%- endif -%}
+            <img src="{{ section.settings.full_bg_mobile | default: section.settings.full_bg_desktop | image_url: width: 800 }}" 
+                 alt="" width="" height="" loading="lazy" class="full-bg-img">
+          </picture>
+
+        {%- else -%}
+          <picture class="collection-nav__blob collection-nav__blob--left">
+            {%- if section.settings.blob_left_wide != blank -%}
+              <source media="(min-width: 1441px)" srcset="{{ section.settings.blob_left_wide | image_url: width: 800 }}">
+            {%- endif -%}
+            {%- if section.settings.blob_left_desktop != blank -%}
+              <source media="(min-width: 769px)" srcset="{{ section.settings.blob_left_desktop | image_url: width: 600 }}">
+            {%- endif -%}
+            {%- if section.settings.blob_left_mobile != blank -%}
+              <img src="{{ section.settings.blob_left_mobile | image_url: width: 400 }}" alt="" width="" height="" loading="lazy">
+            {%- endif -%}
+          </picture>
+
+          <picture class="collection-nav__blob collection-nav__blob--right">
+            {%- if section.settings.blob_right_wide != blank -%}
+              <source media="(min-width: 1441px)" srcset="{{ section.settings.blob_right_wide | image_url: width: 800 }}">
+            {%- endif -%}
+            {%- if section.settings.blob_right_desktop != blank -%}
+              <source media="(min-width: 769px)" srcset="{{ section.settings.blob_right_desktop | image_url: width: 600 }}">
+            {%- endif -%}
+            {%- if section.settings.blob_right_mobile != blank -%}
+              <img src="{{ section.settings.blob_right_mobile | image_url: width: 400 }}" alt="" width="" height="" loading="lazy">
+            {%- endif -%}
+          </picture>
+        {%- endif -%}
       </div>
 
       <div class="collection-nav__content">
-        
         <div class="collection-nav__text-block">
           {%- if section.settings.title != blank -%}
             <h1 class="collection-nav__title">{{ section.settings.title }}</h1>
           {%- endif -%}
           {%- if section.settings.description != blank -%}
-            <p class="collection-nav__desc">{{ section.settings.description }}</p>
+            <div class="collection-nav__desc">{{ section.settings.description }}</div>
           {%- endif -%}
         </div>
 
-        {%- comment -%}
-          data-wyms-scroll-track marks the scrollport for horizontal pills (wheel, trackpad, drag).
-          Move this attribute if the DOM changes; JS also falls back to .collection-nav__buttons-wrapper / .collection-nav__buttons.
-        {%- endcomment -%}
-        <div
-          class="collection-nav__buttons-wrapper"
-          data-wyms-scroll-track
-        >
+        <div class="collection-nav__buttons-wrapper" data-wyms-scroll-track>
           <div class="collection-nav__buttons">
             {%- for block in section.blocks -%}
               {%- if block.type == 'nav_button' -%}
-                
                 {%- liquid
                   assign is_active = false
                   if request.path == block.settings.link
                     assign is_active = true
                   endif
                 -%}
-
                 <a href="{{ block.settings.link | default: '#' }}" 
                    class="collection-nav__btn {% if is_active %}is-active{% endif %}"
                    {{ block.shopify_attributes }}>
@@ -89,7 +119,6 @@
             {%- endfor -%}
           </div>
         </div>
-
       </div>
 
     </div>
@@ -104,61 +133,28 @@
       "type": "header",
       "content": "Appearance & Colors"
     },
+    { "type": "color", "id": "bg_color", "label": "Inner Background Color", "default": "#6865EA" },
+    { "type": "color", "id": "color_title", "label": "Heading Color", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_desc", "label": "Description Color", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_btn_bg", "label": "Button Background (Default)", "default": "rgba(25, 24, 57, 0.20)" },
+    { "type": "color", "id": "color_btn_bg_active", "label": "Button Background (Active/Hover)", "default": "#242352" },
+    { "type": "color", "id": "color_btn_text", "label": "Button Text Color", "default": "#FFFFFF" },
     {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Inner Background Color",
-      "default": "#6865EA"
+      "type": "header",
+      "content": "Full Background Image (Priority)"
     },
-    {
-      "type": "color",
-      "id": "color_title",
-      "label": "Heading Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "color_desc",
-      "label": "Description Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "color_btn_bg",
-      "label": "Button Background (Default)",
-      "default": "rgba(25, 24, 57, 0.20)"
-    },
-    {
-      "type": "color",
-      "id": "color_btn_bg_active",
-      "label": "Button Background (Active/Hover)",
-      "default": "#242352"
-    },
-    {
-      "type": "color",
-      "id": "color_btn_text",
-      "label": "Button Text Color",
-      "default": "#FFFFFF"
-    },
+    { "type": "image_picker", "id": "full_bg_wide", "label": "Full Background Wide (>1440px)" },
+    { "type": "image_picker", "id": "full_bg_desktop", "label": "Full Background Desktop" },
+    { "type": "image_picker", "id": "full_bg_mobile", "label": "Full Background Mobile" },
     {
       "type": "header",
       "content": "Text Content"
     },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Unsere Rucksäcke"
-    },
-    {
-      "type": "textarea",
-      "id": "description",
-      "label": "Description",
-      "default": "Entdecke unsere Kollektion an ergonomischen Schulrucksäcken."
-    },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Unsere Rucksäcke" },
+    { "type": "textarea", "id": "description", "label": "Description" },
     {
       "type": "header",
-      "content": "Background Images"
+      "content": "Fallback: Blobs (Left & Right)"
     },
     { "type": "image_picker", "id": "blob_left_desktop", "label": "Left Blob (Desktop)" },
     { "type": "image_picker", "id": "blob_left_wide", "label": "Left Blob (Wide)" },
@@ -178,10 +174,6 @@
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Collection Navigation"
-    }
-  ]
+  "presets": [{ "name": "Collection Navigation" }]
 }
 {% endschema %}

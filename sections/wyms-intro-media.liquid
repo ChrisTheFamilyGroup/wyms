@@ -34,7 +34,20 @@
 
         <div class="wyms-intro__content">
           
-          {%- if section.settings.gif_image != blank -%}
+          {%- if section.settings.gif_video != blank -%}
+            <div class="wyms-intro__gif-wrapper">
+              <video
+                class="wyms-intro__gif"
+                src="{{ section.settings.gif_video }}"
+                autoplay
+                loop
+                muted
+                playsinline
+                width="180"
+                height="180"
+              ></video>
+            </div>
+          {%- elsif section.settings.gif_image != blank -%}
             <div class="wyms-intro__gif-wrapper">
               <img src="{{ section.settings.gif_image | image_url: width: 360 }}" 
                    alt="Animated detail" 
@@ -89,7 +102,13 @@
     {
       "type": "image_picker",
       "id": "gif_image",
-      "label": "GIF or Icon"
+      "label": "GIF or Icon (PNG, JPG, SVG)"
+    },
+    {
+      "type": "text",
+      "id": "gif_video",
+      "label": "Badge (video/GIF: insert the MP4 URL from Shopify Files)",
+      "info": "Upload the MP4 via Settings → Files, copy the URL, and paste it here. This takes precedence over the Badge field above."
     },
     {
       "type": "textarea",

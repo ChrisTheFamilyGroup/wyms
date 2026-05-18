@@ -95,11 +95,25 @@
                 {%- endif -%}
               </div>
 
-              {%- if section.settings.badge_icon != blank -%}
+ʼ              {%- if section.settings.badge_video != blank -%}
+                <div class="wyms-image-content__badge-wrapper">
+                  <video
+                    class="wyms-image-content__badge-img"
+                    src="{{ section.settings.badge_video }}"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    width="115"
+                    height="115"
+                  ></video>
+                </div>
+              {%- elsif section.settings.badge_icon != blank -%}
                 <div class="wyms-image-content__badge-wrapper">
                   <img src="{{ section.settings.badge_icon | image_url: width: 250 }}" alt="Badge" class="wyms-image-content__badge-img" loading="lazy" width="115" height="115">
                 </div>
               {%- endif -%}
+
             </div>
 
           </div>
@@ -174,7 +188,17 @@
     { "type": "textarea", "id": "highlight_text", "label": "Highlight Text", "default": "Highlight" },
     { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Action" },
     { "type": "url", "id": "btn_link", "label": "Button Link" },
-    { "type": "image_picker", "id": "badge_icon", "label": "Badge GIF/Icon" }
+    {
+      "type": "image_picker",
+      "id": "badge_icon",
+      "label": "Badge (PNG, JPG, SVG)"
+    },
+    {
+      "type": "text",
+      "id": "badge_video",
+      "label": "Badge (video/GIF: insert the MP4 URL from Shopify Files)",
+      "info": "Upload the MP4 via Settings → Files, copy the URL, and paste it here. This takes precedence over the Badge field above."
+    }
   ],
   "presets": [{ "name": "WYMS Image & Content" }]
 }

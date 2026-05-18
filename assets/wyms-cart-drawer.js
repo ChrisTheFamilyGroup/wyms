@@ -82,6 +82,7 @@ class WymsCartDrawerItems extends HTMLElement {
           const target = this.querySelector('.cart-drawer-main-and-footer');
           if (source && target) {
             target.innerHTML = source.innerHTML;
+            /** @type {any} */ (window).wymsCart?.initNoticeSlider();
             /** @type {any} */ (window).wymsCart?.initUpsell();
           }
         }
@@ -112,6 +113,8 @@ class WymsCartDrawerController {
     this.isOpen = false;
     /** @type {AbortController|null} */
     this._upsellAbort = null;
+    /** @type {AbortController|null} */
+    this._noticeAbort = null;
 
     if (!this.drawer) return;
 
@@ -185,6 +188,7 @@ class WymsCartDrawerController {
         if (source && target) target.innerHTML = source.innerHTML;
       })
       .then(async () => {
+        this.initNoticeSlider();
         this.initUpsell();
 
         try {
@@ -203,6 +207,69 @@ class WymsCartDrawerController {
 
   refreshAndOpen() {
     return this.refreshFromSection().then(() => this.open(true));
+  }
+
+  // ─── NOTICE SLIDER ────────────────────────────────────────────────────────
+
+  initNoticeSlider() {
+    const drawer = this.drawer;
+    if (!drawer) return;
+
+    const container = /** @type {HTMLElement|null} */ (drawer.querySelector('.js-cart-notices'));
+    if (!container) return;
+
+    const track = /** @type {HTMLElement|null} */ (container.querySelector('.js-notice-track'));
+    const dots  = container.querySelectorAll('.notice-dot');
+
+    if (!track) return;
+
+    // Abort previous listeners to avoid duplicates on re-render
+    if (this._noticeAbort) this._noticeAbort.abort();
+    this._noticeAbort = new AbortController();
+    const { signal } = this._noticeAbort;
+
+    // Dot click → scroll to slide
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        track.scrollTo({ left: track.offsetWidth * i, behavior: 'smooth' });
+      }, { signal });
+    });
+
+    // Scroll → sync active dot
+    track.addEventListener('scroll', () => {
+      const index = Math.round(track.scrollLeft / (track.offsetWidth || 1));
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+    }, { passive: true, signal });
+
+    // Drag-to-scroll (desktop mouse)
+    let isDown      = false;
+    let startX      = 0;
+    let scrollStart = 0;
+
+    track.addEventListener('mousedown', (e) => {
+      isDown      = true;
+      startX      = e.pageX;
+      scrollStart = track.scrollLeft;
+      track.classList.add('is-dragging');
+    }, { signal });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      track.scrollLeft = scrollStart - (e.pageX - startX);
+    }, { passive: false, signal });
+
+    const stopDrag = () => {
+      if (!isDown) return;
+      isDown = false;
+      track.classList.remove('is-dragging');
+      // Snap to nearest slide
+      const index = Math.round(track.scrollLeft / (track.offsetWidth || 1));
+      track.scrollTo({ left: index * track.offsetWidth, behavior: 'smooth' });
+    };
+
+    window.addEventListener('mouseup',    stopDrag, { signal });
+    window.addEventListener('mouseleave', stopDrag, { signal });
   }
 
   // ─── UPSELL SLIDER ────────────────────────────────────────────────────────
@@ -414,7 +481,6 @@ class WymsCartDrawerController {
         img.alt    = product.title;
       }
 
-      
       const nameEl  = item.querySelector('.cart-upsell__name');
       const priceEl = item.querySelector('.cart-upsell__price');
       if (nameEl) nameEl.textContent = product.title;
@@ -447,7 +513,6 @@ class WymsCartDrawerController {
     };
 
     /**
-     
      * @param {HTMLElement}      item
      * @param {any[]}            siblings   
      * @param {HTMLElement}      colorList
@@ -592,8 +657,6 @@ class WymsCartDrawerController {
 
         dropdown.hidden = false;
 
-        
-
         if (cachedSiblings === null) {
           const collectionHandle = item.dataset.collection || '';
           const currentGroup     = item.dataset.group      || '';
@@ -604,7 +667,6 @@ class WymsCartDrawerController {
 
           const products = await fetchCollection(collectionHandle);
 
-          
           cachedSiblings = products.filter((p) => {
             const tags = /** @type {string[]} */ (p.tags || []);
             return tags.includes(`upsell-group:${currentGroup}`);
@@ -615,7 +677,6 @@ class WymsCartDrawerController {
           }
         }
 
-      
         renderDots(item, cachedSiblings, colorList, showMore || null, signal);
 
       }, { signal });

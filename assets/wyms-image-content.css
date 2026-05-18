@@ -46,6 +46,12 @@
   aspect-ratio: 1 / 1;
 }
 
+.wyms-image-content__badge-img {
+  width: 180px;
+  height: 180px;
+  display: block;
+}
+
 .wyms-image-content__img {
   width: 100%;
   height: 100%;
