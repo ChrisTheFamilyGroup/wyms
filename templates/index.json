@@ -252,6 +252,20 @@
       "name": "Sticky Scroll Full Bleed",
       "settings": {}
     },
+    "wyms_warranty_MGXgDU": {
+      "type": "wyms-warranty",
+      "name": "WYMS Warranty",
+      "settings": {
+        "main_bg": "shopify://shop_images/Content.png",
+        "blob_left": "shopify://shop_images/form_left_3ea32635-34d4-415a-a3a9-ca96779a8d22.svg",
+        "blob_right": "shopify://shop_images/form_right_5f81ffde-c6df-441b-945a-6d6d29b2cf8c.svg",
+        "icon": "shopify://shop_images/badge_warranty_10yrs.svg",
+        "title": "10-Year Warranty — built to survive every school year",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        "btn_label": "Mehr erfahren",
+        "btn_link": ""
+      }
+    },
     "wyms_mosaic_content_CzmKYi": {
       "type": "wyms-mosaic-content",
       "blocks": {
@@ -298,6 +312,7 @@
     "wyms_benefits_grid_98cYK7",
     "wyms_collection_carousel_VJwB7p",
     "section_sticky_scrolling_G6dDKQ",
+    "wyms_warranty_MGXgDU",
     "wyms_mosaic_content_CzmKYi"
   ]
 }

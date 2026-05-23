@@ -1,25 +1,4 @@
-/* Sticky on the section so the bar can pin (inner-only sticky breaks: parent ≈ bar height). */
-#shopify-section-wyms-product-nav {
-  position: -webkit-sticky;
-  position: sticky;
-  top: var(--wyms-sticky-top-inset, 0px);
-  z-index: 99;
-  display: block;
-  background: #fff;
-  transition: top 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Keep layout space, but don't show nav until it becomes sticky */
-#shopify-section-wyms-product-nav:not(.wyms-product-nav--active) {
-  opacity: 0;
-  pointer-events: none;
-}
-
-#shopify-section-wyms-product-nav.wyms-product-nav--active {
-  opacity: 1;
-  pointer-events: auto;
-  transition: opacity 0.2s ease;
-}
+/* Sticky + visibility: #shopify-section-{{ section.id }} rules live in wyms-product-nav.liquid */
 
 .product-nav-sticky-wrapper {
   position: relative;
@@ -34,8 +13,8 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  border-bottom: 1px solid #EFEBE6;
-  background: #fff;
+  border-bottom: none;
+  background: transparent;
   box-sizing: border-box;
 }
 
@@ -61,7 +40,7 @@
   align-items: center;
   gap: var(--spacing-xs, 4px);
   border-radius: var(--radius-full, 9999px);
-  background: var(--Component-colors-Alpha-alpha-black-10, rgba(25, 24, 57, 0.10));
+  background: #e7e6ea;
   text-decoration: none;
   white-space: nowrap;
   transition: background 0.3s ease, color 0.3s ease;
@@ -109,7 +88,7 @@
 }
 
 .product-nav-btn.is-active {
-  background: rgba(25, 24, 57, 0.10);
+  background: #e7e6ea;
 }
 .product-nav-btn.is-active .product-nav-btn__text {
   color: #191839;

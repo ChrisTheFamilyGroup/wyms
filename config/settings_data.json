@@ -80,13 +80,27 @@
     "sections": {
       "wyms-cart-drawer": {
         "type": "wyms-cart-drawer",
+        "blocks": {
+          "benefit_3K8LXP": {
+            "type": "benefit",
+            "settings": {
+              "icon": "shopify://shop_images/Check_icon_1520b9f3-039d-44d8-90c8-301c3355ba38.svg",
+              "text": "Quick delivery"
+            }
+          }
+        },
+        "block_order": [
+          "benefit_3K8LXP"
+        ],
         "settings": {
           "cart_title": "Cart",
           "empty_cart_text": "Your cart is currently empty.",
           "total_label": "Total",
           "checkout_label": "Checkout",
           "tax_note": "Taxes and shipping calculated at checkout",
-          "upsell_title": "You might also be interested in"
+          "upsell_title": "You might also be interested in",
+          "upsell_see_all_label": "See all →",
+          "upsell_show_more_label": "See more"
         }
       }
     },

@@ -1,0 +1,140 @@
+{{ 'wyms-warranty.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign has_content = false
+  if section.settings.title != blank or section.settings.main_bg != blank
+    assign has_content = true
+  endif
+-%}
+
+{%- if has_content or request.design_mode -%}
+  <section class="wyms-warranty">
+    {%- if has_content == false and request.design_mode -%}
+      <div style="padding: 40px; text-align: center; border: 2px dashed #ccc; background: #f9f9f9; width: 100%;">
+        <h3>Warranty Section is empty</h3>
+        <p>Add a title and background image in the settings.</p>
+      </div>
+    {%- else -%}
+
+      <div class="wyms-warranty__inner">
+        
+        {%- if section.settings.main_bg != blank -%}
+          <div class="wyms-warranty__bg-wrapper">
+            <img src="{{ section.settings.main_bg | image_url: width: 2000 }}" 
+                 alt="" class="wyms-warranty__bg-img" loading="lazy"
+                 width="{{ section.settings.main_bg.width }}" 
+                 height="{{ section.settings.main_bg.height }}">
+          </div>
+        {%- endif -%}
+
+        <!-- 2. Decorative Blobs Layer -->
+        <div class="wyms-warranty__blobs">
+          {%- if section.settings.blob_left != blank -%}
+            <img src="{{ section.settings.blob_left | image_url: width: 800 }}" 
+                 class="wyms-warranty__blob wyms-warranty__blob--left" alt="" width="" height="" loading="lazy">
+          {%- endif -%}
+          {%- if section.settings.blob_right != blank -%}
+            <img src="{{ section.settings.blob_right | image_url: width: 800 }}" 
+                 class="wyms-warranty__blob wyms-warranty__blob--right" alt="" width="" height="" loading="lazy">
+          {%- endif -%}
+        </div>
+
+        <!-- 3. Foreground Content Layer -->
+        <div class="wyms-warranty__content-box page-width">
+          
+          {%- if section.settings.icon != blank -%}
+            <div class="wyms-warranty__icon-wrap">
+              <img src="{{ section.settings.icon | image_url: width: 400 }}" 
+                   alt="Warranty Icon" class="wyms-warranty__icon" loading="lazy"
+                   width="188" height="188">
+            </div>
+          {%- endif -%}
+
+          <div class="wyms-warranty__text-group">
+            {%- if section.settings.title != blank -%}
+              <h2 class="wyms-warranty__title">{{ section.settings.title }}</h2>
+            {%- endif -%}
+            
+            {%- if section.settings.description != blank -%}
+              <div class="wyms-warranty__desc">{{ section.settings.description }}</div>
+            {%- endif -%}
+          </div>
+
+          {%- if section.settings.btn_label != blank -%}
+            <div class="wyms-warranty__btn-wrapper">
+              <a href="{{ section.settings.btn_link | default: '#' }}" class="wyms-warranty__btn">
+                {{ section.settings.btn_label }}
+              </a>
+            </div>
+          {%- endif -%}
+
+        </div>
+
+      </div>
+    {%- endif -%}
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "WYMS Warranty",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background & Decorations"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_bg",
+      "label": "Main Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "blob_left",
+      "label": "Left Decorative Blob"
+    },
+    {
+      "type": "image_picker",
+      "id": "blob_right",
+      "label": "Right Decorative Blob"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Warranty Icon"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "10-Year Warranty — built to survive every school year"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Mehr erfahren"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Warranty"
+    }
+  ]
+}
+{% endschema %}

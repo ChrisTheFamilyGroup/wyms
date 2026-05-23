@@ -19,8 +19,8 @@ class FeaturedProducts extends HTMLElement {
   connectedCallback() {
     this.track = this.querySelector('.carousel-track-container');
     this.dots = this.querySelectorAll('.dot');
-    this.btnNext = this.querySelector('.next');
-    this.btnPrev = this.querySelector('.prev');
+    this.btnNext = this.querySelector('.js-next');
+    this.btnPrev = this.querySelector('.js-prev');
 
     const track = this.track;
     if (!track) return;
@@ -28,7 +28,6 @@ class FeaturedProducts extends HTMLElement {
     track.addEventListener('scroll', () => this.updateDots());
 
     this.initArrows();
-    
     this.initDragToScroll();
 
     this.updateDots();
@@ -58,9 +57,10 @@ class FeaturedProducts extends HTMLElement {
     const track = this.track;
 
     track.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+
       this.isDown = true;
-      this.hasMoved = false;
-      track.classList.add('is-dragging');
+      this.hasMoved = false; 
       
       this.startX = e.pageX - track.offsetLeft;
       this.scrollLeftPos = track.scrollLeft;
@@ -72,7 +72,10 @@ class FeaturedProducts extends HTMLElement {
     const stopDragging = () => {
       if (!this.isDown) return;
       this.isDown = false;
-      track.classList.remove('is-dragging');
+      
+      setTimeout(() => {
+        track.classList.remove('is-dragging');
+      }, 50);
       
       track.style.scrollSnapType = 'x mandatory';
       track.style.scrollBehavior = 'smooth';
@@ -85,9 +88,13 @@ class FeaturedProducts extends HTMLElement {
       if (!this.isDown) return;
       
       const x = e.pageX - track.offsetLeft;
-      const walk = (x - this.startX) * 2; 
-      if (Math.abs(walk) > 5) {
-        this.hasMoved = true;
+      const walk = (x - this.startX) * 1.5; 
+      
+      if (Math.abs(x - this.startX) > 10) {
+        if (!this.hasMoved) {
+          this.hasMoved = true;
+          track.classList.add('is-dragging');
+        }
         e.preventDefault();
         track.scrollLeft = this.scrollLeftPos - walk;
       }
@@ -96,17 +103,19 @@ class FeaturedProducts extends HTMLElement {
     track.addEventListener('click', (e) => {
       if (this.hasMoved) {
         e.preventDefault();
+        e.stopPropagation();
       }
-    });
+    }, true); 
   }
 
   updateDots() {
     const track = this.track;
     const dots = this.dots;
-    if (!track || !dots || dots.length !== 3) return;
+    if (!track || !dots || dots.length === 0) return;
 
     const scrollLeft = track.scrollLeft;
     const maxScroll = track.scrollWidth - track.clientWidth;
+    const slideWidth = track.querySelector('.product-card-wrapper')?.clientWidth + 24 || 1;
 
     dots.forEach((dot) => {
       dot.classList.remove('active', 'is-looping');
@@ -114,25 +123,22 @@ class FeaturedProducts extends HTMLElement {
     });
 
     if (maxScroll <= 0) {
-      dots[0].classList.add('active');
+      dots[0]?.classList.add('active');
       return;
     }
-
-    const firstCard = track.querySelector('.product-card-wrapper');
-    const slideWidth = firstCard ? firstCard.clientWidth + 24 : track.clientWidth * 0.8;
 
     const exactIndex = scrollLeft / slideWidth;
     const maxIndex = maxScroll / slideWidth;
 
     if (exactIndex < 1.0) {
-      if (exactIndex < 0.5) dots[0].classList.add('active');
-      else dots[1].classList.add('active');
+      if (exactIndex < 0.5) dots[0]?.classList.add('active');
+      else dots[1]?.classList.add('active');
     } 
     else if (exactIndex > maxIndex - 1.0) {
-      if (exactIndex > maxIndex - 0.5) dots[2].classList.add('active');
-      else dots[1].classList.add('active');
+      if (exactIndex > maxIndex - 0.5) dots[dots.length - 1]?.classList.add('active');
+      else dots[1]?.classList.add('active');
     } 
-    else {
+    else if (dots[1]) {
       dots[1].classList.add('is-looping');
       const progress = exactIndex % 1;
       dots[1].style.setProperty('--loop-progress', progress);

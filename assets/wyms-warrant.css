@@ -1,0 +1,166 @@
+/* -----------------------------------
+   1. OUTER WRAPPER (WHITE FRAME)
+----------------------------------- */
+.wyms-warranty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: var(--spacing-xl, 16px);
+    background: var(--bg-primary, #FFFFFF);
+    box-sizing: border-box;
+  }
+  
+  /* -----------------------------------
+     2. INNER CONTAINER
+  ----------------------------------- */
+  .wyms-warranty__inner {
+    position: relative;
+    display: flex;
+    padding: var(--spacing-9xl, 96px) var(--spacing-6xl, 48px);
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+    border-radius: 16px;
+    overflow: hidden; /* Обрізаємо все, що виходить за межі закруглень */
+    background: #6865EA; /* Фолбек колір */
+  }
+  
+  /* Background Image Layer */
+  .wyms-warranty__bg-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  
+  .wyms-warranty__bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Decorative Blobs Layer */
+  .wyms-warranty__blobs {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .wyms-warranty__blob {
+    position: absolute;
+    bottom: 0;
+    height: 80%; /* Щоб вони не закривали весь текст */
+    width: auto;
+    object-fit: contain;
+  }
+  
+  .wyms-warranty__blob--left {
+    left: 0;
+    transform: translateX(-10%); /* Трохи висуваємо для ефекту як у Figma */
+  }
+  
+  .wyms-warranty__blob--right {
+    right: 0;
+    transform: translateX(10%);
+  }
+  
+  /* -----------------------------------
+     3. CONTENT BOX
+  ----------------------------------- */
+  .wyms-warranty__content-box {
+    position: relative;
+    z-index: 10; /* Поверх усіх фонів */
+    display: flex;
+    max-width: var(--width-xl, 768px);
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  .wyms-warranty__icon {
+    width: 188px;
+    height: 188px;
+    object-fit: contain;
+  }
+  
+  .wyms-warranty__text-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+  }
+  
+  .wyms-warranty__title {
+    color: #FFFFFF;
+    text-align: center;
+    font-family: var(--font-family-display, "Clash Grotesk");
+    font-size: var(--display-md, 36px);
+    font-weight: 600;
+    line-height: var(--lh-display-md, 44px);
+    margin: 0;
+    white-space: pre-line;
+  }
+  
+  .wyms-warranty__desc {
+    color: #FFFFFF;
+    text-align: center;
+    font-family: var(--font-family-body, Inter);
+    font-size: var(--text-md, 16px);
+    font-weight: 400;
+    line-height: var(--lh-text-md, 24px);
+    white-space: pre-line;
+  }
+  
+  /* Button */
+  .wyms-warranty__btn-wrapper {
+    display: flex;
+    padding-top: 16px;
+  }
+  
+  .wyms-warranty__btn {
+    display: inline-flex;
+    padding: 12px 18px;
+    border-radius: 9999px;
+    background: #FFFFFF;
+    color: #242352;
+    font-family: var(--font-family-body, Inter);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+  
+  .wyms-warranty__btn:hover {
+    transform: scale(1.05);
+  }
+  
+  /* -----------------------------------
+     4. MOBILE ADAPTATION
+  ----------------------------------- */
+  @media screen and (max-width: 768px) {
+    .wyms-warranty {
+      padding: var(--spacing-md, 8px);
+    }
+  
+    .wyms-warranty__inner {
+      padding: var(--spacing-7xl, 64px) var(--spacing-2xl, 20px);
+      gap: 20px;
+    }
+  
+    .wyms-warranty__title {
+      font-size: var(--display-sm, 30px);
+      line-height: var(--lh-display-sm, 38px);
+    }
+  
+    /* На мобілці робимо плями трохи більшими, щоб вони заповнювали кути */
+    .wyms-warranty__blob {
+      height: 60%;
+    }
+  }

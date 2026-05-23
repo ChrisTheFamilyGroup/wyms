@@ -94,14 +94,19 @@
 
     <!-- Controls -->
     <div class="carousel-controls page-width">
-      <div class="pagination-dots">
+      {% comment %} <div class="pagination-dots">
         <span class="dot active"></span>
         <span class="dot"></span>
         <span class="dot"></span>
-      </div>
-      <div class="arrow-buttons">
-        <button class="arrow-btn prev" aria-label="Previous">{% render 'icon-left-arrow' %}</button>
-        <button class="arrow-btn next" aria-label="Next">{% render 'icon-right-arrow' %}</button>
+      </div> {% endcomment %}
+      
+      <div class="arrow-buttons-container">
+        <button class="arrow-btn-wrapper prev js-prev" aria-label="Previous">
+          {% render 'icon-chevron-left' %}
+        </button>
+        <button class="arrow-btn-wrapper next js-next" aria-label="Next">
+          {% render 'icon-chevron-right' %}
+        </button>
       </div>
     </div>
 

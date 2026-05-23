@@ -1,10 +1,15 @@
 {%- comment -%}
-  Sticky section uses documentElement --wyms-sticky-top-inset (set in wyms-header.js) for `top`, not padding toggles.
+  Sticky product nav: `top` follows --wyms-sticky-top-inset from wyms-header.js (full header height when scrolling up,
+  16px gap when header is hidden on scroll down). No padding/IO toggles — those caused layout ↔ observer feedback.
 {%- endcomment -%}
 {{ 'wyms-product-nav.css' | asset_url | stylesheet_tag }}
 
 <wyms-product-nav>
-  <div class="product-nav-sticky-wrapper js-product-nav-sticky" id="ProductNav">
+  <div
+    class="product-nav-sticky-wrapper js-product-nav-sticky"
+    id="ProductNav-{{ section.id }}"
+    data-wyms-product-nav-bar
+  >
     <div class="product-nav-container">
       <nav class="product-nav-buttons-list">
         {%- for block in section.blocks -%}
@@ -35,6 +40,19 @@
     </div>
   </div>
 </wyms-product-nav>
+
+<style>
+  /* STICKY: `top` follows header height from wyms-header.js. Always visible — no opacity toggles. */
+  #shopify-section-{{ section.id }} {
+    position: -webkit-sticky;
+    position: sticky;
+    top: var(--wyms-sticky-top-inset, 0px);
+    z-index: 99;
+    background: transparent;
+    display: block !important;
+    transition: top 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>
 
 <script src="{{ 'wyms-product-nav.js' | asset_url }}" defer="defer"></script>
 
