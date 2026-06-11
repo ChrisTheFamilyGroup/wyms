@@ -1,0 +1,243 @@
+
+.body {
+    overflow-x: hidden;
+  }
+
+  .wyms-split-outer {
+    width: 100%;
+    overflow: hidden; 
+  }
+  
+  .wyms-split-section {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+    padding: 112px 64px;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+.wyms-split-section {
+    position: relative; 
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+    padding: 112px 64px;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+  
+  .wyms-floating-icon {
+    position: absolute;
+    z-index: 5;
+    top: var(--wyms-floating-top-ds);
+    left: var(--wyms-floating-left-ds);
+    width: var(--wyms-floating-size-ds);
+    height: auto;
+    pointer-events: none;
+  }
+  
+  .wyms-floating-icon img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  .wyms-split-inner {
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+    align-items: center;
+    gap: 80px;
+    align-self: stretch;
+  }
+  
+  .wyms-split-media {
+    display: flex;
+    flex: 1 0 0;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .wyms-main-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 139 / 145;
+    object-fit: cover;
+    border-radius: 16px; 
+  }
+  
+  .wyms-placeholder {
+    width: 100%;
+    aspect-ratio: 139 / 145;
+    background: #f3f3f3;
+  }
+  
+  .wyms-split-content {
+    display: flex;
+    padding: 48px 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    flex: 1 0 0;
+  }
+  
+  .wyms-text-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+  }
+  
+  .wyms-title {
+    color: #191839;
+    font-family: "Clash Grotesk", sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 60px;
+    letter-spacing: -0.96px;
+    margin: 0;
+  }
+  
+  .wyms-subtitle {
+    color: #191839;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  
+  .wyms-bullet-list {
+    display: flex;
+    padding-left: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+  }
+  
+  .wyms-bullet-item {
+    display: flex;
+    width: 100%;
+    max-width: 608px;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .wyms-bullet-icon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+  
+  .wyms-bullet-text {
+    color: #191839;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+  }
+  
+  .wyms-bottom-text {
+    color: #191839;
+    font-family: "Clash Grotesk", sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .wyms-split-section {
+      padding: 64px 20px;
+      align-items: flex-start;
+      gap: 48px;
+    }
+  
+    .wyms-floating-icon {
+      top: var(--wyms-floating-top-mb);
+      left: var(--wyms-floating-left-mb);
+      width: var(--wyms-floating-size-mb);
+    }
+  
+    .wyms-split-inner {
+      padding-top: 40px;
+      flex-direction: column; 
+      gap: 48px;
+    }
+  
+    .wyms-split-inner {
+      flex-direction: column-reverse; 
+    }
+  
+    .wyms-split-content {
+      padding: 0;
+      gap: 20px;
+    }
+  
+    .wyms-text-header {
+      gap: 20px;
+    }
+  
+    .wyms-title {
+      font-size: 36px;
+      line-height: 44px;
+    }
+  
+    .wyms-bullet-item {
+      max-width: 345px;
+    }
+  
+    .wyms-split-media {
+      width: 100%;
+      align-self: stretch;
+    }
+  
+    .wyms-main-img {
+      aspect-ratio: 139 / 145;
+    }
+  }
+
+
+.wyms-floating-icon {
+    position: absolute;
+    z-index: 5;
+    top: var(--wyms-floating-top-ds);
+    left: var(--wyms-floating-left-ds);
+    width: var(--wyms-floating-size-ds);
+    height: auto;
+    pointer-events: none;
+    perspective: 1000px;
+  }
+  
+  .wyms-floating-icon img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    animation: wyms-swing-animation 4s ease-in-out infinite;
+    transform-origin: center center;
+  }
+  
+  @keyframes wyms-swing-animation {
+    0% { transform: rotate(-15deg); }
+    50% { transform: rotate(15deg); }
+    100% { transform: rotate(-15deg); }
+  }
+  
+  @media screen and (max-width: 767px) {
+    .wyms-floating-icon {
+      top: var(--wyms-floating-top-mb);
+      left: var(--wyms-floating-left-mb);
+      width: var(--wyms-floating-size-mb);
+    }
+  }

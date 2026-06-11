@@ -1,0 +1,248 @@
+{{ 'wyms-scroll-stack.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wyms-scroll-stack.js' | asset_url }}" defer></script>
+
+
+{%- liquid
+  assign icon_image     = section.settings.icon_image
+  assign icon_number    = section.settings.icon_number
+  assign heading        = section.settings.heading
+  assign subheading     = section.settings.subheading
+  assign features_label = section.settings.features_label
+  assign cards          = section.blocks | where: 'type', 'card'
+  assign features       = section.blocks | where: 'type', 'feature'
+-%}
+
+<style>
+  /* Sticky breaks if any ancestor clips overflow — force visible on Shopify wrapper + stack root. */
+  #wyms-scroll-stack-{{ section.id }} .wyms-scroll-stack__icon-number {
+    color: {{ section.settings.icon_number_color }};
+  }
+  #shopify-section-{{ section.id }},
+  #shopify-section-{{ section.id }} .wyms-scroll-stack,
+  #shopify-section-{{ section.id }} .wyms-scroll-stack__right,
+  #shopify-section-{{ section.id }} .wyms-scroll-stack__card-track {
+    overflow: visible !important;
+  }
+</style>
+
+<div
+  class="wyms-scroll-stack"
+  id="wyms-scroll-stack-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+>
+  {%- comment %} ─── LEFT PANEL (sticky) ─── {%- endcomment %}
+  <div class="wyms-scroll-stack__left">
+    <div class="wyms-scroll-stack__left-inner">
+
+      {%- comment %} Animated icon with centred number {%- endcomment %}
+      <div class="wyms-scroll-stack__icon-wrap" aria-hidden="true">
+        {%- if icon_image != blank -%}
+          <img
+            class="wyms-scroll-stack__icon-img"
+            src="{{ icon_image | image_url: width: 280 }}"
+            alt=""
+            width="280"
+            height="280"
+            loading="lazy"
+          >
+        {%- else -%}
+          <div class="wyms-scroll-stack__icon-placeholder"></div>
+        {%- endif -%}
+        <span class="wyms-scroll-stack__icon-number">{{ icon_number }}</span>
+      </div>
+
+      {%- comment %} Heading + subheading + features {%- endcomment %}
+      <div class="wyms-scroll-stack__text-block">
+
+        <div class="wyms-scroll-stack__titles">
+          {%- if heading != blank -%}
+            <h2 class="wyms-scroll-stack__heading">{{ heading }}</h2>
+          {%- endif -%}
+          {%- if subheading != blank -%}
+            <p class="wyms-scroll-stack__subheading">{{ subheading }}</p>
+          {%- endif -%}
+        </div>
+
+        {%- if features.size > 0 -%}
+          <div class="wyms-scroll-stack__features">
+            {%- if features_label != blank -%}
+              <p class="wyms-scroll-stack__features-label">{{ features_label }}</p>
+            {%- endif -%}
+            <ul class="wyms-scroll-stack__features-list" role="list">
+              {%- for block in features -%}
+                <li class="wyms-scroll-stack__feature-item" {{ block.shopify_attributes }}>
+                  <span class="wyms-scroll-stack__feature-icon" aria-hidden="true">
+                    {%- if block.settings.icon != blank -%}
+                      <img
+                        src="{{ block.settings.icon | image_url: width: 56 }}"
+                        alt=""
+                        width="28"
+                        height="28"
+                        loading="lazy"
+                      >
+                    {%- else -%}
+                      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28" aria-hidden="true">
+                        <circle cx="14" cy="14" r="13" stroke="#191839" stroke-width="1.5"/>
+                        <path d="M9 14l3.5 3.5L19 10" stroke="#191839" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    {%- endif -%}
+                  </span>
+                  <span class="wyms-scroll-stack__feature-text">{{ block.settings.text }}</span>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+      </div>
+    </div>
+  </div>
+
+  {%- comment %} ─── RIGHT PANEL (scroll-stack cards) ─── {%- endcomment %}
+  <div class="wyms-scroll-stack__right">
+    <div
+      class="wyms-scroll-stack__card-track"
+      data-total="{{ cards.size }}"
+    >
+      {%- for block in cards -%}
+        <article
+          class="wyms-scroll-stack__card"
+          data-card-index="{{ forloop.index0 }}"
+          style="--card-bg: {{ block.settings.card_bg | default: '#F0F0FD' }};"
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.image != blank -%}
+            <div class="wyms-scroll-stack__card-img-wrap">
+              <img
+                src="{{ block.settings.image | image_url: width: 1040 }}"
+                alt="{{ block.settings.image.alt | escape }}"
+                loading="lazy"
+                class="wyms-scroll-stack__card-img"
+                width=""
+                height=""
+              >
+            </div>
+          {%- else -%}
+            <div class="wyms-scroll-stack__card-img-placeholder"></div>
+          {%- endif -%}
+
+          <div class="wyms-scroll-stack__card-text">
+            {%- if block.settings.card_heading != blank -%}
+              <h3 class="wyms-scroll-stack__card-heading">{{ block.settings.card_heading }}</h3>
+            {%- endif -%}
+            {%- if block.settings.card_subheading != blank -%}
+              <p class="wyms-scroll-stack__card-subheading">{{ block.settings.card_subheading }}</p>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "WYMS Scroll Stack",
+  "tag": "section",
+  "class": "wyms-scroll-stack-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "icon_image",
+      "label": "Animated icon"
+    },
+    {
+      "type": "text",
+      "id": "icon_number",
+      "label": "Number inside icon",
+      "default": "01"
+    },
+    {
+    "type": "color",
+    "id": "icon_number_color",
+    "label": "Icon number color",
+    "default": "#C3C3C3"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why choose us"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "We craft minimalist menswear with obsessive attention to detail."
+    },
+    {
+      "type": "text",
+      "id": "features_label",
+      "label": "Features label",
+      "default": "What we offer"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon (28×28)"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Feature text",
+          "default": "Premium quality fabrics"
+        }
+      ]
+    },
+    {
+      "type": "card",
+      "name": "Stack card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card image"
+        },
+        {
+          "type": "text",
+          "id": "card_heading",
+          "label": "Card heading",
+          "default": "Tailored fit"
+        },
+        {
+          "type": "textarea",
+          "id": "card_subheading",
+          "label": "Card subheading",
+          "default": "Every piece is designed to sit perfectly on the body."
+        },
+        {
+          "type": "color",
+          "id": "card_bg",
+          "label": "Card background colour",
+          "default": "#F0F0FD"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Scroll Stack",
+      "blocks": [
+        { "type": "feature", "settings": { "text": "Premium quality fabrics sourced from certified mills" } },
+        { "type": "feature", "settings": { "text": "Ethical production with full supply-chain transparency" } },
+        { "type": "feature", "settings": { "text": "Free returns within 30 days, no questions asked" } },
+        { "type": "card",    "settings": { "card_heading": "Natural materials", "card_subheading": "We use only organic cotton, merino wool and technical linen." } },
+        { "type": "card",    "settings": { "card_heading": "Minimal packaging", "card_subheading": "Our boxes are made from 100% recycled cardboard — nothing more.", "card_bg": "#F0FDF4" } },
+        { "type": "card",    "settings": { "card_heading": "Lifetime repairs", "card_subheading": "We fix any MONO garment for free. Forever.", "card_bg": "#FFF7ED" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

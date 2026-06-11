@@ -1,0 +1,201 @@
+{{ 'wyms-split-style.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #wyms-split-{{ section.id }} {
+    --wyms-floating-top-ds: {{ section.settings.icon_top_ds }}%;
+    --wyms-floating-left-ds: {{ section.settings.icon_left_ds }}%;
+    --wyms-floating-size-ds: {{ section.settings.icon_size_ds }}px;
+
+    --wyms-floating-top-mb: {{ section.settings.icon_top_mb }}%;
+    --wyms-floating-left-mb: {{ section.settings.icon_left_mb }}%;
+    --wyms-floating-size-mb: {{ section.settings.icon_size_mb }}px;
+  }
+{%- endstyle -%}
+<div class="wyms-split-outer">
+
+<section class="wyms-split-section" id="wyms-split-{{ section.id }}">
+  {%- if section.settings.floating_icon != blank -%}
+    <div class="wyms-floating-icon">
+      <img src="{{ section.settings.floating_icon | image_url: width: 200 }}" alt="" width="" height="" loading="lazy">
+    </div>
+  {%- endif -%}
+
+  <div class="wyms-split-inner">
+    <div class="wyms-split-media">
+      {%- if section.settings.main_image != blank -%}
+        {{ section.settings.main_image | image_url: width: 1400 | image_tag: 
+          class: 'wyms-main-img', 
+          loading: 'lazy',
+          sizes: '(min-width: 768px) 50vw, 100vw'
+        }}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'wyms-placeholder' }}
+      {%- endif -%}
+    </div>
+
+    <div class="wyms-split-content">
+      <div class="wyms-text-header">
+        <h2 class="wyms-title">{{ section.settings.title }}</h2>
+        <div class="wyms-subtitle">{{ section.settings.subtitle }}</div>
+      </div>
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="wyms-bullet-list">
+          {%- for block in section.blocks -%}
+            <div class="wyms-bullet-item" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon != blank -%}
+                <img src="{{ block.settings.icon | image_url: width: 56 }}" class="wyms-bullet-icon" alt="" width="" height="" loading="lazy">
+              {%- endif -%}
+              <div class="wyms-bullet-text">{{ block.settings.text }}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.bottom_text != blank -%}
+        <div class="wyms-bottom-text">
+          {{ section.settings.bottom_text }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+</div>
+
+
+{% schema %}
+{
+  "name": "WYMS Split Feature",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Main Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image"
+    },
+    {
+      "type": "header",
+      "content": "Floating Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "floating_icon",
+      "label": "Floating Icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_ds",
+      "min": 20,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon Size (Desktop)",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "icon_top_ds",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Vertical Position (Desktop)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "icon_left_ds",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Horizontal Position (Desktop)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mb",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon Size (Mobile)",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "icon_top_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Vertical Position (Mobile)",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "icon_left_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Horizontal Position (Mobile)",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Feature Title"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "<p>Explain how your product works or its benefits.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "bottom_text",
+      "label": "Bottom Text Highlight",
+      "default": "<p>Clash Grotesk Highlight Text</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Bullet Point",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Item Icon"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Item Text",
+          "default": "Add your feature description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Split Feature",
+      "blocks": [
+        { "type": "bullet" },
+        { "type": "bullet" },
+        { "type": "bullet" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -18,6 +18,7 @@
 
       <div class="wyms-warranty__inner">
         
+        <!-- 1. Background Media Layer -->
         {%- if section.settings.main_bg != blank -%}
           <div class="wyms-warranty__bg-wrapper">
             <img src="{{ section.settings.main_bg | image_url: width: 2000 }}" 
@@ -29,18 +30,29 @@
 
         <!-- 2. Decorative Blobs Layer -->
         <div class="wyms-warranty__blobs">
-          {%- if section.settings.blob_left != blank -%}
-            <img src="{{ section.settings.blob_left | image_url: width: 800 }}" 
-                 class="wyms-warranty__blob wyms-warranty__blob--left" alt="" width="" height="" loading="lazy">
-          {%- endif -%}
-          {%- if section.settings.blob_right != blank -%}
-            <img src="{{ section.settings.blob_right | image_url: width: 800 }}" 
-                 class="wyms-warranty__blob wyms-warranty__blob--right" alt="" width="" height="" loading="lazy">
-          {%- endif -%}
+          <!-- Left Blob -->
+          <picture class="wyms-warranty__blob wyms-warranty__blob--left">
+            {%- if section.settings.blob_left_mobile != blank -%}
+              <source media="(max-width: 768px)" srcset="{{ section.settings.blob_left_mobile | image_url: width: 600 }}">
+            {%- endif -%}
+            {%- if section.settings.blob_left != blank -%}
+              <img src="{{ section.settings.blob_left | image_url: width: 800 }}" alt="" width="" height="" loading="lazy">
+            {%- endif -%}
+          </picture>
+
+          <!-- Right Blob -->
+          <picture class="wyms-warranty__blob wyms-warranty__blob--right">
+            {%- if section.settings.blob_right_mobile != blank -%}
+              <source media="(max-width: 768px)" srcset="{{ section.settings.blob_right_mobile | image_url: width: 600 }}">
+            {%- endif -%}
+            {%- if section.settings.blob_right != blank -%}
+              <img src="{{ section.settings.blob_right | image_url: width: 800 }}" alt="" width="" height="" loading="lazy">
+            {%- endif -%}
+          </picture>
         </div>
 
         <!-- 3. Foreground Content Layer -->
-        <div class="wyms-warranty__content-box page-width">
+        <div class="wyms-warranty__content-box">
           
           {%- if section.settings.icon != blank -%}
             <div class="wyms-warranty__icon-wrap">
@@ -91,12 +103,22 @@
     {
       "type": "image_picker",
       "id": "blob_left",
-      "label": "Left Decorative Blob"
+      "label": "Desktop Left Blob"
     },
     {
       "type": "image_picker",
       "id": "blob_right",
-      "label": "Right Decorative Blob"
+      "label": "Desktop Right Blob"
+    },
+    {
+      "type": "image_picker",
+      "id": "blob_left_mobile",
+      "label": "Mobile Left Blob (Top)"
+    },
+    {
+      "type": "image_picker",
+      "id": "blob_right_mobile",
+      "label": "Mobile Right Blob (Bottom)"
     },
     {
       "type": "header",

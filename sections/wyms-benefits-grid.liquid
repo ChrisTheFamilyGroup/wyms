@@ -22,11 +22,17 @@
         </div>
       {%- endif -%}
 
-      {%- if section.settings.heading != blank -%}
-        <div class="benefits-header">
-          <h2 class="benefits-main-title">{{ section.settings.heading }}</h2>
-        </div>
-      {%- endif -%}
+      <div class="benefits-header-text">
+        {%- if section.settings.heading != blank -%}
+          <div class="benefits-header">
+            <h2 class="benefits-main-title">{{ section.settings.heading }}</h2>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.subheading != blank -%}
+          <p class="benefits-subtitle">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+      </div>
 
       <div class="benefits-grid {% if section.blocks.size > 3 %}benefits-grid--scrollable{% endif %}">
         {%- for block in section.blocks -%}
@@ -56,10 +62,23 @@
                 </div>
               {%- endif -%}
             </div>
-            
           </div>
         {%- endfor -%}
       </div>
+
+      {%- if section.settings.button_label != blank -%}
+        <div class="benefits-button-wrapper">
+          <a
+            href="{{ section.settings.button_url | default: '#' }}"
+            class="benefits-btn"
+            style="background: {{ section.settings.button_bg_color }};"
+          >
+            <span style="color: {{ section.settings.button_text_color }};">
+              {{ section.settings.button_label }}
+            </span>
+          </a>
+        </div>
+      {%- endif -%}
 
     </div>
   </div>
@@ -73,6 +92,12 @@
       "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
+      "default": "Für Kinder, die ihren eigenen Weg gehen"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "SubHeading",
       "default": "Für Kinder, die ihren eigenen Weg gehen"
     },
     {
@@ -99,6 +124,33 @@
       "unit": "px",
       "label": "Inner Border Radius",
       "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Mehr erfahren"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#242352"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
     }
   ],
   "blocks": [

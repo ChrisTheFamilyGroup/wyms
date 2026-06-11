@@ -1,0 +1,424 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "wyms_hero_sustainability_cQJmrD": {
+      "type": "wyms-hero-sustainability",
+      "name": "WYMS Hero Sustainability",
+      "settings": {
+        "bg_color": "#242352",
+        "small_text": "Richtig eingestellt",
+        "heading": "So sitzt dein wyms one richtig",
+        "main_image": "shopify://shop_images/Vector_b7dbc7ab-5ea7-4737-a75c-b5b5ba9f8ef3.png",
+        "bg_blob": "shopify://shop_images/Vector_0902907d-7684-4798-9000-32555a813f51.svg",
+        "blob_width_desktop": 231,
+        "blob_top_desktop": -70,
+        "blob_left_desktop": 0,
+        "blob_width_mobile": 173,
+        "blob_top_mobile": -22,
+        "blob_left_mobile": 0
+      }
+    },
+    "wyms_benefits_grid_HpbVTx": {
+      "type": "wyms-benefits-grid",
+      "blocks": {
+        "benefit_iwbY8i": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/Icon_1.svg",
+            "heading": "Mehr Komfort",
+            "description": "Der Rucksack sitzt näher am Körper und trägt sich angenehmer.",
+            "text_color": "#242352"
+          }
+        },
+        "benefit_B6mPra": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/Icon_2.svg",
+            "heading": "Weniger Belastung",
+            "description": "Das Gewicht wird gleichmäßiger verteilt und die Schultern werden entlastet.",
+            "text_color": "#242352"
+          }
+        },
+        "benefit_4W693k": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/Icon_3.svg",
+            "heading": "Optimale Passform",
+            "description": "Das wyms Balance System lässt sich stufenlos an die Körpergröße anpassen.",
+            "text_color": "#242352"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_iwbY8i",
+        "benefit_B6mPra",
+        "benefit_4W693k"
+      ],
+      "name": "WYMS Benefits Grid",
+      "settings": {
+        "heading": "Ein richtig eingestellter Rucksack macht einen Unterschied",
+        "subheading": "Der wyms one wurde entwickelt, um Gewicht besser zu verteilen und Schultern zu entlasten. Damit das funktioniert, muss der Rucksack zur Körpergröße passen und richtig eingestellt sein.",
+        "spot_image": "shopify://shop_images/Vector_e748a3a7-6090-45bc-a179-12f53c185715.svg",
+        "inner_bg_color": "#f0f0fd",
+        "inner_border_radius": 16,
+        "button_label": "Mehr erfahren",
+        "button_url": "#",
+        "button_bg_color": "#242352",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "wyms_scroll_stack_wUecyT": {
+      "type": "wyms-scroll-stack",
+      "blocks": {
+        "feature_GKP3Vz": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Die Schulterträger liegen sauber auf den Schultern auf"
+          }
+        },
+        "feature_Tk8YPK": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Zwischen Schulter und Träger entsteht keine Lücke"
+          }
+        },
+        "feature_CRTTnD": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Der Rucksack sitzt mittig am Rücken"
+          }
+        },
+        "card_gDWX9L": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Placeholder_Image_1_2be9329a-fbab-4de6-9527-94ecc0d892e9.png",
+            "card_heading": "Upper Load Control lösen",
+            "card_subheading": "Löse zunächst die Upper Load Control vollständig, damit sie die Verstellung nicht behindert.",
+            "card_bg": "#ffffff"
+          }
+        },
+        "card_nWBBQX": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Placeholder_Image_2_62fe4bb9-0217-4837-a06f-2425300af8e3.png",
+            "card_heading": "Klettverschluss öffnen",
+            "card_subheading": "Schließe den Beckengurt auf Höhe des Beckens und ziehe ihn fest.",
+            "card_bg": "#ffffff"
+          }
+        },
+        "card_Hzn7rm": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Placeholder_Image_3_68edb9a7-fb0d-42d7-98be-25f7219843d4.png",
+            "card_heading": "Schulterträger einstellen",
+            "card_subheading": "Schiebe die Schulterträger auf die passende Höhe.",
+            "card_bg": "#ffffff"
+          }
+        },
+        "card_xLAcA3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Placeholder_Image_4_b28f3aef-a30f-45fc-af9f-66b2d64aeafc.png",
+            "card_heading": "Polster andrücken",
+            "card_subheading": "Drücke das Polster stabil an",
+            "card_bg": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "feature_GKP3Vz",
+        "feature_Tk8YPK",
+        "feature_CRTTnD",
+        "card_gDWX9L",
+        "card_nWBBQX",
+        "card_Hzn7rm",
+        "card_xLAcA3"
+      ],
+      "name": "WYMS Scroll Stack",
+      "settings": {
+        "icon_image": "shopify://shop_images/Image.svg",
+        "icon_number": "1",
+        "icon_number_color": "#c3c3c3",
+        "heading": "Schulterträger auf die richtige Höhe einstellen",
+        "subheading": "Damit der wyms one sein Gewicht optimal verteilen kann, müssen die Schulterträger auf die richtige Rückenlänge eingestellt werden.",
+        "features_label": "Richtig eingestellt wenn:"
+      }
+    },
+    "wyms_animated_feature_tUFmG7": {
+      "type": "wyms-animated-feature",
+      "blocks": {
+        "card_XaqHHA": {
+          "type": "card",
+          "settings": {
+            "main_image": "shopify://shop_images/image_853.png",
+            "secondary_image": "shopify://shop_images/Mask_group.png",
+            "title": "Upper Load Control in untere Schlaufe einhängen",
+            "subtitle": "Wird eine der unteren Markierungen verwendet, wird die Upper Load Control in die untere Schlaufe eingehängt."
+          }
+        },
+        "card_3MCJNM": {
+          "type": "card",
+          "settings": {
+            "main_image": "shopify://shop_images/image_853.png",
+            "secondary_image": "shopify://shop_images/Mask_group.png",
+            "title": "Upper Load Control in untere Schlaufe einhängen",
+            "subtitle": "Wird eine der unteren Markierungen verwendet, wird die Upper Load Control in die untere Schlaufe eingehängt."
+          }
+        }
+      },
+      "block_order": [
+        "card_XaqHHA",
+        "card_3MCJNM"
+      ],
+      "name": "WYMS Animated Feature",
+      "settings": {
+        "inner_bg_color": "#6865ea",
+        "icon_bg": "shopify://shop_images/Image_dbb543cb-1525-40fe-918c-5eafaa4c8d1a.svg",
+        "animated_number": "2",
+        "number_color": "#d0cff8",
+        "title": "Upper Load Control richtig einhängen",
+        "subtitle": "<p>Die Upper Load Control hält den wyms one nah am Rücken und unterstützt eine optimale Gewichtsverteilung. Nur So, kann das Tragesystem seine volle Wirkung entfalteN.</p>",
+        "info_icon": "shopify://shop_images/caution.svg",
+        "info_title": "Wichtig",
+        "info_subtitle": "<p>Nur mit der richtigen Position kann die Upper Load Control den Rucksack nah am Rücken halten und die Gewichtsverteilung optimal unterstützen.</p>",
+        "info_bg_color": "#ffffff33",
+        "info_text_color": "#ffffff"
+      }
+    },
+    "wyms_scroll_stack_yaFtQb": {
+      "type": "wyms-scroll-stack",
+      "blocks": {
+        "feature_b9Vrah": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Der Beckengurt sitzt auf dem Becken"
+          }
+        },
+        "feature_pi6CKG": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Der Rucksack liegt nah am Rücken an"
+          }
+        },
+        "feature_iUQjPF": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Das Gewicht fühlt sich gleichmäßig verteilt an"
+          }
+        },
+        "feature_pGATQL": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Nichts verrutscht beim Gehen oder Laufen"
+          }
+        },
+        "card_VEwc74": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Placeholder_Image_1_ace17b88-2165-420b-9235-955de688f29d.png",
+            "card_heading": "Rucksack aufsetzen",
+            "card_subheading": "Setze den Rucksack auf.",
+            "card_bg": "#fbfbfb"
+          }
+        },
+        "card_mzzck3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Placeholder_Image_2_1db82f6a-ebd4-4e00-b324-1455716bf3e6.png",
+            "card_heading": "Beckengurt schließen & festziehen",
+            "card_subheading": "Greife hinter das Rückenschlitten und löse den Klettverschluss",
+            "card_bg": "#fbfbfb"
+          }
+        },
+        "card_UrTUHd": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Placeholder_Image_3_05fef5d6-afb2-4bfc-b805-5e06d112cdbe.png",
+            "card_heading": "Schulterträger anziehen",
+            "card_subheading": "Ziehe die Schulterträger an, bis der Rucksack angenehm sitzt.",
+            "card_bg": "#fbfbfb"
+          }
+        },
+        "card_bVbMgK": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Placeholder_Image_4_097324c2-5e71-4916-b54d-1d6fba79e946.png",
+            "card_heading": "Brustgurt schließen & anziehen",
+            "card_subheading": "Schließe den Brustgurt und ziehe ihn an.",
+            "card_bg": "#fbfbfb"
+          }
+        },
+        "card_3BFJqz": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Placeholder_Image_5.png",
+            "card_heading": "Upper Load Control anziehen",
+            "card_subheading": "Ziehe die Upper Load Control an, bis der Rucksack nah am Rücken anliegt.",
+            "card_bg": "#fbfbfb"
+          }
+        }
+      },
+      "block_order": [
+        "feature_b9Vrah",
+        "feature_pi6CKG",
+        "feature_iUQjPF",
+        "feature_pGATQL",
+        "card_VEwc74",
+        "card_mzzck3",
+        "card_UrTUHd",
+        "card_bVbMgK",
+        "card_3BFJqz"
+      ],
+      "name": "WYMS Scroll Stack",
+      "settings": {
+        "icon_image": "shopify://shop_images/Image_0cbf31b4-9c7c-4470-ba76-4ed450961f84.svg",
+        "icon_number": "3",
+        "icon_number_color": "#badf04",
+        "heading": "Gurte und Riemen einstellen",
+        "subheading": "Die Upper Load Control hält den wyms one nah am Rücken und unterstützt eine optimale Gewichtsverteilung. Nur So, kann das Tragesystem seine volle Wirkung entfalten.",
+        "features_label": "Richtig eingestellt wenn:"
+      }
+    },
+    "wyms_split_feature_73Haij": {
+      "type": "wyms-split-feature",
+      "blocks": {
+        "bullet_AA6pjK": {
+          "type": "bullet",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Schulterträger liegen sauber auf"
+          }
+        },
+        "bullet_RHKMm9": {
+          "type": "bullet",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Beckengurt sitzt auf dem Becken"
+          }
+        },
+        "bullet_6LDcwG": {
+          "type": "bullet",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Brustgurt ist geschlossen"
+          }
+        },
+        "bullet_KR7YH8": {
+          "type": "bullet",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Upper Load Control ist korrekt eingehängt"
+          }
+        },
+        "bullet_CnxqfR": {
+          "type": "bullet",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Der Rucksack liegt nah am Rücken"
+          }
+        },
+        "bullet_JTQhpJ": {
+          "type": "bullet",
+          "settings": {
+            "icon": "shopify://shop_images/Check_icon_a3838fe4-7a6f-46f6-a87c-ac080479e4a2.svg",
+            "text": "Das Gewicht fühlt sich angenehm verteilt an"
+          }
+        }
+      },
+      "block_order": [
+        "bullet_AA6pjK",
+        "bullet_RHKMm9",
+        "bullet_6LDcwG",
+        "bullet_KR7YH8",
+        "bullet_CnxqfR",
+        "bullet_JTQhpJ"
+      ],
+      "name": "WYMS Split Feature",
+      "settings": {
+        "main_image": "shopify://shop_images/Vector_821e5023-971a-49a2-8345-9b62bc231f5c.png",
+        "floating_icon": "shopify://shop_images/5.svg",
+        "icon_size_ds": 195,
+        "icon_top_ds": 0,
+        "icon_left_ds": 86,
+        "icon_size_mb": 120,
+        "icon_top_mb": 0,
+        "icon_left_mb": 67,
+        "title": "Fertig Eingestellt?",
+        "subtitle": "<p>Der 30-Sekunden-Check</p>",
+        "bottom_text": "<p>So kann das wyms Balance System und der Exoframe ihr volles Potenzial entfalten.</p>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "wyms_hero_sustainability_cQJmrD",
+    "wyms_benefits_grid_HpbVTx",
+    "wyms_scroll_stack_wUecyT",
+    "wyms_animated_feature_tUFmG7",
+    "wyms_scroll_stack_yaFtQb",
+    "wyms_split_feature_73Haij"
+  ]
+}

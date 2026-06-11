@@ -1,0 +1,173 @@
+{{ 'wyms-animated-feature.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #wyms-section-{{ section.id }} {
+    --wyms-inner-bg: {{ section.settings.inner_bg_color }};
+    --wyms-number-color: {{ section.settings.number_color }};
+    --wyms-info-bg: {{ section.settings.info_bg_color }};
+    --wyms-info-text-color: {{ section.settings.info_text_color }};
+  }
+{%- endstyle -%}
+
+<section class="wyms-section">
+  <div class="wyms-inner-container" id="wyms-section-{{ section.id }}">
+    
+    {% comment %} Content limiter: 1440px centered {% endcomment %}
+    <div class="wyms-content-limit">
+      
+      {% comment %} Header: Icon background + Centered Text {% endcomment %}
+      <div class="wyms-header-wrapper">
+        
+        <div class="wyms-icon-background-layer">
+          <div class="wyms-animated-wrapper">
+            {%- if section.settings.icon_bg != blank -%}
+              <img src="{{ section.settings.icon_bg | image_url: width: 560 }}" alt="" width="" height="" class="wyms-icon-bg">
+            {%- endif -%}
+            <span class="wyms-number">{{ section.settings.animated_number }}</span>
+          </div>
+        </div>
+
+        <div class="wyms-text-external-container">
+          <div class="wyms-text-internal-box">
+            <h2 class="wyms-main-title">{{ section.settings.title }}</h2>
+            <div class="wyms-main-subtitle">{{ section.settings.subtitle }}</div>
+          </div>
+        </div>
+      </div>
+
+      {% comment %} Cards & Info Field {% endcomment %}
+      <div class="wyms-bottom-content">
+        <div class="wyms-cards-container">
+          {%- for block in section.blocks -%}
+            <div class="wyms-card" {{ block.shopify_attributes }}>
+              <div class="wyms-card-visuals">
+                {%- if block.settings.main_image != blank -%}
+                  <img src="{{ block.settings.main_image | image_url: width: 700 }}" 
+                       class="wyms-card-img-bottom-left" width="" height="" loading="lazy">
+                {%- endif -%}
+                
+                {%- if block.settings.secondary_image != blank -%}
+                  <img src="{{ block.settings.secondary_image | image_url: width: 400 }}" 
+                       class="wyms-card-img-top-right" width="" height="" loading="lazy">
+                {%- endif -%}
+              </div>
+              <div class="wyms-card-text-wrapper">
+                <h3 class="wyms-card-title">{{ block.settings.title }}</h3>
+                <p class="wyms-card-subtitle">{{ block.settings.subtitle }}</p>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="wyms-info-field-wrapper">
+          <div class="wyms-info-box">
+            {%- if section.settings.info_icon != blank -%}
+              <img src="{{ section.settings.info_icon | image_url: width: 48 }}" alt="" width="" height="" class="wyms-info-icon-img">
+            {%- endif -%}
+            <div class="wyms-info-text-stack">
+              <h4 class="wyms-info-title">{{ section.settings.info_title }}</h4>
+              <div class="wyms-info-subtitle">{{ section.settings.info_subtitle }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WYMS Professional Section",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "color",
+      "id": "inner_bg_color",
+      "label": "Inner Box Color",
+      "default": "#6865EA"
+    },
+    {
+      "type": "header",
+      "content": "Header Animation"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_bg",
+      "label": "Animated Icon Background"
+    },
+    {
+      "type": "text",
+      "id": "animated_number",
+      "label": "Number Inside Icon",
+      "default": "1"
+    },
+    {
+      "type": "color",
+      "id": "number_color",
+      "label": "Number Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "<p>Subtitle</p>"
+    },
+    {
+      "type": "header",
+      "content": "Info Field"
+    },
+    {
+      "type": "image_picker",
+      "id": "info_icon",
+      "label": "Info Icon"
+    },
+    {
+      "type": "text",
+      "id": "info_title",
+      "label": "Info Title"
+    },
+    {
+      "type": "richtext",
+      "id": "info_subtitle",
+      "label": "Info Subtitle"
+    },
+    {
+      "type": "color",
+      "id": "info_bg_color",
+      "label": "Info Background",
+      "default": "rgba(255, 255, 255, 0.2)"
+    },
+    {
+      "type": "color",
+      "id": "info_text_color",
+      "label": "Info Text Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Feature Card",
+      "settings": [
+        { "type": "image_picker", "id": "main_image", "label": "Main Image" },
+        { "type": "image_picker", "id": "secondary_image", "label": "Secondary Image" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WYMS Professional Section"
+    }
+  ]
+}
+{% endschema %}
