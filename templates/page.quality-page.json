@@ -64,7 +64,7 @@
         "bg_color": "#64033c",
         "small_text": "Design trifft Substanz",
         "heading": "Sieht gut aus. Hält mehr aus",
-        "main_image": "shopify://shop_images/Vector_014c13d5-a700-4e47-8c82-5c90f7090004.png",
+        "main_image": "shopify://shop_images/Vector_4fd88ef9-99a3-4801-9c04-37476943a506.png",
         "bg_blob": "shopify://shop_images/Vector_f8fd6d90-8ac7-4898-9f40-c7fa1dab3b55.svg",
         "blob_width_desktop": 231,
         "blob_top_desktop": -70,
@@ -80,56 +80,56 @@
         "top_image_4zCJnt": {
           "type": "top_image",
           "settings": {
-            "image": "shopify://shop_images/marquee_element_5.png",
+            "image": "shopify://shop_images/Group_48095395_f0b92ec1-2550-4d58-b85f-28067d7e2f66.png",
             "bg_color": "#eae4e9"
           }
         },
         "top_image_tTaWTP": {
           "type": "top_image",
           "settings": {
-            "image": "shopify://shop_images/marquee_element_6.png",
+            "image": "shopify://shop_images/just-one-image_1.png",
             "bg_color": "#eae4e9"
           }
         },
         "top_image_gLNAzW": {
           "type": "top_image",
           "settings": {
-            "image": "shopify://shop_images/marquee_element_7.png",
+            "image": "shopify://shop_images/Group_48095396_60f5e293-e45a-4459-b479-1d1a9debf682.png",
             "bg_color": "#eae4e9"
           }
         },
         "top_image_kyM3pN": {
           "type": "top_image",
           "settings": {
-            "image": "shopify://shop_images/marquee_element_8.png",
+            "image": "shopify://shop_images/image_856.png",
             "bg_color": "#eae4e9"
           }
         },
         "bottom_image_yyCP4i": {
           "type": "bottom_image",
           "settings": {
-            "image": "shopify://shop_images/marquee_element_1.png",
+            "image": "shopify://shop_images/Placeholder_Image-1.png",
             "bg_color": "#f4f6f0"
           }
         },
         "bottom_image_fBCUMR": {
           "type": "bottom_image",
           "settings": {
-            "image": "shopify://shop_images/marquee_element_2.png",
+            "image": "shopify://shop_images/Group_48095394_3a1d823e-fdf2-499c-822a-c5291083a9f8.png",
             "bg_color": "#f4f6f0"
           }
         },
         "bottom_image_ekEw6D": {
           "type": "bottom_image",
           "settings": {
-            "image": "shopify://shop_images/marquee_element_3.png",
+            "image": "shopify://shop_images/editorial-youth-product-photography--use-the-attac_1_1.png",
             "bg_color": "#f4f6f0"
           }
         },
         "bottom_image_mxP6pG": {
           "type": "bottom_image",
           "settings": {
-            "image": "shopify://shop_images/marquee_element_4.png",
+            "image": "shopify://shop_images/Group_48095393_57acf199-dbbe-4072-805d-751be843e46a.png",
             "bg_color": "#f4f6f0"
           }
         }
@@ -208,7 +208,7 @@
         "text": "Ein Schulrucksack muss mehr können als gut aussehen.\n\nEr wird getragen, abgestellt, geöffnet, vollgepackt und jeden Tag aufs Neue genutzt.\n\nDeshalb setzen wir bei wyms auf Materialien und Verarbeitung, die genau dafür gemacht sind:",
         "bottom_text": "",
         "highlight_text": "",
-        "image": "shopify://shop_images/Vector_21fbbb38-f813-43b5-9f3c-90ce8024fdd6.png",
+        "image": "shopify://shop_images/Vector_4939866d-4cf4-4cbf-a901-0fc19477450b.png",
         "floating_icon": "shopify://shop_images/103.svg",
         "icon_width": 244,
         "icon_top_desktop": 74,
@@ -226,31 +226,31 @@
         "gallery_image_p7cd8i": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/exploding-gallery_1.png"
+            "image": "shopify://shop_images/image_856.png"
           }
         },
         "gallery_image_Wa9PdE": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/exploding-gallery_2.png"
+            "image": "shopify://shop_images/just-one-image_1.png"
           }
         },
         "gallery_image_ziYDUf": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/exploding-gallery_3.png"
+            "image": "shopify://shop_images/Placeholder_Image-1.png"
           }
         },
         "gallery_image_n4m36Y": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/exploding-gallery_4.png"
+            "image": "shopify://shop_images/image_858.png"
           }
         },
         "gallery_image_riTzqk": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/exploding-gallery_5.png"
+            "image": "shopify://shop_images/Homepagesection3Mobile.png"
           }
         }
       },
@@ -272,8 +272,9 @@
       "type": "wyms-intro-media",
       "name": "WYMS Intro Media",
       "settings": {
-        "image": "shopify://shop_images/Vector_fd74c314-5d54-42bf-a635-5cf44b31c946.png",
-        "gif_image": "shopify://shop_images/badge.svg",
+        "image": "shopify://shop_images/Vector_5e9f076c-1ae1-4c21-954c-73cf5021519a.png",
+        "gif_image": "shopify://shop_images/badge_warranty.svg",
+        "gif_video": "",
         "heading": "Hält was er Verspricht",
         "middle_text": "Ein Rucksack ist jeden Tag im Einsatz. Deshalb muss er halten.\n\nWir entwickeln unsere Produkte so, dass sie genau dafür gemacht sind mit hochwertigen Materialien, sauberer Verarbeitung und einer Konstruktion, die langfristig funktioniert.\n\nDeshalb geben wir auf jeden wyms Rucksack 3 Jahre Garantie online. Wenn du im Handel gekauft hast, einfach registrieren und 1 Jahr Garantieverlängerung bekommen\n\nUnd wenn doch einmal etwas nicht passt, kümmern wir uns.",
         "bottom_text": "Gemacht, um zu bleiben"

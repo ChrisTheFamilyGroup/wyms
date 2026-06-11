@@ -101,13 +101,6 @@
             "text": "> einfach erreichbar, egal wie voll der Rucksack ist"
           }
         },
-        "feature_kCmtaw": {
-          "type": "feature",
-          "settings": {
-            "title": "Feature Title",
-            "text": "Short description for this feature."
-          }
-        },
         "feature_YhVyaH": {
           "type": "feature",
           "settings": {
@@ -121,7 +114,6 @@
         "feature_9KVpq9",
         "feature_DKfKcr",
         "feature_gjiPUa",
-        "feature_kCmtaw",
         "feature_YhVyaH"
       ],
       "name": "WYMS Media Switcher",
@@ -163,10 +155,11 @@
         "inner_radius": 16,
         "image": "shopify://shop_images/Placeholder_Image_e3c2a270-7814-4e55-9e43-dd5ddca541be.png",
         "heading": "Sichtbar, wenn es darauf ankommt",
-        "body_text": "Gerade in der Dämmerung zählt, dass du gesehen wirst.\n\nDeshalb sind Wyms Rucksäcke so gestaltet, dass sie auch bei schlechten Lichtverhältnissen sichtbar bleiben – durch reflektierende Elemente und gezielt platzierte Flächen.  \n\nUnd bei unseren Special Editions geht das noch weiter: Hier reflektiert der gesamte Rucksack.",
+        "body_text": "Gerade in der Dämmerung zählt, dass du gesehen wirst.\n\nDeshalb sind wyms Rucksäcke so gestaltet, dass sie auch bei schlechten Lichtverhältnissen sichtbar bleiben – durch reflektierende Elemente und gezielt platzierte Flächen.  \n\nUnd bei unseren Special Editions geht das noch weiter: Hier reflektiert der gesamte Rucksack.",
         "highlight_text": "Sichtbar, wenn es zählt.",
         "btn_label": "Zum Nachhaltigkeit",
-        "btn_link": ""
+        "btn_link": "",
+        "badge_video": ""
       }
     },
     "wyms_info_cards_7jxHYC": {
@@ -176,7 +169,7 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/Feature_card_1.png",
-            "title": "Ergonomisch aufgebau",
+            "title": "Ergonomisch aufgebaut",
             "subtitle": "→ für Bewegung und lange Tage",
             "link": ""
           }
@@ -193,7 +186,7 @@
         "card_G6VzK4": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/Feature_card_3.png",
+            "image": "shopify://shop_images/Placeholder_Image_3_68edb9a7-fb0d-42d7-98be-25f7219843d4.png",
             "title": "Einzigartige Gewichtsverteilung",
             "subtitle": "→ entlastet spürbar, auch bei voller Beladung",
             "link": ""
@@ -219,31 +212,31 @@
         "gallery_image_7eEHHz": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/exploding-gallery_1.png"
+            "image": "shopify://shop_images/image_856.png"
           }
         },
         "gallery_image_4qpcW8": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/exploding-gallery_2.png"
+            "image": "shopify://shop_images/HomepageSection3-1_mobile.png"
           }
         },
         "gallery_image_wJQ7EK": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/exploding-gallery_3.png"
+            "image": "shopify://shop_images/editorial-youth-product-photography--use-the-attac_2.png"
           }
         },
         "gallery_image_cYDxwY": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/exploding-gallery_4.png"
+            "image": "shopify://shop_images/Placeholder_Image_4e008b83-32f4-4eb4-9132-7d9e2e7a57eb.png"
           }
         },
         "gallery_image_wPDzk4": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/exploding-gallery_5.png"
+            "image": "shopify://shop_images/Homepagesection3Mobile.png"
           }
         }
       },

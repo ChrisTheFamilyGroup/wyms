@@ -64,8 +64,8 @@
         "bg_color": "#d9d9d9",
         "heading": "Großwerden verändert alles",
         "subtext": "Und wir sind mittendrin",
-        "desktop_image": "shopify://shop_images/form.png",
-        "mobile_image": "shopify://shop_images/form_0edcc95f-a9ba-4c68-922b-8a81fe660c45.png",
+        "desktop_image": "shopify://shop_images/Image_container_62efce9f-46ec-4842-8404-01f5a3181198.png",
+        "mobile_image": "shopify://shop_images/Image_container_62efce9f-46ec-4842-8404-01f5a3181198.png",
         "decorative_icon": "shopify://shop_images/Vector_b4b48cbc-7de6-4f28-96c3-fb07166a97f9.svg",
         "icon_width_desktop": 235,
         "icon_top_desktop": 28,
@@ -130,7 +130,7 @@
         "text": "<p>wyms ist für Tage, die größer werden. Für Wege, die länger sind, Und für alles, was man plötzlich jeden Tag dabeihat.</p><p>Mit der weiterführenden Schule verändert sich der Alltag. Mehr unterwegs. Mehr Eigenes. Mehr Freiheit. Genau hier setzen wir an.Schulranzen und Begleiter, die mithalten. Für Schule – und alles danach.</p><p>Unsere Produkte sind gemacht fürs Mitgehen. Für Bewegung, Nutzung und alles, was dazugehört.</p><p>Du bist in Bewegung. Wir sorgen dafür, dass du nicht stehenbleibst.</p>",
         "bottom_text": "",
         "highlight_text": "<strong> wyms</strong> ist neu.  \n<strong> wyms</strong> ist anders.  \n<strong> wyms</strong> ist für dich.",
-        "image": "shopify://shop_images/Placeholder_Image_b794624f-188f-4bd7-9976-e5559c3e16e7.png",
+        "image": "shopify://shop_images/image_864.png",
         "bg_blob": "shopify://shop_images/Vector_5b7c0090-5780-4fab-9b62-b271fcdf4f42.svg",
         "icon_width": 80,
         "icon_top_desktop": -30,
@@ -150,8 +150,8 @@
         "body_text": "wyms vom englischen whims steht für spontane Ideen, Einfälle, Bewegungen. \nGenau das, was Alltag oft ausmacht.\n\nwyms steht für Neugier, Bewegung und die Freiheit, Dinge auf die eigene Art zu tun.\nNicht geplant bis ins letzte Detail. \nSondern offen, flexibel und bereit für das, was kommt.",
         "bottom_body_text": "Wir glauben, dass gute Produkte Freiheit geben. \nFreiheit, sich zu bewegen. \nFreiheit, unterwegs zu sein. \nFreiheit, sich auf den eigenen Tag zu konzentrieren – nicht auf das, was man trägt.",
         "highlight_text": "Dafür steht <strong>wyms</strong>. \nHeute. Und für das, was kommt.",
-        "image_left": "shopify://shop_images/Placeholder_Image_1.png",
-        "image_right": "shopify://shop_images/Placeholder_Image_2.png"
+        "image_left": "shopify://shop_images/image_864-1.png",
+        "image_right": "shopify://shop_images/remove-the-logo_1.png"
       }
     },
     "wyms_image_text_aTdnJe": {
@@ -205,13 +205,14 @@
         "text_p_top_mob": 24,
         "text_p_bottom_mob": 64,
         "inner_radius": 16,
-        "image": "shopify://shop_images/Placeholder_Image_68499103-3c04-4a13-b94b-ace19b2654f9.png",
+        "image": "shopify://shop_images/image_866.png",
         "heading": "wyms geht neue Wege",
         "body_text": "Nachhaltigkeit heißt für uns: Dinge so zu bauen, dass sie bleiben.\n\nSchulranzen und Begleiter, die viel aushalten, mitwachsen und nicht nach kurzer Zeit ersetzt werden müssen.",
         "highlight_text": "Wir kombinieren robuste Materialien, saubere Verarbeitung und bewusste Entscheidungen entlang der Entwicklung damit Nachhaltigkeit im Alltag ankommt,\nnicht nur auf dem Papier.",
         "btn_label": "Zum Nachhaltigkeit",
         "btn_link": "#",
-        "badge_icon": "shopify://shop_images/badge_sustainability.svg"
+        "badge_icon": "shopify://shop_images/badge_sustainability.svg",
+        "badge_video": ""
       }
     },
     "wyms_editorial_split_9txz3H": {
@@ -224,7 +225,7 @@
         "btn_label": "Zum Nachhaltigkeit",
         "btn_link": "#",
         "image_left": "shopify://shop_images/Placeholder_Image_86108e7e-aaf1-4170-8722-fe414b943cd6.png",
-        "image_right": "shopify://shop_images/Placeholder_Image_edcfe135-0fc7-4d29-a321-b654532e3cbe.png"
+        "image_right": "shopify://shop_images/just-one-image_1.png"
       }
     }
   },
